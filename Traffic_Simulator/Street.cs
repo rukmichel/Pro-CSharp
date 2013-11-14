@@ -9,7 +9,7 @@ namespace Traffic_Simulator
     /// <summary>
     /// Represents a portion of a crossing.
     /// </summary>
-    struct Street
+    class Street
     {
         /// <summary>
         /// Represents the position of the street on the crossing.

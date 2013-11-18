@@ -81,10 +81,16 @@ namespace Traffic_Simulator
         /// <summary>
         /// Assigns atributes.
         /// </summary>
-        /// <param name="t">The of crossing it belongs to.</param>
+        /// <param name="t">The type of crossing it belongs to.</param>
         /// <param name="d">Position of the street in the crossing.</param>
         public Street(Type t, Direction d)
         {
+            if (t == Crossing_1)
+            { 
+            
+            }
+
+            this._position = d;
 
         }
     }

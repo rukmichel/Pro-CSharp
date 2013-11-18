@@ -17,9 +17,22 @@ namespace Traffic_Simulator
         /// </summary>
         private Color _color;
 
+        public Color _Color
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
+
         /// <summary>
         /// Amount of seconds that a traffic light should be green on a cycle.
         /// </summary>
         private int _greenLightTime;
+
+        public int GreenLightTime
+        {
+            get { return _greenLightTime; }
+
+            set { _greenLightTime = value; }
+        }
     }
 }

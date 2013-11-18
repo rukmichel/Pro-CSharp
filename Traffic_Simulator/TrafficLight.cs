@@ -15,11 +15,11 @@ namespace Traffic_Simulator
         /// <summary>
         /// Represents the current color of a traffic light.
         /// </summary>
-        private Color _color;
+        public Color _color;
 
         /// <summary>
         /// Amount of seconds that a traffic light should be green on a cycle.
         /// </summary>
-        private int _greenLightTime;
+        public int _greenLightTime;
     }
 }

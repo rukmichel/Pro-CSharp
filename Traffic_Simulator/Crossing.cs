@@ -7,7 +7,22 @@ using System.Threading.Tasks;
 namespace Traffic_Simulator
 {
     abstract class Crossing
-    {
+    {   
+        /// <summary>
+        /// Represents the current state of the crossing.
+        /// 0 - Not running
+        /// 1 - EtoNW and WtoSE green
+        /// 2 - WtoN and EtoS green
+        /// 3 - NtoS and StoN green
+        /// 4 - Pedestrian green
+        /// </summary>
+        protected int _state;
+
+        /// <summary>
+        /// Keeps track of the times ticks
+        /// </summary>
+        protected int _tickCount = 0;
+
         /// <summary>
         /// Gives the specific street on the lane on each crossing.
         /// </summary>

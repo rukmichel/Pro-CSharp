@@ -14,6 +14,30 @@ namespace Traffic_Simulator
         /// </summary>
         protected TrafficLight _lightNtoWS, _lightStoEN, _lightNtoE, _lightStoW;
 
+        public TrafficLight LightNtoWS
+        {
+            get { return _lightNtoWS;}
+            set { _lightNtoWS = value; }
+        }
+        
+        public TrafficLight LightStoEN
+        {
+            get { return _lightStoEN;}
+            set { _lightStoEN = value; }
+        }
+        
+        public TrafficLight LightNtoE
+        {
+            get { return _lightNtoE;}
+            set { _lightNtoE = value; }
+        }
+        
+        public TrafficLight LightStoW
+        {
+            get { return _lightStoW;}
+            set { _lightStoW  = value; }
+        }
+        
         /// <summary>
         /// Method to update all lights.
         /// </summary>
@@ -31,6 +55,17 @@ namespace Traffic_Simulator
 
             switch (_state)
             {
+                case 0:
+                    _lightEtoNW._color = Color.Gray;
+                    _lightWtoSE._color = Color.Gray;
+                    _lightEtoS._color = Color.Gray;
+                    _lightWtoN._color = Color.Gray;
+                    _lightNtoWS._color = Color.Gray;
+                    _lightStoEN._color = Color.Gray;
+                    _lightNtoE._color = Color.Gray;
+                    _lightStoW._color = Color.Gray;
+                    break;
+                
                 case 1:
                     _lightEtoNW._color = Color.Green;
                     _lightWtoSE._color = Color.Green;

@@ -16,7 +16,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Represents traffic lights for each direction on the street,for instance _lightEtoW: light for the car coming from East to West.
         /// </summary>
-       protected TrafficLight _lightEtoW, _lightEtoS, _lightWtoN, _lightWtoE;
+       protected TrafficLight _lightEtoNW, _lightEtoS, _lightWtoN, _lightWtoSE;
         
         /// <summary>
         /// Indicates a position on the grid, for instance "A3".
@@ -51,7 +51,7 @@ namespace Traffic_Simulator
 
        public abstract TrafficLight[] getTrafficLights()
        {
-           TrafficLight[] tf = { _lightEtoW, _lightEtoS, _lightWtoN, _lightWtoE };
+           TrafficLight[] tf = { _lightEtoNW, _lightEtoS, _lightWtoN, _lightWtoSE };
            return tf;
        }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Traffic_Simulator
 {
+    [Serializable]
     class Crossing_2 : Crossing
     {
         /// <summary>

@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Traffic_Simulator
 {
+   
     /// <summary>
     /// Represents a portion of a crossing.
     /// </summary>
+    [Serializable]
     class Street
     {
         /// <summary>

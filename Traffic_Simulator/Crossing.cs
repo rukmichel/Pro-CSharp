@@ -49,7 +49,7 @@ namespace Traffic_Simulator
            return st;
        }
 
-       public abstract TrafficLight[] getTrafficLights()
+       public TrafficLight[] getTrafficLights()
        {
            TrafficLight[] tf = { _lightEtoNW, _lightEtoS, _lightWtoN, _lightWtoSE };
            return tf;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Traffic_Simulator
 {
@@ -26,8 +27,12 @@ namespace Traffic_Simulator
         /// <summary>
         /// Gives the specific street on the lane on each crossing.
         /// </summary>
-        protected Street _intersection, _streetN, _streetE, _streetS, _streetW;
-
+        protected Street _intersection = new Street(typeof(Street), Direction.Center),
+            _streetN = new Street(typeof(Street), Direction.North), 
+            _streetE = new Street(typeof(Street), Direction.East), 
+            _streetS = new Street(typeof(Street), Direction.South), 
+            _streetW = new Street(typeof(Street), Direction.West);
+  
         public Street Intersection
         {
             get { return _intersection; }
@@ -61,7 +66,10 @@ namespace Traffic_Simulator
         /// <summary>
         /// Represents traffic lights for each direction on the street,for instance _lightEtoW: light for the car coming from East to West.
         /// </summary>
-       protected TrafficLight _lightEtoNW, _lightEtoS, _lightWtoN, _lightWtoSE;
+        protected TrafficLight _lightEtoNW = new TrafficLight(),
+            _lightEtoS = new TrafficLight(), 
+            _lightWtoN = new TrafficLight(),
+            _lightWtoSE = new TrafficLight();
 
        public TrafficLight LightEtoNW
        {

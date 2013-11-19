@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Traffic_Simulator
 {
-    [Serializable]
+    [Serializable()]
     class Grid
     {
         /// <summary>

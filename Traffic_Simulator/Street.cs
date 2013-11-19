@@ -34,11 +34,8 @@ namespace Traffic_Simulator
             get { return _laneEnter1; }
 
             set 
-            { 
-                 for(int i = 0; i < value.Length; i++ )
-                 {
-                   _laneEnter1[i] = value[i]; 
-                 }
+            {
+                _laneEnter1 = value;
             }
         }
 
@@ -85,12 +82,17 @@ namespace Traffic_Simulator
         /// <param name="d">Position of the street in the crossing.</param>
         public Street(Type t, Direction d)
         {
-            if (t == Crossing_1)
-            { 
-            
-            }
-
+            _laneEnter1 = new Car[3];
+            _laneEnter2 = new Car[3];
+            _laneExit = new Car[3];
             this._position = d;
+
+            if (t == typeof(Crossing_2)  &&
+                (d == Direction.North || d== Direction.Center || d==Direction.South))
+            {
+                
+                _laneEnter2 = null;
+            }
 
         }
     }

@@ -13,7 +13,7 @@ namespace Traffic_Simulator
         /// The lights only for crossing type 1.
         /// </summary>
         protected TrafficLight _lightNtoWS, _lightStoEN, _lightNtoE, _lightStoW;
-
+        
         public TrafficLight LightNtoWS
         {
             get { return _lightNtoWS;}

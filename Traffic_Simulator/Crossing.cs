@@ -27,11 +27,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Gives the specific street on the lane on each crossing.
         /// </summary>
-        protected Street _intersection = new Street(typeof(Street), Direction.Center),
-            _streetN = new Street(typeof(Street), Direction.North), 
-            _streetE = new Street(typeof(Street), Direction.East), 
-            _streetS = new Street(typeof(Street), Direction.South), 
-            _streetW = new Street(typeof(Street), Direction.West);
+        protected Street _intersection,  _streetN, _streetE, _streetS, _streetW;
   
         public Street Intersection
         {
@@ -226,6 +222,19 @@ namespace Traffic_Simulator
        ///  the time for light to change
        /// </summary>
        public abstract void timeTick();
+
+        /// <summary>
+        /// constructor
+        /// </summary>
+        public Crossing()
+        { 
+            _intersection = new Street(this.GetType(), Direction.Center);
+            _streetN = new Street(this.GetType(), Direction.North);
+            _streetE = new Street(this.GetType(), Direction.East);
+            _streetS = new Street(this.GetType(), Direction.South); 
+            _streetW = new Street(this.GetType(), Direction.West);
+  
+        }
 
     }  
 }

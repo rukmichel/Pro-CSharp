@@ -12,12 +12,7 @@ namespace Traffic_Simulator
         /// If the project has data which is yet to be saved.
         /// </summary>
         private bool _hasUnsavedData;
-        public bool HasUnsavedData
-        {
-            get { return _hasUnsavedData; }
-            set { _hasUnsavedData = value; }
-        }
-
+        
         /// <summary>
         /// Location to which data is being saved.
         /// </summary>
@@ -33,7 +28,11 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="grid">Grid object to serialize.</param>
         /// <returns>If save was succesful.</returns>
-        public bool saveToFile(Grid grid) { return false;}
+        public bool saveToFile(Grid grid) { 
+            
+            //TO DO: save the object grid onto file
+            return false;
+        }
 
 
 
@@ -41,7 +40,12 @@ namespace Traffic_Simulator
         /// Loads data from file.
         /// </summary>
         /// <returns>Deserialized Grid object.</returns>
-        public Grid loadFromFile() { return new Grid(); }
+        public Grid loadFromFile() { 
+            
+            //TODO: load the grid object from file
+
+            return new Grid(); 
+        }
 
         public bool hasUnsavedData() 
         {

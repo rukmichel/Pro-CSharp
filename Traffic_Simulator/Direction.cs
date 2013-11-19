@@ -15,6 +15,6 @@ namespace Traffic_Simulator
         East,
         South,
         West,
-        Center
+        Center,
     }
 }

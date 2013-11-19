@@ -22,7 +22,7 @@ namespace Traffic_Simulator
         TimeSpan _redLightWaitingTime, _timeInsideGrid;
 
         /// <summary>
-        /// 
+        /// The street this car is currently occupying
         /// </summary>
         Street _street;
 
@@ -40,6 +40,53 @@ namespace Traffic_Simulator
         /// Returns true if the car has exited the grid.
         /// </summary>
         bool _hasExitedGrid;
+
+        Direction Turn {
+            get { return _turn; }
+            set { _turn = value; }
+        }
+
+        Direction Direction
+        {
+            get { return _direction; }
+            set { _direction = value; }
+        }
+
+        TimeSpan RedLightWaitingTime
+        {
+            get { return _redLightWaitingTime; }
+            set { _redLightWaitingTime = value; }
+        }
+
+        TimeSpan TimeInsideGrid
+        {
+            get { return _timeInsideGrid; }
+            set { _timeInsideGrid = value; }
+        }
+
+        Street Street
+        {
+            get { return _street; }
+            set { _street = value; }
+        }
+
+        int StreetIndex
+        {
+            get { return _streetIndex; }
+            set { _streetIndex = value; } // !TODO: validate
+        }
+
+        bool HasEnteredGrid
+        {
+            get { return _hasEnteredGrid; }
+            set { _hasEnteredGrid = value; }
+        }
+
+        bool HasExitedGrid
+        {
+            get { return _hasExitedGrid; }
+            set { _hasExitedGrid = value; }
+        }
 
         /// <summary>
         /// Moves the car to the next position.

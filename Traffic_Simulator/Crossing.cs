@@ -7,7 +7,8 @@ using System.Drawing;
 
 namespace Traffic_Simulator
 {
-    abstract class Crossing
+    [Serializable]
+    public abstract class Crossing
     {   
         /// <summary>
         /// Represents the current state of the crossing.

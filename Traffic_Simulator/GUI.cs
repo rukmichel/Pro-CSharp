@@ -59,6 +59,11 @@ namespace Traffic_Simulator
            
         }
 
+        public void refreshScreen(Grid copyOfGrid)
+        { 
+        
+        }
+
 
 
 
@@ -106,34 +111,44 @@ namespace Traffic_Simulator
         }
 
              
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)// start/pause button click method
         {
-            if (button1.Text == "Start")
+            
+            if (_controller.State != State.Running) //if simulation is not running
             {
                 label1.Text = _controller.startSimulation();
                 if (label1.Text == "")
                 {
                     button1.Text = "Pause";
+                    button2.Enabled = true;
                 }
+                return;     //leave method
             }
-            else
+            
+
+            if(_controller.State == State.Running) //if simulation is running
             {
                 label1.Text = _controller.pauseSimulation();
                 if (label1.Text == "")
                 {
                     button1.Text = "Start";
+                    button2.Enabled = true;
                 }
             }
-            button2.Enabled = true;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)// stop button click method
         {
             label1.Text = _controller.stopSimulation();
             if (label1.Text == "") {
                 button1.Text = "Start";
                 button2.Enabled = false;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e) // make change button method
+        {
+            _controller.setCrossingProperty(null, null); //just a simulation of having changed data
         }
 
         

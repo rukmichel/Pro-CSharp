@@ -11,27 +11,35 @@ namespace Traffic_Simulator
     /// It's the main controller in the MVC model.
     /// Controlls the interaction beetween the GUI, disk and functionalities.
     /// </summary>
-    class SimulationController
+    public class SimulationController
     {   
         /// <summary>
-        /// Amount of time beetween time ticks.
+        /// Amount of time beetween time ticks in milliseconds.
         /// </summary>
         private int _refreshRate = 100; 
 
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
         /// </summary>
-        private Timer _timer;
+        private Timer _timer = new Timer();
 
         /// <summary>
         /// Event triggered by timer.
         /// </summary>
-        private Action _onTimeTick;
+        public Action _onTimeTick;
 
         /// <summary>
         /// Current state of the simulation.
         /// </summary>
-        private State _state;
+        private State _state = State.Stopped;
+
+        public State State {
+            get 
+            {
+                return _state;
+            }
+
+        }
 
         /// <summary>
         /// User interface used by the simulator.
@@ -64,7 +72,7 @@ namespace Traffic_Simulator
         /// Removes a crossing on the position "id".
         /// </summary>
         /// <param name="id"> Indicates a position on the grid, for instance "A3". </param> 
-        /// <returns>True if successfull</returns>
+        /// <returns>Error message, or null if successfull.</returns>
         public string removeCrossing(string id) { return ""; }
 
         /// <summary>
@@ -78,7 +86,7 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="crossing">The class type of the crossing, either "crossing_1" or "crossing_2".</param>
-        /// <returns>Returns true if successfull.</returns>
+        /// <returns>Error message, or null if successfull.</returns>
         public string addCrossing(string id, Type crossing) { return ""; }
 
         /// <summary>
@@ -86,55 +94,101 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="sender">GUI object that holds the value.</param>
-        /// <returns>Returns true if successfull.</returns>
-        public string setCrossingProperty(string id, object sender) { return ""; }
+        /// <returns>Error message, or null if successfull.</returns>
+        public string setCrossingProperty(string id, object sender) 
+        {
+            //For now this is just a simulation of making changes in the traffic simulator
+            _fileHandler.setUnsavedData();
+            return ""; 
+        }
 
         /// <summary>
         /// Removes all crossings from the grid.
         /// </summary>
-        /// <returns>True if successfull.</returns>
+        /// <returns>Error message, or null if successfull.</returns>
         public string clearGrid() { return ""; }
 
         /// <summary>
         /// Starts simulation.
         /// </summary>
-        /// <returns>True if successfull.</returns>
-        public string startSimulation() { return ""; }
+        /// <returns>Error message, or null if successfull.</returns>
+        public string startSimulation() 
+        {
+            try
+            {
+                _timer.Interval = _refreshRate;//sets and starts the timer
+                _timer.Start();
+                _timer.Elapsed += timerHasTriggered;
+                _state = State.Running;
+                return "";
+            }
+            catch 
+            {
+                return "Couldn't start simulation";
+            }
+        }
 
         /// <summary>
         /// Stops the simulation.
         /// </summary>
-        /// <returns>True if successfull.</returns>
-        public string stopSimulation() { return ""; }
+        /// <returns>Error message, or null if successfull.</returns>
+        public string stopSimulation() 
+        {
+            try
+            {
+                _timer.Stop();
+                _grid.reset();
+                Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
+                _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
+                _state = State.Stopped;
+                return "";
+            }
+            catch
+            {
+                return "Couldn't stop simulation";
+            }
+        }
 
         /// <summary>
         /// Pauses the simulation.
         /// </summary>
-        /// <returns>True if successfull.</returns>
-        public string pauseSimulation() { return ""; }
+        /// <returns>Error message, or null if successfull.</returns>
+        public string pauseSimulation() 
+        {
+            try
+            {
+                _timer.Stop();
+                _state = State.Paused;
+                return "";
+            }
+            catch 
+            {
+                return "Couldn't pause simulation";
+            }
+        }
 
         /// <summary>
         /// Saves the simulation to file.
         /// </summary>
-        /// <returns>True if successfull.</returns>
+        /// <returns>Error message, or null if successfull.</returns>
         public string save() { return ""; }
 
         /// <summary>
         /// Saves the simulation to given filename on given path.
         /// </summary>
-        /// <returns>True if successfull.</returns>
+        /// <returns>Error message, or null if successfull.</returns>
         public string saveAs() { return ""; }
 
         /// <summary>
         /// Loads a simulation file to the memory.
         /// </summary>
-        /// <returns>True if successfull.</returns>
+        /// <returns>Error message, or null if successfull.</returns>
         public string load() { return ""; }
 
         /// <summary>
         /// Closes the application.
         /// </summary>
-        /// <returns>True if successfull.</returns>
+        /// <returns>Closing message or null if user cancels.</returns>
         public string close() {
             //_fileHandler.setUnsavedData(); //test this method
             if (_fileHandler.hasUnsavedData()) 
@@ -170,5 +224,21 @@ namespace Traffic_Simulator
         /// Shows statistics such as average car speed, wait time, etc.
         /// </summary>
         public void showStatistics() { }
+
+
+        /// <summary>
+        /// This method is called whenever the timer's event is fired
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void timerHasTriggered(object sender, ElapsedEventArgs e)
+        {
+            if (_onTimeTick != null)
+            {
+                _onTimeTick();//ticks clock, updating all crossings and cars
+            }
+            Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
+            _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
+        }
     }
 }

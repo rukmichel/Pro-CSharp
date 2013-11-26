@@ -11,7 +11,7 @@ namespace Traffic_Simulator
     /// Represents a portion of a crossing.
     /// </summary>
     [Serializable]
-    class Street
+    public class Street
     {
         /// <summary>
         /// Represents the position of the street on the crossing.

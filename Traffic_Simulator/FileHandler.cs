@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Traffic_Simulator
 {
-    class FileHandler
+    public class FileHandler
     {
         /// <summary>
         /// If the project has data which is yet to be saved.

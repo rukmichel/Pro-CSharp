@@ -8,7 +8,7 @@ using System.Drawing;
 namespace Traffic_Simulator
 {
     [Serializable]
-    class Crossing_1 : Crossing
+    public class Crossing_1 : Crossing
     {
         /// <summary>
         /// The lights only for crossing type 1.

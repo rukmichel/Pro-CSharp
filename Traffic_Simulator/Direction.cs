@@ -9,7 +9,8 @@ namespace Traffic_Simulator
     /// <summary>
     /// Represents the directions.
     /// </summary>
-    enum Direction
+    [Serializable]
+    public enum Direction
     {
         North,
         East,

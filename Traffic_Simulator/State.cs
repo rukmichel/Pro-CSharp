@@ -9,7 +9,8 @@ namespace Traffic_Simulator
     /// <summary>
     /// Represents the current state of the simulation
     /// </summary>
-    enum State
+    [Serializable]
+    public enum State
     {
         Running,
         Paused,

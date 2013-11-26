@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Traffic_Simulator
 {
     [Serializable]
-    class Car
+    public class Car
     {
         /// <summary>
         /// _turn gives the direction to go for the car.

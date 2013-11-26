@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Traffic_Simulator
 {
     [Serializable()]
-    class Grid
+    public class Grid
     {
         /// <summary>
         /// A list of all cars on screen.

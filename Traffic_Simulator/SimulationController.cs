@@ -37,6 +37,10 @@ namespace Traffic_Simulator
         /// User interface used by the simulator.
         /// </summary>
         private GUI _gui;
+        public GUI Gui
+        {
+            set { _gui = value; }
+        }
 
         /// <summary>
         /// Object that represents the space where the crossings are located.
@@ -61,7 +65,7 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id"> Indicates a position on the grid, for instance "A3". </param> 
         /// <returns>True if successfull</returns>
-        public bool removeCrossing(string id) { return true; }
+        public string removeCrossing(string id) { return ""; }
 
         /// <summary>
         /// Selects a crossing and displays its information.
@@ -75,7 +79,7 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="crossing">The class type of the crossing, either "crossing_1" or "crossing_2".</param>
         /// <returns>Returns true if successfull.</returns>
-        public bool addCrossing(string id, Type crossing) { return true; }
+        public string addCrossing(string id, Type crossing) { return ""; }
 
         /// <summary>
         /// Sets a value of a crossing's atribute.
@@ -83,55 +87,84 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="sender">GUI object that holds the value.</param>
         /// <returns>Returns true if successfull.</returns>
-        public bool setCrossingProperty(string id, object sender) { return true; }
+        public string setCrossingProperty(string id, object sender) { return ""; }
 
         /// <summary>
         /// Removes all crossings from the grid.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool clearGrid() { return true; }
+        public string clearGrid() { return ""; }
 
         /// <summary>
         /// Starts simulation.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool startSimulation() { return true; }
+        public string startSimulation() { return ""; }
 
         /// <summary>
         /// Stops the simulation.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool stopSimulation() { return true; }
+        public string stopSimulation() { return ""; }
 
         /// <summary>
         /// Pauses the simulation.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool pauseSimulation() { return true; }
+        public string pauseSimulation() { return ""; }
 
         /// <summary>
         /// Saves the simulation to file.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool save() { return true; }
+        public string save() { return ""; }
 
         /// <summary>
         /// Saves the simulation to given filename on given path.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool saveAs() { return true; }
+        public string saveAs() { return ""; }
 
         /// <summary>
         /// Loads a simulation file to the memory.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool load() { return true; }
+        public string load() { return ""; }
 
         /// <summary>
         /// Closes the application.
         /// </summary>
         /// <returns>True if successfull.</returns>
-        public bool close() { return true; }
+        public string close() {
+            //_fileHandler.setUnsavedData(); //test this method
+            if (_fileHandler.hasUnsavedData()) 
+            {
+                string messageResult = _gui.saveMessage("Traffic Simulator", "Save modifications?"); //opens save message dialog
+                if (messageResult == "Yes") //user wants to save changes
+                {
+                    string path = _gui.filePath(1);
+                    if (path != "")//gets file path browsed by user
+                    {
+                        _fileHandler.Path = path;
+                        _fileHandler.saveToFile(_grid);
+                        return "Program is closing...";
+                    }
+                    else //in case user canceled saving
+                    {
+                        return "";
+                    }
+                }
+                if (messageResult == "No") //user doesnt want to save changes
+                {
+                    return "Program is closing...";
+                }
+                if (messageResult == "Cancel") //user cancels closing program
+                {
+                    return "";
+                }
+            }
+            return "Program is closing..."; 
+        }
 
         /// <summary>
         /// Shows statistics such as average car speed, wait time, etc.

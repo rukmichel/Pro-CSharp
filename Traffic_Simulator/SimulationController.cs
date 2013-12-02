@@ -171,19 +171,67 @@ namespace Traffic_Simulator
         /// Saves the simulation to file.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string save() { return ""; }
+        public string save() 
+        {
+            try
+            {
+
+                if (_fileHandler.Path == "")//if saved path is nulll
+                {
+                    return saveAs();
+                }
+                else //in case user canceled saving
+                {
+                    _fileHandler.saveToFile(_grid);
+                    return "Simulation has been successfully saved";
+                }
+            }
+            catch
+            {
+                return "Simulation could not be saved";
+            }
+        
+        }
 
         /// <summary>
         /// Saves the simulation to given filename on given path.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string saveAs() { return ""; }
+        public string saveAs() 
+        {
+            try
+            {
+                _fileHandler.Path = _gui.filePath(1); //shows save-file window                
+                _fileHandler.saveToFile(_grid);
+                return "Simulation has been successfully saved";
+            }
+            catch
+            {
+                return "Simulation could not be saved";
+            }
+        
+        }
 
         /// <summary>
         /// Loads a simulation file to the memory.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string load() { return ""; }
+        public string load() 
+        {
+
+            try
+            {
+                _fileHandler.Path = _gui.filePath(0); // shows load-file window
+                _grid = _fileHandler.loadFromFile();
+                return "Simulation has been loaded";
+            }
+            catch
+            {
+                return "Simulation not be loaded";
+            }
+
+
+        }
 
         /// <summary>
         /// Closes the application.
@@ -196,17 +244,9 @@ namespace Traffic_Simulator
                 string messageResult = _gui.saveMessage("Traffic Simulator", "Save modifications?"); //opens save message dialog
                 if (messageResult == "Yes") //user wants to save changes
                 {
-                    string path = _gui.filePath(1);
-                    if (path != "")//gets file path browsed by user
-                    {
-                        _fileHandler.Path = path;
-                        _fileHandler.saveToFile(_grid);
-                        return "Program is closing...";
-                    }
-                    else //in case user canceled saving
-                    {
-                        return "";
-                    }
+                    //call save() method
+                    save();
+                   
                 }
                 if (messageResult == "No") //user doesnt want to save changes
                 {

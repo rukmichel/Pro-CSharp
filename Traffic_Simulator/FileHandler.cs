@@ -16,7 +16,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Location to which data is being saved.
         /// </summary>
-        private string _path;
+        private string _path = "";
         public string Path
         {
             get { return _path; }

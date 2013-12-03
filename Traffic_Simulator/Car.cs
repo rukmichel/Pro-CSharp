@@ -101,6 +101,51 @@ namespace Traffic_Simulator
                 if (this.StreetIndex == 0)
                 {
                     // check which crossing comes next
+                    String crossingLocation = this.Crossing.ID;
+
+                    switch (this.Direction)
+                    {
+                        case Direction.North:
+                            // check if we're leaving the grid
+                            if (this.Crossing.ID[0] - 1 < 'A')
+                            {
+                                this.exitGrid();
+                                return false;
+                            }
+
+                            break;
+
+                        case Direction.East:
+                            // check if we're leaving the grid
+                            if (this.Crossing.ID[1] + 1 > '4')
+                            {
+                                this.exitGrid();
+                                return false;
+                            }
+
+                            break;
+
+                        case Direction.South:
+                            // check if we're leaving the grid
+                            if (this.Crossing.ID[0] + 1 > 'C')
+                            {
+                                this.exitGrid();
+                                return false;
+                            }
+
+                            break;
+
+                        case Direction.West:
+                            // check if we're leaving the grid
+                            if (this.Crossing.ID[1] - 1 < '1')
+                            {
+                                this.HasExitedGrid = true;
+                                return false;
+                            }
+
+                            break;
+                    }
+
                     // if possible, move car onto street on next crossing
                 }
                 // check if the next position is vacant
@@ -153,6 +198,19 @@ namespace Traffic_Simulator
 
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Called when car is leaving the grid
+        /// </summary>
+        private void exitGrid()
+        {
+            this.StreetIndex = -1;
+            this.HasExitedGrid = true;
+            this.Street = null;
+            this.Crossing = null;
+            //this.Direction = null;
+            //this.Turn = null;
         }
 
     }

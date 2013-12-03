@@ -14,11 +14,11 @@ namespace Traffic_Simulator
         /// If the project has data which is yet to be saved.
         /// </summary>
         private bool _hasUnsavedData;
-        public bool HasUnsavedData
-        {
-            get { return _hasUnsavedData; }
-            set { _hasUnsavedData = value; }
-        }
+        //public bool HasUnsavedData
+        //{
+        //    get { return _hasUnsavedData; }
+        //    set { _hasUnsavedData = value; }
+        //}
         
         /// <summary>
         /// Location to which data is being saved.
@@ -37,7 +37,7 @@ namespace Traffic_Simulator
         /// <returns>If save was succesful.</returns>
         public bool saveToFile(Grid grid, string path) {
 
-            FileStream fileStream = new FileStream(@"" + path, FileMode.Append);
+            FileStream fileStream = new FileStream(path, FileMode.Append);
             try
             {
                 BinaryFormatter binaryFormater = new BinaryFormatter();
@@ -67,7 +67,7 @@ namespace Traffic_Simulator
 
             return new Grid(); 
         }
-        /*
+        
         public bool hasUnsavedData() 
         {
             return _hasUnsavedData;
@@ -77,6 +77,6 @@ namespace Traffic_Simulator
         {
             _hasUnsavedData = true;
         }
-       */
+       
     }
 }

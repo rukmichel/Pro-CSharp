@@ -137,6 +137,11 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Traffic Simulator File| *.tsim";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Traffic Simulator File| *.tsim";
             // 
             // label1
             // 

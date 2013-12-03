@@ -131,11 +131,13 @@ namespace Traffic_Simulator
                 else if (Street.LaneExit[StreetIndex - 1] == null)
                 {
                     // car should move itself onto that position
-
+                    Street.LaneExit[StreetIndex] = null;
+                    Street.LaneExit[--StreetIndex] = this;
                     return true;
                 }
+
+                return false;
             }
-            
             
             // check if car is on laneEnter2
             if (Street.Position == Direction.North && this.Direction == Direction.East ||
@@ -146,11 +148,13 @@ namespace Traffic_Simulator
             {
                 if (this.StreetIndex == Street.LaneEnter2.Length - 1)
                 {
-                    // move to the next street
+                    // check signal, and move to center
                 }
                 else if (Street.LaneEnter2[StreetIndex + 1] == null)
                 {
                     // car should move itself onto that position
+                    Street.LaneEnter2[StreetIndex] = null;
+                    Street.LaneEnter2[++StreetIndex] = this;
                     return true;
                 }
 
@@ -161,11 +165,13 @@ namespace Traffic_Simulator
             {
                 if (this.StreetIndex == Street.LaneEnter1.Length - 1)
                 {
-                    // move to the next street
+                    // check signal and move to center
                 }
                 else if (Street.LaneEnter1[StreetIndex + 1] == null)
                 {
                     // car should move itself onto that position
+                    Street.LaneEnter1[StreetIndex] = null;
+                    Street.LaneEnter1[++StreetIndex] = this;
                     return true;
                 }
 

@@ -140,10 +140,10 @@ namespace Traffic_Simulator
             }
             
             // check if car is on laneEnter2
-            if (Street.Position == Direction.North && this.Direction == Direction.East ||
+            if ((Street.Position == Direction.North && this.Direction == Direction.East ||
                 Street.Position == Direction.East  && this.Direction == Direction.South ||
                 Street.Position == Direction.South && this.Direction == Direction.West ||
-                Street.Position == Direction.West  && this.Direction == Direction.North ||
+                Street.Position == Direction.West  && this.Direction == Direction.North) &&
                 Street.LaneEnter2 != null)
             {
                 if (this.StreetIndex == Street.LaneEnter2.Length - 1)

@@ -10,112 +10,88 @@ namespace Traffic_Simulator
     public class Car
     {
         /// <summary>
+        /// The crossing in which this car is located
+        /// </summary>
+        private Crossing _crossing;
+        public Crossing Crossing
+        {
+            get { return _crossing; }
+            set { _crossing = value; }
+        }
+        
+        /// <summary>
         /// _turn gives the direction to go for the car.
         /// _direction gives the direction on the car in the lane.
         /// </summary>
-        Direction _turn, _direction;
-
-        /// <summary>
-        /// _redLightWaitingTime gives the total time the car stopped at traffic light.
-        /// _timeInsideGrid gives the total time the car spent in the grid.
-        /// </summary>
-        TimeSpan _redLightWaitingTime, _timeInsideGrid;
-
-        /// <summary>
-        /// The street this car is currently occupying
-        /// </summary>
-        Street _street;
-
-        /// <summary>
-        ///  Represents the position of the car on a street lane.
-        /// </summary>
-        int _streetIndex;
-
-        /// <summary>
-        /// Returns true if the car has entered the grid.
-        /// </summary>
-        bool _hasEnteredGrid;
-
-        /// <summary>
-        /// Returns true if the car has exited the grid.
-        /// </summary>
-        bool _hasExitedGrid;
-
-        /// <summary>
-        /// How will the car turn at the crossing
-        /// </summary>
-        Direction Turn {
+        private Direction _turn, _direction;        
+        public Direction Turn
+        {
             get { return _turn; }
             set { _turn = value; }
         }
-
-        /// <summary>
-        /// The direction the car is moving towards on a street
-        /// </summary>
-        Direction Direction
+        public Direction Direction
         {
             get { return _direction; }
             set { _direction = value; }
         }
 
         /// <summary>
-        /// Total time car waited at a red light
+        /// _redLightWaitingTime gives the total time the car stopped at traffic light.
+        /// _timeInsideGrid gives the total time the car spent in the grid.
         /// </summary>
-        TimeSpan RedLightWaitingTime
+        private TimeSpan _redLightWaitingTime, _timeInsideGrid;
+        public TimeSpan RedLightWaitingTime
         {
             get { return _redLightWaitingTime; }
             set { _redLightWaitingTime = value; }
         }
-
-        /// <summary>
-        /// Total time car spent inside the grid
-        /// </summary>
-        TimeSpan TimeInsideGrid
+        public TimeSpan TimeInsideGrid
         {
             get { return _timeInsideGrid; }
             set { _timeInsideGrid = value; }
         }
 
         /// <summary>
-        /// The street which the car is currently occupying
+        /// The street this car is currently occupying
         /// </summary>
-        Street Street
+        private Street _street;
+        public Street Street
         {
             get { return _street; }
             set { _street = value; }
         }
 
         /// <summary>
-        /// Position of the car on the street
+        ///  Represents the position of the car on a street lane.
         /// </summary>
-        int StreetIndex
+        private int _streetIndex;
+        public int StreetIndex
         {
             get { return _streetIndex; }
             set { _streetIndex = value; } // !TODO: validate
         }
 
         /// <summary>
-        /// Is the car inside the grid?
+        /// hasEnteredGrid is true if the car has entered the grid.
+        /// hasExitedGrid is true if the car has exited the grid.
         /// </summary>
-        bool HasEnteredGrid
+        private bool _hasEnteredGrid, _hasExitedGrid;
+        public bool HasEnteredGrid
         {
             get { return _hasEnteredGrid; }
             set { _hasEnteredGrid = value; }
         }
-
-        /// <summary>
-        /// is the car outside the grid
-        /// </summary>
-        bool HasExitedGrid
+        public bool HasExitedGrid
         {
             get { return _hasExitedGrid; }
             set { _hasExitedGrid = value; }
         }
 
+
         /// <summary>
         /// Moves the car to the next position.
         /// </summary>
-        /// <returns>return true if the car moves</returns>
+        /// <returns>returns true if the car moves</returns>
         public bool move()
         {     
             // check if car is on laneExit
@@ -178,5 +154,6 @@ namespace Traffic_Simulator
                 return false;
             }
         }
+
     }
 }

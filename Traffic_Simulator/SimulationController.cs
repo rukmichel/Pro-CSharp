@@ -23,11 +23,6 @@ namespace Traffic_Simulator
         private Timer _timer = new Timer();
 
         /// <summary>
-        /// Event triggered by timer.
-        /// </summary>
-        public Action _onTimeTick;
-
-        /// <summary>
         /// Current state of the simulation.
         /// </summary>
         private State _state = State.Stopped;
@@ -147,8 +142,8 @@ namespace Traffic_Simulator
                 _grid.Slots[0, 0].ID = "A1";
 
                 _timer.Interval = _refreshRate;//sets and starts the timer
-                _timer.Start();
                 _timer.Elapsed += timerHasTriggered;
+                _timer.Start();
 
                 _state = State.Running;
                 return "";
@@ -168,7 +163,6 @@ namespace Traffic_Simulator
 
             try
             {
-            _timer.Elapsed -= timerHasTriggered;
                 _timer.Stop();
             _grid.reset();
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
@@ -306,10 +300,6 @@ namespace Traffic_Simulator
         /// <param name="e"></param>
         public void timerHasTriggered(object sender, ElapsedEventArgs e)
         {
-            if (_onTimeTick != null)
-            {
-                _onTimeTick();//ticks clock, updating all crossings and cars
-            }
             _grid.timeTick();
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
             _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI

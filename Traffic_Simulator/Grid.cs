@@ -38,7 +38,8 @@ namespace Traffic_Simulator
         /// <summary>
         /// Keeps track of time, moves cars and changes lights
         /// 1- moves every existing car by 1 position
-        /// 2-'ticks' all crossings and add new cars to crossings if necessary
+        /// 2-'ticks' all crossings 
+        /// 3- adds new cars to crossings if necessary
         /// </summary>
         public void timeTick() 
         {
@@ -49,75 +50,7 @@ namespace Traffic_Simulator
             foreach (Crossing c in _slots) //'ticks' all crossings and add new cars to crossings
             {
                 c.timeTick(); //ticks the crossings clock
-                Car car = new Car();
-
-                ////////////add new cars to street E
-                if (c.FlowE < c.EnteredE &&                                                 //if there are still cars to enter a crossing and
-                    c.StreetE.LaneEnter1[0] == null   && c.StreetE.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
-                {
-                    int prob = new Random().Next() % (int) (c.ProbEtoS + c.ProbEtoN + c.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
-                    
-                   // Interpreting the generated number:
-                   //
-                   //          _       (portion 1)     _  (portion 2)  _        (portion 3)        _
-                   //          |      direction = N    | direction = S |       direction = W       |
-                   //          |_______________________|_______________|___________________________|
-                   //number:   0                    probN        probN + probS        probN+probS+probW = 100
-                   //Example:  0                       40         40 + 15 = 55              40 + 15 + 45 = 100
-
-                    if (prob < c.ProbEtoN)// portion 1
-                        car.Direction = Direction.North;
-
-                    if (prob >= c.ProbEtoN && prob<(c.ProbEtoN + c.ProbEtoS)) //portion 2
-                        car.Direction = Direction.South;
-
-                    if(prob >=(c.ProbEtoN + c.ProbEtoS)) //portion 3
-                        car.Direction = Direction.West;
-                }
-
-                ////////////add new cars to street W
-                if (c.FlowW < c.EnteredW &&                                                 //if there are still cars to enter a crossing and
-                    c.StreetW.LaneEnter1[0] == null && c.StreetW.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
-                {
-                    int prob = new Random().Next() % (int)(c.ProbWtoS + c.ProbWtoN + c.ProbWtoE); //generates a random number beetween 0 and  the sum of probabilities
-
-                    if (prob < c.ProbWtoN)
-                        car.Direction = Direction.North;
-                    if (prob >= c.ProbWtoN && prob < (c.ProbWtoN + c.ProbWtoS))
-                        car.Direction = Direction.South;
-                    if (prob >= (c.ProbWtoN + c.ProbWtoS))
-                        car.Direction = Direction.East;
-                }
-
-                ////////add new cars to street S
-                if (c.FlowS < c.EnteredS &&                                                   //if there are still cars to enter a crossing and
-                    c.StreetS.LaneEnter1[0] == null                                           //there is an available slot at the entrance of lane enter 1
-                    && (c.GetType() == typeof(Crossing_2) || c.StreetS.LaneEnter2[0] == null))//and, in case its a crossing 1, there is an available slot at the entrance of lane 2          
-                {
-                    int prob = new Random().Next() % (int)(c.ProbStoE + c.ProbStoN + c.ProbStoW); //generates a random number beetween 0 and  the sum of probabilities
-                    
-                    if (prob < c.ProbStoN)
-                        car.Direction = Direction.North;
-                    if (prob >= c.ProbStoN && prob < (c.ProbStoN + c.ProbStoW))
-                        car.Direction = Direction.West;
-                    if (prob >= (c.ProbStoN + c.ProbStoW))
-                        car.Direction = Direction.East;
-                }
-
-                ////////add new cars to street N
-                if (c.FlowN < c.EnteredN &&                                                   //if there are still cars to enter a crossing
-                    c.StreetN.LaneEnter1[0] == null                                           //and if there is an available slot at the entrance of lane enter 1
-                    && (c.GetType() == typeof(Crossing_2) || c.StreetN.LaneEnter2[0] == null))//and, unless it's a crossing_2, if there is an available slot at the entrance of lane 2          
-                {
-                    int prob = new Random().Next() % (int)(c.ProbEtoS + c.ProbEtoN + c.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
-                    
-                    if (prob < c.ProbStoN)
-                        car.Direction = Direction.North;
-                    if (prob >= (c.ProbStoN) && prob < (c.ProbStoN + c.ProbStoE))
-                        car.Direction = Direction.East;
-                    if (prob >= (c.ProbStoN + c.ProbStoE))
-                        car.Direction = Direction.West;
-                }
+                addCars(c);  //adds cars (if necessary) to the crossings
 
             }//finish ticking crossings and adding new cars
         }
@@ -135,14 +68,81 @@ namespace Traffic_Simulator
         public double calculateAverageWaitTime() { return 0.0d; }
 
         /// <summary>
-        /// Add a new car to the grid
+        /// Add a new cars the given crossing
         /// </summary>
-        private void addCar() { }
+        private void addCars(Crossing c) 
+        {
+            Car car = new Car();
 
-        /// <summary>
-        /// Remove a car from the grid
-        /// </summary>
-        private void removeCar() { }
+            ////////////add new cars to street E
+            if (c.FlowE < c.EnteredE &&                                                 //if there are still cars to enter a crossing and
+                c.StreetE.LaneEnter1[0] == null && c.StreetE.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
+            {
+                int prob = new Random().Next() % (int)(c.ProbEtoS + c.ProbEtoN + c.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
+
+                // Interpreting the generated number:
+                //
+                //          _       (portion 1)     _  (portion 2)  _        (portion 3)        _
+                //          |      direction = N    | direction = S |       direction = W       |
+                //          |_______________________|_______________|___________________________|
+                //number:   0                    probN        probN + probS        probN+probS+probW = 100
+                //Example:  0                       40         40 + 15 = 55              40 + 15 + 45 = 100
+
+                if (prob < c.ProbEtoN)// portion 1
+                    car.Direction = Direction.North;
+
+                if (prob >= c.ProbEtoN && prob < (c.ProbEtoN + c.ProbEtoS)) //portion 2
+                    car.Direction = Direction.South;
+
+                if (prob >= (c.ProbEtoN + c.ProbEtoS)) //portion 3
+                    car.Direction = Direction.West;
+            }
+
+            ////////////add new cars to street W
+            if (c.FlowW < c.EnteredW &&                                                 //if there are still cars to enter a crossing and
+                c.StreetW.LaneEnter1[0] == null && c.StreetW.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
+            {
+                int prob = new Random().Next() % (int)(c.ProbWtoS + c.ProbWtoN + c.ProbWtoE); //generates a random number beetween 0 and  the sum of probabilities
+
+                if (prob < c.ProbWtoN)
+                    car.Direction = Direction.North;
+                if (prob >= c.ProbWtoN && prob < (c.ProbWtoN + c.ProbWtoS))
+                    car.Direction = Direction.South;
+                if (prob >= (c.ProbWtoN + c.ProbWtoS))
+                    car.Direction = Direction.East;
+            }
+
+            ////////add new cars to street S
+            if (c.FlowS < c.EnteredS &&                                                   //if there are still cars to enter a crossing and
+                c.StreetS.LaneEnter1[0] == null                                           //there is an available slot at the entrance of lane enter 1
+                && (c.GetType() == typeof(Crossing_2) || c.StreetS.LaneEnter2[0] == null))//and, in case its a crossing 1, there is an available slot at the entrance of lane 2          
+            {
+                int prob = new Random().Next() % (int)(c.ProbStoE + c.ProbStoN + c.ProbStoW); //generates a random number beetween 0 and  the sum of probabilities
+
+                if (prob < c.ProbStoN)
+                    car.Direction = Direction.North;
+                if (prob >= c.ProbStoN && prob < (c.ProbStoN + c.ProbStoW))
+                    car.Direction = Direction.West;
+                if (prob >= (c.ProbStoN + c.ProbStoW))
+                    car.Direction = Direction.East;
+            }
+
+            ////////add new cars to street N
+            if (c.FlowN < c.EnteredN &&                                                   //if there are still cars to enter a crossing
+                c.StreetN.LaneEnter1[0] == null                                           //and if there is an available slot at the entrance of lane enter 1
+                && (c.GetType() == typeof(Crossing_2) || c.StreetN.LaneEnter2[0] == null))//and, unless it's a crossing_2, if there is an available slot at the entrance of lane 2          
+            {
+                int prob = new Random().Next() % (int)(c.ProbEtoS + c.ProbEtoN + c.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
+
+                if (prob < c.ProbStoN)
+                    car.Direction = Direction.North;
+                if (prob >= (c.ProbStoN) && prob < (c.ProbStoN + c.ProbStoE))
+                    car.Direction = Direction.East;
+                if (prob >= (c.ProbStoN + c.ProbStoE))
+                    car.Direction = Direction.West;
+            }
+            
+        }
 
         /// <summary>
         /// Add a new crossing
@@ -173,13 +173,12 @@ namespace Traffic_Simulator
         /// <returns>If successful</returns>
         public bool reset() 
         {
-            _listOfCars.Clear();
-            foreach (Crossing c in _slots)
+            _listOfCars.Clear();//deletes all cars
+            foreach (Crossing c in _slots)//resets all crossings
             {
                 c.reset();
             }
-            return false; 
-        
+            return false;         
         }
     }
 }

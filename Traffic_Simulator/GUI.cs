@@ -25,7 +25,9 @@ namespace Traffic_Simulator
             Point position = new Point(6+108,6+75);
             p = new PictureBox();
             p.Image = new Bitmap(@"C:\Users\Gustavo\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
-
+            if(c.Crossing.GetType() == typeof(Crossing_2))
+                position = new Point(position.X + 3*66 , position.Y);
+            
             switch(c.Street.Position)
                 {
                     case Direction.North:     

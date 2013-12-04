@@ -23,29 +23,31 @@ namespace Traffic_Simulator
         private void drawCar(Car c)
         {     
             Point position = new Point(6+108,6+75);
-            
-            switch(c.Direction)
+            p = new PictureBox();
+            p.Image = new Bitmap(@"C:\Users\Gustavo\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
+
+            switch(c.Street.Position)
                 {
-                    case Direction.North:
-                        {
-                            int n = 0;
-                            
-                            p = new PictureBox();
-                            p.Image = new Bitmap(@"C:\Users\Gustavo\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
-                            //p.Location = new Point(position.X + 66 + c.;
-                            p.Size = new System.Drawing.Size(10, 10);
+                    case Direction.North:     
+                            p.Location = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 22 * c.StreetIndex[1]);                         
+                            break; 
+                    case Direction.West:
+                            p.Location = new Point(position.X + 22 * c.StreetIndex[1], position.Y + 66 * 2 - 22 * c.StreetIndex[0]);                         
+                            break;   
+                    case Direction.South:
+                            p.Location = new Point(position.X + 66 * 2 - 22* c.StreetIndex[0], position.Y + 66 * 3 - 22 * c.StreetIndex[1]);                         
+                            break;
+                    case Direction.East:
+                            p.Location = new Point(position.X + 66 * 3 - 22 * c.StreetIndex[1], position.Y + 66 + 22* c.StreetIndex[0]);                         
+                            break;
+                    case Direction.Center:
+                            p.Location = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 66 + 22* c.StreetIndex[1]);                         
+                            break;
+            }
+                p.Size = new System.Drawing.Size(10, 10);
                             p.Show();
                             this.Controls.Add(p);
-                            p.BringToFront();  
-                        }    
-                    case Direction.West:
-                    
-                    case Direction.South:
-                    
-                    case Direction.East:
-
-                }
-                          
+                            p.BringToFront();          
         }
 
 

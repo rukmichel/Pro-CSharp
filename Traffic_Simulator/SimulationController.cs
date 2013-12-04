@@ -148,8 +148,8 @@ namespace Traffic_Simulator
                 _grid.Slots[1, 0].ID = "A1";
 
                 _timer.Interval = _refreshRate;//sets and starts the timer
-                _timer.Start();
                 _timer.Elapsed += timerHasTriggered;
+                _timer.Start();
 
                 _state = State.Running;
                 return "";
@@ -169,7 +169,6 @@ namespace Traffic_Simulator
 
             try
             {
-            _timer.Elapsed -= timerHasTriggered;
                 _timer.Stop();
             _grid.reset();
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid

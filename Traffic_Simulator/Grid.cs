@@ -165,7 +165,7 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id">Grid position of crossing</param>
         /// <returns>The crossing</returns>
-        public Crossing getCrossing(string id) { return new Crossing_1(); }
+        public static Crossing getCrossing(string id) { return new Crossing_1(); }
 
         /// <summary>
         /// Clears all cars and lights

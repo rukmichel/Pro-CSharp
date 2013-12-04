@@ -134,6 +134,16 @@ namespace Traffic_Simulator
 
                     _grid.Slots[0, 0].ID = "A0";
 
+                    Crossing_2 c2 = (Crossing_2)_grid.Slots[1, 0];
+                    TrafficLight tl = new TrafficLight();
+                    tl._color = c2.LightPedestrian._color;
+                    tl._greenLightTime = 20;
+                    c2.LightPedestrian = tl;
+
+                    tl = new TrafficLight();
+                    tl._color = c2.LightNtoS._color;
+                    tl._greenLightTime = 20;
+                    c2.LightNtoS = tl;
 
                     _grid.Slots[1, 0].FlowS = 0;
                     _grid.Slots[1, 0].FlowE = 0;

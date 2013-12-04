@@ -110,47 +110,53 @@ namespace Traffic_Simulator
         {
             try
             {
-                _grid = new Grid();
-                _grid.Slots[0, 0] = new Crossing_1();
-                _grid.Slots[1, 0] = new Crossing_2();
+                if (_state == Traffic_Simulator.State.Stopped)
+                {
+                    _grid = new Grid();
+                    _grid.Slots[0, 0] = new Crossing_1();
+                    _grid.Slots[1, 0] = new Crossing_2();
 
-                _grid.Slots[0, 0].FlowW = 1;
-                _grid.Slots[0, 0].FlowS = 1;
-                _grid.Slots[0, 0].FlowN = 1;
+                    _grid.Slots[0, 0].FlowW = 1;
+                    _grid.Slots[0, 0].FlowS = 1;
+                    _grid.Slots[0, 0].FlowN = 1;
 
-                _grid.Slots[0, 0].ProbWtoN = 40;
-                _grid.Slots[0, 0].ProbWtoS = 40;
-                _grid.Slots[0, 0].ProbWtoE = 40;
+                    _grid.Slots[0, 0].ProbWtoN = 40;
+                    _grid.Slots[0, 0].ProbWtoS = 40;
+                    _grid.Slots[0, 0].ProbWtoE = 40;
 
-                _grid.Slots[0, 0].ProbNtoW = 40;
-                _grid.Slots[0, 0].ProbNtoS = 40;
-                _grid.Slots[0, 0].ProbNtoE = 40;
-                
-                _grid.Slots[0, 0].ProbStoN = 40;
-                _grid.Slots[0, 0].ProbStoW = 40;
-                _grid.Slots[0, 0].ProbStoE = 40;
+                    _grid.Slots[0, 0].ProbNtoW = 40;
+                    _grid.Slots[0, 0].ProbNtoS = 40;
+                    _grid.Slots[0, 0].ProbNtoE = 40;
 
-                _grid.Slots[0, 0].ID = "A0";
+                    _grid.Slots[0, 0].ProbStoN = 40;
+                    _grid.Slots[0, 0].ProbStoW = 40;
+                    _grid.Slots[0, 0].ProbStoE = 40;
+
+                    _grid.Slots[0, 0].ID = "A0";
 
 
-                _grid.Slots[1, 0].FlowS = 0;
-                _grid.Slots[1, 0].FlowE = 0;
-                _grid.Slots[1, 0].FlowN = 0; 
+                    _grid.Slots[1, 0].FlowS = 0;
+                    _grid.Slots[1, 0].FlowE = 0;
+                    _grid.Slots[1, 0].FlowN = 0;
 
-                _grid.Slots[1, 0].ProbEtoN = 40;
-                _grid.Slots[1, 0].ProbEtoS = 40;
-                _grid.Slots[1, 0].ProbEtoW = 40;
+                    _grid.Slots[1, 0].ProbEtoN = 40;
+                    _grid.Slots[1, 0].ProbEtoS = 40;
+                    _grid.Slots[1, 0].ProbEtoW = 40;
 
-                _grid.Slots[1, 0].ProbStoN = 40;
-                _grid.Slots[1, 0].ProbStoW = 40;
-                _grid.Slots[1, 0].ProbStoE = 40;
+                    _grid.Slots[1, 0].ProbStoN = 40;
+                    _grid.Slots[1, 0].ProbStoW = 40;
+                    _grid.Slots[1, 0].ProbStoE = 40;
 
-                _grid.Slots[1, 0].ID = "A1";
+                    _grid.Slots[1, 0].ID = "A1";
 
-                _timer.Interval = _refreshRate;//sets and starts the timer
-                _timer.Elapsed += timerHasTriggered;
-                _timer.Start();
-
+                    _timer.Interval = _refreshRate;//sets and starts the timer
+                    _timer.Elapsed += timerHasTriggered;
+                    _timer.Start();
+                }
+                if (_state == Traffic_Simulator.State.Paused)
+                {
+                    _timer.Start();
+                }
                 _state = State.Running;
                 return "";
             }
@@ -271,7 +277,9 @@ namespace Traffic_Simulator
         /// </summary>
         /// <returns>Closing message or null if user cancels.</returns>
         public string close() {
-            //_fileHandler.setUnsavedData(); //test this method
+
+            pauseSimulation();
+
             if (_fileHandler.hasUnsavedData()) 
             {
                 string messageResult = _gui.saveMessage("Traffic Simulator", "Save modifications?"); //opens save message dialog

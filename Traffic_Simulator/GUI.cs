@@ -30,7 +30,7 @@ namespace Traffic_Simulator
             int x, y;
             x = pictureBox1.Location.X; y = pictureBox1.Location.Y;
             p = new PictureBox();
-            p.Image = new Bitmap(@"C:\Users\Gustavo\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
+            p.Image = new Bitmap("Bitmap1.bmp");
             if(c.Crossing.GetType() == typeof(Crossing_2))
                 x += 3*66;
             
@@ -111,11 +111,15 @@ namespace Traffic_Simulator
         {
             if (copyOfGrid == null)
                 return;
+
+
             foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
-                if (c != null)
+                if (c != null )//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
                 {
                     Invoke(drawCarEvent, new object[]{c});
                 }
+
+            //doing now (stefano): drawing the traffic lights
 
             Invalidate();
         }

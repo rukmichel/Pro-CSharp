@@ -243,7 +243,11 @@ namespace Traffic_Simulator
             return Direction.Center;
         }
 
-
+        /// <summary>
+        /// Set the new crossing for the car
+        /// Only called when a car is moving from one crossing to another
+        /// </summary>
+        /// <param name="crossingID">The new crossing's ID</param>
         private void setCrossing(string crossingID)
         {
             this.Crossing = Grid.getCrossing(crossingID);
@@ -347,7 +351,108 @@ namespace Traffic_Simulator
             // check if the car can move to the center only if the traffic light is green
             if (trafficLightGreen)
             {
+                // since the traffic light is green and we're moving to the center,
+                // we can get the new street
+                this.Street = this.Crossing.Intersection;
 
+                // we once again need to know the direction of the car, as well as the turn
+                
+                // If car is moving from NORTH
+                if (this.Direction == Direction.South)
+                {
+                    // if car is moving to SOUTH or WEST
+                    // in both cases, the first postion on the center will be the same
+                    if (this.Turn == Direction.South || this.Turn == Direction.West)
+                    {
+                        if (this.Street.LaneEnter1[0] == null)
+                        {
+                            this.Street.LaneEnter1[0] = this;
+                            this.StreetIndex = 0;
+                        }
+                    }
+
+                    // If we're moving EAST
+                    if (this.Turn == Direction.East)
+                    {
+                        if (this.Street.LaneEnter2[0] == null)
+                        {
+                            this.Street.LaneEnter2[0] = this;
+                            this.StreetIndex = 0;
+                        }
+                    }
+                }
+
+                // If we're moving from EAST
+                if (this.Direction == Direction.West)
+                {
+                    // if car is moving WEST or NORTH
+                    if (this.Turn == Direction.West || this.Turn == Direction.North)
+                    {
+                        if (this.Street.LaneExit[0] == null)
+                        {
+                            this.StreetIndex = 0;
+                            this.Street.LaneExit[0] = this;
+                        }
+                    }
+
+                    // if car is moving SOUTH
+                    if (this.Turn == Direction.South)
+                    {
+                        if (this.Street.LaneExit[1] == null)
+                        {
+                            this.StreetIndex = 1;
+                            this.Street.LaneExit[1] = this;
+                        }
+                    }
+                }
+
+                // if we're moving from SOUTH
+                if (this.Direction == Direction.North)
+                {
+                    // if car is moving NORTH or EAST
+                    if (this.Turn == Direction.North || this.Turn == Direction.East)
+                    {
+                        if (this.Street.LaneExit[2] == null)
+                        {
+                            this.StreetIndex = 2;
+                            this.Street.LaneExit[2] = this;
+                        }
+                    }
+
+                    // if car is moving WEST
+                    if (this.Turn == Direction.West)
+                    {
+                        if (this.Street.LaneEnter2[2] == null)
+                        {
+                            this.StreetIndex = 2;
+                            this.Street.LaneEnter2[2] = this;
+                        }
+                    }
+                }
+
+                // if we're moving from WEST
+                if (this.Direction == Direction.East)
+                {
+                    // if car is moving EAST or SOUTH
+                    if (this.Turn == Direction.East || this.Turn == Direction.South)
+                    {
+                        if (this.Street.LaneEnter1[2] == null)
+                        {
+                            this.StreetIndex = 2;
+                            this.Street.LaneEnter1[2] = this;
+                        }
+                    }
+
+                    // if car is moving NORTH
+                    if (this.Turn == Direction.North)
+                    {
+                        if (this.Street.LaneEnter1[1] == null)
+                        {
+                            this.StreetIndex = 1;
+                            this.Street.LaneEnter1[1] = this;
+                        }
+                    }
+                }
             }
 
             return false;

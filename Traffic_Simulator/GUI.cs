@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Traffic_Simulator
 {
@@ -16,7 +18,35 @@ namespace Traffic_Simulator
         /// Controller element of the application.
         /// </summary>
         private SimulationController _controller = new SimulationController();
+        private PictureBox p;
 
+        private void drawCar(Car c)
+        {     
+            Point position = new Point(6+108,6+75);
+            
+            switch(c.Direction)
+                {
+                    case Direction.North:
+                        {
+                            int n = 0;
+                            
+                            p = new PictureBox();
+                            p.Image = new Bitmap(@"C:\Users\Gustavo\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
+                            //p.Location = new Point(position.X + 66 + c.;
+                            p.Size = new System.Drawing.Size(10, 10);
+                            p.Show();
+                            this.Controls.Add(p);
+                            p.BringToFront();  
+                        }    
+                    case Direction.West:
+                    
+                    case Direction.South:
+                    
+                    case Direction.East:
+
+                }
+                          
+        }
 
 
         /// <summary>
@@ -60,10 +90,17 @@ namespace Traffic_Simulator
         }
 
         public void refreshScreen(Grid copyOfGrid)
-        { 
-        
-        }
+        {
+            foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
+                if (c.HasEnteredGrid && !c.HasExitedGrid)
+                    drawCar(c);
 
+            foreach (Crossing c in copyOfGrid.Slots) //'ticks' all crossings and add new cars to crossings
+            {
+                c.timeTick(); //ticks the crossings clock
+                Car car = new Car();
+            }
+        }
 
 
 
@@ -117,11 +154,12 @@ namespace Traffic_Simulator
             if (_controller.State != State.Running) //if simulation is not running
             {
                 label1.Text = _controller.startSimulation();
+                Invalidate();
                 if (label1.Text == "")
                 {
                     button1.Text = "Pause";
                     button2.Enabled = true;
-                }
+                }                
                 return;     //leave method
             }
             
@@ -151,6 +189,8 @@ namespace Traffic_Simulator
             _controller.setCrossingProperty(null, null); //just a simulation of having changed data
         }
 
+        
+        
         
     }
 }

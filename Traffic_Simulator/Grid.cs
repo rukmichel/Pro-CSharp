@@ -15,10 +15,20 @@ namespace Traffic_Simulator
         /// </summary>
         List<Car> _listOfCars;
 
+        public List<Car> ListOfCars
+        {
+            get { return _listOfCars; }
+        }
+
         /// <summary>
         /// All available slots for Crossings on the grid.
         /// </summary>
         private Crossing[,] _slots;
+
+        public Crossing[,] Slots
+        {
+            get { return _slots; }
+        }
 
         /// <summary>
         /// The peak number of cars present on the grid at one time.

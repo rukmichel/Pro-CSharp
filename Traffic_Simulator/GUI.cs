@@ -14,6 +14,9 @@ namespace Traffic_Simulator
 {
     public partial class GUI : Form
     {
+        public delegate void drawCarHandler(Car c);
+        public event drawCarHandler drawCarEvent;
+
         /// <summary>
         /// Controller element of the application.
         /// </summary>
@@ -21,31 +24,33 @@ namespace Traffic_Simulator
         private PictureBox p;
 
         private void drawCar(Car c)
-        {     
-            Point position = new Point(6+108,6+75);
+        {
+            Point position = new Point(6 + pictureBox1.Location.X, 6 + pictureBox1.Location.Y);
             p = new PictureBox();
-            p.Image = new Bitmap(@"C:\Users\Gustavo\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
+            p.Image = new Bitmap(@"D:\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
             if(c.Crossing.GetType() == typeof(Crossing_2))
                 position = new Point(position.X + 3*66 , position.Y);
             
             switch(c.Street.Position)
                 {
-                    case Direction.North:     
-                            p.Location = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 22 * c.StreetIndex[1]);                         
+                    case Direction.North:
+                        position = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 22 * c.StreetIndex[1]);                         
                             break; 
                     case Direction.West:
-                            p.Location = new Point(position.X + 22 * c.StreetIndex[1], position.Y + 66 * 2 - 22 * c.StreetIndex[0]);                         
+                            position = new Point(position.X + 22 * c.StreetIndex[1], position.Y + 66 * 2 - 22 * c.StreetIndex[0]);                         
                             break;   
                     case Direction.South:
-                            p.Location = new Point(position.X + 66 * 2 - 22* c.StreetIndex[0], position.Y + 66 * 3 - 22 * c.StreetIndex[1]);                         
+                            position = new Point(position.X + 66 * 2 - 22 * c.StreetIndex[0], position.Y + 66 * 3 - 22 * c.StreetIndex[1]);                         
                             break;
                     case Direction.East:
-                            p.Location = new Point(position.X + 66 * 3 - 22 * c.StreetIndex[1], position.Y + 66 + 22* c.StreetIndex[0]);                         
+                            position = new Point(position.X + 66 * 3 - 22 * c.StreetIndex[1], position.Y + 66 + 22 * c.StreetIndex[0]);                         
                             break;
                     case Direction.Center:
-                            p.Location = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 66 + 22* c.StreetIndex[1]);                         
+                            position = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 66 + 22 * c.StreetIndex[1]);                         
                             break;
             }
+           // position.Y -= 44;
+            p.Location = position;
                 p.Size = new System.Drawing.Size(10, 10);
                             p.Show();
                             this.Controls.Add(p);
@@ -95,15 +100,15 @@ namespace Traffic_Simulator
 
         public void refreshScreen(Grid copyOfGrid)
         {
+            if (copyOfGrid == null)
+                return;
             foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
-                if (c.HasEnteredGrid && !c.HasExitedGrid)
-                    drawCar(c);
-
-            foreach (Crossing c in copyOfGrid.Slots) //'ticks' all crossings and add new cars to crossings
-            {
-                c.timeTick(); //ticks the crossings clock
-                Car car = new Car();
-            }
+                if (c!=null)
+                {
+                    //drawCar(c);
+                    Invoke(drawCarEvent, new object[]{c});
+                }
+            Invalidate();
         }
 
 
@@ -111,6 +116,7 @@ namespace Traffic_Simulator
         public GUI() 
         { 
             InitializeComponent();
+            drawCarEvent += drawCar;
             _controller.Gui = this;
         }
 
@@ -158,7 +164,7 @@ namespace Traffic_Simulator
             if (_controller.State != State.Running) //if simulation is not running
             {
                 label1.Text = _controller.startSimulation();
-                Invalidate();
+
                 if (label1.Text == "")
                 {
                     button1.Text = "Pause";

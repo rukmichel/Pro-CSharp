@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Traffic_Simulator
@@ -13,7 +12,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// A list of all cars on screen.
         /// </summary>
-        List<Car> _listOfCars;
+        List<Car> _listOfCars = new List<Car>();
 
         public List<Car> ListOfCars
         {
@@ -53,14 +52,18 @@ namespace Traffic_Simulator
         /// </summary>
         public void timeTick() 
         {
-            foreach (Car c in _listOfCars) //moves every existing car by 1 position
-                if(c.HasEnteredGrid && !c.HasExitedGrid)
-                    c.move();
+            //foreach (Car c in _listOfCars) //moves every existing car by 1 position
+            //    if(c!=null)
+            //        if(c.HasEnteredGrid && !c.HasExitedGrid)
+            //            c.move();
 
             foreach (Crossing c in _slots) //'ticks' all crossings and add new cars to crossings
             {
-                c.timeTick(); //ticks the crossings clock
-                addCars(c);  //adds cars (if necessary) to the crossings
+                if (c != null)
+                {
+                    c.timeTick(); //ticks the crossings clock
+                    addCars(c);  //adds cars (if necessary) to the crossings
+                }
 
             }//finish ticking crossings and adding new cars
         }
@@ -85,7 +88,7 @@ namespace Traffic_Simulator
             Car car = new Car();
 
             ////////////add new cars to street E
-            if (c.FlowE < c.EnteredE &&                                                 //if there are still cars to enter a crossing and
+            if (c.FlowE > c.EnteredE &&                                                 //if there are still cars to enter a crossing and
                 c.StreetE.LaneEnter1[0] == null && c.StreetE.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
             {
                 int prob = new Random().Next() % (int)(c.ProbEtoS + c.ProbEtoN + c.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
@@ -115,16 +118,20 @@ namespace Traffic_Simulator
                     car.Turn = Direction.West;
                     car.StreetIndex[0] = 0;
                 }
-                car.HasEnteredGrid = true;
-                car.Crossing = c;
+                
                 car.Direction = Direction.West;
                 car.Street = c.StreetE;
+                c.EnteredE++;
                 car.StreetIndex[1] = 0;
+                car.HasEnteredGrid = true;
+                car.Crossing = c;
+                car.HasExitedGrid = false;
+                _listOfCars.Add(car);
                 
             }
 
             ////////////add new cars to street W
-            if (c.FlowW < c.EnteredW &&                                                 //if there are still cars to enter a crossing and
+            if (c.FlowW > c.EnteredW &&                                                 //if there are still cars to enter a crossing and
                 c.StreetW.LaneEnter1[0] == null && c.StreetW.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
             {
                 int prob = new Random().Next() % (int)(c.ProbWtoS + c.ProbWtoN + c.ProbWtoE); //generates a random number beetween 0 and  the sum of probabilities
@@ -144,16 +151,18 @@ namespace Traffic_Simulator
                     car.Turn = Direction.East;
                     car.StreetIndex[0] = 1;
                 }
-
-                car.HasEnteredGrid = true;
-                car.Crossing = c;
                 car.Direction = Direction.East;
                 car.Street = c.StreetW;
+                c.EnteredW++;
                 car.StreetIndex[1] = 0;
+                car.HasEnteredGrid = true;
+                car.Crossing = c;
+                car.HasExitedGrid = false;
+                _listOfCars.Add(car);
             }
 
             ////////add new cars to street S
-            if (c.FlowS < c.EnteredS &&                                                   //if there are still cars to enter a crossing and
+            if (c.FlowS > c.EnteredS &&                                                   //if there are still cars to enter a crossing and
                 c.StreetS.LaneEnter1[0] == null                                           //there is an available slot at the entrance of lane enter 1
                 && (c.GetType() == typeof(Crossing_2) || c.StreetS.LaneEnter2[0] == null))//and, in case its a crossing 1, there is an available slot at the entrance of lane 2          
             {
@@ -174,15 +183,18 @@ namespace Traffic_Simulator
                     car.Direction = Direction.East;
                     car.StreetIndex[0] = 0;
                 }
-                car.HasEnteredGrid = true;
-                car.Crossing = c;
                 car.Direction = Direction.North;
                 car.Street = c.StreetN;
+                c.EnteredS++;
                 car.StreetIndex[1] = 0;
+                car.HasEnteredGrid = true;
+                car.Crossing = c;
+                car.HasExitedGrid = false;
+                _listOfCars.Add(car);
             }
 
             ////////add new cars to street N
-            if (c.FlowN < c.EnteredN &&                                                   //if there are still cars to enter a crossing
+            if (c.FlowN > c.EnteredN &&                                                   //if there are still cars to enter a crossing
                 c.StreetN.LaneEnter1[0] == null                                           //and if there is an available slot at the entrance of lane enter 1
                 && (c.GetType() == typeof(Crossing_2) || c.StreetN.LaneEnter2[0] == null))//and, unless it's a crossing_2, if there is an available slot at the entrance of lane 2          
             {
@@ -203,14 +215,15 @@ namespace Traffic_Simulator
                     car.Direction = Direction.West;
                     car.StreetIndex[0] = 0;
                 }
-
-                car.HasEnteredGrid = true;
-                car.Crossing = c;
                 car.Direction = Direction.South;
                 car.Street = c.StreetN;
+                c.EnteredN++;
                 car.StreetIndex[1] = 0;
+                car.HasEnteredGrid = true;
+                car.Crossing = c;
+                car.HasExitedGrid = false;
+                _listOfCars.Add(car);
             }
-            
         }
 
         /// <summary>
@@ -245,7 +258,8 @@ namespace Traffic_Simulator
             _listOfCars.Clear();//deletes all cars
             foreach (Crossing c in _slots)//resets all crossings
             {
-                c.reset();
+                if(c!=null)
+                    c.reset();
             }
             return false;         
         }

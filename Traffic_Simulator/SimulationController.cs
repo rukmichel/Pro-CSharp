@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace Traffic_Simulator
@@ -116,9 +115,41 @@ namespace Traffic_Simulator
         {
             try
             {
+                _grid = new Grid();
+                _grid.Slots[0, 0] = new Crossing_1();
+                _grid.Slots[1, 0] = new Crossing_2();
+
+                _grid.Slots[0, 0].FlowW = 4;
+                _grid.Slots[0, 0].FlowS = 3;
+
+                _grid.Slots[0, 0].ProbWtoN = 40;
+                _grid.Slots[0, 0].ProbWtoS = 40;
+                _grid.Slots[0, 0].ProbWtoE = 40;
+
+                _grid.Slots[0, 0].ProbStoN = 40;
+                _grid.Slots[0, 0].ProbStoW = 40;
+                _grid.Slots[0, 0].ProbStoE = 40;
+
+                _grid.Slots[0, 0].ID = "A0";
+
+
+                _grid.Slots[1, 0].FlowS = 1;
+                _grid.Slots[1, 0].FlowE = 3;
+
+                _grid.Slots[1, 0].ProbEtoN = 40;
+                _grid.Slots[1, 0].ProbEtoS = 40;
+                _grid.Slots[1, 0].ProbEtoW = 40;
+
+                _grid.Slots[1, 0].ProbStoN = 40;
+                _grid.Slots[1, 0].ProbStoW = 40;
+                _grid.Slots[1, 0].ProbStoE = 40;
+
+                _grid.Slots[0, 0].ID = "A1";
+
                 _timer.Interval = _refreshRate;//sets and starts the timer
                 _timer.Start();
                 _timer.Elapsed += timerHasTriggered;
+
                 _state = State.Running;
                 return "";
             }
@@ -133,15 +164,17 @@ namespace Traffic_Simulator
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
         public string stopSimulation() 
-        {
+        {           
+
             try
             {
+            _timer.Elapsed -= timerHasTriggered;
                 _timer.Stop();
-                _grid.reset();
-                Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
-                _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
-                _state = State.Stopped;
-                return "";
+            _grid.reset();
+            Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
+            _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
+            _state = State.Stopped;
+            return "";
             }
             catch
             {
@@ -277,6 +310,7 @@ namespace Traffic_Simulator
             {
                 _onTimeTick();//ticks clock, updating all crossings and cars
             }
+            _grid.timeTick();
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
             _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
         }

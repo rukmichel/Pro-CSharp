@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Traffic_Simulator
 {
@@ -215,6 +216,8 @@ namespace Traffic_Simulator
 
                 return false;
             }
+
+            return false;
         }
 
         /// <summary>
@@ -259,33 +262,85 @@ namespace Traffic_Simulator
             this.Turn = this.calculateTurn();
         }
 
+        /// <summary>
+        /// Checks if the car can move to the center of the crossing i.e. the intersection
+        /// 
+        /// This is done by first checking if the light is green,
+        /// and then if the next spot is vacant
+        /// </summary>
+        /// <returns>if car can move to center</returns>
         private bool moveCenter()
         {
             // we know we're already about to move to the center
             // therefore, there are two things blocking our path
 
+            bool trafficLightGreen = false;
+
             // first, let's check if the traffic light is green
             switch (this.Direction)
             {
+                // car is on street south
                 case Direction.North:
+                    // if on crossing 2, car can only move to StreetN
+                    if (this.Crossing.GetType() == typeof(Crossing_2) && this.Turn == Direction.North)
+                    {
+                        Crossing_2 crossing = (Crossing_2)this.Crossing;
+                        trafficLightGreen = crossing.LightStoN.Color == Color.Green;
+                    }
 
+                    if (this.Crossing.GetType() == typeof(Crossing_1))
+                    {
+                        Crossing_1 crossing = (Crossing_1)this.Crossing;
+
+                        if (this.Turn == Direction.North || this.Turn == Direction.East)
+                            trafficLightGreen = crossing.LightStoEN.Color == Color.Green;
+                        else if (this.Turn == Direction.West)
+                            trafficLightGreen = crossing.LightStoW.Color == Color.Green;
+                    }
 
                     break;
 
+                // car is on street west
                 case Direction.East:
-
+                    if (this.Turn == Direction.North || this.Turn == Direction.West)
+                        trafficLightGreen = this.Crossing.LightEtoNW.Color == Color.Green;
+                    else if (this.Turn == Direction.South)
+                        trafficLightGreen = this.Crossing.LightEtoS.Color == Color.Green;
+                    
                     break;
 
+                // car is on street north
                 case Direction.South:
+                    // if car is on crossing2, it can only move to StreetS
+                    if (this.Crossing.GetType() == typeof(Crossing_2) && this.Turn == Direction.South)
+                    {
+                        Crossing_2 crossing = (Crossing_2)this.Crossing;
+                        trafficLightGreen = crossing.LightNtoS.Color == Color.Green;
+                    }
+
+                    if (this.Crossing.GetType() == typeof(Crossing_1))
+                    {
+                        Crossing_1 crossing = (Crossing_1)this.Crossing;
+
+                        if (this.Turn == Direction.South || this.Turn == Direction.West)
+                            trafficLightGreen = crossing.LightNtoWS.Color == Color.Green;
+                        else if (this.Turn == Direction.East)
+                            trafficLightGreen = crossing.LightNtoE.Color == Color.Green;
+                    }
 
                     break;
 
+                // car is on street east
                 case Direction.West:
 
                     break;
             }
 
-            // then, lets check if the  next spot is empty
+            // check if the car can move to the center only if the traffic light is green
+            if (trafficLightGreen)
+            {
+
+            }
 
             return false;
         }

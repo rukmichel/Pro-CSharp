@@ -184,7 +184,7 @@ namespace Traffic_Simulator
                     car.StreetIndex[0] = 0;
                 }
                 car.Direction = Direction.North;
-                car.Street = c.StreetN;
+                car.Street = c.StreetS;
                 c.EnteredS++;
                 car.StreetIndex[1] = 0;
                 car.HasEnteredGrid = true;
@@ -198,7 +198,7 @@ namespace Traffic_Simulator
                 c.StreetN.LaneEnter1[0] == null                                           //and if there is an available slot at the entrance of lane enter 1
                 && (c.GetType() == typeof(Crossing_2) || c.StreetN.LaneEnter2[0] == null))//and, unless it's a crossing_2, if there is an available slot at the entrance of lane 2          
             {
-                int prob = new Random().Next() % (int)(c.ProbEtoS + c.ProbEtoN + c.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
+                int prob = new Random().Next() % (int)(c.ProbNtoS + c.ProbNtoE + c.ProbNtoW); //generates a random number beetween 0 and  the sum of probabilities
 
                 if (prob < c.ProbNtoS)
                 {

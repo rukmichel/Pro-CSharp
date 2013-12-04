@@ -22,39 +22,48 @@ namespace Traffic_Simulator
         /// </summary>
         private SimulationController _controller = new SimulationController();
         private PictureBox p;
+        
+
 
         private void drawCar(Car c)
         {
-            Point position = new Point(6 + pictureBox1.Location.X, 6 + pictureBox1.Location.Y);
+            int x, y;
+            x = pictureBox1.Location.X; y = pictureBox1.Location.Y;
             p = new PictureBox();
-            p.Image = new Bitmap(@"D:\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
+            p.Image = new Bitmap(@"C:\Users\Gustavo\Documents\GitHub\Pro-CSharp\Bitmap1.bmp");
             if(c.Crossing.GetType() == typeof(Crossing_2))
-                position = new Point(position.X + 3*66 , position.Y);
+                x += 3*66;
             
             switch(c.Street.Position)
                 {
                     case Direction.North:
-                        position = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 22 * c.StreetIndex[1]);                         
+                            x += 6 + 66 + 22 * c.StreetIndex[0];
+                            y += 6 + 22 * c.StreetIndex[1];                         
                             break; 
                     case Direction.West:
-                            position = new Point(position.X + 22 * c.StreetIndex[1], position.Y + 66 * 2 - 22 * c.StreetIndex[0]);                         
+                            x += 6 + 22 * c.StreetIndex[1];
+                            y += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;                         
                             break;   
                     case Direction.South:
-                            position = new Point(position.X + 66 * 2 - 22 * c.StreetIndex[0], position.Y + 66 * 3 - 22 * c.StreetIndex[1]);                         
+                            x += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;
+                            y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 9;                         
                             break;
                     case Direction.East:
-                            position = new Point(position.X + 66 * 3 - 22 * c.StreetIndex[1], position.Y + 66 + 22 * c.StreetIndex[0]);                         
+                            x += 66 * 3 - 6 - 22 * c.StreetIndex[1];
+                            y += 66 + 6 + 22 * c.StreetIndex[0];                         
                             break;
                     case Direction.Center:
-                            position = new Point(position.X + 66 + 22 * c.StreetIndex[0], position.Y + 66 + 22 * c.StreetIndex[1]);                         
+                            x += 66 + 6 + 22 * c.StreetIndex[0];
+                            y += 66 + 6 + 22 * c.StreetIndex[1];                         
                             break;
             }
-           // position.Y -= 44;
-            p.Location = position;
+            p.Location = new Point(x, y);
                 p.Size = new System.Drawing.Size(10, 10);
-                            p.Show();
-                            this.Controls.Add(p);
-                            p.BringToFront();          
+                p.Show();
+                this.Controls.Add(p);
+                p.BringToFront();
+                //MessageBox.Show("Street Location: " + c.Street.Position.ToString() + "\nIndex: " + c.StreetIndex[0] + " " + c.StreetIndex[0]);
+
         }
 
 
@@ -103,11 +112,11 @@ namespace Traffic_Simulator
             if (copyOfGrid == null)
                 return;
             foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
-                if (c!=null)
+                if (c != null)
                 {
-                    //drawCar(c);
                     Invoke(drawCarEvent, new object[]{c});
                 }
+
             Invalidate();
         }
 
@@ -197,6 +206,25 @@ namespace Traffic_Simulator
         private void button3_Click(object sender, EventArgs e) // make change button method
         {
             _controller.setCrossingProperty(null, null); //just a simulation of having changed data
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Crossing c = new Crossing_2();
+            c.ID = "A0";
+
+            Car c2 = new Car();
+            c2.Crossing = c;
+           // MessageBox.Show("Direction:" + c2.Street.Position.ToString());
+                    c2.StreetIndex[0] = 1;
+                //c2.Direction = Direction.West;
+                c2.Street = c.StreetW;
+                c2.StreetIndex[1] = 0;
+                c2.HasEnteredGrid = true;
+                c2.Crossing = c;
+                c2.HasExitedGrid = false;
+                drawCar(c2);
+          
         }
 
         

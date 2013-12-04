@@ -64,8 +64,8 @@ namespace Traffic_Simulator
         /// <summary>
         ///  Represents the position of the car on a street lane.
         /// </summary>
-        private int _streetIndex;
-        public int StreetIndex
+        private int[] _streetIndex = new int[2];
+        public int[] StreetIndex
         {
             get { return _streetIndex; }
             set { _streetIndex = value; } // !TODO: validate

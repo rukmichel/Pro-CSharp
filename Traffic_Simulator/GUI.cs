@@ -5,18 +5,145 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Traffic_Simulator
 {
     public partial class GUI : Form
     {
+        private delegate void drawCarHandler(Car c);
+        private delegate void drawLightsHandler(Crossing[,] slots);
         /// <summary>
         /// Controller element of the application.
         /// </summary>
         private SimulationController _controller = new SimulationController();
+        private PictureBox p;
 
+
+        private void drawLights(Crossing[,] slots)
+        {
+
+           // addElement(pictureBox1.Location.X + 66 - 13, pictureBox1.Location.Y+66, "ped-red-light.png");
+            for(int i=0;i<4;i++)
+            {
+                for(int j=0;j<3;j++)
+                {
+                    Crossing c = slots[i, j];
+                    int x, y;
+                    x = pictureBox1.Location.X; y = pictureBox1.Location.Y; //base values
+                    //x = pictureBox1.Location.X + 66 - 13; y = pictureBox1.Location.Y + 2 * 22 - 10;
+                    string str="";
+
+
+                    if (c != null && c.LightEtoNW._color == Color.Green)
+                    {
+
+                    }
+
+                    if (c != null && c.LightEtoS._color == Color.Green)
+                    {
+
+                    }
+
+                    if (c != null && c.LightWtoSE._color == Color.Green)
+                    {
+
+                    }
+
+                    if (c != null && c.LightWtoN._color == Color.Green)
+                    {
+
+                    }
+
+
+
+                    if (c != null && c.GetType() == typeof(Crossing_1))
+                    {
+                        Crossing_1 c1 = (Crossing_1) c;
+                        if (c1.LightStoEN._color == Color.Green)
+                        { 
+                        
+                        }
+
+                        if (c1.LightStoW._color == Color.Green)
+                        {
+
+                        }
+
+                        if (c1.LightNtoE._color == Color.Green)
+                        {
+
+                        }
+
+                        if (c1.LightNtoWS._color == Color.Green)
+                        {
+
+                        }
+                    }
+                    if (c != null && c.GetType() == typeof(Crossing_2))
+                    {
+                        x += 3 * 66; //base value increased
+                        Crossing_2 c2 = (Crossing_2) c;
+                        if (c2.LightPedestrian._color == Color.Red || c2.LightPedestrian._color == Color.Green)
+                        {
+                            str = "ped" + c2.LightPedestrian._color.ToString() + ".png";
+                            addElement(x + 66 - 14, y + 2 * 22, str);
+                            addElement(x + 2 * 66 + 4, y + 2 * 22, str);
+                            addElement(x + 66 - 14, y + 2 * 66 + 15, str );
+                            addElement(x + 2 * 66 + 4, y + 2 * 66 + 15, str);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void addElement(int x, int y, string image)
+        {
+            p = new PictureBox();
+            p.Image = new Bitmap(image);
+            p.Location = new Point(x, y);
+            p.SizeMode = PictureBoxSizeMode.AutoSize;
+            p.Show();
+            this.Controls.Add(p);
+            p.BringToFront();
+        }
+
+        private void drawCar(Car c)
+        {
+            int x=pictureBox1.Location.X, y=pictureBox1.Location.Y;            
+            if(c.Crossing.GetType() == typeof(Crossing_2))
+                x += 3*66;
+            
+            switch(c.Street.Position)
+                {
+                    case Direction.North:
+                            x += 6 + 66 + 22 * c.StreetIndex[0];
+                            y += 6 + 22 * c.StreetIndex[1];                         
+                            break; 
+                    case Direction.West:
+                            x += 6 + 22 * c.StreetIndex[1];
+                            y += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;                         
+                            break;   
+                    case Direction.South:
+                            x += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;
+                            y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 9;                         
+                            break;
+                    case Direction.East:
+                            x += 66 * 3 - 6 - 22 * c.StreetIndex[1];
+                            y += 66 + 6 + 22 * c.StreetIndex[0];                         
+                            break;
+                    case Direction.Center:
+                            x += 66 + 6 + 22 * c.StreetIndex[0];
+                            y += 66 + 6 + 22 * c.StreetIndex[1];                         
+                            break;
+            }
+            addElement(x, y, "Bitmap1.bmp");
+                //MessageBox.Show("Street Location: " + c.Street.Position.ToString() + "\nIndex: " + c.StreetIndex[0] + " " + c.StreetIndex[0]);
+
+        }
 
 
         /// <summary>
@@ -60,10 +187,24 @@ namespace Traffic_Simulator
         }
 
         public void refreshScreen(Grid copyOfGrid)
-        { 
-        
-        }
+        {
+            if (copyOfGrid == null)
+                return;
 
+            try
+            {
+                foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
+                    if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
+                    {
+                        Invoke(new drawCarHandler(drawCar), new object[] { c });//draws cars
+                    }
+                Invoke(new drawLightsHandler(drawLights), new object[] { copyOfGrid.Slots });//draws lights
+
+
+                Invalidate();
+            }
+            catch { }
+        }
 
 
 
@@ -117,11 +258,12 @@ namespace Traffic_Simulator
             if (_controller.State != State.Running) //if simulation is not running
             {
                 label1.Text = _controller.startSimulation();
+
                 if (label1.Text == "")
                 {
                     button1.Text = "Pause";
                     button2.Enabled = true;
-                }
+                }                
                 return;     //leave method
             }
             
@@ -151,6 +293,27 @@ namespace Traffic_Simulator
             _controller.setCrossingProperty(null, null); //just a simulation of having changed data
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Crossing c = new Crossing_2();
+            c.ID = "A0";
+
+            Car c2 = new Car();
+            c2.Crossing = c;
+           // MessageBox.Show("Direction:" + c2.Street.Position.ToString());
+                    c2.StreetIndex[0] = 1;
+                //c2.Direction = Direction.West;
+                c2.Street = c.StreetW;
+                c2.StreetIndex[1] = 0;
+                c2.HasEnteredGrid = true;
+                c2.Crossing = c;
+                c2.HasExitedGrid = false;
+                drawCar(c2);
+          
+        }
+
+        
+        
         
     }
 }

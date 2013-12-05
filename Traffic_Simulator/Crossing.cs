@@ -130,13 +130,42 @@ namespace Traffic_Simulator
        {
            get { return _flowW;}
            set { _flowW = value; }
+       }
+
+       /// <summary>
+       /// Stores the amount of Cars that have already entered this crossing
+       /// </summary>
+       protected int _enteredN, _enteredE, _enteredS, _enteredW;
+
+       public int EnteredN
+       {
+           get { return _enteredN; }
+           set { _enteredN = value; }
+       }
+
+       public int EnteredE
+       {
+           get { return _enteredE; }
+           set { _enteredE = value; }
+       }
+
+       public int EnteredS
+       {
+           get { return _enteredS; }
+           set { _enteredS = value; }
+       }
+
+       public int EnteredW
+       {
+           get { return _enteredW; }
+           set { _enteredW = value; }
        } 
         
         /// <summary>
         ///  Determines the turning probability of the car from one street to another.
         /// </summary>
-        protected float _probEtoW, _probEtoN, _probEtoS, _probWtoN, _probWtoS, _probStoN,
-           _probStoE, _probStoW, _probNtoS, _probNtoW, _probNtoE;
+        protected float _probEtoW, _probEtoN, _probEtoS, _probWtoN, _probWtoS, _probWtoE, 
+            _probStoN, _probStoE, _probStoW, _probNtoS, _probNtoW, _probNtoE;
 
         public float ProbEtoW 
         {
@@ -168,6 +197,12 @@ namespace Traffic_Simulator
            set { _probWtoS = value; }
         }
 
+        public float ProbWtoE
+        {
+            get { return _probWtoE; }
+            set { _probWtoE = value; }
+        }
+
         public float ProbStoN
         {
             get { return _probStoN; }
@@ -192,7 +227,7 @@ namespace Traffic_Simulator
            set { _probNtoS = value; }
         }
 
-         public float ProbNtoW
+        public float ProbNtoW
         {
             get { return _probNtoW; }
            set { _probNtoW = value; }
@@ -211,6 +246,13 @@ namespace Traffic_Simulator
 
        public bool reset ()
        {
+           //clears all streets (remove all cars)
+           _intersection = new Street(this.GetType(), Direction.Center);
+            _streetN = new Street(this.GetType(), Direction.North);
+            _streetE = new Street(this.GetType(), Direction.East);
+            _streetS = new Street(this.GetType(), Direction.South); 
+            _streetW = new Street(this.GetType(), Direction.West);
+
            _state = 0;
            _tickCount = 0;
            return true;
@@ -225,13 +267,8 @@ namespace Traffic_Simulator
         /// constructor
         /// </summary>
         public Crossing()
-        { 
-            _intersection = new Street(this.GetType(), Direction.Center);
-            _streetN = new Street(this.GetType(), Direction.North);
-            _streetE = new Street(this.GetType(), Direction.East);
-            _streetS = new Street(this.GetType(), Direction.South); 
-            _streetW = new Street(this.GetType(), Direction.West);
-  
+        {
+            reset();  
         }
 
     }  

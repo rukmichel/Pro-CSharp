@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +14,11 @@ namespace Traffic_Simulator
         /// If the project has data which is yet to be saved.
         /// </summary>
         private bool _hasUnsavedData;
+        //public bool HasUnsavedData
+        //{
+        //    get { return _hasUnsavedData; }
+        //    set { _hasUnsavedData = value; }
+        //}
         
         /// <summary>
         /// Location to which data is being saved.
@@ -28,10 +35,25 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="grid">Grid object to serialize.</param>
         /// <returns>If save was succesful.</returns>
-        public bool saveToFile(Grid grid) { 
-            
+        public bool saveToFile(Grid grid) {
+
+            FileStream fileStream = new FileStream(_path, FileMode.Append);
+            try
+            {
+                BinaryFormatter binaryFormater = new BinaryFormatter();
+                binaryFormater.Serialize(fileStream, grid);
+                _hasUnsavedData = false;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                fileStream.Close();
+            }
             //TO DO: save the object grid onto file
-            return false;
+            return true;
         }
 
 
@@ -42,11 +64,25 @@ namespace Traffic_Simulator
         /// <returns>Deserialized Grid object.</returns>
         public Grid loadFromFile() { 
             
-            //TODO: load the grid object from file
+            if (string.IsNullOrEmpty(_path)) { return default(Grid); }
 
-            return new Grid(); 
+            Grid objectToLoad = default(Grid);
+
+            try
+            {
+                Stream stream = File.Open(_path, FileMode.Open);
+                BinaryFormatter binaryFormater = new BinaryFormatter();
+                objectToLoad = (Grid)binaryFormater.Deserialize(stream);
+                stream.Close();
+            }
+            catch
+            {
+                throw new FileLoadException();
+            }
+            return objectToLoad;
+            
         }
-
+        
         public bool hasUnsavedData() 
         {
             return _hasUnsavedData;
@@ -56,5 +92,6 @@ namespace Traffic_Simulator
         {
             _hasUnsavedData = true;
         }
+       
     }
 }

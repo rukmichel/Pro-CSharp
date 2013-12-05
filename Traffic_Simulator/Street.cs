@@ -75,6 +75,13 @@ namespace Traffic_Simulator
             }
         }
 
+        private Car[][] _lanes = new Car[3][];
+
+        public Car[][] Lanes
+        {
+            get { return _lanes; }
+            set { _lanes = value; }
+        }
         /// <summary>
         /// Assigns atributes.
         /// </summary>
@@ -93,7 +100,9 @@ namespace Traffic_Simulator
                 
                 _laneEnter2 = null;
             }
-
-        }
+            _lanes[0] = _laneEnter1;
+            _lanes[1] = _laneEnter2;
+            _lanes[2] = _laneExit;
+         }
     }
 }

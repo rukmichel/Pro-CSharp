@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Timers;
 
 namespace Traffic_Simulator
 {
+    delegate void Del(Grid g);
+
     /// <summary>
     /// It's the main controller in the MVC model.
     /// Controlls the interaction beetween the GUI, disk and functionalities.
@@ -15,7 +14,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Amount of time beetween time ticks in milliseconds.
         /// </summary>
-        private int _refreshRate = 300; 
+        private int _refreshRate = 600; 
 
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
@@ -135,15 +134,18 @@ namespace Traffic_Simulator
                     _grid.Slots[0, 0].ID = "A0";
 
                     Crossing_2 c2 = (Crossing_2)_grid.Slots[1, 0];
-                    TrafficLight tl = new TrafficLight();
+                    TrafficLight tl;
                     tl._color = c2.LightPedestrian._color;
                     tl._greenLightTime = 20;
                     c2.LightPedestrian = tl;
 
-                    tl = new TrafficLight();
                     tl._color = c2.LightNtoS._color;
                     tl._greenLightTime = 20;
                     c2.LightNtoS = tl;
+
+                    tl._color = c2.LightWtoSE._color;
+                    tl._greenLightTime = 20;
+                    c2.LightWtoSE = tl;
 
                     _grid.Slots[1, 0].FlowS = 0;
                     _grid.Slots[1, 0].FlowE = 0;
@@ -186,11 +188,11 @@ namespace Traffic_Simulator
             try
             {
                 _timer.Stop();
-            _grid.reset();
-            Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
-            _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
-            _state = State.Stopped;
-            return "";
+                _grid.reset();
+                Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
+                _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
+                _state = State.Stopped;
+                return "";
             }
             catch
             {
@@ -316,7 +318,6 @@ namespace Traffic_Simulator
         /// </summary>
         public void showStatistics() { }
 
-
         /// <summary>
         /// This method is called whenever the timer's event is fired
         /// </summary>
@@ -324,9 +325,14 @@ namespace Traffic_Simulator
         /// <param name="e"></param>
         public void timerHasTriggered(object sender, ElapsedEventArgs e)
         {
+            Del caller = new Del(_gui.refreshScreen);
             _grid.timeTick();
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
-            _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
+            try
+            {
+                _gui.Invoke(caller, new object[] { tempCopy });             //and sends that copy as a parameter to the GUI
+            }
+            catch { }
         }
     }
 }

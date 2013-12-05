@@ -383,7 +383,7 @@ namespace Traffic_Simulator
 
                             return false;
                         }
-                        else if (this.Turn == Direction.South || true.Turn == Direction.West)
+                        else if (this.Turn == Direction.South || this.Turn == Direction.West)
                         {
                             if (this.Street.LaneEnter2 != null)
                             {
@@ -467,10 +467,74 @@ namespace Traffic_Simulator
         /// Use probablity to figure out which direction the car should take
         /// </summary>
         /// <returns>Direction the car will turn at intersection</returns>
-        private Direction calculateTurn()
+        private void calculateTurn()
         {
+            if (this.Crossing.FlowE < this.Crossing.EnteredE &&                                                 //if there are still cars to enter a crossing and
+                this.Crossing.StreetE.LaneEnter1[0] == null && this.Crossing.StreetE.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
+            {
+                int prob = new Random().Next() % (int)(this.Crossing.ProbEtoS + this.Crossing.ProbEtoN + this.Crossing.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
 
-            return Direction.Center;
+                // Interpreting the generated number:
+                //
+                //          _       (portion 1)     _  (portion 2)  _        (portion 3)        _
+                //          |      direction = N    | direction = S |       direction = W       |
+                //          |_______________________|_______________|___________________________|
+                //number:   0                    probN        probN + probS        probN+probS+probW = 100
+                //Example:  0                       40         40 + 15 = 55              40 + 15 + 45 = 100
+
+                if (prob < this.Crossing.ProbEtoN)// portion 1
+                    this.Direction = Direction.North;
+
+                if (prob >= this.Crossing.ProbEtoN && prob < (this.Crossing.ProbEtoN + this.Crossing.ProbEtoS)) //portion 2
+                    this.Direction = Direction.South;
+
+                if (prob >= (this.Crossing.ProbEtoN + this.Crossing.ProbEtoS)) //portion 3
+                    this.Direction = Direction.West;
+            }
+
+            ////////////add new cars to street W
+            if (this.Crossing.FlowW < this.Crossing.EnteredW &&                                                 //if there are still cars to enter a crossing and
+                this.Crossing.StreetW.LaneEnter1[0] == null && this.Crossing.StreetW.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
+            {
+                int prob = new Random().Next() % (int)(this.Crossing.ProbWtoS + this.Crossing.ProbWtoN + this.Crossing.ProbWtoE); //generates a random number beetween 0 and  the sum of probabilities
+
+                if (prob < this.Crossing.ProbWtoN)
+                    this.Direction = Direction.North;
+                if (prob >= this.Crossing.ProbWtoN && prob < (this.Crossing.ProbWtoN + this.Crossing.ProbWtoS))
+                    this.Direction = Direction.South;
+                if (prob >= (this.Crossing.ProbWtoN + this.Crossing.ProbWtoS))
+                    this.Direction = Direction.East;
+            }
+
+            ////////add new cars to street S
+            if (this.Crossing.FlowS < this.Crossing.EnteredS &&                                                   //if there are still cars to enter a crossing and
+                this.Crossing.StreetS.LaneEnter1[0] == null                                           //there is an available slot at the entrance of lane enter 1
+                && (this.Crossing.GetType() == typeof(Crossing_2) || this.Crossing.StreetS.LaneEnter2[0] == null))//and, in case its a crossing 1, there is an available slot at the entrance of lane 2          
+            {
+                int prob = new Random().Next() % (int)(this.Crossing.ProbStoE + this.Crossing.ProbStoN + this.Crossing.ProbStoW); //generates a random number beetween 0 and  the sum of probabilities
+
+                if (prob < this.Crossing.ProbStoN)
+                    this.Direction = Direction.North;
+                if (prob >= this.Crossing.ProbStoN && prob < (this.Crossing.ProbStoN + this.Crossing.ProbStoW))
+                    this.Direction = Direction.West;
+                if (prob >= (this.Crossing.ProbStoN + this.Crossing.ProbStoW))
+                    this.Direction = Direction.East;
+            }
+
+            ////////add new cars to street N
+            if (this.Crossing.FlowN < this.Crossing.EnteredN &&                                                   //if there are still cars to enter a crossing
+                this.Crossing.StreetN.LaneEnter1[0] == null                                           //and if there is an available slot at the entrance of lane enter 1
+                && (this.Crossing.GetType() == typeof(Crossing_2) || this.Crossing.StreetN.LaneEnter2[0] == null))//and, unless it's a crossing_2, if there is an available slot at the entrance of lane 2          
+            {
+                int prob = new Random().Next() % (int)(this.Crossing.ProbEtoS + this.Crossing.ProbEtoN + this.Crossing.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
+
+                if (prob < this.Crossing.ProbStoN)
+                    this.Direction = Direction.North;
+                if (prob >= (this.Crossing.ProbStoN) && prob < (this.Crossing.ProbStoN + this.Crossing.ProbStoE))
+                    this.Direction = Direction.East;
+                if (prob >= (this.Crossing.ProbStoN + this.Crossing.ProbStoE))
+                    this.Direction = Direction.West;
+            }
         }
 
         /// <summary>
@@ -493,7 +557,7 @@ namespace Traffic_Simulator
                 this.Street = this.Crossing.StreetE;
 
             // calculate where the car is going to turn based on probability
-            this.Turn = this.calculateTurn();
+            this.calculateTurn();
         }
 
         /// <summary>

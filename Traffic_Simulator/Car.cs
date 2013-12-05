@@ -236,7 +236,9 @@ namespace Traffic_Simulator
                             // if car has reached end of the street
                             if (this.StreetIndex[1] == 2 && this.Crossing.StreetS.LaneExit[2] == null)
                             {
-                                this.Crossing.StreetS.LaneExit[2] = this;
+                                this.Street.LaneEnter1[this.StreetIndex[1]] = null;
+                                this.Street = this.Crossing.StreetS;
+                                this.Street.LaneExit[2] = this;
                                 this.StreetIndex[1] = 2;
                                 return true;
                             }
@@ -255,7 +257,9 @@ namespace Traffic_Simulator
                             // check if car can move to StreetW
                             if (this.Crossing.StreetW.LaneExit[2] == null)
                             {
-                                this.Crossing.StreetW.LaneExit[2] = this;
+                                this.Street.LaneEnter1[this.StreetIndex[1]] = null;
+                                this.Street = this.Crossing.StreetW;
+                                this.Street.LaneExit[2] = this;
                                 this.StreetIndex[1] = 2;
                                 return true;
                             }
@@ -299,6 +303,7 @@ namespace Traffic_Simulator
                                 {
                                     this.Street.LaneEnter2[this.StreetIndex[1]] = null;
                                     this.Street.LaneEnter2[++this.StreetIndex[1]] = this;
+                                    return true;
                                 }
                             }
 
@@ -312,6 +317,8 @@ namespace Traffic_Simulator
                                 this.Street.LaneEnter1[this.StreetIndex[1]] = this;
                                 return true;
                             }
+
+                            return false;
                         }
                         else if (this.Turn == Direction.West)
                         {
@@ -331,6 +338,7 @@ namespace Traffic_Simulator
                                 {
                                     this.Street.LaneEnter2[this.StreetIndex[1]] = null;
                                     this.Street.LaneEnter2[--this.StreetIndex[1]] = this;
+                                    return true;
                                 }
                             }
                         }
@@ -341,19 +349,53 @@ namespace Traffic_Simulator
                     case 2:
                         if (this.Turn == Direction.North)
                         {
+                            if (this.StreetIndex[1] == 0)
+                            {
+                                if (this.Crossing.StreetN.LaneExit[2] == null)
+                                {
+                                    this.Street.LaneExit[this.StreetIndex[1]] = null;
+                                    this.Street = this.Crossing.StreetN;
+                                    this.Street.LaneExit[2] = this;
+                                    this.StreetIndex[1] = 2;
+                                    return true;
+                                }
+                            }
+                            else if (this.Street.LaneExit[this.StreetIndex[1] - 1] == null)
+                            {
+                                this.Street.LaneExit[this.StreetIndex[1]] = null;
+                                this.Street.LaneExit[--this.StreetIndex[1]] = this;
+                                return true;
+                            }
+
+                            return false;
 
                         }
                         else if (this.Turn == Direction.East)
                         {
+                            if (this.Crossing.StreetE.LaneExit[2] == null)
+                            {
+                                this.Street.LaneExit[this.StreetIndex[1]] = null;
+                                this.Street = this.Crossing.StreetE;
+                                this.Street.LaneExit[2] = this;
+                                this.StreetIndex[1] = 2;
+                                return true;
+                            }
 
+                            return false;
                         }
-                        else if (this.Turn == Direction.South)
+                        else if (this.Turn == Direction.South || true.Turn == Direction.West)
                         {
+                            if (this.Street.LaneEnter2 != null)
+                            {
+                                if (this.Street.LaneEnter2[this.StreetIndex[1]] == null)
+                                {
+                                    this.Street.LaneExit[this.StreetIndex[1]] = null;
+                                    this.Street.LaneEnter2[this.StreetIndex[1]] = this;
+                                    return true;
+                                }
 
-                        }
-                        else if (this.Turn == Direction.West)
-                        {
-
+                                return false;
+                            }
                         }
 
                         break;

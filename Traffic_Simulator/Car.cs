@@ -96,7 +96,12 @@ namespace Traffic_Simulator
         /// </summary>
         /// <returns>returns true if the car moves</returns>
         public bool move()
-        {     
+        {
+            if (this.HasEnteredGrid == false && this.HasEnteredGrid == false)
+            {
+                this.calculateTurn();
+            }
+
             // check if car is on laneExit
             if (this.Direction == Street.Position)
             {

@@ -52,10 +52,10 @@ namespace Traffic_Simulator
         /// </summary>
         public void timeTick() 
         {
-            //foreach (Car c in _listOfCars) //moves every existing car by 1 position
-            //    if(c!=null)
+            foreach (Car c in _listOfCars) //moves every existing car by 1 position
+                if(c!=null)
             //        if(c.HasEnteredGrid && !c.HasExitedGrid)
-            //            c.move();
+                        c.move();
 
             foreach (Crossing c in _slots) //'ticks' all crossings and add new cars to crossings
             {
@@ -95,8 +95,8 @@ namespace Traffic_Simulator
                 car.Street = c.StreetE;
                 car.Crossing = c;
                 car.Direction = Direction.West;
-                car.StreetIndex[0] = -1;
-                car.StreetIndex[1] = -1;
+                car.StreetIndex[0] = 0;
+                car.StreetIndex[1] = 0;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 
@@ -115,8 +115,8 @@ namespace Traffic_Simulator
                 car.Street = c.StreetW;
                 car.Crossing = c;
                 car.Direction = Direction.East;
-                car.StreetIndex[0] = -1;
-                car.StreetIndex[1] = -1;
+                car.StreetIndex[0] = 0;
+                car.StreetIndex[1] = 0;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 
@@ -136,8 +136,8 @@ namespace Traffic_Simulator
                 car.Street = c.StreetS;
                 car.Crossing = c;
                 car.Direction = Direction.North;
-                car.StreetIndex[0] = -1;
-                car.StreetIndex[1] = -1;
+                car.StreetIndex[0] = 0;
+                car.StreetIndex[1] = 0;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 
@@ -156,8 +156,8 @@ namespace Traffic_Simulator
                 car.Street = c.StreetN;
                 car.Crossing = c;
                 car.Direction = Direction.South;
-                car.StreetIndex[0] = -1;
-                car.StreetIndex[1] = -1;
+                car.StreetIndex[0] = 0;
+                car.StreetIndex[1] = 0;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 

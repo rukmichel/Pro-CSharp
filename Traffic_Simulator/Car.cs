@@ -88,7 +88,55 @@ namespace Traffic_Simulator
             set { _hasExitedGrid = value; }
         }
 
+        private void setFirstLane()
+        {
+            Console.WriteLine(this.Street.GetType().ToString());
 
+            switch (this.Turn)
+            {
+                case Direction.North:
+                    if (this.Direction == Direction.East)
+                        this.Street.LaneEnter1[0] = this;
+                    if (this.Direction == Direction.South)
+                        this.Street.LaneEnter1[0] = this;
+                    if (this.Direction == Direction.West)
+                        this.Street.LaneEnter2[0] = this;
+                    break;
+
+                case Direction.East:
+                    if (this.Direction == Direction.North)
+                        this.Street.LaneEnter2[0] = this;
+                    else if (this.Direction == Direction.South)
+                        this.Street.LaneEnter1[0] = this;
+                    else if (this.Direction == Direction.West)
+                        this.Street.LaneEnter1[0] = this;
+
+                    break;
+
+                case Direction.South:
+                    if (this.Direction == Direction.North)
+                        this.Street.LaneEnter1[0] = this;
+                    else if (this.Direction == Direction.East)
+                        this.Street.LaneEnter2[0] = this;
+                    else if (this.Direction == Direction.West)
+                        this.Street.LaneEnter1[0] = this;
+
+                    break;
+
+                case Direction.West:
+                    if (this.Direction == Direction.North)
+                        this.Street.LaneEnter2[0] = this;
+                    else if (this.Direction == Direction.East)
+                        this.Street.LaneEnter1[0] = this;
+                    else if (this.Direction == Direction.South)
+                        this.Street.LaneEnter1[0] = this;
+
+                    break;
+            }
+
+            this.StreetIndex[0] = 0;
+            this.StreetIndex[1] = 0;
+        }
 
 
         /// <summary>
@@ -100,6 +148,8 @@ namespace Traffic_Simulator
             if (this.HasEnteredGrid == false && this.HasEnteredGrid == false)
             {
                 this.calculateTurn();
+                this.HasEnteredGrid = true;
+                this.setFirstLane();
             }
 
             // check if car is on laneExit

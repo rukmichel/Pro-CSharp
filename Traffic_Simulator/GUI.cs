@@ -20,6 +20,7 @@ namespace Traffic_Simulator
         /// Controller element of the application.
         /// </summary>
         private SimulationController _controller = new SimulationController();
+        private List<PictureBox> elements = new List<PictureBox>();
         private PictureBox p;
 
 
@@ -109,6 +110,7 @@ namespace Traffic_Simulator
             p.Show();
             this.Controls.Add(p);
             p.BringToFront();
+            elements.Add(p);
         }
 
         private void drawCar(Car c)
@@ -193,6 +195,14 @@ namespace Traffic_Simulator
 
             try
             {
+
+                foreach (PictureBox pb in elements)
+                {
+                    Controls.Remove(pb);
+
+                }
+                elements.Clear();
+
                 foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
                     if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
                     {

@@ -101,11 +101,11 @@ namespace Traffic_Simulator
             t2 = t1 + ((_lightWtoN._greenLightTime > _lightEtoS._greenLightTime) ? _lightWtoN._greenLightTime : _lightEtoS._greenLightTime);
             t3 = t2 + ((_lightNtoWS._greenLightTime > _lightStoEN._greenLightTime) ? _lightNtoWS._greenLightTime : _lightStoEN._greenLightTime);
             t4 = t3 + ((_lightNtoE._greenLightTime > _lightStoW._greenLightTime) ? _lightNtoE._greenLightTime : _lightStoW._greenLightTime);
-            if (_tickCount == t4)
+            if (_tickCount == t4 || _tickCount==0)
             {
                 _tickCount = 0;
-                updateLights();
                 _state = 1;
+                updateLights();
             }
             else
             {
@@ -128,7 +128,20 @@ namespace Traffic_Simulator
                     updateLights();
                 }
 
-            }          
+            }  
+        
+        }
+
+        public override bool reset()
+        {
+            base.reset();
+
+            _lightNtoWS._color = Color.Gray;
+            _lightStoEN._color = Color.Gray;
+            _lightNtoE._color = Color.Gray;
+            _lightStoW._color = Color.Gray;
+
+            return true;
         }
     }
 }

@@ -244,7 +244,7 @@ namespace Traffic_Simulator
        /// </summary>
        protected abstract void updateLights();
 
-       public bool reset ()
+       public virtual bool reset ()
        {
            //clears all streets (remove all cars)
            _intersection = new Street(this.GetType(), Direction.Center);
@@ -252,6 +252,12 @@ namespace Traffic_Simulator
             _streetE = new Street(this.GetType(), Direction.East);
             _streetS = new Street(this.GetType(), Direction.South); 
             _streetW = new Street(this.GetType(), Direction.West);
+
+           //clears all lights
+            _lightEtoNW._color = Color.Gray;
+            _lightWtoSE._color = Color.Gray;
+            _lightEtoS._color = Color.Gray;
+            _lightWtoN._color = Color.Gray;
 
            _state = 0;
            _tickCount = 0;

@@ -187,6 +187,181 @@ namespace Traffic_Simulator
             // if car is at the intersection
             if (Street.Position == Direction.Center)
             {
+                // first find which street the car is on
+                int currentStreetID = -1;
+
+                if (this.Street.LaneEnter1[this.StreetIndex[1]] == this)
+                    currentStreetID = 0;
+                else if (this.Street.LaneEnter2[this.StreetIndex[1]] == this)
+                    currentStreetID = 1;
+                else if (this.Street.LaneExit[this.StreetIndex[1]] == this)
+                    currentStreetID = 2;
+
+                switch (currentStreetID)
+                {
+                    // if car is on LaneEnter1
+                    case 0:
+                        // in both cases, car needs to move towards the East
+                        if (this.Turn == Direction.North || this.Turn == Direction.East)
+                        {
+                            // if we're on crossing1
+                            if (this.Street.LaneEnter2 != null)
+                            {
+                                if (this.Street.LaneEnter2[this.StreetIndex[1]] == null) 
+                                {
+                                    this.Street.LaneEnter1[this.StreetIndex[1]] = null;
+                                    this.Street.LaneEnter2[this.StreetIndex[1]] = this;
+                                    return true;
+                                }
+
+                                // cannot move cos LaneEnter2 is occupied
+                                return false;
+                            }
+                            // if we're on Crossing2
+                            else
+                            {
+                                if (this.Street.LaneExit[this.StreetIndex[1]] == null)
+                                {
+                                    this.Street.LaneEnter1[this.StreetIndex[1]] = null;
+                                    this.Street.LaneExit[this.StreetIndex[1]] = this;
+                                    return true;
+                                }
+
+                                // cannot move cos LaneExit is occupied
+                                return false;
+                            }
+                        }
+                        else if (this.Turn == Direction.South)
+                        {
+                            // if car has reached end of the street
+                            if (this.StreetIndex[1] == 2 && this.Crossing.StreetS.LaneExit[2] == null)
+                            {
+                                this.Crossing.StreetS.LaneExit[2] = this;
+                                this.StreetIndex[1] = 2;
+                                return true;
+                            }
+                            // if we're continuing to move inside the lane
+                            else if (this.Street.LaneEnter1[this.StreetIndex[1] + 1] == null)
+                            {
+                                this.Street.LaneEnter1[this.StreetIndex[1]] = null;
+                                this.Street.LaneEnter1[++this.StreetIndex[1]] = this;
+                                return true;
+                            }
+
+                            return false;
+                        }
+                        else if (this.Turn == Direction.West)
+                        {
+                            // check if car can move to StreetW
+                            if (this.Crossing.StreetW.LaneExit[2] == null)
+                            {
+                                this.Crossing.StreetW.LaneExit[2] = this;
+                                this.StreetIndex[1] = 2;
+                                return true;
+                            }
+
+                            return false;
+                        }
+
+                        break;
+
+                    // if car is on LaneEnter2
+                    //   the car can never move to another street from this lane
+                    case 1:
+                        if (this.Turn == Direction.North)
+                        {
+                            if (this.Street.LaneExit[this.StreetIndex[1]] == null)
+                            {
+                                this.Street.LaneEnter2[this.StreetIndex[1]] = null;
+                                this.Street.LaneExit[this.StreetIndex[1]] = this;
+                                return true;
+                            }
+
+                            return false;
+
+                        }
+                        else if (this.Turn == Direction.East)
+                        {
+                            // if we're at the end of the lane, change lanes
+                            if (this.StreetIndex[1] == 2)
+                            {
+                                if (this.Street.LaneExit[this.StreetIndex[1]] == null)
+                                {
+                                    this.Street.LaneEnter2[this.StreetIndex[1]] = null;
+                                    this.Street.LaneExit[this.StreetIndex[1]] = this;
+                                    return true;
+                                }
+                            }
+                            // else continue down the street
+                            else
+                            {
+                                if (this.Street.LaneEnter2[this.StreetIndex[1] + 1] == null)
+                                {
+                                    this.Street.LaneEnter2[this.StreetIndex[1]] = null;
+                                    this.Street.LaneEnter2[++this.StreetIndex[1]] = this;
+                                }
+                            }
+
+                            return false;
+                        }
+                        else if (this.Turn == Direction.South)
+                        {
+                            if (this.Street.LaneEnter1[this.StreetIndex[1]] == null)
+                            {
+                                this.Street.LaneEnter2[this.StreetIndex[1]] = null;
+                                this.Street.LaneEnter1[this.StreetIndex[1]] = this;
+                                return true;
+                            }
+                        }
+                        else if (this.Turn == Direction.West)
+                        {
+                            if (this.StreetIndex[1] == 0)
+                            {
+                                if (this.Street.LaneEnter1[this.StreetIndex[1]] == null)
+                                {
+                                    this.Street.LaneEnter2[this.StreetIndex[1]] = null;
+                                    this.Street.LaneEnter1[this.StreetIndex[1]] = this;
+
+                                    return true;
+                                }
+                            }
+                            else
+                            {
+                                if (this.Street.LaneEnter2[this.StreetIndex[1] - 1] == null)
+                                {
+                                    this.Street.LaneEnter2[this.StreetIndex[1]] = null;
+                                    this.Street.LaneEnter2[--this.StreetIndex[1]] = this;
+                                }
+                            }
+                        }
+                        
+                        break;
+
+                    // if car is on LaneExit
+                    case 2:
+                        if (this.Turn == Direction.North)
+                        {
+
+                        }
+                        else if (this.Turn == Direction.East)
+                        {
+
+                        }
+                        else if (this.Turn == Direction.South)
+                        {
+
+                        }
+                        else if (this.Turn == Direction.West)
+                        {
+
+                        }
+
+                        break;
+
+                    default:
+                        Console.WriteLine("INVALID POSITION AT INTERSECTION");
+                        break;
+                }
 
             }
             // check if car is on laneEnter2

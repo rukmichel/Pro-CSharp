@@ -380,7 +380,7 @@ namespace Traffic_Simulator
                         if (this.Street.LaneEnter1[0] == null)
                         {
                             this.Street.LaneEnter1[0] = this;
-                            this.StreetIndex = 0;
+                            this.StreetIndex[1] = 0;
                         }
                     }
 
@@ -390,7 +390,7 @@ namespace Traffic_Simulator
                         if (this.Street.LaneEnter2[0] == null)
                         {
                             this.Street.LaneEnter2[0] = this;
-                            this.StreetIndex = 0;
+                            this.StreetIndex[1] = 0;
                         }
                     }
                 }
@@ -403,7 +403,7 @@ namespace Traffic_Simulator
                     {
                         if (this.Street.LaneExit[0] == null)
                         {
-                            this.StreetIndex = 0;
+                            this.StreetIndex[1] = 0;
                             this.Street.LaneExit[0] = this;
                         }
                     }
@@ -413,7 +413,7 @@ namespace Traffic_Simulator
                     {
                         if (this.Street.LaneExit[1] == null)
                         {
-                            this.StreetIndex = 1;
+                            this.StreetIndex[1] = 1;
                             this.Street.LaneExit[1] = this;
                         }
                     }
@@ -427,7 +427,7 @@ namespace Traffic_Simulator
                     {
                         if (this.Street.LaneExit[2] == null)
                         {
-                            this.StreetIndex = 2;
+                            this.StreetIndex[1] = 2;
                             this.Street.LaneExit[2] = this;
                         }
                     }
@@ -437,7 +437,7 @@ namespace Traffic_Simulator
                     {
                         if (this.Street.LaneEnter2[2] == null)
                         {
-                            this.StreetIndex = 2;
+                            this.StreetIndex[1] = 2;
                             this.Street.LaneEnter2[2] = this;
                         }
                     }
@@ -451,7 +451,7 @@ namespace Traffic_Simulator
                     {
                         if (this.Street.LaneEnter1[2] == null)
                         {
-                            this.StreetIndex = 2;
+                            this.StreetIndex[1] = 2;
                             this.Street.LaneEnter1[2] = this;
                         }
                     }
@@ -461,7 +461,7 @@ namespace Traffic_Simulator
                     {
                         if (this.Street.LaneEnter1[1] == null)
                         {
-                            this.StreetIndex = 1;
+                            this.StreetIndex[1] = 1;
                             this.Street.LaneEnter1[1] = this;
                         }
                     }

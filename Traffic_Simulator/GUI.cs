@@ -137,36 +137,38 @@ namespace Traffic_Simulator
 
         private void drawCar(Car c)
         {
-            int x=pictureBoxSlotA0.Location.X, y=pictureBoxSlotA0.Location.Y;            
-            if(c.Crossing.GetType() == typeof(Crossing_2))
-                x += 3*66;
-            
-            switch(c.Street.Position)
+            if (c != null && c.HasEnteredGrid && !c.HasExitedGrid) //initial check
+            {
+                int x = pictureBoxSlotA0.Location.X, y = pictureBoxSlotA0.Location.Y;
+                if (c.Crossing.GetType() == typeof(Crossing_2))
+                    x += 3 * 66;
+
+                switch (c.Street.Position)
                 {
                     case Direction.North:
-                            x += 6 + 66 + 22 * c.StreetIndex[0];
-                            y += 6 + 22 * c.StreetIndex[1];                         
-                            break; 
+                        x += 6 + 66 + 22 * c.StreetIndex[0];
+                        y += 6 + 22 * c.StreetIndex[1];
+                        break;
                     case Direction.West:
-                            x += 6 + 22 * c.StreetIndex[1];
-                            y += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;                         
-                            break;   
+                        x += 6 + 22 * c.StreetIndex[1];
+                        y += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;
+                        break;
                     case Direction.South:
-                            x += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;
-                            y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 9;                         
-                            break;
+                        x += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;
+                        y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 9;
+                        break;
                     case Direction.East:
-                            x += 66 * 3 - 6 - 22 * c.StreetIndex[1];
-                            y += 66 + 6 + 22 * c.StreetIndex[0];                         
-                            break;
+                        x += 66 * 3 - 6 - 22 * c.StreetIndex[1];
+                        y += 66 + 6 + 22 * c.StreetIndex[0];
+                        break;
                     case Direction.Center:
-                            x += 66 + 6 + 22 * c.StreetIndex[0];
-                            y += 66 + 6 + 22 * c.StreetIndex[1];                         
-                            break;
-            }
-            addElement(x, y, "car");
+                        x += 66 + 6 + 22 * c.StreetIndex[0];
+                        y += 66 + 6 + 22 * c.StreetIndex[1];
+                        break;
+                }
+                addElement(x, y, "car");
                 //MessageBox.Show("Street Location: " + c.Street.Position.ToString() + "\nIndex: " + c.StreetIndex[0] + " " + c.StreetIndex[0]);
-
+            }
         }
 
 

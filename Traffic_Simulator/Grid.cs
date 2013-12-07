@@ -22,7 +22,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// All available slots for Crossings on the grid.
         /// </summary>
-        private Crossing[,] _slots;
+        private static Crossing[,] _slots;
 
         public Crossing[,] Slots
         {
@@ -190,7 +190,7 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id">Grid position of crossing</param>
         /// <returns>The crossing</returns>
-        public static Crossing getCrossing(string id) { return new Crossing_1(); }
+        public static Crossing getCrossing(string id) { return _slots[((int)id[0]) - (int)'A', Convert.ToInt32(id[1])]; }
 
         /// <summary>
         /// Clears all cars and lights

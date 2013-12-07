@@ -160,7 +160,8 @@ namespace Traffic_Simulator
                     _grid.Slots[1, 0].ProbStoW = 40;
                     _grid.Slots[1, 0].ProbStoE = 40;
 
-                    _grid.Slots[1, 0].ID = "A1";
+                    _grid.Slots[1, 1].ID = "B1";
+                    _grid.Slots[1, 0].ID = "B0";
 
                     _timer.Interval = _refreshRate;//sets and starts the timer
                     _timer.Elapsed += timerHasTriggered;

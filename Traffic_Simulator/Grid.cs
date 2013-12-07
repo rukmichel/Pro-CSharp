@@ -52,11 +52,6 @@ namespace Traffic_Simulator
         /// </summary>
         public void timeTick() 
         {
-            foreach (Car c in _listOfCars) //moves every existing car by 1 position
-                if(c!=null)
-            //        if(c.HasEnteredGrid && !c.HasExitedGrid)
-                        c.move();
-
             foreach (Crossing c in _slots) //'ticks' all crossings and add new cars to crossings
             {
                 if (c != null)
@@ -66,6 +61,13 @@ namespace Traffic_Simulator
                 }
 
             }//finish ticking crossings and adding new cars
+            
+            foreach (Car c in _listOfCars) //moves every existing car by 1 position
+                if(c!=null)
+            //        if(c.HasEnteredGrid && !c.HasExitedGrid)
+                        c.move();
+
+            
         }
 
         /// <summary>

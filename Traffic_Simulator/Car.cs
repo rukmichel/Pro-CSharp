@@ -93,40 +93,40 @@ namespace Traffic_Simulator
             switch (this.Turn)
             {
                 case Direction.North:
-                    if (this.Direction == Direction.East)
+                    if (this.Direction == Direction.East && this.Street.LaneEnter1[0] == null)//added "&& this.Street.LaneEnter1[0]==null"
                         this.Street.LaneEnter1[0] = this;
-                    if (this.Direction == Direction.South)
+                    if (this.Direction == Direction.South &&this.Street.LaneEnter1[0]== null)
                         this.Street.LaneEnter1[0] = this;
-                    if (this.Direction == Direction.West)
+                    if (this.Direction == Direction.West &&this.Street.LaneEnter2[0]== null)
                         this.Street.LaneEnter2[0] = this;
                     break;
 
                 case Direction.East:
-                    if (this.Direction == Direction.North)
+                    if (this.Direction == Direction.North &&this.Street.LaneEnter2[0]== null)
                         this.Street.LaneEnter2[0] = this;
-                    else if (this.Direction == Direction.South)
+                    else if (this.Direction == Direction.South &&this.Street.LaneEnter1[0]== null)
                         this.Street.LaneEnter1[0] = this;
-                    else if (this.Direction == Direction.West)
+                    else if (this.Direction == Direction.West &&this.Street.LaneEnter1[0]== null)
                         this.Street.LaneEnter1[0] = this;
 
                     break;
 
                 case Direction.South:
-                    if (this.Direction == Direction.North)
+                    if (this.Direction == Direction.North &&this.Street.LaneEnter1[0]== null)
                         this.Street.LaneEnter1[0] = this;
-                    else if (this.Direction == Direction.East)
+                    else if (this.Direction == Direction.East &&this.Street.LaneEnter2[0]== null)
                         this.Street.LaneEnter2[0] = this;
-                    else if (this.Direction == Direction.West)
+                    else if (this.Direction == Direction.West &&this.Street.LaneEnter1[0]== null)
                         this.Street.LaneEnter1[0] = this;
 
                     break;
 
                 case Direction.West:
-                    if (this.Direction == Direction.North)
+                    if (this.Direction == Direction.North &&this.Street.LaneEnter2[0]== null)
                         this.Street.LaneEnter2[0] = this;
-                    else if (this.Direction == Direction.East)
+                    else if (this.Direction == Direction.East &&this.Street.LaneEnter1[0]== null)
                         this.Street.LaneEnter1[0] = this;
-                    else if (this.Direction == Direction.South)
+                    else if (this.Direction == Direction.South && this.Street.LaneEnter1[0] == null)
                         this.Street.LaneEnter1[0] = this;
 
                     break;
@@ -145,29 +145,39 @@ namespace Traffic_Simulator
         {
             if (this.HasEnteredGrid == false)
             {
-                this.calculateTurn();
-                this.HasEnteredGrid = true;
-      //          this.Direction = Direction.South;
-      //          this.Turn = Direction.South;
+
                 this.setFirstLane();
 
-                Console.WriteLine("Car has been added to " 
+                if (this.StreetIndex[0] == -1 || this.StreetIndex[1] == -1)
+                    return false;
+
+                this.HasEnteredGrid = true;
+                this.calculateTurn();
+                //          this.Direction = Direction.South;
+                //          this.Turn = Direction.South;
+
+                Console.WriteLine("Car has been added to "
                     + this.Crossing.GetType().ToString()
                     + " at street "
                     + this.Street.Position.ToString()
                     + " and index "
                     + this.StreetIndex[1]);
             }
-
-            // first, lets check if the car is at intersection
-            if (this.Street.Position == Direction.Center)
-                this.moveInIntersection();
-            // if the turn and direction are the same, car needs to exit street
-            else if (this.Turn == this.Direction)
-                this.moveInLaneExit();
             else
-                this.moveInLaneEnter();
-            
+            {
+                if (!this.HasExitedGrid)////---> i added this check as well
+                {
+
+                    // first, lets check if the car is at intersection
+                    if (this.Street.Position == Direction.Center)
+                        this.moveInIntersection();
+                    // if the turn and direction are the same, car needs to exit street
+                    else if (this.Turn == this.Direction)
+                        this.moveInLaneExit();
+                    else
+                        this.moveInLaneEnter();
+                }
+            }
 
             return false;
         }

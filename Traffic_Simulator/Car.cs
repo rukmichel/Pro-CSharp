@@ -147,6 +147,8 @@ namespace Traffic_Simulator
             {
                 this.calculateTurn();
                 this.HasEnteredGrid = true;
+      //          this.Direction = Direction.South;
+                this.Turn = Direction.South;
                 this.setFirstLane();
 
                 Console.WriteLine("Car has been added to " 
@@ -538,6 +540,7 @@ namespace Traffic_Simulator
                     else if (this.Turn == Direction.North && this.StreetIndex[1] == 0 &&
                         this.Crossing.StreetN.LaneExit[2] == null)
                     {
+                        this.Direction = Direction.North;
                         this.Street.LaneExit[0] = null;
                         this.Street = this.Crossing.StreetN;
                         this.StreetIndex[1] = 2;
@@ -598,6 +601,7 @@ namespace Traffic_Simulator
                         else if (this.StreetIndex[1] == 2 &&
                             this.Crossing.StreetE.LaneExit[2] == null)
                         {
+                            this.Direction = Direction.East;
                             this.Street.LaneExit[2] = null;
                             this.Street = this.Crossing.StreetE;
                             this.StreetIndex[1] = 2;
@@ -627,6 +631,7 @@ namespace Traffic_Simulator
                     else if (this.StreetIndex[1] == 2 && this.Turn == Direction.South &&
                         this.Crossing.StreetS.LaneExit[2] == null)
                     {
+                        this.Direction = Direction.South;
                         this.Street.LaneEnter1[this.StreetIndex[1]] = null;
                         this.Street = this.Crossing.StreetS;
                         this.StreetIndex[1] = 2;
@@ -672,6 +677,7 @@ namespace Traffic_Simulator
                         else if (this.StreetIndex[1] == 0 &&
                             this.Crossing.StreetW.LaneEnter1[0] == null)
                         {
+                            this.Direction = Direction.West;
                             this.Street.LaneEnter1[0] = null;
                             this.Street = this.Crossing.StreetW;
                             this.StreetIndex[1] = 2;
@@ -827,7 +833,7 @@ namespace Traffic_Simulator
             // calculate where the car is going to turn based on probability
             this.calculateTurn();
 
-            return false;
+            return true;
         }
     }
 }

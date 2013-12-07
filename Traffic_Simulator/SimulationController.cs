@@ -113,7 +113,8 @@ namespace Traffic_Simulator
                 {
                     _grid = new Grid();
                     _grid.Slots[0, 0] = new Crossing_1();
-                    _grid.Slots[1, 0] = new Crossing_2();
+                    _grid.Slots[1, 1] = new Crossing_2();
+                    _grid.Slots[1, 0] = new Crossing_1();
 
                     _grid.Slots[0, 0].FlowW = 1;
                     _grid.Slots[0, 0].FlowS = 1;
@@ -133,7 +134,7 @@ namespace Traffic_Simulator
 
                     _grid.Slots[0, 0].ID = "A0";
 
-                    Crossing_2 c2 = (Crossing_2)_grid.Slots[1, 0];
+                    Crossing_2 c2 = (Crossing_2)_grid.Slots[1, 1];
                     TrafficLight tl;
                     tl._color = c2.LightPedestrian._color;
                     tl._greenLightTime = 20;
@@ -188,6 +189,7 @@ namespace Traffic_Simulator
             try
             {
                 _timer.Stop();
+                _timer.Elapsed -= timerHasTriggered;
                 _grid.reset();
                 Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
                 _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI

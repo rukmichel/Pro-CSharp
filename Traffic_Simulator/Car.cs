@@ -148,7 +148,7 @@ namespace Traffic_Simulator
                 this.calculateTurn();
                 this.HasEnteredGrid = true;
       //          this.Direction = Direction.South;
-                this.Turn = Direction.South;
+      //          this.Turn = Direction.South;
                 this.setFirstLane();
 
                 Console.WriteLine("Car has been added to " 

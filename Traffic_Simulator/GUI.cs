@@ -15,9 +15,48 @@ namespace Traffic_Simulator
         /// Controller element of the application.
         /// </summary>
         private SimulationController _controller = new SimulationController();
-        private List<PictureBox> elements = new List<PictureBox>();
-        private PictureBox p;
+        private List<PictureBox> _elements = new List<PictureBox>();
+        private PictureBox[,] _gui_slots = new PictureBox[4, 3];
+        private PictureBox _p;
 
+
+        private void drawCrossings(Crossing[,] slots)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Crossing c = slots[i, j];
+                    int x, y;
+                    x = pictureBoxSlotA0.Location.X + (3 * 66 * i);
+                    y = pictureBoxSlotA0.Location.Y + (3 * 66 * j);
+                    if (c != null)
+                    {
+                        _gui_slots[i,j].Image = new Bitmap(c.GetType().ToString()+".png");
+                        _gui_slots[i,j].BorderStyle=BorderStyle.None;
+                        _gui_slots[i, j].SendToBack();
+
+                        if ((i + 1) < 3 && slots[i + 1, j] != null)//check merging East
+                        {
+                            addElement(x + 2 * 66, y + 66, "mergingE");
+                        }
+                        if ((i - 1) >= 0 && slots[i - 1, j] != null)//check merging West
+                        {
+                            addElement(x, y + 66, "mergingW");
+                        }
+                        if ((j + 1) < 3 && slots[i, j + 1] != null && c.GetType() == typeof(Crossing_1))//check merging South
+                        {
+                            addElement(x + 66, y + 2 * 66, "mergingS");
+                        }
+                        if ((j - 1) >= 0 && slots[i, j - 1] != null && c.GetType() == typeof(Crossing_1))//check merging North
+                        {
+                            addElement(x + 66, y, "mergingN");
+                        }
+                        
+                    }                    
+                }
+            }
+        }
 
         private void drawLights(Crossing[,] slots)
         {
@@ -28,8 +67,8 @@ namespace Traffic_Simulator
                 {
                     Crossing c = slots[i, j];
                     int x, y;
-                    x = pictureBox1.Location.X + (3*66*i); 
-                    y = pictureBox1.Location.Y+ (3*66*j); //base values
+                    x = pictureBoxSlotA0.Location.X + (3*66*i); 
+                    y = pictureBoxSlotA0.Location.Y+ (3*66*j); //base values
                     //x = pictureBox1.Location.X + 66 - 13; y = pictureBox1.Location.Y + 2 * 22 - 10;
                     string str="";
 
@@ -83,21 +122,22 @@ namespace Traffic_Simulator
             }
         }
 
-        private void addElement(int x, int y, string image)
+        private PictureBox addElement(int x, int y, string image)
         {
-            p = new PictureBox();
-            p.Image = new Bitmap(image + ".png");
-            p.Location = new Point(x, y);
-            p.SizeMode = PictureBoxSizeMode.AutoSize;
-            p.Show();
-            this.Controls.Add(p);
-            p.BringToFront();
-            elements.Add(p);
+            _p = new PictureBox();
+            _p.Image = new Bitmap(image + ".png");
+            _p.Location = new Point(x, y);
+            _p.SizeMode = PictureBoxSizeMode.AutoSize;
+            _p.Show();
+            this.Controls.Add(_p);
+            _p.BringToFront();
+            _elements.Add(_p);
+            return _p;
         }
 
         private void drawCar(Car c)
         {
-            int x=pictureBox1.Location.X, y=pictureBox1.Location.Y;            
+            int x=pictureBoxSlotA0.Location.X, y=pictureBoxSlotA0.Location.Y;            
             if(c.Crossing.GetType() == typeof(Crossing_2))
                 x += 3*66;
             
@@ -124,7 +164,7 @@ namespace Traffic_Simulator
                             y += 66 + 6 + 22 * c.StreetIndex[1];                         
                             break;
             }
-            addElement(x, y, "Bitmap1");
+            addElement(x, y, "car");
                 //MessageBox.Show("Street Location: " + c.Street.Position.ToString() + "\nIndex: " + c.StreetIndex[0] + " " + c.StreetIndex[0]);
 
         }
@@ -175,27 +215,24 @@ namespace Traffic_Simulator
             if (copyOfGrid == null)
                 return;
 
-                foreach (PictureBox pb in elements)
+            foreach (PictureBox pb in _elements)
+            {
+                Controls.Remove(pb);
+            }
+
+            _elements.Clear();
+
+            drawCrossings(copyOfGrid.Slots);            
+            drawLights(copyOfGrid.Slots);//draws lights
+
+            foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
+            {
+                if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
                 {
-                    Controls.Remove(pb);
+                    drawCar(c);//draws lights
                 }
-
-                elements.Clear();
-
-                foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
-                {
-                    if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
-                    {
-                        drawCar(c);//draws lights
-                        //Invoke(new drawCarHandler(drawCar), new object[] { c });//draws cars in case another thread called it
-                    }
-                }
-
-                 drawLights(copyOfGrid.Slots);//draws lights
-                //Invoke(new drawLightsHandler(drawLights), new object[] { copyOfGrid.Slots });//draws lights in case another thread called it
-
-                //MessageBox.Show("a");
                 Invalidate();
+            }
 
         }
 
@@ -205,6 +242,20 @@ namespace Traffic_Simulator
         { 
             InitializeComponent();
             _controller.Gui = this;
+
+            _gui_slots[0, 0] = pictureBoxSlotA0;
+            _gui_slots[0, 1] = pictureBoxSlotA1;
+            _gui_slots[0, 2] = pictureBoxSlotA2;
+            _gui_slots[1, 0] = pictureBoxSlotB0;
+            _gui_slots[1, 1] = pictureBoxSlotB1;
+            _gui_slots[1, 2] = pictureBoxSlotB2;
+            _gui_slots[2, 0] = pictureBoxSlotC0;
+            _gui_slots[2, 1] = pictureBoxSlotC1;
+            _gui_slots[2, 2] = pictureBoxSlotC2;
+            _gui_slots[3, 0] = pictureBoxSlotD0;
+            _gui_slots[3, 1] = pictureBoxSlotD1;
+            _gui_slots[3, 2] = pictureBoxSlotD2;
+
         }
 
         private void GUI_Load(object sender, EventArgs e)

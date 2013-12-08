@@ -95,9 +95,6 @@
     <None Include="gridlayoutprototype.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\gridlayoutprototype.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Bitmap1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

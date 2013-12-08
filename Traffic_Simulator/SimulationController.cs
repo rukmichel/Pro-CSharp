@@ -255,9 +255,14 @@ namespace Traffic_Simulator
         {
             try
             {
-                _fileHandler.Path = _gui.filePath(1); //shows save-file window                
-                _fileHandler.saveToFile(_grid);
-                return "Simulation has been successfully saved";
+                string s = _gui.filePath(1); //shows save-file window
+                if (s == "")
+                    return "";
+                else
+                {
+                    _fileHandler.saveToFile(_grid);
+                    return "Simulation has been successfully saved";
+                }
             }
             catch
             {
@@ -298,11 +303,10 @@ namespace Traffic_Simulator
             if (_fileHandler.hasUnsavedData()) 
             {
                 string messageResult = _gui.saveMessage("Traffic Simulator", "Save modifications?"); //opens save message dialog
+
                 if (messageResult == "Yes") //user wants to save changes
                 {
-                    //call save() method
-                    save();
-                   
+                    return save();                   
                 }
                 if (messageResult == "No") //user doesnt want to save changes
                 {

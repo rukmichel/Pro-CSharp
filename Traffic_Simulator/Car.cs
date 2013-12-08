@@ -146,9 +146,9 @@ namespace Traffic_Simulator
             if (this.HasEnteredGrid == false)
             {
 
-                this.setFirstLane();
+                this.setFirstLane(); //enters the grid
 
-                if (this.StreetIndex[0] == -1 || this.StreetIndex[1] == -1)
+                if (this.StreetIndex[0] == -1 || this.StreetIndex[1] == -1)//if it didnt actually enter the grid
                     return false;
 
                 this.HasEnteredGrid = true;

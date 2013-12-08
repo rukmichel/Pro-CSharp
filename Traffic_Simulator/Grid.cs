@@ -89,8 +89,7 @@ namespace Traffic_Simulator
         {
 
             ////////////add new cars to street E
-            if (c.FlowE > c.EnteredE &&                                                 //if there are still cars to enter a crossing and
-                c.StreetE.LaneEnter1[0] == null && c.StreetE.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
+            if (c.FlowE > c.EnteredE)//if there are still cars to enter a crossing and
             {
                 Car car = new Car();
 
@@ -104,12 +103,10 @@ namespace Traffic_Simulator
 
                 c.EnteredE++;
                 _listOfCars.Add(car);
-                //car.move();
             }
 
             ////////////add new cars to street W
-            if (c.FlowW > c.EnteredW &&                                                 //if there are still cars to enter a crossing and
-                c.StreetW.LaneEnter1[0] == null && c.StreetW.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
+            if (c.FlowW > c.EnteredW)
             {
 
                 Car car = new Car();
@@ -124,13 +121,10 @@ namespace Traffic_Simulator
 
                 c.EnteredW++;
                 _listOfCars.Add(car);
-                //car.move();
             }
 
             ////////add new cars to street S
-            if (c.FlowS > c.EnteredS &&                                                   //if there are still cars to enter a crossing and
-                c.StreetS.LaneEnter1[0] == null                                           //there is an available slot at the entrance of lane enter 1
-                && (c.GetType() == typeof(Crossing_2) || c.StreetS.LaneEnter2[0] == null))//and, in case its a crossing 1, there is an available slot at the entrance of lane 2          
+            if (c.FlowS > c.EnteredS)
             {
 
                 Car car = new Car();
@@ -145,13 +139,10 @@ namespace Traffic_Simulator
 
                 c.EnteredS++;
                 _listOfCars.Add(car);
-                //car.move();
             }
 
             ////////add new cars to street N
-            if (c.FlowN > c.EnteredN &&                                                   //if there are still cars to enter a crossing
-                c.StreetN.LaneEnter1[0] == null                                           //and if there is an available slot at the entrance of lane enter 1
-                && (c.GetType() == typeof(Crossing_2) || c.StreetN.LaneEnter2[0] == null))//and, unless it's a crossing_2, if there is an available slot at the entrance of lane 2          
+            if (c.FlowN > c.EnteredN)
             {
                 Car car = new Car();
 
@@ -165,7 +156,6 @@ namespace Traffic_Simulator
 
                 c.EnteredN++;
                 _listOfCars.Add(car);
-                //car.move();
             }
         }
 

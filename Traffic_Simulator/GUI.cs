@@ -212,6 +212,19 @@ namespace Traffic_Simulator
            
         }
 
+        /// <summary>
+        /// Displays all the info of a crossing on the right pane
+        /// </summary>
+        /// <param name="c">crossing whose properties will be displayed</param>
+        public void displayCrossingSettings(Crossing c)
+        { 
+            
+        }
+
+        /// <summary>
+        /// Re-draws everything on the screen with updated values
+        /// </summary>
+        /// <param name="copyOfGrid">Grid from which the information will be extracted</param>
         public void refreshScreen(Grid copyOfGrid)
         {
             if (copyOfGrid == null)
@@ -224,7 +237,9 @@ namespace Traffic_Simulator
 
             _elements.Clear();
 
-            drawCrossings(copyOfGrid.Slots);            
+            if(button1.Text=="Pause")
+                drawCrossings(copyOfGrid.Slots);    
+        
             drawLights(copyOfGrid.Slots);//draws lights
 
             foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position

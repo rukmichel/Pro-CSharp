@@ -66,13 +66,21 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id"> Indicates a position on the grid, for instance "A3". </param> 
         /// <returns>Error message, or null if successfull.</returns>
-        public string removeCrossing(string id) { return ""; }
+        public string removeCrossing(string id) 
+        {
+            if (_grid.removeCrossing(id))
+                return "ok";
+            return ""; 
+        }
 
         /// <summary>
         /// Selects a crossing and displays its information.
         /// </summary>
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
-        public void selectCrossing(string id){}
+        public void selectCrossing(string id)
+        {
+            _gui.displayCrossingSettings(Grid.getCrossing(id));
+        }
 
         /// <summary>
         /// Adds a crossing on a givven position on the grid.
@@ -80,7 +88,13 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="crossing">The class type of the crossing, either "crossing_1" or "crossing_2".</param>
         /// <returns>Error message, or null if successfull.</returns>
-        public string addCrossing(string id, Type crossing) { return ""; }
+        public string addCrossing(string id, Type crossing) 
+        
+        {
+            if(_grid.addCrossing(id, crossing))
+                return "OK";
+            return ""; 
+        }
 
         /// <summary>
         /// Sets a value of a crossing's atribute.
@@ -99,7 +113,12 @@ namespace Traffic_Simulator
         /// Removes all crossings from the grid.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string clearGrid() { return ""; }
+        public string clearGrid() 
+        {
+            if (_grid.reset())
+                return "ok";
+            return "";
+        }
 
         /// <summary>
         /// Starts simulation.

@@ -100,7 +100,6 @@ namespace Traffic_Simulator
        public string ID
         {
             get { return _ID; }
-           set { _ID = value; }
         }
         
         /// <summary>
@@ -272,8 +271,9 @@ namespace Traffic_Simulator
         /// <summary>
         /// constructor
         /// </summary>
-        public Crossing()
+        public Crossing(string id)
         {
+            this._ID = id;
             reset();  
         }
 

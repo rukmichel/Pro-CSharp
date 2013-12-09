@@ -321,6 +321,7 @@ namespace Traffic_Simulator
                 if (label1.Text == "")
                 {
                     button1.Text = "ll";
+                    button1.TextAlign = ContentAlignment.MiddleCenter;
                     button2.Enabled = true;
                 }                
                 return;     //leave method
@@ -333,6 +334,7 @@ namespace Traffic_Simulator
                 if (label1.Text == "")
                 {
                     button1.Text = "►";
+                    button1.TextAlign = ContentAlignment.MiddleLeft;
                     button2.Enabled = true;
                 }
             }
@@ -343,6 +345,7 @@ namespace Traffic_Simulator
             label1.Text = _controller.stopSimulation();
             if (label1.Text == "") {
                 button1.Text = "►";
+                button1.TextAlign = ContentAlignment.MiddleLeft;
                 button2.Enabled = false;
             }
         }
@@ -354,8 +357,7 @@ namespace Traffic_Simulator
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Crossing c = new Crossing_2();
-            c.ID = "A0";
+            Crossing c = new Crossing_2("C2");
 
             Car c2 = new Car(c);
            // MessageBox.Show("Direction:" + c2.Street.Position.ToString());

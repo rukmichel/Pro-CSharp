@@ -187,9 +187,9 @@ namespace Traffic_Simulator
                     return false;
 
                 if (crossing == typeof(Crossing_1))
-                    c = new Crossing_1();
+                    c = new Crossing_1(id);
                 else
-                    c = new Crossing_2();
+                    c = new Crossing_2(id);
                 return true;
             }
             catch

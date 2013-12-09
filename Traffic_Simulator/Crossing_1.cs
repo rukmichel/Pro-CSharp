@@ -40,6 +40,8 @@ namespace Traffic_Simulator
             set { _lightStoW  = value; }
         }
         
+         public Crossing_1(string id):base(id){}
+
         /// <summary>
         /// Method to update all lights.
         /// </summary>

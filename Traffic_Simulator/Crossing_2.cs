@@ -33,6 +33,7 @@ namespace Traffic_Simulator
             set { _pedestrianLight = value; }
         }
         
+        public Crossing_2(string id):base(id){}
 
         /// <summary>
         /// Method to update all lights.

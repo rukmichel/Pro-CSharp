@@ -95,88 +95,6 @@ namespace Traffic_Simulator
             _crossing = c;
         }
 
-        private void setFirstLane()
-        {
-            int pos=-1;
-            switch (this.Turn)
-            {
-                case Direction.North:
-                    if (this.Direction == Direction.East && this.Street.LaneEnter1[0] == null)//added "&& this.Street.LaneEnter1[0]==null"
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }
-                    if (this.Direction == Direction.South &&this.Street.LaneEnter1[0]== null)
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }                    
-                    if (this.Direction == Direction.West &&this.Street.LaneEnter2[0]== null)
-                    {
-                        this.Street.LaneEnter2[0] = this;
-                        pos = 1;
-                    }
-                    break;
-
-                case Direction.East:
-                    if (this.Direction == Direction.North &&this.Street.LaneEnter2[0]== null)
-                    {
-                        this.Street.LaneEnter2[0] = this;
-                        pos = 1;
-                    }
-                    else if (this.Direction == Direction.South && this.Street.LaneEnter1[0] == null)
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }
-                    else if (this.Direction == Direction.West && this.Street.LaneEnter1[0] == null)
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }
-                    break;
-
-                case Direction.South:
-                    if (this.Direction == Direction.North &&this.Street.LaneEnter1[0]== null)
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }
-                    else if (this.Direction == Direction.East && this.Street.LaneEnter2[0] == null)
-                    {
-                        this.Street.LaneEnter2[0] = this;
-                        pos = 1;
-                    }                    
-                    else if (this.Direction == Direction.West &&this.Street.LaneEnter1[0]== null)
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }
-                    break;
-
-                case Direction.West:
-                    if (this.Direction == Direction.North && this.Street.LaneEnter2[0] == null)
-                    {
-                        this.Street.LaneEnter2[0] = this;
-                        pos = 1;
-                    }
-                    else if (this.Direction == Direction.East && this.Street.LaneEnter1[0] == null)
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }
-                    else if (this.Direction == Direction.South && this.Street.LaneEnter1[0] == null)
-                    {
-                        this.Street.LaneEnter1[0] = this;
-                        pos = 0;
-                    }
-                    break;
-            }
-
-            this.StreetIndex[0] = pos;
-            this.StreetIndex[1] = 0;
-        }
-
         /// <summary>
         /// Moves the car to the next position.
         /// </summary>
@@ -330,7 +248,8 @@ namespace Traffic_Simulator
                     if (this.Turn == Direction.South)
                     {
                         _path.Add(new int[3] { 4, 2, 1 });
-                        _path.Add(new int[3] { 4, 1, 2 });
+                        if (Crossing.GetType() == typeof(Crossing_1))
+                            _path.Add(new int[3] { 4, 1, 2 });
                         _path.Add(new int[3] { 4, 0, 2 });
                         //_path.Add(streets[4].Lanes[2][1]);
                         //_path.Add(streets[4].Lanes[1][2]);
@@ -383,7 +302,8 @@ namespace Traffic_Simulator
                     if (this.Turn == Direction.North)
                     {
                         _path.Add(new int[3] { 4, 0, 1 });
-                        _path.Add(new int[3] { 4, 1, 0 });
+                        if (Crossing.GetType() == typeof(Crossing_1))
+                            _path.Add(new int[3] { 4, 1, 0 });
                         _path.Add(new int[3] { 4, 2, 0 });
                         //_path.Add(streets[4].Lanes[0][1]);
                         //_path.Add(streets[4].Lanes[1][0]);
@@ -453,9 +373,6 @@ namespace Traffic_Simulator
         /// <returns>Direction the car will turn at intersection</returns>
         private void calculateTurn()
         {
-            //if (this.Crossing.FlowE < this.Crossing.EnteredE &&                                                 //if there are still cars to enter a crossing and
-            //    this.Crossing.StreetE.LaneEnter1[0] == null && this.Crossing.StreetE.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
-            //{
             if ((this.Street.Position == Direction.North || this.Street.Position == Direction.South) && this.Crossing.GetType() == typeof(Crossing_2))
             {
                 this.Turn = this.Direction;
@@ -493,10 +410,6 @@ namespace Traffic_Simulator
                         this.Turn = Direction.West;
                 }
 
-                ////////////add new cars to street W
-                //if (this.Crossing.FlowW < this.Crossing.EnteredW &&                                                 //if there are still cars to enter a crossing and
-                //    this.Crossing.StreetW.LaneEnter1[0] == null && this.Crossing.StreetW.LaneEnter2[0] == null)   //there is an available slot at the entrance of the street
-                //{
                 if (this.Street.Position == Direction.West)
                 {
 
@@ -517,12 +430,7 @@ namespace Traffic_Simulator
                     if (prob >= (this.Crossing.ProbWtoN + this.Crossing.ProbWtoS))
                         this.Turn = Direction.East;
                 }
-
-                //////////add new cars to street S
-                //if (this.Crossing.FlowS < this.Crossing.EnteredS &&                                                   //if there are still cars to enter a crossing and
-                //    this.Crossing.StreetS.LaneEnter1[0] == null                                           //there is an available slot at the entrance of lane enter 1
-                //    && (this.Crossing.GetType() == typeof(Crossing_2) || this.Crossing.StreetS.LaneEnter2[0] == null))//and, in case its a crossing 1, there is an available slot at the entrance of lane 2          
-                //{
+                
                 if (this.Street.Position == Direction.South)
                 {
                     int prob =(int)(this.Crossing.ProbStoE + this.Crossing.ProbStoN + this.Crossing.ProbStoW); //generates a random number beetween 0 and  the sum of probabilities
@@ -543,11 +451,6 @@ namespace Traffic_Simulator
                         this.Turn = Direction.East;
                 }
 
-                //////////add new cars to street N
-                //if (this.Crossing.FlowN < this.Crossing.EnteredN &&                                                   //if there are still cars to enter a crossing
-                //    this.Crossing.StreetN.LaneEnter1[0] == null                                           //and if there is an available slot at the entrance of lane enter 1
-                //    && (this.Crossing.GetType() == typeof(Crossing_2) || this.Crossing.StreetN.LaneEnter2[0] == null))//and, unless it's a crossing_2, if there is an available slot at the entrance of lane 2          
-                //{
                 if (this.Street.Position == Direction.North)
                 {
                     int prob = (int)(this.Crossing.ProbEtoS + this.Crossing.ProbEtoN + this.Crossing.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities

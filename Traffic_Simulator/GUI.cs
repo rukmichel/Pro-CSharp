@@ -141,8 +141,6 @@ namespace Traffic_Simulator
             {
                 int x = pictureBoxSlotA0.Location.X + (int)(c.Crossing.ID[0] - 'A') * 3 * 66;
                 int y = pictureBoxSlotA0.Location.Y + (int)(c.Crossing.ID[1] - '0') * 3 * 66;
-                if (c.Crossing.GetType() == typeof(Crossing_2))
-                    x += 3 * 66;
 
                 switch (c.Street.Position)
                 {

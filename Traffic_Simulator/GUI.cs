@@ -321,7 +321,7 @@ namespace Traffic_Simulator
 
                 if (label1.Text == "")
                 {
-                    button1.Text = "Pause";
+                    button1.Text = "ll";
                     button2.Enabled = true;
                 }                
                 return;     //leave method
@@ -333,7 +333,7 @@ namespace Traffic_Simulator
                 label1.Text = _controller.pauseSimulation();
                 if (label1.Text == "")
                 {
-                    button1.Text = "Start";
+                    button1.Text = "►";
                     button2.Enabled = true;
                 }
             }
@@ -343,7 +343,7 @@ namespace Traffic_Simulator
         {
             label1.Text = _controller.stopSimulation();
             if (label1.Text == "") {
-                button1.Text = "Start";
+                button1.Text = "►";
                 button2.Enabled = false;
             }
         }
@@ -369,6 +369,74 @@ namespace Traffic_Simulator
                 drawCar(c2);
           
         }
+        
+        private void button6_Click(object sender, EventArgs e)
+        {
+            int height = panel3.Size.Height;
+            if (button6.Text == "Hide")
+            {                    
+                button6.Text = "Show";
+                panel3.Visible = false;
+                label3.Location = new Point(label3.Location.X, label3.Location.Y - height);
+                button7.Location = new Point(button7.Location.X, button7.Location.Y - height);
+                panel4.Location = new Point(panel4.Location.X, panel4.Location.Y - height);
+                label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
+                button8.Location = new Point(button8.Location.X, button8.Location.Y - height);
+                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
+             
+            }
+            else 
+            {
+                button6.Text = "Hide";
+                panel3.Visible = true;
+                label3.Location = new Point(label3.Location.X, label3.Location.Y + height);
+                button7.Location = new Point(button7.Location.X, button7.Location.Y + height);
+                panel4.Location = new Point(panel4.Location.X, panel4.Location.Y + height);
+                label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
+                button8.Location = new Point(button8.Location.X, button8.Location.Y + height);
+                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int height = panel4.Size.Height;
+
+            if (button7.Text == "Hide")
+            {
+                button7.Text = "Show";
+                panel4.Visible = false;
+                label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
+                button8.Location = new Point(button8.Location.X, button8.Location.Y - height);
+                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
+            }
+            else
+            {
+                button7.Text = "Hide";
+                panel4.Visible = true;
+                label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
+                button8.Location = new Point(button8.Location.X, button8.Location.Y + height);
+                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (button8.Text == "Hide")
+            {
+                button8.Text = "Show";
+                panel5.Visible = false;
+                
+            }
+            else
+            {
+                button8.Text = "Hide";
+                panel5.Visible = true;
+            }
+        }
+
+
+        
 
         
         

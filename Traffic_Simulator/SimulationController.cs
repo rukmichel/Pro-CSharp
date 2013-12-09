@@ -140,8 +140,8 @@ namespace Traffic_Simulator
                     _grid.Slots[2, 0].ID = "C0";
                     _grid.Slots[1, 0].ID = "B0";
 
-                    _grid.Slots[0, 0].FlowW = 0;
-                    _grid.Slots[0, 0].FlowS = 1;
+                    _grid.Slots[0, 0].FlowW = 1;
+                    _grid.Slots[0, 0].FlowS = 0;
                     _grid.Slots[0, 0].FlowN = 0;
 
                     _grid.Slots[0, 0].ProbWtoN = 1;

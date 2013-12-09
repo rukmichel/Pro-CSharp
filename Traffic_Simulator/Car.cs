@@ -155,22 +155,19 @@ namespace Traffic_Simulator
                 }
             }
 
-            if (_crossing.ID == "B0")
-            {
-            }
 
-            int street = _path[nextSlot][0], lane = _path[nextSlot][1], pos = _path[nextSlot][2];
+            int str = _path[nextSlot][0], lane = _path[nextSlot][1], pos = _path[nextSlot][2];
 
+            //check traffic lights
 
-                    //tries to enter next slot
-            if (streets[street].Lanes[lane][pos] == null)//if next position is available
+            if (streets[str].Lanes[lane][pos] == null && (nextSlot!=3||checkLights()))//if next position is available and light is green
             {
                 if (HasExitedGrid == false)
                     this.HasEnteredGrid = true;
                 else
                     Street.Lanes[StreetIndex[0]][StreetIndex[1]] = null;//leaves previous position
 
-                streets[street].Lanes[lane][pos] = this;//enters new position
+                streets[str].Lanes[lane][pos] = this;//enters new position
                 StreetIndex[0] = lane;
                 StreetIndex[1] = pos;
 
@@ -193,17 +190,59 @@ namespace Traffic_Simulator
             
             return false;  
         }
-        
+
+        private bool checkLights()
+        {
+            bool lightIsGreen = false;
+            if (nextSlot == 3)
+            {
+
+                if (
+                    (this.Street.Position == Direction.West && (this.Turn == Direction.East || this.Turn == Direction.South) && this.Crossing.LightWtoSE._color == Color.Green)
+                    ||
+                    (this.Street.Position == Direction.West && (this.Turn == Direction.North) && this.Crossing.LightWtoN._color == Color.Green)
+                    ||
+                    (this.Street.Position == Direction.East && (this.Turn == Direction.North || this.Turn == Direction.West) && this.Crossing.LightEtoNW._color == Color.Green)
+                    ||
+                    (this.Street.Position == Direction.East && (this.Turn == Direction.South) && this.Crossing.LightEtoS._color == Color.Green)
+                    )
+                    lightIsGreen = true;
+
+                if (this.Crossing.GetType() == typeof(Crossing_1))
+                {
+                    Crossing_1 c1 = (Crossing_1)this.Crossing;
+                    if (
+                    (this.Street.Position == Direction.North && (this.Turn == Direction.West || this.Turn == Direction.South) && c1.LightNtoWS._color == Color.Green)
+                    ||
+                    (this.Street.Position == Direction.North && (this.Turn == Direction.East) && c1.LightNtoE._color == Color.Green)
+                    ||
+                    (this.Street.Position == Direction.South && (this.Turn == Direction.North || this.Turn == Direction.East) && c1.LightStoEN._color == Color.Green)
+                    ||
+                    (this.Street.Position == Direction.South && (this.Turn == Direction.West) && c1.LightStoW._color == Color.Green)
+                    )
+                        lightIsGreen = true;
+                }
+                if (this.Crossing.GetType() == typeof(Crossing_2))
+                {
+                    Crossing_2 c1 = (Crossing_2)this.Crossing;
+                    if (
+                    (this.Street.Position == Direction.North && c1.LightNtoS._color == Color.Green)
+                    ||
+                    (this.Street.Position == Direction.South && c1.LightStoN._color == Color.Green)
+                    )
+                        lightIsGreen = true;
+                }
+            }
+            return lightIsGreen;
+        }
+
         private void calculateEntrance(Street[] streets) 
         {                                                       //Dir: N=0, E=1, S=2, W=3
 
             _path.Add(new int[3] { (int)this.Street.Position, Convert.ToInt32(((int)this.Street.Position + 1) % 4 == (int)this.Turn), 0 });//pos Dir,0,0
             _path.Add(new int[3] { (int)this.Street.Position, Convert.ToInt32(((int)this.Street.Position + 1) % 4 == (int)this.Turn), 1 });
             _path.Add(new int[3] { (int)this.Street.Position, Convert.ToInt32(((int)this.Street.Position + 1) % 4 == (int)this.Turn), 2 });
-            //_path.Add(streets[(int)this.Street.Position].Lanes[Convert.ToInt32(((int)this.Street.Position + 1) % 4 == (int)this.Direction)][0]);//pos Dir,0,0
-            //_path.Add(streets[(int)this.Street.Position].Lanes[Convert.ToInt32(((int)this.Street.Position + 1) % 4 == (int)this.Direction)][1]);//pos Dir,0,1
-            //_path.Add(streets[(int)this.Street.Position].Lanes[Convert.ToInt32(((int)this.Street.Position + 1) % 4 == (int)this.Direction)][2]);//pos Dir,0,2
-        }
+            }
 
         private void calculateIntersection(Street[] streets)
         {
@@ -215,23 +254,16 @@ namespace Traffic_Simulator
                         _path.Add(new int[3] { 4, 1, 0 });
                         _path.Add(new int[3] { 4, 2, 1 });
                         _path.Add(new int[3] { 4, 1, 2 });
-                        //_path.Add(streets[4].Lanes[1][0]);
-                        //_path.Add(streets[4].Lanes[2][1]);
-                        //_path.Add(streets[4].Lanes[1][2]);
                     }
                     if (this.Turn == Direction.South)
                     {
                         _path.Add(new int[3] { 4, 0, 0 });
                         _path.Add(new int[3] { 4, 0, 1 });
                         _path.Add(new int[3] { 4, 0, 2 });
-                        //_path.Add(streets[4].Lanes[0][0]);
-                        //_path.Add(streets[4].Lanes[0][1]);
-                        //_path.Add(streets[4].Lanes[0][2]);
                     }
                     if (this.Turn == Direction.West)
                     {
                         _path.Add(new int[3] { 4, 0, 0 });
-                        //_path.Add(streets[4].Lanes[0][0]);
                     }
                     return;
                 
@@ -241,24 +273,16 @@ namespace Traffic_Simulator
                         _path.Add(new int[3] { 4, 2, 0 });
                         _path.Add(new int[3] { 4, 1, 0 });
                         _path.Add(new int[3] { 4, 0, 0 });
-                        //_path.Add(streets[4].Lanes[2][0]);
-                        //_path.Add(streets[4].Lanes[1][0]);
-                        //_path.Add(streets[4].Lanes[0][0]);
                     }
                     if (this.Turn == Direction.South)
                     {
                         _path.Add(new int[3] { 4, 2, 1 });
-                        if (Crossing.GetType() == typeof(Crossing_1))
-                            _path.Add(new int[3] { 4, 1, 2 });
+                        _path.Add(new int[3] { 4, 1, 2 });
                         _path.Add(new int[3] { 4, 0, 2 });
-                        //_path.Add(streets[4].Lanes[2][1]);
-                        //_path.Add(streets[4].Lanes[1][2]);
-                        //_path.Add(streets[4].Lanes[0][2]);
                     }
                     if (this.Turn == Direction.North)
                     {
                         _path.Add(new int[3] { 4, 2, 0 });
-                        //_path.Add(streets[4].Lanes[2][0]);
                     }
                     return;
 
@@ -269,23 +293,16 @@ namespace Traffic_Simulator
                         _path.Add(new int[3] { 4, 2, 2 });
                         _path.Add(new int[3] { 4, 2, 1 });
                         _path.Add(new int[3] { 4, 2, 0 });
-                        //_path.Add(streets[4].Lanes[2][2]);
-                        //_path.Add(streets[4].Lanes[2][1]);
-                        //_path.Add(streets[4].Lanes[2][0]);
                     }
                     if (this.Turn == Direction.West)
                     {
                         _path.Add(new int[3] { 4, 1, 2 });
                         _path.Add(new int[3] { 4, 0, 1 });
                         _path.Add(new int[3] { 4, 0, 0 });
-                        //_path.Add(streets[4].Lanes[1][2]);
-                        //_path.Add(streets[4].Lanes[0][1]);
-                        //_path.Add(streets[4].Lanes[0][0]);
                     }
                     if (this.Turn == Direction.East)
                     {
                         _path.Add(new int[3] { 4, 2, 2 });
-                        //_path.Add(streets[4].Lanes[2][2]);
                     }
                     return;
 
@@ -295,24 +312,16 @@ namespace Traffic_Simulator
                         _path.Add(new int[3] { 4, 0, 2 });
                         _path.Add(new int[3] { 4, 1, 2 });
                         _path.Add(new int[3] { 4, 2, 2 });
-                        //_path.Add(streets[4].Lanes[2][0]);
-                        //_path.Add(streets[4].Lanes[2][1]);
-                        //_path.Add(streets[4].Lanes[2][2]);
                     }
                     if (this.Turn == Direction.North)
                     {
                         _path.Add(new int[3] { 4, 0, 1 });
-                        if (Crossing.GetType() == typeof(Crossing_1))
-                            _path.Add(new int[3] { 4, 1, 0 });
+                        _path.Add(new int[3] { 4, 1, 0 });
                         _path.Add(new int[3] { 4, 2, 0 });
-                        //_path.Add(streets[4].Lanes[0][1]);
-                        //_path.Add(streets[4].Lanes[1][0]);
-                        //_path.Add(streets[4].Lanes[2][0]);
                     }
                     if (this.Turn == Direction.South)
                     {
                         _path.Add(new int[3] { 4, 0, 2 });
-                        //_path.Add(streets[4].Lanes[0][2]);
                     }
                     return;
             }
@@ -324,10 +333,6 @@ namespace Traffic_Simulator
             _path.Add(new int[3] { (int)this.Turn, 2, 2 });
             _path.Add(new int[3] { (int)this.Turn, 2, 1 });
             _path.Add(new int[3] { (int)this.Turn, 2, 0 });
-            //                                                            //Dir: N=0, E=1, S=2, W=3
-            //_path.Add(streets[(int)this.Direction].Lanes[2][0]);//pos Dir,Lane entrace 1/2,0
-            //_path.Add(streets[(int)this.Direction].Lanes[2][1]);//pos Dir,0,1
-            //_path.Add(streets[(int)this.Direction].Lanes[2][2]);//pos Dir,0,2
 
         }
 

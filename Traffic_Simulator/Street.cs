@@ -95,7 +95,7 @@ namespace Traffic_Simulator
             this._position = d;
 
             if (t == typeof(Crossing_2)  &&
-                (d == Direction.North || d== Direction.Center || d==Direction.South))
+                (d == Direction.North || d==Direction.South))
             {
                 
                 _laneEnter2 = null;

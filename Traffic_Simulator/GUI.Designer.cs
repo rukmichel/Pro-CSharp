@@ -75,7 +75,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(880, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(884, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -199,7 +199,7 @@
             // pictureBoxSlotD0
             // 
             this.pictureBoxSlotD0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD0.Location = new System.Drawing.Point(671, 62);
+            this.pictureBoxSlotD0.Location = new System.Drawing.Point(675, 62);
             this.pictureBoxSlotD0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD0.Name = "pictureBoxSlotD0";
             this.pictureBoxSlotD0.Size = new System.Drawing.Size(199, 199);
@@ -210,7 +210,7 @@
             // pictureBoxSlotC0
             // 
             this.pictureBoxSlotC0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC0.Location = new System.Drawing.Point(473, 62);
+            this.pictureBoxSlotC0.Location = new System.Drawing.Point(477, 62);
             this.pictureBoxSlotC0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC0.Name = "pictureBoxSlotC0";
             this.pictureBoxSlotC0.Size = new System.Drawing.Size(199, 199);
@@ -221,7 +221,7 @@
             // pictureBoxSlotD1
             // 
             this.pictureBoxSlotD1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD1.Location = new System.Drawing.Point(671, 260);
+            this.pictureBoxSlotD1.Location = new System.Drawing.Point(675, 260);
             this.pictureBoxSlotD1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD1.Name = "pictureBoxSlotD1";
             this.pictureBoxSlotD1.Size = new System.Drawing.Size(199, 199);
@@ -232,7 +232,7 @@
             // pictureBoxSlotC1
             // 
             this.pictureBoxSlotC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC1.Location = new System.Drawing.Point(473, 260);
+            this.pictureBoxSlotC1.Location = new System.Drawing.Point(477, 260);
             this.pictureBoxSlotC1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC1.Name = "pictureBoxSlotC1";
             this.pictureBoxSlotC1.Size = new System.Drawing.Size(199, 199);
@@ -265,7 +265,7 @@
             // pictureBoxSlotD2
             // 
             this.pictureBoxSlotD2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD2.Location = new System.Drawing.Point(671, 458);
+            this.pictureBoxSlotD2.Location = new System.Drawing.Point(675, 458);
             this.pictureBoxSlotD2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD2.Name = "pictureBoxSlotD2";
             this.pictureBoxSlotD2.Size = new System.Drawing.Size(199, 199);
@@ -276,7 +276,7 @@
             // pictureBoxSlotC2
             // 
             this.pictureBoxSlotC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC2.Location = new System.Drawing.Point(473, 458);
+            this.pictureBoxSlotC2.Location = new System.Drawing.Point(477, 458);
             this.pictureBoxSlotC2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC2.Name = "pictureBoxSlotC2";
             this.pictureBoxSlotC2.Size = new System.Drawing.Size(199, 199);
@@ -323,7 +323,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(880, 668);
+            this.ClientSize = new System.Drawing.Size(884, 668);
             this.Controls.Add(this.pictureBoxSlotD2);
             this.Controls.Add(this.pictureBoxSlotC2);
             this.Controls.Add(this.pictureBoxSlotB2);

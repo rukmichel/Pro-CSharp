@@ -150,11 +150,11 @@ namespace Traffic_Simulator
                         break;
                     case Direction.West:
                         x += 6 + 22 * c.StreetIndex[1];
-                        y += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;
+                        y += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 10;
                         break;
                     case Direction.South:
-                        x += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 9;
-                        y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 9;
+                        x += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 10;
+                        y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 10;
                         break;
                     case Direction.East:
                         x += 66 * 3 - 6 - 22 * c.StreetIndex[1];

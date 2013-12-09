@@ -13,7 +13,8 @@ namespace Traffic_Simulator
         /// <summary>
         /// The lights only for crossing type 1.
         /// </summary>
-        protected TrafficLight _lightNtoWS, _lightStoEN, _lightNtoE, _lightStoW;
+        protected TrafficLight _lightNtoWS = new TrafficLight(10), _lightStoEN = new TrafficLight(10),
+            _lightNtoE = new TrafficLight(10), _lightStoW = new TrafficLight(10);
         
         public TrafficLight LightNtoWS
         {
@@ -73,7 +74,7 @@ namespace Traffic_Simulator
                     break;
 
                 case 2:
-                    _lightWtoSE._color = Color.Green;
+                    _lightWtoN._color = Color.Green;
                     _lightEtoS._color = Color.Green;
                     break;
 
@@ -101,15 +102,21 @@ namespace Traffic_Simulator
             t2 = t1 + ((_lightWtoN._greenLightTime > _lightEtoS._greenLightTime) ? _lightWtoN._greenLightTime : _lightEtoS._greenLightTime);
             t3 = t2 + ((_lightNtoWS._greenLightTime > _lightStoEN._greenLightTime) ? _lightNtoWS._greenLightTime : _lightStoEN._greenLightTime);
             t4 = t3 + ((_lightNtoE._greenLightTime > _lightStoW._greenLightTime) ? _lightNtoE._greenLightTime : _lightStoW._greenLightTime);
-            if (_tickCount == t4 || _tickCount==0)
+
+            _tickCount++;
+            if (_tickCount == t4)
             {
-                _tickCount = 0;
+                _tickCount = -1;
                 _state = 1;
                 updateLights();
             }
             else
             {
-                _tickCount++;
+                if (_tickCount == 0)
+                {
+                    _state = 1;
+                    updateLights();    
+                }
                 if (_tickCount == t1) 
                 {
                     _state = 2;

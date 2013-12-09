@@ -13,7 +13,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// The lights only for crossing type 2.
         /// </summary>        
-        private TrafficLight _lightNtoS, _lightStoN, _pedestrianLight;
+        private TrafficLight _lightNtoS = new TrafficLight(10), _lightStoN = new TrafficLight(10), _pedestrianLight = new TrafficLight(10);
 
         public TrafficLight LightNtoS
         {
@@ -65,7 +65,7 @@ namespace Traffic_Simulator
                     break;
 
                 case 2:
-                    _lightWtoSE._color = Color.Green;
+                    _lightWtoN._color = Color.Green;
                     _lightEtoS._color = Color.Green;
                     break;
 
@@ -93,15 +93,21 @@ namespace Traffic_Simulator
             t2 = t1 + ((_lightWtoN._greenLightTime > _lightEtoS._greenLightTime) ? _lightWtoN._greenLightTime : _lightEtoS._greenLightTime);
             t3 = t2 + ((_lightNtoS._greenLightTime > _lightStoN._greenLightTime) ? _lightNtoS._greenLightTime : _lightStoN._greenLightTime);
             t4 = t3 + _pedestrianLight._greenLightTime;
-            if (_tickCount == t4 || _tickCount == 0)
+
+            _tickCount++;
+            if (_tickCount == t4)
             {
-                _tickCount = 1;
+                _tickCount = -1;
                 _state = 1;
                 updateLights();
             }
             else
             {
-                _tickCount++;
+                if (_tickCount == 0)
+                {
+                    _state = 1;
+                    updateLights();
+                }
                 if (_tickCount == t1)
                 {
                     _state = 2;
@@ -119,7 +125,8 @@ namespace Traffic_Simulator
                     _state = 4;
                     updateLights();
                 }
-            }
+
+            }  
         }
 
         public override  bool reset() 

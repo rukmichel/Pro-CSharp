@@ -144,64 +144,16 @@ namespace Traffic_Simulator
                     _grid.Slots[0, 0].FlowS = 0;
                     _grid.Slots[0, 0].FlowN = 0;
 
-                    _grid.Slots[0, 0].ProbWtoN = 1;
-                    _grid.Slots[0, 0].ProbWtoS = 1;
-                    _grid.Slots[0, 0].ProbWtoE = 50;
-
-                    _grid.Slots[0, 0].ProbNtoW = 40;
-                    _grid.Slots[0, 0].ProbNtoS = 40;
-                    _grid.Slots[0, 0].ProbNtoE = 40;
-
-                    _grid.Slots[0, 0].ProbStoN = 1;
-                    _grid.Slots[0, 0].ProbStoW = 1;
-                    _grid.Slots[0, 0].ProbStoE = 14;
-
-                    _grid.Slots[0, 0].ProbEtoW = 1;
-                    _grid.Slots[0, 0].ProbEtoS = 1;
-                    _grid.Slots[0, 0].ProbEtoN = 1;
-
+                    
                     //second crossing
                     _grid.Slots[1, 0].FlowS = 0;
-                    _grid.Slots[1, 0].FlowE = 0;
+                    _grid.Slots[1, 0].FlowE = 1;
                     _grid.Slots[1, 0].FlowN = 0;
-
-                    _grid.Slots[1, 0].ProbNtoW = 1;
-                    _grid.Slots[1, 0].ProbNtoS = 1;
-                    _grid.Slots[1, 0].ProbNtoE = 1;
-
-                    _grid.Slots[1, 0].ProbStoN = 40;
-                    _grid.Slots[1, 0].ProbStoW = 40;
-                    _grid.Slots[1, 0].ProbStoE = 40;
-
-                    _grid.Slots[1, 0].ProbEtoW = 1;
-                    _grid.Slots[1, 0].ProbEtoS = 1;
-                    _grid.Slots[1, 0].ProbEtoN = 1;
-
-                    _grid.Slots[1, 0].ProbWtoE = 14;
-                    _grid.Slots[1, 0].ProbWtoS = 1;
-                    _grid.Slots[1, 0].ProbWtoN = 1;
-
+                    
                     //THIRD crossing
                     _grid.Slots[2, 0].FlowS = 0;
                     _grid.Slots[2, 0].FlowE = 0;
-                    _grid.Slots[2, 0].FlowN = 0;
-
-                    _grid.Slots[2, 0].ProbNtoW = 1;
-                    _grid.Slots[2, 0].ProbNtoS = 1;
-                    _grid.Slots[2, 0].ProbNtoE = 1;
-
-                    _grid.Slots[2, 0].ProbStoN = 40;
-                    _grid.Slots[2, 0].ProbStoW = 40;
-                    _grid.Slots[2, 0].ProbStoE = 40;
-
-                    _grid.Slots[2, 0].ProbEtoW = 1;
-                    _grid.Slots[2, 0].ProbEtoS = 1;
-                    _grid.Slots[2, 0].ProbEtoN = 1;
-
-                    _grid.Slots[2, 0].ProbWtoE = 1;
-                    _grid.Slots[2, 0].ProbWtoS = 1;
-                    _grid.Slots[2, 0].ProbWtoN = 1;
-
+                    _grid.Slots[2, 0].FlowN = 1;
 
                     _timer.Interval = _refreshRate;//sets and starts the timer
                     _timer.Elapsed += timerHasTriggered;

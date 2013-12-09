@@ -23,16 +23,10 @@ namespace Traffic_Simulator
         /// </summary>
         public int _greenLightTime;
 
-        public Color Color
+        public TrafficLight(int time)
         {
-            get
-            {
-                return _color;
-            }
-            set
-            {
-                _color = value;
-            }
+            _greenLightTime = time;
+            _color = Color.Gray;
         }
     }
 }

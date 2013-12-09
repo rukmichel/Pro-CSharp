@@ -69,7 +69,6 @@ namespace Traffic_Simulator
                     int x, y;
                     x = pictureBoxSlotA0.Location.X + (3*66*i); 
                     y = pictureBoxSlotA0.Location.Y+ (3*66*j); //base values
-                    //x = pictureBox1.Location.X + 66 - 13; y = pictureBox1.Location.Y + 2 * 22 - 10;
                     string str="";
 
 

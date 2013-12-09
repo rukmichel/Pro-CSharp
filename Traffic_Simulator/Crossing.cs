@@ -23,7 +23,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Keeps track of the times ticks
         /// </summary>
-        protected int _tickCount = 0;
+        protected int _tickCount = -1;
 
         /// <summary>
         /// Gives the specific street on the lane on each crossing.
@@ -63,10 +63,10 @@ namespace Traffic_Simulator
         /// <summary>
         /// Represents traffic lights for each direction on the street,for instance _lightEtoW: light for the car coming from East to West.
         /// </summary>
-        protected TrafficLight _lightEtoNW = new TrafficLight(),
-            _lightEtoS = new TrafficLight(), 
-            _lightWtoN = new TrafficLight(),
-            _lightWtoSE = new TrafficLight();
+        protected TrafficLight _lightEtoNW = new TrafficLight(10),
+            _lightEtoS = new TrafficLight(10), 
+            _lightWtoN = new TrafficLight(10),
+            _lightWtoSE = new TrafficLight(10);
 
        public TrafficLight LightEtoNW
        {
@@ -164,8 +164,8 @@ namespace Traffic_Simulator
         /// <summary>
         ///  Determines the turning probability of the car from one street to another.
         /// </summary>
-        protected float _probEtoW, _probEtoN, _probEtoS, _probWtoN, _probWtoS, _probWtoE, 
-            _probStoN, _probStoE, _probStoW, _probNtoS, _probNtoW, _probNtoE;
+       protected float _probEtoW = 1, _probEtoN = 1, _probEtoS = 1, _probWtoN = 1, _probWtoS = 1, _probWtoE = 1,
+            _probStoN = 1, _probStoE = 1, _probStoW = 1, _probNtoS = 1, _probNtoW = 1, _probNtoE = 1;
 
         public float ProbEtoW 
         {
@@ -260,7 +260,7 @@ namespace Traffic_Simulator
             _lightWtoN._color = Color.Gray;
 
            _state = 0;
-           _tickCount = 0;
+           _tickCount = -1;
            return true;
        }
         

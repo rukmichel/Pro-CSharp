@@ -236,7 +236,7 @@ namespace Traffic_Simulator
 
             _elements.Clear();
 
-            if(button1.Text=="Pause")
+            if(button1.Text=="ll")
                 drawCrossings(copyOfGrid.Slots);    
         
             drawLights(copyOfGrid.Slots);//draws lights

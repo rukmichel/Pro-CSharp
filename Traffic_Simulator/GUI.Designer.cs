@@ -342,16 +342,15 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(159, 33);
+            this.label1.Location = new System.Drawing.Point(4, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.Size = new System.Drawing.Size(105, 67);
             this.label1.TabIndex = 4;
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(7, 123);
+            this.button3.Location = new System.Drawing.Point(7, 198);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(64, 42);
             this.button3.TabIndex = 5;
@@ -483,7 +482,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(7, 63);
+            this.button4.Location = new System.Drawing.Point(7, 138);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(54, 24);
             this.button4.TabIndex = 18;
@@ -493,7 +492,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(7, 93);
+            this.button5.Location = new System.Drawing.Point(7, 168);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(54, 24);
             this.button5.TabIndex = 19;
@@ -503,7 +502,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 189);
+            this.pictureBox1.Location = new System.Drawing.Point(7, 264);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(80, 80);
@@ -514,7 +513,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(7, 273);
+            this.pictureBox2.Location = new System.Drawing.Point(7, 348);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(80, 80);
@@ -560,6 +559,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(151, 163);
             this.panel5.TabIndex = 30;
+            this.panel5.Visible = false;
             // 
             // textBox9
             // 
@@ -568,6 +568,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(26, 20);
             this.textBox9.TabIndex = 3;
+            this.textBox9.Visible = false;
             // 
             // textBox10
             // 
@@ -646,9 +647,9 @@
             this.button8.Location = new System.Drawing.Point(94, 284);
             this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(43, 23);
+            this.button8.Size = new System.Drawing.Size(44, 23);
             this.button8.TabIndex = 28;
-            this.button8.Text = "Hide";
+            this.button8.Text = "Show";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
@@ -762,6 +763,7 @@
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.panel6);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(0, 25);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
@@ -779,8 +781,7 @@
             // 
             // GUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1057, 623);
@@ -798,7 +799,6 @@
             this.Controls.Add(this.pictureBoxSlotA0);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);

@@ -132,55 +132,76 @@ namespace Traffic_Simulator
                 {
                     _grid = new Grid();
                     _grid.Slots[0, 0] = new Crossing_1();
-                    _grid.Slots[1, 1] = new Crossing_2();
+                    _grid.Slots[2, 0] = new Crossing_2();
                     _grid.Slots[1, 0] = new Crossing_1();
 
-                    _grid.Slots[0, 0].FlowW = 1;
-                    _grid.Slots[0, 0].FlowS = 1;
-                    _grid.Slots[0, 0].FlowN = 1;
 
-                    _grid.Slots[0, 0].ProbWtoN = 40;
-                    _grid.Slots[0, 0].ProbWtoS = 40;
-                    _grid.Slots[0, 0].ProbWtoE = 40;
+                    _grid.Slots[0, 0].ID = "A0";
+                    _grid.Slots[2, 0].ID = "C0";
+                    _grid.Slots[1, 0].ID = "B0";
+
+                    _grid.Slots[0, 0].FlowW = 0;
+                    _grid.Slots[0, 0].FlowS = 1;
+                    _grid.Slots[0, 0].FlowN = 0;
+
+                    _grid.Slots[0, 0].ProbWtoN = 1;
+                    _grid.Slots[0, 0].ProbWtoS = 1;
+                    _grid.Slots[0, 0].ProbWtoE = 50;
 
                     _grid.Slots[0, 0].ProbNtoW = 40;
                     _grid.Slots[0, 0].ProbNtoS = 40;
                     _grid.Slots[0, 0].ProbNtoE = 40;
 
-                    _grid.Slots[0, 0].ProbStoN = 40;
-                    _grid.Slots[0, 0].ProbStoW = 40;
-                    _grid.Slots[0, 0].ProbStoE = 40;
+                    _grid.Slots[0, 0].ProbStoN = 1;
+                    _grid.Slots[0, 0].ProbStoW = 1;
+                    _grid.Slots[0, 0].ProbStoE = 14;
 
-                    _grid.Slots[0, 0].ID = "A0";
+                    _grid.Slots[0, 0].ProbEtoW = 1;
+                    _grid.Slots[0, 0].ProbEtoS = 1;
+                    _grid.Slots[0, 0].ProbEtoN = 1;
 
-                    Crossing_2 c2 = (Crossing_2)_grid.Slots[1, 1];
-                    TrafficLight tl;
-                    tl._color = c2.LightPedestrian._color;
-                    tl._greenLightTime = 20;
-                    c2.LightPedestrian = tl;
-
-                    tl._color = c2.LightNtoS._color;
-                    tl._greenLightTime = 20;
-                    c2.LightNtoS = tl;
-
-                    tl._color = c2.LightWtoSE._color;
-                    tl._greenLightTime = 20;
-                    c2.LightWtoSE = tl;
-
+                    //second crossing
                     _grid.Slots[1, 0].FlowS = 0;
                     _grid.Slots[1, 0].FlowE = 0;
                     _grid.Slots[1, 0].FlowN = 0;
 
-                    _grid.Slots[1, 0].ProbEtoN = 40;
-                    _grid.Slots[1, 0].ProbEtoS = 40;
-                    _grid.Slots[1, 0].ProbEtoW = 40;
+                    _grid.Slots[1, 0].ProbNtoW = 1;
+                    _grid.Slots[1, 0].ProbNtoS = 1;
+                    _grid.Slots[1, 0].ProbNtoE = 1;
 
                     _grid.Slots[1, 0].ProbStoN = 40;
                     _grid.Slots[1, 0].ProbStoW = 40;
                     _grid.Slots[1, 0].ProbStoE = 40;
 
-                    _grid.Slots[1, 1].ID = "B1";
-                    _grid.Slots[1, 0].ID = "B0";
+                    _grid.Slots[1, 0].ProbEtoW = 1;
+                    _grid.Slots[1, 0].ProbEtoS = 1;
+                    _grid.Slots[1, 0].ProbEtoN = 1;
+
+                    _grid.Slots[1, 0].ProbWtoE = 14;
+                    _grid.Slots[1, 0].ProbWtoS = 1;
+                    _grid.Slots[1, 0].ProbWtoN = 1;
+
+                    //THIRD crossing
+                    _grid.Slots[2, 0].FlowS = 0;
+                    _grid.Slots[2, 0].FlowE = 0;
+                    _grid.Slots[2, 0].FlowN = 0;
+
+                    _grid.Slots[2, 0].ProbNtoW = 1;
+                    _grid.Slots[2, 0].ProbNtoS = 1;
+                    _grid.Slots[2, 0].ProbNtoE = 1;
+
+                    _grid.Slots[2, 0].ProbStoN = 40;
+                    _grid.Slots[2, 0].ProbStoW = 40;
+                    _grid.Slots[2, 0].ProbStoE = 40;
+
+                    _grid.Slots[2, 0].ProbEtoW = 1;
+                    _grid.Slots[2, 0].ProbEtoS = 1;
+                    _grid.Slots[2, 0].ProbEtoN = 1;
+
+                    _grid.Slots[2, 0].ProbWtoE = 1;
+                    _grid.Slots[2, 0].ProbWtoS = 1;
+                    _grid.Slots[2, 0].ProbWtoN = 1;
+
 
                     _timer.Interval = _refreshRate;//sets and starts the timer
                     _timer.Elapsed += timerHasTriggered;

@@ -36,7 +36,6 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,8 +52,8 @@
             this.pictureBoxSlotC2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotB2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotA2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotB0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotD0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotC0)).BeginInit();
@@ -66,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotC2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotB2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA0)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -145,17 +145,6 @@
             this.button2.Text = "Stop";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // pictureBoxSlotA0
-            // 
-            this.pictureBoxSlotA0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotA0.Location = new System.Drawing.Point(81, 62);
-            this.pictureBoxSlotA0.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxSlotA0.Name = "pictureBoxSlotA0";
-            this.pictureBoxSlotA0.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotA0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBoxSlotA0.TabIndex = 3;
-            this.pictureBoxSlotA0.TabStop = false;
             // 
             // openFileDialog1
             // 
@@ -317,6 +306,17 @@
             this.pictureBoxSlotA2.TabIndex = 14;
             this.pictureBoxSlotA2.TabStop = false;
             // 
+            // pictureBoxSlotA0
+            // 
+            this.pictureBoxSlotA0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxSlotA0.Location = new System.Drawing.Point(81, 62);
+            this.pictureBoxSlotA0.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxSlotA0.Name = "pictureBoxSlotA0";
+            this.pictureBoxSlotA0.Size = new System.Drawing.Size(199, 199);
+            this.pictureBoxSlotA0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotA0.TabIndex = 3;
+            this.pictureBoxSlotA0.TabStop = false;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,7 +350,6 @@
             this.Load += new System.EventHandler(this.GUI_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotB0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotD0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotC0)).EndInit();
@@ -362,6 +361,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotC2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotB2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA0)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,7 +377,6 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.PictureBox pictureBoxSlotA0;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Label label1;
@@ -394,6 +393,7 @@
         private System.Windows.Forms.PictureBox pictureBoxSlotC2;
         private System.Windows.Forms.PictureBox pictureBoxSlotB2;
         private System.Windows.Forms.PictureBox pictureBoxSlotA2;
+        private System.Windows.Forms.PictureBox pictureBoxSlotA0;
     }
 }
 

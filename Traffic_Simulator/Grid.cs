@@ -22,7 +22,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// All available slots for Crossings on the grid.
         /// </summary>
-        private static Crossing[,] _slots;
+        private static Crossing[,] _slots = new Crossing[4,3];
 
         public Crossing[,] Slots
         {
@@ -42,7 +42,10 @@ namespace Traffic_Simulator
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Grid() { _slots = new Crossing[4, 3];}
+        public Grid() 
+        { 
+            
+        }
 
         /// <summary>
         /// Keeps track of time, moves cars and changes lights
@@ -63,7 +66,7 @@ namespace Traffic_Simulator
             }//finish ticking crossings and adding new cars
             
             foreach (Car c in _listOfCars) //moves every existing car by 1 position
-                if(c!=null)
+                if(c!=null && !c.HasExitedGrid)
                         c.move();
             
 
@@ -104,13 +107,12 @@ namespace Traffic_Simulator
             ////////////add new cars to street E
             if (c.FlowE > c.EnteredE)//if there are still cars to enter a crossing and
             {
-                Car car = new Car();
+                Car car = new Car(c);
 
                 car.Street = c.StreetE;
-                car.Crossing = c;
                 car.Direction = Direction.West;
-                car.StreetIndex[0] = 0;
-                car.StreetIndex[1] = 0;
+                car.StreetIndex[0] = -1;
+                car.StreetIndex[1] = -1;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 
@@ -122,13 +124,12 @@ namespace Traffic_Simulator
             if (c.FlowW > c.EnteredW)
             {
 
-                Car car = new Car();
+                Car car = new Car(c);
 
                 car.Street = c.StreetW;
-                car.Crossing = c;
                 car.Direction = Direction.East;
-                car.StreetIndex[0] = 0;
-                car.StreetIndex[1] = 0;
+                car.StreetIndex[0] = -1;
+                car.StreetIndex[1] = -1;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 
@@ -140,13 +141,12 @@ namespace Traffic_Simulator
             if (c.FlowS > c.EnteredS)
             {
 
-                Car car = new Car();
+                Car car = new Car(c);
 
                 car.Street = c.StreetS;
-                car.Crossing = c;
                 car.Direction = Direction.North;
-                car.StreetIndex[0] = 0;
-                car.StreetIndex[1] = 0;
+                car.StreetIndex[0] = -1;
+                car.StreetIndex[1] = -1;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 
@@ -157,13 +157,12 @@ namespace Traffic_Simulator
             ////////add new cars to street N
             if (c.FlowN > c.EnteredN)
             {
-                Car car = new Car();
+                Car car = new Car(c);
 
                 car.Street = c.StreetN;
-                car.Crossing = c;
                 car.Direction = Direction.South;
-                car.StreetIndex[0] = 0;
-                car.StreetIndex[1] = 0;
+                car.StreetIndex[0] = -1;
+                car.StreetIndex[1] = -1;
                 car.HasEnteredGrid = false;
                 car.HasExitedGrid = false;
 
@@ -226,8 +225,11 @@ namespace Traffic_Simulator
         /// <param name="id">Grid position of crossing</param>
         /// <returns>The crossing</returns>
         public static Crossing getCrossing(string id) 
-        { 
-            return _slots[((int)id[0]) - (int)'A', Convert.ToInt32(id[1])]; 
+        {
+            int a, b;
+            a=((int)id[0]) - (int)'A';
+            b=Convert.ToInt32(id[1].ToString());
+            return _slots[a, b]; 
         }
 
         /// <summary>

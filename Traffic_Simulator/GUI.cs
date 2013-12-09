@@ -139,7 +139,8 @@ namespace Traffic_Simulator
         {
             if (c != null && c.HasEnteredGrid && !c.HasExitedGrid) //initial check
             {
-                int x = pictureBoxSlotA0.Location.X, y = pictureBoxSlotA0.Location.Y;
+                int x = pictureBoxSlotA0.Location.X + (int)(c.Crossing.ID[0] - 'A') * 3 * 66;
+                int y = pictureBoxSlotA0.Location.Y + (int)(c.Crossing.ID[1] - '0') * 3 * 66;
                 if (c.Crossing.GetType() == typeof(Crossing_2))
                     x += 3 * 66;
 
@@ -359,15 +360,13 @@ namespace Traffic_Simulator
             Crossing c = new Crossing_2();
             c.ID = "A0";
 
-            Car c2 = new Car();
-            c2.Crossing = c;
+            Car c2 = new Car(c);
            // MessageBox.Show("Direction:" + c2.Street.Position.ToString());
                     c2.StreetIndex[0] = 1;
                 //c2.Direction = Direction.West;
                 c2.Street = c.StreetW;
                 c2.StreetIndex[1] = 0;
                 c2.HasEnteredGrid = true;
-                c2.Crossing = c;
                 c2.HasExitedGrid = false;
                 drawCar(c2);
           

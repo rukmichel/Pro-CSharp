@@ -97,6 +97,19 @@
     <None Include="gridlayoutprototype.JPG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\mergingE.png" />
+    <None Include="bin\Debug\mergingN.png" />
+    <None Include="bin\Debug\mergingS.png" />
+    <None Include="bin\Debug\mergingW.png" />
+    <None Include="bin\Debug\pedColor [Green].png" />
+    <None Include="bin\Debug\pedColor [Red].png" />
+    <None Include="bin\Debug\Traffic_Simulator.Crossing_1.png" />
+    <None Include="bin\Debug\Traffic_Simulator.Crossing_2.png" />
+    <None Include="bin\Debug\Bitmap1.bmp" />
+    <None Include="bin\Debug\Bitmap1.png" />
+    <None Include="bin\Debug\car.png" />
+    <None Include="bin\Debug\Color [Green].png" />
+    <None Include="bin\Debug\Color [Red].png" />
     <Content Include="Bitmap1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

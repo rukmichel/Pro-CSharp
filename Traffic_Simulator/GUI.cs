@@ -32,7 +32,11 @@ namespace Traffic_Simulator
                     y = pictureBoxSlotA0.Location.Y + (3 * 66 * j);
                     if (c != null)
                     {
-                        _gui_slots[i,j].Image = new Bitmap(c.GetType().ToString()+".png");
+                        if (c.GetType() == typeof(Crossing_1))
+                            _gui_slots[i,j].Image = Properties.Resources.Traffic_Simulator_Crossing_1;
+                        else 
+                            _gui_slots[i,j].Image = Properties.Resources.Traffic_Simulator_Crossing_2;
+                        //_gui_slots[i,j].Image = new Bitmap(c.GetType().ToString()+".png");
                         _gui_slots[i,j].BorderStyle=BorderStyle.None;
                         _gui_slots[i, j].SendToBack();
 
@@ -124,7 +128,54 @@ namespace Traffic_Simulator
         private PictureBox addElement(int x, int y, string image)
         {
             _p = new PictureBox();
-            _p.Image = new Bitmap(image + ".png");
+            switch (image)
+            {
+                case "car":
+                    _p.Image = Properties.Resources.car;
+                    break;
+                    
+                case "Color [Red]":
+                    _p.Image = Properties.Resources.redLight;
+                    break;
+
+                case "Color [Green]":
+                    _p.Image = Properties.Resources.greenLight;
+                    break;
+
+                case "mergingN":
+                    _p.Image = Properties.Resources.mergingN;
+                    break;
+
+                case "mergingE":
+                    _p.Image = Properties.Resources.mergingE;
+                    break;
+
+                case "mergingS":
+                    _p.Image = Properties.Resources.mergingS;
+                    break;
+
+                case "mergingW":
+                    _p.Image = Properties.Resources.mergingW;
+                    break;
+
+                case "Traffic_Simulator.Crossing_1":
+                    _p.Image = Properties.Resources.Traffic_Simulator_Crossing_1;
+                    break;
+
+                case "Traffic_Simulator.Crossing_2":
+                    _p.Image = Properties.Resources.Traffic_Simulator_Crossing_2;
+                    break;
+
+                case "pedColor [Green]":
+                    _p.Image = Properties.Resources.pedColor__Green_;
+                    break;
+
+                case "pedColor [Red]":
+                    _p.Image = Properties.Resources.pedColor__Red_;
+                    break;
+
+            }
+            //_p.Image = new Bitmap(image + ".png");
             _p.Location = new Point(x, y);
             _p.SizeMode = PictureBoxSizeMode.AutoSize;
             _p.Show();

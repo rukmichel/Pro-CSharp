@@ -33,11 +33,11 @@ namespace Traffic_Simulator
                     if (c != null)
                     {
                         if (c.GetType() == typeof(Crossing_1))
-                            _gui_slots[i,j].Image = Properties.Resources.Traffic_Simulator_Crossing_1;
-                        else 
-                            _gui_slots[i,j].Image = Properties.Resources.Traffic_Simulator_Crossing_2;
+                            _gui_slots[i, j].Image = Properties.Resources.Traffic_Simulator_Crossing_1;
+                        else
+                            _gui_slots[i, j].Image = Properties.Resources.Traffic_Simulator_Crossing_2;
                         //_gui_slots[i,j].Image = new Bitmap(c.GetType().ToString()+".png");
-                        _gui_slots[i,j].BorderStyle=BorderStyle.None;
+                        _gui_slots[i, j].BorderStyle = BorderStyle.None;
                         _gui_slots[i, j].SendToBack();
 
                         if ((i + 1) < 3 && slots[i + 1, j] != null)//check merging East
@@ -56,8 +56,8 @@ namespace Traffic_Simulator
                         {
                             addElement(x + 66, y, "mergingN");
                         }
-                        
-                    }                    
+
+                    }
                 }
             }
         }
@@ -487,11 +487,14 @@ namespace Traffic_Simulator
             }
         }
 
+        private void crossing_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
 
-        
-
-        
-        
-        
+            if (pb.BorderStyle == BorderStyle.Fixed3D)
+                pb.BorderStyle = BorderStyle.None;
+            else
+                pb.BorderStyle = BorderStyle.Fixed3D;
+        }
     }
 }

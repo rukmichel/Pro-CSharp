@@ -330,6 +330,7 @@
             this.pictureBoxSlotA0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA0.TabIndex = 3;
             this.pictureBoxSlotA0.TabStop = false;
+            this.pictureBoxSlotA0.Click += new System.EventHandler(this.crossing_Click);
             // 
             // openFileDialog1
             // 
@@ -368,6 +369,7 @@
             this.pictureBoxSlotB0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB0.TabIndex = 7;
             this.pictureBoxSlotB0.TabStop = false;
+            this.pictureBoxSlotB0.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotD0
             // 
@@ -379,6 +381,7 @@
             this.pictureBoxSlotD0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD0.TabIndex = 9;
             this.pictureBoxSlotD0.TabStop = false;
+            this.pictureBoxSlotD0.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotC0
             // 
@@ -390,6 +393,7 @@
             this.pictureBoxSlotC0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC0.TabIndex = 8;
             this.pictureBoxSlotC0.TabStop = false;
+            this.pictureBoxSlotC0.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotD1
             // 
@@ -401,6 +405,7 @@
             this.pictureBoxSlotD1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD1.TabIndex = 13;
             this.pictureBoxSlotD1.TabStop = false;
+            this.pictureBoxSlotD1.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotC1
             // 
@@ -412,6 +417,7 @@
             this.pictureBoxSlotC1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC1.TabIndex = 12;
             this.pictureBoxSlotC1.TabStop = false;
+            this.pictureBoxSlotC1.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotB1
             // 
@@ -423,6 +429,7 @@
             this.pictureBoxSlotB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB1.TabIndex = 11;
             this.pictureBoxSlotB1.TabStop = false;
+            this.pictureBoxSlotB1.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotA1
             // 
@@ -434,6 +441,7 @@
             this.pictureBoxSlotA1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA1.TabIndex = 10;
             this.pictureBoxSlotA1.TabStop = false;
+            this.pictureBoxSlotA1.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotD2
             // 
@@ -445,6 +453,7 @@
             this.pictureBoxSlotD2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD2.TabIndex = 17;
             this.pictureBoxSlotD2.TabStop = false;
+            this.pictureBoxSlotD2.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotC2
             // 
@@ -456,6 +465,7 @@
             this.pictureBoxSlotC2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC2.TabIndex = 16;
             this.pictureBoxSlotC2.TabStop = false;
+            this.pictureBoxSlotC2.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotB2
             // 
@@ -467,6 +477,7 @@
             this.pictureBoxSlotB2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB2.TabIndex = 15;
             this.pictureBoxSlotB2.TabStop = false;
+            this.pictureBoxSlotB2.Click += new System.EventHandler(this.crossing_Click);
             // 
             // pictureBoxSlotA2
             // 
@@ -478,6 +489,7 @@
             this.pictureBoxSlotA2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA2.TabIndex = 14;
             this.pictureBoxSlotA2.TabStop = false;
+            this.pictureBoxSlotA2.Click += new System.EventHandler(this.crossing_Click);
             // 
             // button4
             // 
@@ -635,6 +647,7 @@
             // 
             // textBox8
             // 
+            this.textBox8.Enabled = false;
             this.textBox8.Location = new System.Drawing.Point(18, 14);
             this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Name = "textBox8";

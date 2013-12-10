@@ -161,6 +161,7 @@ namespace Traffic_Simulator
                     _grid.Slots[2, 0].FlowN = 2;
 
                     _timer.Interval = _refreshRate;//sets and starts the timer
+                    this.timerHasTriggered(null, null);
                     _timer.Elapsed += timerHasTriggered;
                     _timer.Start();
                 }

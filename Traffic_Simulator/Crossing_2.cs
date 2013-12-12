@@ -13,7 +13,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// The lights only for crossing type 2.
         /// </summary>        
-        private TrafficLight _lightNtoS = new TrafficLight(10), _lightStoN = new TrafficLight(10), _pedestrianLight = new TrafficLight(10);
+        private TrafficLight _lightNtoS = new TrafficLight(6), _lightStoN = new TrafficLight(6), _pedestrianLight = new TrafficLight(6);
 
         public TrafficLight LightNtoS
         {

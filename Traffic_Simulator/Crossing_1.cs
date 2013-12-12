@@ -13,8 +13,8 @@ namespace Traffic_Simulator
         /// <summary>
         /// The lights only for crossing type 1.
         /// </summary>
-        protected TrafficLight _lightNtoWS = new TrafficLight(10), _lightStoEN = new TrafficLight(10),
-            _lightNtoE = new TrafficLight(10), _lightStoW = new TrafficLight(10);
+        protected TrafficLight _lightNtoWS = new TrafficLight(6), _lightStoEN = new TrafficLight(6),
+            _lightNtoE = new TrafficLight(6), _lightStoW = new TrafficLight(6);
         
         public TrafficLight LightNtoWS
         {

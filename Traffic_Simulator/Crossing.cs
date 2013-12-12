@@ -63,10 +63,10 @@ namespace Traffic_Simulator
         /// <summary>
         /// Represents traffic lights for each direction on the street,for instance _lightEtoW: light for the car coming from East to West.
         /// </summary>
-        protected TrafficLight _lightEtoNW = new TrafficLight(10),
-            _lightEtoS = new TrafficLight(10), 
-            _lightWtoN = new TrafficLight(10),
-            _lightWtoSE = new TrafficLight(10);
+        protected TrafficLight _lightEtoNW = new TrafficLight(6),
+            _lightEtoS = new TrafficLight(6), 
+            _lightWtoN = new TrafficLight(6),
+            _lightWtoSE = new TrafficLight(6);
 
        public TrafficLight LightEtoNW
        {

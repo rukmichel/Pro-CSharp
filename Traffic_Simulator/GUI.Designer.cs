@@ -71,8 +71,8 @@
             this.pictureBoxSlotA2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Crossing_1 = new System.Windows.Forms.PictureBox();
+            this.Crossing_2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -110,8 +110,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotC2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotB2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Crossing_1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Crossing_2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -330,6 +330,8 @@
             this.pictureBoxSlotA0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA0.TabIndex = 3;
             this.pictureBoxSlotA0.TabStop = false;
+            this.pictureBoxSlotA0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotA0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // openFileDialog1
             // 
@@ -368,6 +370,8 @@
             this.pictureBoxSlotB0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB0.TabIndex = 7;
             this.pictureBoxSlotB0.TabStop = false;
+            this.pictureBoxSlotB0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotB0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotD0
             // 
@@ -379,6 +383,8 @@
             this.pictureBoxSlotD0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD0.TabIndex = 9;
             this.pictureBoxSlotD0.TabStop = false;
+            this.pictureBoxSlotD0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotD0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotC0
             // 
@@ -390,6 +396,8 @@
             this.pictureBoxSlotC0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC0.TabIndex = 8;
             this.pictureBoxSlotC0.TabStop = false;
+            this.pictureBoxSlotC0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotC0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotD1
             // 
@@ -401,6 +409,8 @@
             this.pictureBoxSlotD1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD1.TabIndex = 13;
             this.pictureBoxSlotD1.TabStop = false;
+            this.pictureBoxSlotD1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotD1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotC1
             // 
@@ -412,6 +422,8 @@
             this.pictureBoxSlotC1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC1.TabIndex = 12;
             this.pictureBoxSlotC1.TabStop = false;
+            this.pictureBoxSlotC1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotC1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotB1
             // 
@@ -423,6 +435,8 @@
             this.pictureBoxSlotB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB1.TabIndex = 11;
             this.pictureBoxSlotB1.TabStop = false;
+            this.pictureBoxSlotB1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotB1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotA1
             // 
@@ -434,6 +448,8 @@
             this.pictureBoxSlotA1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA1.TabIndex = 10;
             this.pictureBoxSlotA1.TabStop = false;
+            this.pictureBoxSlotA1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotA1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotD2
             // 
@@ -445,6 +461,8 @@
             this.pictureBoxSlotD2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD2.TabIndex = 17;
             this.pictureBoxSlotD2.TabStop = false;
+            this.pictureBoxSlotD2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotD2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotC2
             // 
@@ -456,6 +474,8 @@
             this.pictureBoxSlotC2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC2.TabIndex = 16;
             this.pictureBoxSlotC2.TabStop = false;
+            this.pictureBoxSlotC2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotC2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotB2
             // 
@@ -467,6 +487,8 @@
             this.pictureBoxSlotB2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB2.TabIndex = 15;
             this.pictureBoxSlotB2.TabStop = false;
+            this.pictureBoxSlotB2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotB2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // pictureBoxSlotA2
             // 
@@ -478,6 +500,8 @@
             this.pictureBoxSlotA2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA2.TabIndex = 14;
             this.pictureBoxSlotA2.TabStop = false;
+            this.pictureBoxSlotA2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
+            this.pictureBoxSlotA2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
             // button4
             // 
@@ -499,27 +523,33 @@
             this.button5.Text = "Delete";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // Crossing_1
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 264);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 20;
-            this.pictureBox1.TabStop = false;
+            this.Crossing_1.BackgroundImage = global::Traffic_Simulator.Properties.Resources.Traffic_Simulator_Crossing_1;
+            this.Crossing_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Crossing_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Crossing_1.Location = new System.Drawing.Point(7, 254);
+            this.Crossing_1.Margin = new System.Windows.Forms.Padding(2);
+            this.Crossing_1.Name = "Crossing_1";
+            this.Crossing_1.Size = new System.Drawing.Size(99, 99);
+            this.Crossing_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Crossing_1.TabIndex = 20;
+            this.Crossing_1.TabStop = false;
+            this.Crossing_1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.crossing_mouseDown);
             // 
-            // pictureBox2
+            // Crossing_2
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(7, 348);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 21;
-            this.pictureBox2.TabStop = false;
+            this.Crossing_2.BackgroundImage = global::Traffic_Simulator.Properties.Resources.Traffic_Simulator_Crossing_2;
+            this.Crossing_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Crossing_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Crossing_2.Location = new System.Drawing.Point(7, 378);
+            this.Crossing_2.Margin = new System.Windows.Forms.Padding(2);
+            this.Crossing_2.Name = "Crossing_2";
+            this.Crossing_2.Size = new System.Drawing.Size(99, 99);
+            this.Crossing_2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Crossing_2.TabIndex = 21;
+            this.Crossing_2.TabStop = false;
+            this.Crossing_2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.crossing_mouseDown);
             // 
             // panel1
             // 
@@ -756,9 +786,9 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.Crossing_2);
             this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.Crossing_1);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button3);
@@ -820,8 +850,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotC2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotB2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotA2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Crossing_1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Crossing_2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -882,8 +912,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox Crossing_1;
+        private System.Windows.Forms.PictureBox Crossing_2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;

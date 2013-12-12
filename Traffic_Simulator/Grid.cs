@@ -181,7 +181,7 @@ namespace Traffic_Simulator
         {
             try
             {
-                Crossing c = _slots[((int)id[0]) - (int)'A', Convert.ToInt32(id[1])];
+                Crossing c = this.Slots[(((int)id[0]) - (int)'A'), (int)id[1] - 48];
 
                 if (c != null)
                     return false;
@@ -190,6 +190,9 @@ namespace Traffic_Simulator
                     c = new Crossing_1(id);
                 else
                     c = new Crossing_2(id);
+
+                this.Slots[(((int)id[0]) - (int)'A'), (int)id[1] - 48] = c;
+
                 return true;
             }
             catch

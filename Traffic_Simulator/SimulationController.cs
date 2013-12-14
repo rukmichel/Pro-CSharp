@@ -19,7 +19,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
         /// </summary>
-        private Timer _timer = new Timer();
+        public static Timer _timer = new Timer();
 
         /// <summary>
         /// Current state of the simulation.
@@ -140,20 +140,20 @@ namespace Traffic_Simulator
                     _grid.Slots[2, 2] = new Crossing_1("C2");
 
 
-                    _grid.Slots[0, 0].FlowW = 1;
-                    _grid.Slots[0, 0].FlowS = 0;
+                    _grid.Slots[0, 0].FlowW = 0;
+                    _grid.Slots[0, 0].FlowS = 20;
                     _grid.Slots[0, 0].FlowN = 0;
 
                     
                     //second crossing
                     _grid.Slots[1, 0].FlowS = 0;
-                    _grid.Slots[1, 0].FlowE = 1;
+                    _grid.Slots[1, 0].FlowE = 0;
                     _grid.Slots[1, 0].FlowN = 0;
                     
                     //THIRD crossing
                     _grid.Slots[2, 0].FlowS = 0;
                     _grid.Slots[2, 0].FlowE = 0;
-                    _grid.Slots[2, 0].FlowN = 1;
+                    _grid.Slots[2, 0].FlowN = 0;
 
                     _timer.Interval = _refreshRate;//sets and starts the timer
                     _timer.Elapsed += timerHasTriggered;

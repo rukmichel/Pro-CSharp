@@ -444,7 +444,7 @@ namespace Traffic_Simulator
                 label3.Location = new Point(label3.Location.X, label3.Location.Y + height);
                 button7.Location = new Point(button7.Location.X, button7.Location.Y + height);
                 panel4.Location = new Point(panel4.Location.X, panel4.Location.Y + height);
-                label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
+                    label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
                 button8.Location = new Point(button8.Location.X, button8.Location.Y + height);
                 panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
             }

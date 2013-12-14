@@ -201,7 +201,7 @@ namespace Traffic_Simulator
                 if (Crossing.GetType() == typeof(Crossing_1))
                 {
                     c1 = (Crossing_1)Crossing;
-                    if (c1.LightNtoWS._color == Color.Green)
+                    if (this.StreetIndex[0] == 2 && this.StreetIndex[1]==2 && this.Street == Grid.getCrossing("B0").StreetN)
                     {
                         SimulationController._timer.Stop();
                         int i = this.StreetIndex[0];

@@ -191,7 +191,6 @@ namespace Traffic_Simulator
 
                         }
                     }
-
                 }
             }//end if(car is entering a new crosisng/leaving grid)
 
@@ -200,7 +199,7 @@ namespace Traffic_Simulator
 
             if (streets[str2].Lanes[lane2][pos2] == null  && (nextSlot != 3 || checkLights()))//if next position is available and light is green
             {
-
+                
                 if (HasEnteredGrid == false)
                     this.HasEnteredGrid = true;
                 else
@@ -406,7 +405,7 @@ namespace Traffic_Simulator
                 }
 
                 //checks wether it left the grid
-                if (id[0] > 'D' || id[0] < 'A' || id[1] > '3' || id[1] < '0')//if id is out of bounds
+                if (id[0] > 'D' || id[0] < 'A' || id[1] > '2' || id[1] < '0')//if id is out of bounds
                 {
                     return null;
                 }

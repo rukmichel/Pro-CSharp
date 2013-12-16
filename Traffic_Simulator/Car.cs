@@ -10,6 +10,8 @@ namespace Traffic_Simulator
     [Serializable]
     public class Car
     {
+        private static Random _random = new Random();
+
         /// <summary>
         /// The crossing in which this car is located
         /// </summary>
@@ -114,13 +116,24 @@ namespace Traffic_Simulator
             nextSlot++;//increments next slot
             if (nextSlot > _path.Count-1)//if car is entering a crossin or leaving the grid
             {
+                Crossing tempCrossing = this.Crossing;
+
                 if (HasEnteredGrid)//gets new crossing
                 {
-                    _crossing = getNextCrossing();
-                    Street.Lanes[StreetIndex[0]][StreetIndex[1]] = null;//leaves previous position
+                    this._crossing = getNextCrossing();
+                }
+                else//if car is entering the grid for the first time
+                {
+                    Console.WriteLine("car will enter a new crossing");
+                    
+                    calculateTurn();
+                    calculateEntrance(streets);
+                    calculateIntersection(streets);
+                    calculateExit(streets);
+
                 }
 
-                if (this.Crossing == null)//if car is leaving the grid
+                if (this._crossing == null)//if car is leaving the grid
                 {
                     this.HasExitedGrid = true;
                     this.Street.Lanes[this.StreetIndex[0]][this.StreetIndex[1]] = null; //clears the cars last position
@@ -134,40 +147,58 @@ namespace Traffic_Simulator
                 }
                 else//if car is entering a new crossing
                 {
-
-                    Console.WriteLine("car will enter a new crossing");
-
-                    _path.Clear();
-                    nextSlot = 0;
-
-
-                    if (this.Street.Position == this.Turn && this.HasEnteredGrid)
+                    if (this.Street.Position == this.Turn && this.HasEnteredGrid)//adjust car street
                     {
-                        Console.WriteLine("car has entered a new crossing");
+                        Console.WriteLine("car went to the next crossing");
                         streets[0] = this.Crossing.StreetN;
                         streets[1] = this.Crossing.StreetE;
                         streets[2] = this.Crossing.StreetS;
                         streets[3] = this.Crossing.StreetW;
                         streets[4] = this.Crossing.Intersection;
 
-                        cr = this.Crossing;
-                        this.Street = streets[((int)this.Turn + 2) % 4];
-                    }
+                        Direction tempTurn = this.Turn;
+                        Direction tempDir = this.Direction;
+                        int[] lastPosition = this._path[_path.Count - 1];
+                        Street tempStreet = this.Street;//holds old value of street
 
-                    calculateTurn();
-                    calculateEntrance(streets);
-                    calculateIntersection(streets);
-                    calculateExit(streets);
+                        this.Street = streets[((int)this.Turn + 2) % 4];
+
+                        _path.Clear();
+                        nextSlot = 0;
+
+                        calculateTurn();
+                        calculateEntrance(streets);
+                        calculateIntersection(streets);
+                        calculateExit(streets);
+                        
+                        int str = _path[nextSlot][0], lane = _path[nextSlot][1], pos = _path[nextSlot][2];
+
+                        if (streets[str].Lanes[lane][pos] != null)//if next position is NOT available, returns old values
+                        {
+                            this.Street = tempStreet;
+                            this._crossing = tempCrossing;
+                            List<int[]> oldPath = new List<int[]>();
+                            oldPath.Add(lastPosition);
+                            this._path = oldPath;
+                            this.Turn = tempTurn;
+                            this.Direction = tempDir;
+
+                            return false;
+                        }
+                        else
+                        {
+                            tempStreet.Lanes[StreetIndex[0]][StreetIndex[1]] = null;//leaves previous position
+
+                        }
+                    }
 
                 }
             }//end if(car is entering a new crosisng/leaving grid)
 
 
-            int str = _path[nextSlot][0], lane = _path[nextSlot][1], pos = _path[nextSlot][2];
+            int str2 = _path[nextSlot][0], lane2 = _path[nextSlot][1], pos2 = _path[nextSlot][2];
 
-            //check traffic lights
-
-            if (streets[str].Lanes[lane][pos] == null  && (nextSlot != 3 || checkLights()))//if next position is available and light is green
+            if (streets[str2].Lanes[lane2][pos2] == null  && (nextSlot != 3 || checkLights()))//if next position is available and light is green
             {
 
                 if (HasEnteredGrid == false)
@@ -175,10 +206,10 @@ namespace Traffic_Simulator
                 else
                     Street.Lanes[StreetIndex[0]][StreetIndex[1]] = null;//leaves previous position
                 
-                streets[str].Lanes[lane][pos] = this;//enters new position                
+                streets[str2].Lanes[lane2][pos2] = this;//enters new position                
 
-                StreetIndex[0] = lane;
-                StreetIndex[1] = pos;
+                StreetIndex[0] = lane2;
+                StreetIndex[1] = pos2;
 
                 //updates the street
                 if (nextSlot == 3)
@@ -196,18 +227,7 @@ namespace Traffic_Simulator
             }
             else//if car didnt move
             {
-                Crossing_1 c1;
                 nextSlot--;
-                if (Crossing.GetType() == typeof(Crossing_1))
-                {
-                    c1 = (Crossing_1)Crossing;
-                    if (this.StreetIndex[0] == 2 && this.StreetIndex[1]==2 && this.Street == Grid.getCrossing("B0").StreetN)
-                    {
-                        SimulationController._timer.Stop();
-                        int i = this.StreetIndex[0];
-                        SimulationController._timer.Start();
-                    }
-                }
                 Console.WriteLine("car did not move");                
                 return false;
             }          
@@ -420,7 +440,7 @@ namespace Traffic_Simulator
                         return;
                     }
 
-                    prob = new Random().Next() % prob; //generates a random number beetween 0 and  the sum of probabilities
+                    prob = _random.Next() % prob; //generates a random number beetween 0 and  the sum of probabilities
 
                     // Interpreting the generated number:
                     //
@@ -451,7 +471,7 @@ namespace Traffic_Simulator
                         return;
                     }
 
-                    prob = new Random().Next() % prob; //generates a random number beetween 0 and  the sum of probabilities
+                    prob = _random.Next() % prob; //generates a random number beetween 0 and  the sum of probabilities
 
                     if (prob < this.Crossing.ProbWtoN)
                         this.Turn = Direction.North;
@@ -471,7 +491,7 @@ namespace Traffic_Simulator
                         return;
                     }
 
-                    prob = new Random().Next() % prob; //generates a random number beetween 0 and  the sum of probabilitie
+                    prob = _random.Next() % prob; //generates a random number beetween 0 and  the sum of probabilitie
 
                     if (prob < this.Crossing.ProbStoN)
                         this.Turn = Direction.North;
@@ -483,7 +503,7 @@ namespace Traffic_Simulator
 
                 if (this.Street.Position == Direction.North)
                 {
-                    int prob = (int)(this.Crossing.ProbEtoS + this.Crossing.ProbEtoN + this.Crossing.ProbEtoW); //generates a random number beetween 0 and  the sum of probabilities
+                    int prob = (int)(this.Crossing.ProbNtoS + this.Crossing.ProbNtoW + this.Crossing.ProbNtoE); //generates a random number beetween 0 and  the sum of probabilities
 
                     if (prob == 0)//if all probabilities are set to 0, car doesnt turn
                     {
@@ -491,13 +511,13 @@ namespace Traffic_Simulator
                         return;
                     }
 
-                    prob = new Random().Next() % prob; //generates a random number beetween 0 and  the sum of probabilitie
+                    prob = _random.Next() % prob; //generates a random number beetween 0 and  the sum of probabilitie
 
-                    if (prob < this.Crossing.ProbStoN)
-                        this.Turn = Direction.North;
-                    if (prob >= (this.Crossing.ProbStoN) && prob < (this.Crossing.ProbStoN + this.Crossing.ProbStoE))
+                    if (prob < this.Crossing.ProbNtoS)
+                        this.Turn = Direction.South;
+                    if (prob >= (this.Crossing.ProbNtoS) && prob < (this.Crossing.ProbNtoS + this.Crossing.ProbNtoE))
                         this.Turn = Direction.East;
-                    if (prob >= (this.Crossing.ProbStoN + this.Crossing.ProbStoE))
+                    if (prob >= (this.Crossing.ProbNtoS + this.Crossing.ProbNtoE))
                         this.Turn = Direction.West;
                 }
             }

@@ -19,7 +19,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
         /// </summary>
-        public static Timer _timer = new Timer();
+        private Timer _timer = new Timer();
 
         /// <summary>
         /// Current state of the simulation.

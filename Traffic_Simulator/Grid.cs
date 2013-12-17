@@ -273,5 +273,19 @@ namespace Traffic_Simulator
                 return false;
             }
         }
+
+        public bool clearGrid()
+        {
+            try
+            {
+                _slots = new Crossing[4, 3];
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Problems in Grid.clearGrid()");
+                return false;
+            }
+        }
     }
 }

@@ -17,7 +17,9 @@ namespace Traffic_Simulator
         private SimulationController _controller = new SimulationController();
         private List<PictureBox> _elements = new List<PictureBox>();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
+        private List<PictureBox> _mergings = new List<PictureBox>();
         private PictureBox _p;
+        public bool _isReady = true;
 
         private SimulationController Controller
         {
@@ -29,6 +31,17 @@ namespace Traffic_Simulator
 
         private void drawCrossings(Crossing[,] slots)
         {
+            for (int i = 0; i < _mergings.Count;i++ )
+            {
+                PictureBox pb = _mergings[i];
+                _mergings.Remove(pb);
+                Controls.Remove(pb);
+            }
+            foreach (PictureBox pb in _gui_slots)
+            {
+                pb.Image = null;
+            }
+
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -47,26 +60,28 @@ namespace Traffic_Simulator
                         _gui_slots[i,j].BorderStyle=BorderStyle.None;
                         _gui_slots[i, j].SendToBack();
 
-                        if ((i + 1) < 3 && slots[i + 1, j] != null)//check merging East
+                        if ((i + 1) < 4 && slots[i + 1, j] != null)//check merging East
                         {
-                            addElement(x + 2 * 66, y + 66, "mergingE");
+                            _mergings.Add(addElement(x + 2 * 66, y + 66, "mergingE"));
                         }
                         if ((i - 1) >= 0 && slots[i - 1, j] != null)//check merging West
                         {
-                            addElement(x, y + 66, "mergingW");
+                            _mergings.Add(addElement(x, y + 66, "mergingW"));
                         }
                         if ((j + 1) < 3 && slots[i, j + 1] != null && c.GetType() == typeof(Crossing_1))//check merging South
                         {
-                            addElement(x + 66, y + 2 * 66, "mergingS");
+                            _mergings.Add(addElement(x + 66, y + 2 * 66, "mergingS"));
                         }
                         if ((j - 1) >= 0 && slots[i, j - 1] != null && c.GetType() == typeof(Crossing_1))//check merging North
                         {
-                            addElement(x + 66, y, "mergingN");
+                            _mergings.Add(addElement(x + 66, y, "mergingN"));
                         }
                         
                     }                    
                 }
             }
+            foreach (PictureBox pb in _mergings)
+                _elements.Remove(pb);
         }
 
         private void drawLights(Crossing[,] slots)
@@ -214,7 +229,7 @@ namespace Traffic_Simulator
                         y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 10;
                         break;
                     case Direction.East:
-                        x += 66 * 3 - 6 - 22 * c.StreetIndex[1];
+                        x += 66 * 3 - 6 - 22 * c.StreetIndex[1]-10;
                         y += 66 + 6 + 22 * c.StreetIndex[0];
                         break;
                     case Direction.Center:
@@ -286,26 +301,33 @@ namespace Traffic_Simulator
             if (copyOfGrid == null)
                 return;
 
+            _isReady = false;
             foreach (PictureBox pb in _elements)
             {
+
                 Controls.Remove(pb);
             }
 
             _elements.Clear();
 
-            if(button1.Text=="ll")
-                drawCrossings(copyOfGrid.Slots);    
-        
-            drawLights(copyOfGrid.Slots);//draws lights
+            if(_controller.State==State.Stopped)
+                drawCrossings(copyOfGrid.Slots);
 
-            foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
+            if (Controller.State != State.Stopped)
             {
-                if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
+                drawLights(copyOfGrid.Slots);//draws lights
+
+                foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
                 {
-                    drawCar(c);//draws lights
+                    if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
+                    {
+                        drawCar(c);//draws lights
+                    }
                 }
-                Invalidate();
             }
+
+            Invalidate();
+            _isReady = true;
 
         }
 
@@ -378,7 +400,7 @@ namespace Traffic_Simulator
         }
 
              
-        private void button1_Click(object sender, EventArgs e)// start/pause button click method
+        private void buttonStartPause_Click(object sender, EventArgs e)// start/pause button click method
         {
             
             if (_controller.State != State.Running) //if simulation is not running
@@ -387,8 +409,8 @@ namespace Traffic_Simulator
 
                 if (label1.Text == "")
                 {
-                    button1.Text = "ll";
-                    button1.TextAlign = ContentAlignment.MiddleCenter;
+                    buttonStartPause.Text = "ll";
+                    buttonStartPause.TextAlign = ContentAlignment.MiddleCenter;
                     button2.Enabled = true;
                 }                
                 return;     //leave method
@@ -400,8 +422,8 @@ namespace Traffic_Simulator
                 label1.Text = _controller.pauseSimulation();
                 if (label1.Text == "")
                 {
-                    button1.Text = "►";
-                    button1.TextAlign = ContentAlignment.MiddleLeft;
+                    buttonStartPause.Text = "►";
+                    buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
                     button2.Enabled = true;
                 }
             }
@@ -411,8 +433,8 @@ namespace Traffic_Simulator
         {
             label1.Text = _controller.stopSimulation();
             if (label1.Text == "") {
-                button1.Text = "►";
-                button1.TextAlign = ContentAlignment.MiddleLeft;
+                buttonStartPause.Text = "►";
+                buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
                 button2.Enabled = false;
             }
         }
@@ -422,7 +444,7 @@ namespace Traffic_Simulator
             _controller.setCrossingProperty(null, null); //just a simulation of having changed data
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonClear_Click(object sender, EventArgs e)
         {
             Crossing c = new Crossing_2("C2");
 
@@ -437,68 +459,68 @@ namespace Traffic_Simulator
                 drawCar(c2);
           
         }
-        
-        private void button6_Click(object sender, EventArgs e)
+
+        private void buttonShowHideGLT_Click(object sender, EventArgs e)
         {
             int height = panel3.Size.Height;
-            if (button6.Text == "Hide")
+            if (buttonShowHideGLT.Text == "Hide")
             {                    
-                button6.Text = "Show";
+                buttonShowHideGLT.Text = "Show";
                 panel3.Visible = false;
                 label3.Location = new Point(label3.Location.X, label3.Location.Y - height);
-                button7.Location = new Point(button7.Location.X, button7.Location.Y - height);
+                buttonShowHideTF.Location = new Point(buttonShowHideTF.Location.X, buttonShowHideTF.Location.Y - height);
                 panel4.Location = new Point(panel4.Location.X, panel4.Location.Y - height);
                 label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
-                button8.Location = new Point(button8.Location.X, button8.Location.Y - height);
+                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
                 panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
              
             }
             else 
             {
-                button6.Text = "Hide";
+                buttonShowHideGLT.Text = "Hide";
                 panel3.Visible = true;
                 label3.Location = new Point(label3.Location.X, label3.Location.Y + height);
-                button7.Location = new Point(button7.Location.X, button7.Location.Y + height);
+                buttonShowHideTF.Location = new Point(buttonShowHideTF.Location.X, buttonShowHideTF.Location.Y + height);
                 panel4.Location = new Point(panel4.Location.X, panel4.Location.Y + height);
                     label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
-                button8.Location = new Point(button8.Location.X, button8.Location.Y + height);
+                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
                 panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void buttonShowHideTF_Click(object sender, EventArgs e)
         {
             int height = panel4.Size.Height;
 
-            if (button7.Text == "Hide")
+            if (buttonShowHideTF.Text == "Hide")
             {
-                button7.Text = "Show";
+                buttonShowHideTF.Text = "Show";
                 panel4.Visible = false;
                 label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
-                button8.Location = new Point(button8.Location.X, button8.Location.Y - height);
+                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
                 panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
             }
             else
             {
-                button7.Text = "Hide";
+                buttonShowHideTF.Text = "Hide";
                 panel4.Visible = true;
                 label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
-                button8.Location = new Point(button8.Location.X, button8.Location.Y + height);
+                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
                 panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void buttonShowHideCT_Click(object sender, EventArgs e)
         {
-            if (button8.Text == "Hide")
+            if (buttonShowHideCT.Text == "Hide")
             {
-                button8.Text = "Show";
+                buttonShowHideCT.Text = "Show";
                 panel5.Visible = false;
                 
             }
             else
             {
-                button8.Text = "Hide";
+                buttonShowHideCT.Text = "Hide";
                 panel5.Visible = true;
             }
         }
@@ -521,13 +543,15 @@ namespace Traffic_Simulator
             string slotID = ((PictureBox)sender).Name.Substring(((PictureBox)sender).Name.Length - 2);
 
             // check if slot is empty
-            if (this.Controller.gridIsAvailable(slotID))
+            if (this.Controller.gridIsAvailable(slotID)&&_controller.State==State.Stopped)
             {
                 this.label1.Text = this.Controller.addCrossing(slotID, draggedCrossingType);
+                _controller.timerHasTriggered(null, null);
             }
             else
             {
-                this.label1.Text = "Slot " + slotID + " is occupied";
+                Console.WriteLine("Cannot add crossing");
+                //Console.WriteLine("Slot " + slotID + " is occupied");
             }
         }
 
@@ -536,11 +560,27 @@ namespace Traffic_Simulator
             e.Effect = DragDropEffects.Copy;
         }
 
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
 
-        
+        }
 
-        
-        
-        
+        private void buttonClear_Click_1(object sender, EventArgs e)
+        {
+            _controller.clearGrid();
+            _controller.timerHasTriggered(null, null);
+            foreach (PictureBox pb in _mergings)
+            {
+                Controls.Remove(pb);
+            }
+            _mergings.Clear();            
+
+            foreach (PictureBox pb in _gui_slots)
+            {
+                pb.BorderStyle = BorderStyle.FixedSingle;
+                pb.Image = null;
+                pb.BringToFront();
+            }
+        } 
     }
 }

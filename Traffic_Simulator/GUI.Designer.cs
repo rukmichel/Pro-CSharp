@@ -51,7 +51,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonStartPause = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -69,8 +69,8 @@
             this.pictureBoxSlotC2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotB2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotA2 = new System.Windows.Forms.PictureBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.Crossing_1 = new System.Windows.Forms.PictureBox();
             this.Crossing_2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -84,11 +84,11 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.buttonShowHideCT = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
+            this.buttonShowHideTF = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonShowHideGLT = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -130,7 +130,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1057, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1051, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -293,18 +293,18 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
-            // button1
+            // buttonStartPause
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(7, 8);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "►";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonStartPause.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStartPause.Location = new System.Drawing.Point(7, 8);
+            this.buttonStartPause.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonStartPause.Name = "buttonStartPause";
+            this.buttonStartPause.Size = new System.Drawing.Size(40, 40);
+            this.buttonStartPause.TabIndex = 1;
+            this.buttonStartPause.Text = "►";
+            this.buttonStartPause.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonStartPause.UseVisualStyleBackColor = true;
+            this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
             // button2
             // 
@@ -326,8 +326,7 @@
             this.pictureBoxSlotA0.Location = new System.Drawing.Point(112, 25);
             this.pictureBoxSlotA0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotA0.Name = "pictureBoxSlotA0";
-            this.pictureBoxSlotA0.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotA0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotA0.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotA0.TabIndex = 3;
             this.pictureBoxSlotA0.TabStop = false;
             this.pictureBoxSlotA0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -363,11 +362,10 @@
             // pictureBoxSlotB0
             // 
             this.pictureBoxSlotB0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotB0.Location = new System.Drawing.Point(310, 25);
+            this.pictureBoxSlotB0.Location = new System.Drawing.Point(309, 25);
             this.pictureBoxSlotB0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotB0.Name = "pictureBoxSlotB0";
-            this.pictureBoxSlotB0.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotB0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotB0.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotB0.TabIndex = 7;
             this.pictureBoxSlotB0.TabStop = false;
             this.pictureBoxSlotB0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -376,11 +374,10 @@
             // pictureBoxSlotD0
             // 
             this.pictureBoxSlotD0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD0.Location = new System.Drawing.Point(706, 25);
+            this.pictureBoxSlotD0.Location = new System.Drawing.Point(703, 25);
             this.pictureBoxSlotD0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD0.Name = "pictureBoxSlotD0";
-            this.pictureBoxSlotD0.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotD0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotD0.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotD0.TabIndex = 9;
             this.pictureBoxSlotD0.TabStop = false;
             this.pictureBoxSlotD0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -389,11 +386,10 @@
             // pictureBoxSlotC0
             // 
             this.pictureBoxSlotC0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC0.Location = new System.Drawing.Point(508, 25);
+            this.pictureBoxSlotC0.Location = new System.Drawing.Point(506, 25);
             this.pictureBoxSlotC0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC0.Name = "pictureBoxSlotC0";
-            this.pictureBoxSlotC0.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotC0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotC0.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotC0.TabIndex = 8;
             this.pictureBoxSlotC0.TabStop = false;
             this.pictureBoxSlotC0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -402,11 +398,10 @@
             // pictureBoxSlotD1
             // 
             this.pictureBoxSlotD1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD1.Location = new System.Drawing.Point(706, 223);
+            this.pictureBoxSlotD1.Location = new System.Drawing.Point(703, 222);
             this.pictureBoxSlotD1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD1.Name = "pictureBoxSlotD1";
-            this.pictureBoxSlotD1.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotD1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotD1.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotD1.TabIndex = 13;
             this.pictureBoxSlotD1.TabStop = false;
             this.pictureBoxSlotD1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -415,11 +410,10 @@
             // pictureBoxSlotC1
             // 
             this.pictureBoxSlotC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC1.Location = new System.Drawing.Point(508, 223);
+            this.pictureBoxSlotC1.Location = new System.Drawing.Point(506, 222);
             this.pictureBoxSlotC1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC1.Name = "pictureBoxSlotC1";
-            this.pictureBoxSlotC1.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotC1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotC1.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotC1.TabIndex = 12;
             this.pictureBoxSlotC1.TabStop = false;
             this.pictureBoxSlotC1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -428,11 +422,10 @@
             // pictureBoxSlotB1
             // 
             this.pictureBoxSlotB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotB1.Location = new System.Drawing.Point(310, 223);
+            this.pictureBoxSlotB1.Location = new System.Drawing.Point(309, 222);
             this.pictureBoxSlotB1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotB1.Name = "pictureBoxSlotB1";
-            this.pictureBoxSlotB1.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotB1.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotB1.TabIndex = 11;
             this.pictureBoxSlotB1.TabStop = false;
             this.pictureBoxSlotB1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -441,11 +434,10 @@
             // pictureBoxSlotA1
             // 
             this.pictureBoxSlotA1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotA1.Location = new System.Drawing.Point(112, 223);
+            this.pictureBoxSlotA1.Location = new System.Drawing.Point(112, 222);
             this.pictureBoxSlotA1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotA1.Name = "pictureBoxSlotA1";
-            this.pictureBoxSlotA1.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotA1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotA1.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotA1.TabIndex = 10;
             this.pictureBoxSlotA1.TabStop = false;
             this.pictureBoxSlotA1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -454,11 +446,10 @@
             // pictureBoxSlotD2
             // 
             this.pictureBoxSlotD2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD2.Location = new System.Drawing.Point(706, 421);
+            this.pictureBoxSlotD2.Location = new System.Drawing.Point(703, 419);
             this.pictureBoxSlotD2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD2.Name = "pictureBoxSlotD2";
-            this.pictureBoxSlotD2.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotD2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotD2.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotD2.TabIndex = 17;
             this.pictureBoxSlotD2.TabStop = false;
             this.pictureBoxSlotD2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -467,11 +458,10 @@
             // pictureBoxSlotC2
             // 
             this.pictureBoxSlotC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC2.Location = new System.Drawing.Point(508, 421);
+            this.pictureBoxSlotC2.Location = new System.Drawing.Point(506, 419);
             this.pictureBoxSlotC2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC2.Name = "pictureBoxSlotC2";
-            this.pictureBoxSlotC2.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotC2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotC2.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotC2.TabIndex = 16;
             this.pictureBoxSlotC2.TabStop = false;
             this.pictureBoxSlotC2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -480,11 +470,10 @@
             // pictureBoxSlotB2
             // 
             this.pictureBoxSlotB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotB2.Location = new System.Drawing.Point(310, 421);
+            this.pictureBoxSlotB2.Location = new System.Drawing.Point(309, 419);
             this.pictureBoxSlotB2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotB2.Name = "pictureBoxSlotB2";
-            this.pictureBoxSlotB2.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotB2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotB2.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotB2.TabIndex = 15;
             this.pictureBoxSlotB2.TabStop = false;
             this.pictureBoxSlotB2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -493,35 +482,36 @@
             // pictureBoxSlotA2
             // 
             this.pictureBoxSlotA2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotA2.Location = new System.Drawing.Point(112, 421);
+            this.pictureBoxSlotA2.Location = new System.Drawing.Point(112, 419);
             this.pictureBoxSlotA2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotA2.Name = "pictureBoxSlotA2";
-            this.pictureBoxSlotA2.Size = new System.Drawing.Size(199, 199);
-            this.pictureBoxSlotA2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSlotA2.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotA2.TabIndex = 14;
             this.pictureBoxSlotA2.TabStop = false;
             this.pictureBoxSlotA2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotA2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
-            // button4
+            // buttonClear
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(7, 138);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(54, 24);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Clear All";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClear.Location = new System.Drawing.Point(7, 138);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(54, 24);
+            this.buttonClear.TabIndex = 18;
+            this.buttonClear.Text = "Clear All";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click_1);
             // 
-            // button5
+            // buttonDelete
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(7, 168);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(54, 24);
-            this.button5.TabIndex = 19;
-            this.button5.Text = "Delete";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelete.Location = new System.Drawing.Point(7, 168);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(54, 24);
+            this.buttonDelete.TabIndex = 19;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // Crossing_1
             // 
@@ -556,14 +546,14 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.buttonShowHideCT);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.button7);
+            this.panel1.Controls.Add(this.buttonShowHideTF);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.buttonShowHideGLT);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(906, 29);
+            this.panel1.Location = new System.Drawing.Point(901, 25);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(150, 591);
@@ -671,17 +661,17 @@
             this.textBox8.Size = new System.Drawing.Size(26, 20);
             this.textBox8.TabIndex = 0;
             // 
-            // button8
+            // buttonShowHideCT
             // 
-            this.button8.AutoSize = true;
-            this.button8.Location = new System.Drawing.Point(94, 284);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(44, 23);
-            this.button8.TabIndex = 28;
-            this.button8.Text = "Show";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.buttonShowHideCT.AutoSize = true;
+            this.buttonShowHideCT.Location = new System.Drawing.Point(94, 284);
+            this.buttonShowHideCT.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonShowHideCT.Name = "buttonShowHideCT";
+            this.buttonShowHideCT.Size = new System.Drawing.Size(44, 23);
+            this.buttonShowHideCT.TabIndex = 28;
+            this.buttonShowHideCT.Text = "Show";
+            this.buttonShowHideCT.UseVisualStyleBackColor = true;
+            this.buttonShowHideCT.Click += new System.EventHandler(this.buttonShowHideCT_Click);
             // 
             // label4
             // 
@@ -693,16 +683,16 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "Car Turns";
             // 
-            // button7
+            // buttonShowHideTF
             // 
-            this.button7.Location = new System.Drawing.Point(94, 145);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(43, 19);
-            this.button7.TabIndex = 26;
-            this.button7.Text = "Hide";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.buttonShowHideTF.Location = new System.Drawing.Point(94, 145);
+            this.buttonShowHideTF.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonShowHideTF.Name = "buttonShowHideTF";
+            this.buttonShowHideTF.Size = new System.Drawing.Size(43, 19);
+            this.buttonShowHideTF.TabIndex = 26;
+            this.buttonShowHideTF.Text = "Hide";
+            this.buttonShowHideTF.UseVisualStyleBackColor = true;
+            this.buttonShowHideTF.Click += new System.EventHandler(this.buttonShowHideTF_Click);
             // 
             // label3
             // 
@@ -714,16 +704,16 @@
             this.label3.TabIndex = 25;
             this.label3.Text = "Traffic Flow";
             // 
-            // button6
+            // buttonShowHideGLT
             // 
-            this.button6.Location = new System.Drawing.Point(94, 5);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(43, 19);
-            this.button6.TabIndex = 24;
-            this.button6.Text = "Hide";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.buttonShowHideGLT.Location = new System.Drawing.Point(94, 5);
+            this.buttonShowHideGLT.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonShowHideGLT.Name = "buttonShowHideGLT";
+            this.buttonShowHideGLT.Size = new System.Drawing.Size(43, 19);
+            this.buttonShowHideGLT.TabIndex = 24;
+            this.buttonShowHideGLT.Text = "Hide";
+            this.buttonShowHideGLT.UseVisualStyleBackColor = true;
+            this.buttonShowHideGLT.Click += new System.EventHandler(this.buttonShowHideGLT_Click);
             // 
             // panel3
             // 
@@ -785,11 +775,11 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.Crossing_2);
-            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.buttonClear);
             this.panel2.Controls.Add(this.Crossing_1);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.buttonStartPause);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.panel6);
@@ -814,7 +804,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1057, 623);
+            this.ClientSize = new System.Drawing.Size(1051, 617);
             this.Controls.Add(this.pictureBoxSlotD2);
             this.Controls.Add(this.pictureBoxSlotC2);
             this.Controls.Add(this.pictureBoxSlotB2);
@@ -875,7 +865,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonStartPause;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBoxSlotA0;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -910,18 +900,18 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.PictureBox Crossing_1;
         private System.Windows.Forms.PictureBox Crossing_2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button buttonShowHideCT;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonShowHideTF;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonShowHideGLT;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;

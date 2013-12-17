@@ -258,6 +258,13 @@ namespace Traffic_Simulator
             _lightEtoS._color = Color.Gray;
             _lightWtoN._color = Color.Gray;
 
+           //clears the entered values
+            _enteredE = 0;
+            _enteredN = 0;
+            _enteredS = 0;
+            _enteredW = 0;
+
+
            _state = 0;
            _tickCount = -1;
            return true;

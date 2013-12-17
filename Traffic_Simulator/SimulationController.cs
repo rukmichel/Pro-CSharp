@@ -10,11 +10,11 @@ namespace Traffic_Simulator
     /// Controlls the interaction beetween the GUI, disk and functionalities.
     /// </summary>
     public class SimulationController
-    {   
+    {
         /// <summary>
         /// Amount of time beetween time ticks in milliseconds.
         /// </summary>
-        private int _refreshRate = 600; 
+        private int _refreshRate = 600;
 
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
@@ -26,8 +26,9 @@ namespace Traffic_Simulator
         /// </summary>
         private State _state = State.Stopped;
 
-        public State State {
-            get 
+        public State State
+        {
+            get
             {
                 return _state;
             }
@@ -52,7 +53,7 @@ namespace Traffic_Simulator
         /// Object that handles all disk operations.
         /// </summary>
         private FileHandler _fileHandler = new FileHandler();
-        
+
 
         /// <summary>
         /// Checks if a position on the grid is available for adding a crossing.
@@ -66,11 +67,11 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id"> Indicates a position on the grid, for instance "A3". </param> 
         /// <returns>Error message, or null if successfull.</returns>
-        public string removeCrossing(string id) 
+        public string removeCrossing(string id)
         {
             if (_grid.removeCrossing(id))
                 return "ok";
-            return ""; 
+            return "";
         }
 
         /// <summary>
@@ -88,12 +89,15 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="crossing">The class type of the crossing, either "crossing_1" or "crossing_2".</param>
         /// <returns>Error message, or null if successfull.</returns>
-        public string addCrossing(string id, Type crossing) 
-        
+        public string addCrossing(string id, Type crossing)
         {
-            if(_grid.addCrossing(id, crossing))
+            if (_grid == null)
+                _grid = new Grid();
+            if (_grid.addCrossing(id, crossing))
+            {
                 return "OK";
-            return "NOT OKAY"; 
+            }
+            return "NOT OKAY";
         }
 
         /// <summary>
@@ -102,20 +106,20 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="sender">GUI object that holds the value.</param>
         /// <returns>Error message, or null if successfull.</returns>
-        public string setCrossingProperty(string id, object sender) 
+        public string setCrossingProperty(string id, object sender)
         {
             //For now this is just a simulation of making changes in the traffic simulator
             _fileHandler.setUnsavedData();
-            return ""; 
+            return "";
         }
 
         /// <summary>
         /// Removes all crossings from the grid.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string clearGrid() 
+        public string clearGrid()
         {
-            if (_grid.reset())
+            if (_grid.clearGrid())
                 return "ok";
             return "";
         }
@@ -124,13 +128,13 @@ namespace Traffic_Simulator
         /// Starts simulation.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string startSimulation() 
+        public string startSimulation()
         {
             try
             {
                 if (_state == Traffic_Simulator.State.Stopped)
                 {
-                    _grid = new Grid();
+                    //_grid = new Grid();
                     //_grid.Slots[0, 0] = new Crossing_1("A0");
                     //_grid.Slots[2, 0] = new Crossing_2("C0");
                     //_grid.Slots[1, 0] = new Crossing_1("B0");
@@ -139,25 +143,52 @@ namespace Traffic_Simulator
                     ////_grid.Slots[3, 1] = new Crossing_2("D1");
                     //_grid.Slots[2, 2] = new Crossing_1("C2");
 
+                    //_grid.Slots[0, 0].FlowW = 0;
+                    //_grid.Slots[0, 0].FlowS = 20;
+                    //_grid.Slots[0, 0].FlowN = 0;
 
-                    _grid.Slots[0, 0].FlowW = 0;
-                    _grid.Slots[0, 0].FlowS = 20;
-                    _grid.Slots[0, 0].FlowN = 0;
 
-                    
-                    //second crossing
-                    _grid.Slots[1, 0].FlowS = 0;
-                    _grid.Slots[1, 0].FlowE = 0;
-                    _grid.Slots[1, 0].FlowN = 0;
-                    
-                    //THIRD crossing
-                    _grid.Slots[2, 0].FlowS = 0;
-                    _grid.Slots[2, 0].FlowE = 0;
-                    _grid.Slots[2, 0].FlowN = 0;
+                    ////second crossing
+                    //_grid.Slots[1, 0].FlowS = 0;
+                    //_grid.Slots[1, 0].FlowE = 0;
+                    //_grid.Slots[1, 0].FlowN = 0;
 
-                    _timer.Interval = _refreshRate;//sets and starts the timer
-                    _timer.Elapsed += timerHasTriggered;
-                    _timer.Start();
+                    ////THIRD crossing
+                    //_grid.Slots[2, 0].FlowS = 0;
+                    //_grid.Slots[2, 0].FlowE = 0;
+                    //_grid.Slots[2, 0].FlowN = 0;
+                    bool thereAreCrossings=false;
+                    foreach (Crossing c in _grid.Slots)
+                    {
+                        if (c != null)
+                            thereAreCrossings = true;
+                    }
+
+                    if (thereAreCrossings)
+                    {
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                if (_grid.Slots[i, j] != null)
+                                {
+                                    _grid.Slots[i, j].FlowE = 1;
+                                    _grid.Slots[i, j].FlowN = 1;
+                                    _grid.Slots[i, j].FlowS = 1;
+                                    _grid.Slots[i, j].FlowW = 1;
+                                }
+                            }
+                        }
+
+                        _timer.Interval = _refreshRate;//sets and starts the timer
+                        _timer.Elapsed += timerHasTriggered;
+                        _timer.Start();
+                    }
+                    else
+                    {
+                        return "No crossings added";
+                    }
                 }
                 if (_state == Traffic_Simulator.State.Paused)
                 {
@@ -166,7 +197,7 @@ namespace Traffic_Simulator
                 _state = State.Running;
                 return "";
             }
-            catch 
+            catch
             {
                 return "Couldn't start simulation";
             }
@@ -176,8 +207,8 @@ namespace Traffic_Simulator
         /// Stops the simulation.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string stopSimulation() 
-        {           
+        public string stopSimulation()
+        {
 
             try
             {
@@ -199,7 +230,7 @@ namespace Traffic_Simulator
         /// Pauses the simulation.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string pauseSimulation() 
+        public string pauseSimulation()
         {
             try
             {
@@ -207,7 +238,7 @@ namespace Traffic_Simulator
                 _state = State.Paused;
                 return "";
             }
-            catch 
+            catch
             {
                 return "Couldn't pause simulation";
             }
@@ -217,7 +248,7 @@ namespace Traffic_Simulator
         /// Saves the simulation to file.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string save() 
+        public string save()
         {
             try
             {
@@ -236,14 +267,14 @@ namespace Traffic_Simulator
             {
                 return "Simulation could not be saved";
             }
-        
+
         }
 
         /// <summary>
         /// Saves the simulation to given filename on given path.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string saveAs() 
+        public string saveAs()
         {
             try
             {
@@ -260,14 +291,14 @@ namespace Traffic_Simulator
             {
                 return "Simulation could not be saved";
             }
-        
+
         }
 
         /// <summary>
         /// Loads a simulation file to the memory.
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
-        public string load() 
+        public string load()
         {
 
             try
@@ -288,17 +319,18 @@ namespace Traffic_Simulator
         /// Closes the application.
         /// </summary>
         /// <returns>Closing message or null if user cancels.</returns>
-        public string close() {
+        public string close()
+        {
 
             pauseSimulation();
 
-            if (_fileHandler.hasUnsavedData()) 
+            if (_fileHandler.hasUnsavedData())
             {
                 string messageResult = _gui.saveMessage("Traffic Simulator", "Save modifications?"); //opens save message dialog
 
                 if (messageResult == "Yes") //user wants to save changes
                 {
-                    return save();                   
+                    return save();
                 }
                 if (messageResult == "No") //user doesnt want to save changes
                 {
@@ -309,7 +341,7 @@ namespace Traffic_Simulator
                     return "";
                 }
             }
-            return "Program is closing..."; 
+            return "Program is closing...";
         }
 
         /// <summary>
@@ -327,11 +359,16 @@ namespace Traffic_Simulator
             Del caller = new Del(_gui.refreshScreen);
             _grid.timeTick();
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
+            _timer.Stop();
             try
             {
-                _gui.Invoke(caller, new object[] { tempCopy });             //and sends that copy as a parameter to the GUI
+                if (_gui._isReady)
+                    _gui.Invoke(caller, new object[] { tempCopy });             //and sends that copy as a parameter to the GUI
             }
             catch { }
+
+            _timer.Start();
         }
     }
+    
 }

@@ -93,7 +93,7 @@ namespace Traffic_Simulator
         {
             if(_grid.addCrossing(id, crossing))
                 return "OK";
-            return ""; 
+            return "NOT OKAY"; 
         }
 
         /// <summary>
@@ -131,13 +131,13 @@ namespace Traffic_Simulator
                 if (_state == Traffic_Simulator.State.Stopped)
                 {
                     _grid = new Grid();
-                    _grid.Slots[0, 0] = new Crossing_1("A0");
-                    _grid.Slots[2, 0] = new Crossing_2("C0");
-                    _grid.Slots[1, 0] = new Crossing_1("B0");
-                    //_grid.Slots[1, 1] = new Crossing_2("B1");
-                    _grid.Slots[2, 1] = new Crossing_1("C1");
-                    //_grid.Slots[3, 1] = new Crossing_2("D1");
-                    _grid.Slots[2, 2] = new Crossing_1("C2");
+                    //_grid.Slots[0, 0] = new Crossing_1("A0");
+                    //_grid.Slots[2, 0] = new Crossing_2("C0");
+                    //_grid.Slots[1, 0] = new Crossing_1("B0");
+                    ////_grid.Slots[1, 1] = new Crossing_2("B1");
+                    //_grid.Slots[2, 1] = new Crossing_1("C1");
+                    ////_grid.Slots[3, 1] = new Crossing_2("D1");
+                    //_grid.Slots[2, 2] = new Crossing_1("C2");
 
 
                     _grid.Slots[0, 0].FlowW = 0;

@@ -19,6 +19,13 @@ namespace Traffic_Simulator
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
         private PictureBox _p;
 
+        private SimulationController Controller
+        {
+            get
+            {
+                return _controller;
+            }
+        }
 
         private void drawCrossings(Crossing[,] slots)
         {
@@ -322,6 +329,15 @@ namespace Traffic_Simulator
             _gui_slots[3, 1] = pictureBoxSlotD1;
             _gui_slots[3, 2] = pictureBoxSlotD2;
 
+            // allow crossings to be dragged out of sidebar
+            this.Crossing_1.AllowDrop = true;
+            this.Crossing_2.AllowDrop = true;
+
+            // allow crossings to be dragged onto slots
+            foreach (PictureBox pb in _gui_slots)
+            {
+                pb.AllowDrop = true;
+            }
         }
 
         private void GUI_Load(object sender, EventArgs e)
@@ -485,6 +501,39 @@ namespace Traffic_Simulator
                 button8.Text = "Hide";
                 panel5.Visible = true;
             }
+        }
+
+        Type draggedCrossingType;
+
+        private void crossing_mouseDown(object sender, MouseEventArgs e)
+        {
+            if (((PictureBox)sender).Name == "Crossing_1")
+                draggedCrossingType = typeof(Crossing_1);
+            else
+                draggedCrossingType = typeof(Crossing_2);
+
+            ((PictureBox)sender).DoDragDrop((PictureBox)sender, DragDropEffects.Copy);
+        }
+
+        private void slot_DragDrop(object sender, DragEventArgs e)
+        {
+            // get dragged slot's ID
+            string slotID = ((PictureBox)sender).Name.Substring(((PictureBox)sender).Name.Length - 2);
+
+            // check if slot is empty
+            if (this.Controller.gridIsAvailable(slotID))
+            {
+                this.label1.Text = this.Controller.addCrossing(slotID, draggedCrossingType);
+            }
+            else
+            {
+                this.label1.Text = "Slot " + slotID + " is occupied";
+            }
+        }
+
+        private void slot_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
         }
 
 

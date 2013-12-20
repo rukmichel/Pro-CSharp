@@ -70,7 +70,11 @@ namespace Traffic_Simulator
         public string removeCrossing(string id)
         {
             if (_grid.removeCrossing(id))
-                return "ok";
+            {
+                _fileHandler.setUnsavedData();
+                return "ok";    
+            }
+           
             return "";
         }
 
@@ -96,6 +100,7 @@ namespace Traffic_Simulator
                 _grid = new Grid();
             if (_grid.addCrossing(id, crossing))
             {
+                _fileHandler.setUnsavedData();
                 return "OK";
             }
             return "NOT OKAY";
@@ -121,7 +126,10 @@ namespace Traffic_Simulator
         public string clearGrid()
         {
             if (_grid.clearGrid())
+            {
+                _fileHandler.setUnsavedData();
                 return "ok";
+            }
             return "";
         }
 

@@ -80,7 +80,8 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         public void selectCrossing(string id)
         {
-            _gui.displayCrossingSettings(Grid.getCrossing(id));
+            Crossing cr = Grid.getCrossing(id);
+            _gui.displayCrossingSettings(cr);
         }
 
         /// <summary>

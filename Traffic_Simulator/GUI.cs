@@ -18,6 +18,7 @@ namespace Traffic_Simulator
         private List<PictureBox> _elements = new List<PictureBox>();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
         private PictureBox _p;
+        private string selectedSlot;
 
         private SimulationController Controller
         {
@@ -534,6 +535,36 @@ namespace Traffic_Simulator
         private void slot_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
+        }
+
+        private void slot_click(object sender, EventArgs e)
+        {
+            PictureBox picbox = (PictureBox)sender;
+            foreach (PictureBox p  in _gui_slots)
+            {
+                if (p.Image != null)
+                {
+                    if ((selectedSlot == "") || (selectedSlot != picbox.Tag.ToString()))
+                    {
+                        selectedSlot = picbox.Tag.ToString();
+
+                    }
+                    else
+                        selectedSlot = "";
+                    //p.BorderStyle = BorderStyle.None;
+
+                    if (selectedSlot == picbox.Tag.ToString())
+                    {
+                        p.BorderStyle = BorderStyle.Fixed3D;
+                    }
+                }
+            }
+
+            // int a, b;
+            //a=((int)id[0]) - (int)'A';
+            //b=Convert.ToInt32(id[1].ToString());
+            //return _slots[a, b]
+
         }
 
 

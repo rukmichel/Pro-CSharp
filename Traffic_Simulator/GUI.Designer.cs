@@ -330,6 +330,8 @@
             this.pictureBoxSlotA0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA0.TabIndex = 3;
             this.pictureBoxSlotA0.TabStop = false;
+            this.pictureBoxSlotA0.Tag = "A0";
+            this.pictureBoxSlotA0.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotA0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotA0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -370,6 +372,8 @@
             this.pictureBoxSlotB0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB0.TabIndex = 7;
             this.pictureBoxSlotB0.TabStop = false;
+            this.pictureBoxSlotB0.Tag = "B0";
+            this.pictureBoxSlotB0.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotB0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotB0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -383,6 +387,8 @@
             this.pictureBoxSlotD0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD0.TabIndex = 9;
             this.pictureBoxSlotD0.TabStop = false;
+            this.pictureBoxSlotD0.Tag = "D0";
+            this.pictureBoxSlotD0.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotD0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotD0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -396,6 +402,8 @@
             this.pictureBoxSlotC0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC0.TabIndex = 8;
             this.pictureBoxSlotC0.TabStop = false;
+            this.pictureBoxSlotC0.Tag = "C0";
+            this.pictureBoxSlotC0.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotC0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotC0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -409,6 +417,8 @@
             this.pictureBoxSlotD1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD1.TabIndex = 13;
             this.pictureBoxSlotD1.TabStop = false;
+            this.pictureBoxSlotD1.Tag = "D1";
+            this.pictureBoxSlotD1.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotD1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotD1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -422,6 +432,8 @@
             this.pictureBoxSlotC1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC1.TabIndex = 12;
             this.pictureBoxSlotC1.TabStop = false;
+            this.pictureBoxSlotC1.Tag = "C1";
+            this.pictureBoxSlotC1.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotC1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotC1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -435,6 +447,8 @@
             this.pictureBoxSlotB1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB1.TabIndex = 11;
             this.pictureBoxSlotB1.TabStop = false;
+            this.pictureBoxSlotB1.Tag = "B1";
+            this.pictureBoxSlotB1.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotB1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotB1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -448,6 +462,8 @@
             this.pictureBoxSlotA1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA1.TabIndex = 10;
             this.pictureBoxSlotA1.TabStop = false;
+            this.pictureBoxSlotA1.Tag = "A1";
+            this.pictureBoxSlotA1.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotA1.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotA1.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -461,6 +477,8 @@
             this.pictureBoxSlotD2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotD2.TabIndex = 17;
             this.pictureBoxSlotD2.TabStop = false;
+            this.pictureBoxSlotD2.Tag = "D2";
+            this.pictureBoxSlotD2.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotD2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotD2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -474,6 +492,8 @@
             this.pictureBoxSlotC2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotC2.TabIndex = 16;
             this.pictureBoxSlotC2.TabStop = false;
+            this.pictureBoxSlotC2.Tag = "C2";
+            this.pictureBoxSlotC2.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotC2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotC2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -487,6 +507,8 @@
             this.pictureBoxSlotB2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotB2.TabIndex = 15;
             this.pictureBoxSlotB2.TabStop = false;
+            this.pictureBoxSlotB2.Tag = "B2";
+            this.pictureBoxSlotB2.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotB2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotB2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 
@@ -500,6 +522,8 @@
             this.pictureBoxSlotA2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSlotA2.TabIndex = 14;
             this.pictureBoxSlotA2.TabStop = false;
+            this.pictureBoxSlotA2.Tag = "A2";
+            this.pictureBoxSlotA2.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotA2.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotA2.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
             // 

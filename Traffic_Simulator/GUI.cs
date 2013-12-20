@@ -9,8 +9,7 @@ namespace Traffic_Simulator
 {
     public partial class GUI : Form
     {
-       // private delegate void drawCarHandler(Car c);
-       // private delegate void drawLightsHandler(Crossing[,] slots);
+
         /// <summary>
         /// Controller element of the application.
         /// </summary>
@@ -57,7 +56,7 @@ namespace Traffic_Simulator
                             _gui_slots[i,j].Image = Properties.Resources.Traffic_Simulator_Crossing_1;
                         else 
                             _gui_slots[i,j].Image = Properties.Resources.Traffic_Simulator_Crossing_2;
-                        //_gui_slots[i,j].Image = new Bitmap(c.GetType().ToString()+".png");
+
                         _gui_slots[i,j].BorderStyle=BorderStyle.None;
                         _gui_slots[i, j].SendToBack();
 
@@ -99,7 +98,6 @@ namespace Traffic_Simulator
 
         private void drawLights(Crossing[,] slots)
         {
-           // addElement(pictureBox1.Location.X + 66 - 13, pictureBox1.Location.Y+66, "ped-red-light.png");
             for(int i=0;i<4;i++)
             {
                 for(int j=0;j<3;j++)
@@ -113,8 +111,6 @@ namespace Traffic_Simulator
 
                     if (c != null )
                     {
-                        //draw the following lights:
-                        //c.LightEtoNW, c.LightEtoS, c.LightWtoN, c.LightWtoSE
 
                         if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
                         {
@@ -251,7 +247,6 @@ namespace Traffic_Simulator
                         break;
                 }
                 addElement(x, y, "car");
-                //MessageBox.Show("Street Location: " + c.Street.Position.ToString() + "\nIndex: " + c.StreetIndex[0] + " " + c.StreetIndex[0]);
             }
         }
 
@@ -653,9 +648,30 @@ namespace Traffic_Simulator
         {
             if (selectedSlot != ""&& _controller.State==State.Stopped)
             {
-                _controller.removeCrossing(selectedSlot);
-                _controller.timerHasTriggered(null,null);
+                if(_controller.removeCrossing(selectedSlot)=="ok") 
+                {
+                List<PictureBox> removeList = new List<PictureBox>();
+
+                for (int i = 0; i < _mergings.Count;i++ )
+                {
+                    if (_mergings[i].Tag.ToString() == selectedSlot)
+                    {
+                        removeList.Add(_mergings[i]);
+                    }
+                }
+                foreach (PictureBox pb in removeList)
+                {
+                    Controls.Remove(pb);
+                    _mergings.Remove(pb);
+                }
+
+                _controller.timerHasTriggered(null, null);
+                int a = ((int)selectedSlot[0]) - (int)'A';
+                int b = Convert.ToInt32(selectedSlot[1].ToString());
+                _gui_slots[a, b].BorderStyle = BorderStyle.FixedSingle;
                 selectedSlot = "";
+                Invalidate();
+                }
             }
             
         }

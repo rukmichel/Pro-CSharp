@@ -211,7 +211,7 @@ namespace Traffic_Simulator
         {
             try
             {
-                _slots[((int)id[0]) - (int)'A', Convert.ToInt32(id[1])] = null ;
+                _slots[((int)id[0]) - (int)'A', Convert.ToInt32(id[1].ToString())] = null ;
                 return true;
             }
             catch
@@ -270,6 +270,20 @@ namespace Traffic_Simulator
             catch
             {
                 Console.WriteLine("Problems resetting the grid", "Grid.reset()");
+                return false;
+            }
+        }
+
+        public bool clearGrid()
+        {
+            try
+            {
+                _slots = new Crossing[4, 3];
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Problems in Grid.clearGrid()");
                 return false;
             }
         }

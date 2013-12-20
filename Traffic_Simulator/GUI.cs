@@ -288,8 +288,46 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="c">crossing whose properties will be displayed</param>
         public void displayCrossingSettings(Crossing c)
-        { 
-            
+        {
+            if (c != null)
+            {
+                if (c.GetType() == typeof(Crossing_1))
+                {
+
+                }
+                if (c.GetType() == typeof(Crossing_2))
+                {
+
+                }
+            }
+            else
+            {
+                textBoxGLT1.Text = "";
+                textBoxGLT2.Text = "";
+                textBoxGLT3.Text = "";
+                textBoxGLT4.Text = "";
+                textBoxTF1.Text = "";
+                textBoxTF3.Text = "";
+                textBoxTF4.Text = "";
+                textBoxTF2.Text = "";
+                textBoxCTNE.Text = "";
+                textBoxCTNS.Text = "";
+                textBoxCTNW.Text = "";
+                textBoxCTEN.Text = "";
+
+                textBoxGLT1.Enabled = false;
+                textBoxGLT2.Enabled = false;
+                textBoxGLT3.Enabled = false;
+                textBoxGLT4.Enabled = false;
+                textBoxTF1.Enabled = false;
+                textBoxTF3.Enabled = false;
+                textBoxTF4.Enabled = false;
+                textBoxTF2.Enabled = false;
+                textBoxCTNE.Enabled = false;
+                textBoxCTNS.Enabled = false;
+                textBoxCTNW.Enabled = false;
+                textBoxCTEN.Enabled = false;
+            }
         }
 
         /// <summary>

@@ -135,29 +135,6 @@ namespace Traffic_Simulator
             {
                 if (_state == Traffic_Simulator.State.Stopped)
                 {
-                    //_grid = new Grid();
-                    //_grid.Slots[0, 0] = new Crossing_1("A0");
-                    //_grid.Slots[2, 0] = new Crossing_2("C0");
-                    //_grid.Slots[1, 0] = new Crossing_1("B0");
-                    ////_grid.Slots[1, 1] = new Crossing_2("B1");
-                    //_grid.Slots[2, 1] = new Crossing_1("C1");
-                    ////_grid.Slots[3, 1] = new Crossing_2("D1");
-                    //_grid.Slots[2, 2] = new Crossing_1("C2");
-
-                    //_grid.Slots[0, 0].FlowW = 0;
-                    //_grid.Slots[0, 0].FlowS = 20;
-                    //_grid.Slots[0, 0].FlowN = 0;
-
-
-                    ////second crossing
-                    //_grid.Slots[1, 0].FlowS = 0;
-                    //_grid.Slots[1, 0].FlowE = 0;
-                    //_grid.Slots[1, 0].FlowN = 0;
-
-                    ////THIRD crossing
-                    //_grid.Slots[2, 0].FlowS = 0;
-                    //_grid.Slots[2, 0].FlowE = 0;
-                    //_grid.Slots[2, 0].FlowN = 0;
                     bool thereAreCrossings=false;
                     foreach (Crossing c in _grid.Slots)
                     {
@@ -260,7 +237,8 @@ namespace Traffic_Simulator
                 }
                 else //in case user canceled saving
                 {
-                    _fileHandler.saveToFile(_grid);
+                    Grid copyOfGrid = ObjectCopier.Clone<Grid>(_grid);
+                    _fileHandler.saveToFile(copyOfGrid);
                     return "Simulation has been successfully saved";
                 }
             }
@@ -276,7 +254,7 @@ namespace Traffic_Simulator
         /// </summary>
         /// <returns>Error message, or null if successfull.</returns>
         public string saveAs()
-        {
+        {            
             try
             {
                 string s = _gui.filePath(1); //shows save-file window
@@ -284,7 +262,9 @@ namespace Traffic_Simulator
                     return "";
                 else
                 {
-                    _fileHandler.saveToFile(_grid);
+                    _fileHandler.Path = s;
+                    Grid copyOfGrid = ObjectCopier.Clone<Grid>(_grid);
+                    _fileHandler.saveToFile(copyOfGrid);
                     return "Simulation has been successfully saved";
                 }
             }

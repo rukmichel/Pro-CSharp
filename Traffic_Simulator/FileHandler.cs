@@ -36,24 +36,29 @@ namespace Traffic_Simulator
         /// <param name="grid">Grid object to serialize.</param>
         /// <returns>If save was succesful.</returns>
         public bool saveToFile(Grid grid) {
-
-            FileStream fileStream = new FileStream(_path, FileMode.Append);
+            
+            FileStream fileStream=null;
+            
             try
             {
+                fileStream = new FileStream(_path, FileMode.Create, FileAccess.Write, FileShare.None);
                 BinaryFormatter binaryFormater = new BinaryFormatter();
-                binaryFormater.Serialize(fileStream, grid);
                 _hasUnsavedData = false;
+
+                binaryFormater.Serialize(fileStream, grid);
+                fileStream.Seek(0, SeekOrigin.Begin);
+
+                Grid objectToLoad = (Grid)binaryFormater.Deserialize(fileStream);
+                fileStream.Close();
+                return true;
             }
             catch(Exception)
             {
+                if (fileStream != null)
+                    fileStream.Close();
                 return false;
             }
-            finally
-            {
-                fileStream.Close();
-            }
-            //TO DO: save the object grid onto file
-            return true;
+
         }
 
 
@@ -66,7 +71,7 @@ namespace Traffic_Simulator
             
             if (string.IsNullOrEmpty(_path)) { return default(Grid); }
 
-            Grid objectToLoad = default(Grid);
+            Grid objectToLoad;// = default(Grid);
 
             try
             {

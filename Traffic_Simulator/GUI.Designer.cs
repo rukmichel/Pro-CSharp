@@ -42,8 +42,8 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.corToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.crossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemInsertCrossing1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemInsertCrossing2 = new System.Windows.Forms.ToolStripMenuItem();
             this.simulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -258,23 +258,25 @@
             // insertToolStripMenuItem
             // 
             this.insertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.corToolStripMenuItem,
-            this.crossToolStripMenuItem});
+            this.MenuItemInsertCrossing1,
+            this.MenuItemInsertCrossing2});
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
             this.insertToolStripMenuItem.Size = new System.Drawing.Size(48, 21);
             this.insertToolStripMenuItem.Text = "Insert";
             // 
-            // corToolStripMenuItem
+            // MenuItemInsertCrossing1
             // 
-            this.corToolStripMenuItem.Name = "corToolStripMenuItem";
-            this.corToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.corToolStripMenuItem.Text = "Crossing Type 1";
+            this.MenuItemInsertCrossing1.Name = "MenuItemInsertCrossing1";
+            this.MenuItemInsertCrossing1.Size = new System.Drawing.Size(158, 22);
+            this.MenuItemInsertCrossing1.Text = "Crossing Type 1";
+            this.MenuItemInsertCrossing1.Click += new System.EventHandler(this.MenuItemInsertCrossing1_Click);
             // 
-            // crossToolStripMenuItem
+            // MenuItemInsertCrossing2
             // 
-            this.crossToolStripMenuItem.Name = "crossToolStripMenuItem";
-            this.crossToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.crossToolStripMenuItem.Text = "Crossing Type 2";
+            this.MenuItemInsertCrossing2.Name = "MenuItemInsertCrossing2";
+            this.MenuItemInsertCrossing2.Size = new System.Drawing.Size(158, 22);
+            this.MenuItemInsertCrossing2.Text = "Crossing Type 2";
+            this.MenuItemInsertCrossing2.Click += new System.EventHandler(this.MenuItemInsertCrossing2_Click);
             // 
             // simulationToolStripMenuItem
             // 
@@ -581,6 +583,7 @@
             this.Crossing_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Crossing_1.TabIndex = 20;
             this.Crossing_1.TabStop = false;
+            this.Crossing_1.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.slot_GiveFeedback);
             this.Crossing_1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.crossing_mouseDown);
             // 
             // Crossing_2
@@ -595,6 +598,7 @@
             this.Crossing_2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Crossing_2.TabIndex = 21;
             this.Crossing_2.TabStop = false;
+            this.Crossing_2.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.slot_GiveFeedback);
             this.Crossing_2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.crossing_mouseDown);
             // 
             // panel1
@@ -1256,8 +1260,8 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearGridToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem corToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem crossToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemInsertCrossing1;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemInsertCrossing2;
         private System.Windows.Forms.ToolStripMenuItem simulationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem;

@@ -20,6 +20,8 @@ namespace Traffic_Simulator
         private PictureBox _p;
         private string selectedSlot = "";
         public bool _isReady = true;
+        private const int MinimumDragDistance = 4;
+        private Point _origMousePoint;
 
         private SimulationController Controller
         {
@@ -593,13 +595,15 @@ namespace Traffic_Simulator
             if (this.Controller.gridIsAvailable(slotID)&&_controller.State==State.Stopped)
             {
                 this.label1.Text = this.Controller.addCrossing(slotID, draggedCrossingType);
-                _controller.timerHasTriggered(null, null);
+                this.Controller.timerHasTriggered(null, null);
             }
             else
             {
                 Console.WriteLine("Cannot add crossing");
                 //Console.WriteLine("Slot " + slotID + " is occupied");
             }
+
+            draggedCrossingType = null;
         }
 
         private void slot_DragEnter(object sender, DragEventArgs e)
@@ -611,38 +615,49 @@ namespace Traffic_Simulator
         {
             PictureBox picbox = (PictureBox)sender;
             
-                if (picbox.Image != null)
+            if (picbox.Image != null)
+            {
+                string str = selectedSlot;
+                int a, b;
+
+                //if ((selectedSlot == "") || (selectedSlot != picbox.Tag.ToString()))
+                if(picbox.BorderStyle==BorderStyle.None)
                 {
-                    string str = selectedSlot;
-                    int a, b;
-
-                    //if ((selectedSlot == "") || (selectedSlot != picbox.Tag.ToString()))
-                    if(picbox.BorderStyle==BorderStyle.None)
+                    //unselect pevious slot
+                    if (selectedSlot != "")
                     {
-                        //unselect pevious slot
-                        if (selectedSlot != "")
-                        {
-                            str = selectedSlot;
-                            a = ((int)str[0]) - (int)'A';
-                            b = Convert.ToInt32(str[1].ToString());
-                            _gui_slots[a, b].BorderStyle = BorderStyle.None;
-                        }
-
-                        str = picbox.Tag.ToString();
-                        a = ((int)str[0]) - (int)'A';
-                        b = Convert.ToInt32(str[1].ToString());
-                        _gui_slots[a, b].BorderStyle = BorderStyle.Fixed3D;
-
-                        selectedSlot = picbox.Tag.ToString();
-                    }
-                    else
-                    {
-                        str = picbox.Tag.ToString();
+                        str = selectedSlot;
                         a = ((int)str[0]) - (int)'A';
                         b = Convert.ToInt32(str[1].ToString());
                         _gui_slots[a, b].BorderStyle = BorderStyle.None;
                     }
+
+                    str = picbox.Tag.ToString();
+                    a = ((int)str[0]) - (int)'A';
+                    b = Convert.ToInt32(str[1].ToString());
+                    _gui_slots[a, b].BorderStyle = BorderStyle.Fixed3D;
+
+                    selectedSlot = picbox.Tag.ToString();
                 }
+                else
+                {
+                    str = picbox.Tag.ToString();
+                    a = ((int)str[0]) - (int)'A';
+                    b = Convert.ToInt32(str[1].ToString());
+                    _gui_slots[a, b].BorderStyle = BorderStyle.None;
+                }
+            }
+            // if there is no picturebox, and user wants to add a crossing
+            else if(picbox.Image == null && this.draggedCrossingType != null)
+            {
+                string slotID = picbox.Name.Substring(picbox.Name.Length - 2);
+
+                if (this.Controller.gridIsAvailable(slotID) && this.Controller.State == State.Stopped)
+                {
+                    this.label1.Text = this.Controller.addCrossing(slotID, draggedCrossingType);
+                    this.Controller.timerHasTriggered(null, null);
+                }
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -696,6 +711,27 @@ namespace Traffic_Simulator
                     pb.BringToFront();
                 }
                 selectedSlot = "";
+            }
+        }
+
+        private void MenuItemInsertCrossing1_Click(object sender, EventArgs e)
+        {
+            this.draggedCrossingType = typeof(Crossing_1);
+            this.label1.Text = "Click to add Crossing1";
+        }
+
+        private void MenuItemInsertCrossing2_Click(object sender, EventArgs e)
+        {
+            this.draggedCrossingType = typeof(Crossing_2);
+            this.label1.Text = "Click to add Crossing2";
+        }
+
+        private void slot_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+            if (e.Effect == DragDropEffects.Copy)
+            {
+        //        e.UseDefaultCursors = false;
+        //        Cursor.Current = new Cursor(((Bitmap)this.Crossing_1.Image).GetHicon());
             }
         } 
     }

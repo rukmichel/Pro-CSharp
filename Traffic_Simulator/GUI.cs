@@ -578,6 +578,12 @@ namespace Traffic_Simulator
 
         private void crossing_mouseDown(object sender, MouseEventArgs e)
         {
+            if (this.Controller.State == State.Running || this.Controller.State == State.Paused)
+            {
+                this.label1.Text = "Not permitted unless simulation is stopped";
+                return;
+            }
+            
             if (((PictureBox)sender).Name == "Crossing_1")
                 draggedCrossingType = typeof(Crossing_1);
             else
@@ -652,7 +658,7 @@ namespace Traffic_Simulator
             {
                 string slotID = picbox.Name.Substring(picbox.Name.Length - 2);
 
-                if (this.Controller.gridIsAvailable(slotID) && this.Controller.State == State.Stopped)
+                if (this.Controller.gridIsAvailable(slotID))
                 {
                     this.label1.Text = this.Controller.addCrossing(slotID, draggedCrossingType);
                     this.Controller.timerHasTriggered(null, null);
@@ -730,7 +736,8 @@ namespace Traffic_Simulator
         {
             if (e.Effect == DragDropEffects.Copy)
             {
-        //        e.UseDefaultCursors = false;
+          //      e.UseDefaultCursors = false;
+          //      this.Cursor = new Cursor(GetType(), "Crossing1.cur");
         //        Cursor.Current = new Cursor(((Bitmap)this.Crossing_1.Image).GetHicon());
             }
         } 

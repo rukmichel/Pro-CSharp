@@ -97,6 +97,8 @@
     <None Include="gridlayoutprototype.JPG" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Crossing1.cur" />
+    <EmbeddedResource Include="Resources\Crossing2.cur" />
     <None Include="bin\Debug\mergingE.png" />
     <None Include="bin\Debug\mergingN.png" />
     <None Include="bin\Debug\mergingS.png" />

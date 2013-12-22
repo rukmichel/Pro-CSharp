@@ -151,10 +151,10 @@ namespace Traffic_Simulator
                             {
                                 if (_grid.Slots[i, j] != null)
                                 {
-                                    _grid.Slots[i, j].FlowE = 1;
-                                    _grid.Slots[i, j].FlowN = 1;
-                                    _grid.Slots[i, j].FlowS = 1;
-                                    _grid.Slots[i, j].FlowW = 1;
+                                    _grid.Slots[i, j].FlowE = 5;
+                                    _grid.Slots[i, j].FlowN = 5;
+                                    _grid.Slots[i, j].FlowS = 5;
+                                    _grid.Slots[i, j].FlowW = 5;
                                 }
                             }
                         }
@@ -284,9 +284,14 @@ namespace Traffic_Simulator
 
             try
             {
-                _fileHandler.Path = _gui.filePath(0); // shows load-file window
-                _grid = _fileHandler.loadFromFile();
-                return "Simulation has been loaded";
+                string path = _gui.filePath(0); // shows load-file window
+                if (path != "")
+                {
+                    _fileHandler.Path = path;
+                    _grid = _fileHandler.loadFromFile();
+                    return "Simulation has been loaded";
+                }
+                return "";
             }
             catch
             {

@@ -41,15 +41,14 @@ namespace Traffic_Simulator
             
             try
             {
-                fileStream = new FileStream(_path, FileMode.Create, FileAccess.Write, FileShare.None);
+                fileStream = new FileStream(_path, FileMode.Create);
                 BinaryFormatter binaryFormater = new BinaryFormatter();
                 _hasUnsavedData = false;
 
                 binaryFormater.Serialize(fileStream, grid);
-                fileStream.Seek(0, SeekOrigin.Begin);
 
-                Grid objectToLoad = (Grid)binaryFormater.Deserialize(fileStream);
                 fileStream.Close();
+                //Grid objectToLoad = (Grid)binaryFormater.Deserialize(fileStream);
                 return true;
             }
             catch(Exception)

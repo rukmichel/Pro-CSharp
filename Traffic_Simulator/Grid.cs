@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Traffic_Simulator
 {
-    [Serializable()]
+    [Serializable]
     public class Grid
     {
         /// <summary>

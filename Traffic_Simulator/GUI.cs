@@ -427,7 +427,8 @@ namespace Traffic_Simulator
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             label1.Text = _controller.load();
-            _controller.timerHasTriggered(null, null);
+            if (label1.Text == "Simulation has been loaded") ;
+                _controller.timerHasTriggered(null, null);
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)

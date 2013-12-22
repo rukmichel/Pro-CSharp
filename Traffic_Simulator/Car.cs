@@ -124,7 +124,6 @@ namespace Traffic_Simulator
                 }
                 else//if car is entering the grid for the first time
                 {
-                    Console.WriteLine("car will enter a new crossing");
                     
                     calculateTurn();
                     calculateEntrance(streets);
@@ -142,14 +141,12 @@ namespace Traffic_Simulator
                     _path = null;
                     nextSlot = 0;
                     Street = null;
-                    Console.WriteLine("car is leaving the grid");
                     return true;
                 }
                 else//if car is entering a new crossing
                 {
                     if (this.Street.Position == this.Turn && this.HasEnteredGrid)//adjust car street
                     {
-                        Console.WriteLine("car went to the next crossing");
                         streets[0] = this.Crossing.StreetN;
                         streets[1] = this.Crossing.StreetE;
                         streets[2] = this.Crossing.StreetS;
@@ -222,12 +219,10 @@ namespace Traffic_Simulator
                 }
 
 
-                Console.WriteLine("car moved");
             }
             else//if car didnt move
             {
-                nextSlot--;
-                Console.WriteLine("car did not move");                
+                nextSlot--;           
                 return false;
             }          
             

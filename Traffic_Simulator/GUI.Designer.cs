@@ -376,7 +376,7 @@
             this.buttonClear.TabIndex = 18;
             this.buttonClear.Text = "Clear All";
             this.buttonClear.UseVisualStyleBackColor = true;
-            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click_1);
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // buttonDelete
             // 

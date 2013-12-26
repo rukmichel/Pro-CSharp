@@ -627,18 +627,24 @@ namespace Traffic_Simulator
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            Crossing c = new Crossing_2("C2");
+            if (_controller.State == State.Stopped)
+            {
+                _controller.clearGrid();
+                _controller.timerHasTriggered(null, null);
+                foreach (PictureBox pb in _mergings)
+                {
+                    Controls.Remove(pb);
+                }
+                _mergings.Clear();
 
-            Car c2 = new Car(c);
-           // MessageBox.Show("Direction:" + c2.Street.Position.ToString());
-                    c2.StreetIndex[0] = 1;
-                //c2.Direction = Direction.West;
-                c2.Street = c.StreetW;
-                c2.StreetIndex[1] = 0;
-                c2.HasEnteredGrid = true;
-                c2.HasExitedGrid = false;
-                drawCar(c2);
-          
+                foreach (PictureBox pb in _gui_slots)
+                {
+                    pb.BorderStyle = BorderStyle.FixedSingle;
+                    pb.Image = null;
+                    pb.BringToFront();
+                }
+                SelectedSlot = "";
+            }          
         }
 
         private void buttonShowHideGLT_Click(object sender, EventArgs e)
@@ -871,28 +877,6 @@ namespace Traffic_Simulator
                 }
             }
             
-        }
-
-        private void buttonClear_Click_1(object sender, EventArgs e)
-        {
-            if (_controller.State == State.Stopped)
-            {
-                _controller.clearGrid();
-                _controller.timerHasTriggered(null, null);
-                foreach (PictureBox pb in _mergings)
-                {
-                    Controls.Remove(pb);
-                }
-                _mergings.Clear();
-
-                foreach (PictureBox pb in _gui_slots)
-                {
-                    pb.BorderStyle = BorderStyle.FixedSingle;
-                    pb.Image = null;
-                    pb.BringToFront();
-                }
-                SelectedSlot = "";
-            }
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)

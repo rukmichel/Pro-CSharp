@@ -400,6 +400,7 @@ namespace Traffic_Simulator
                 _gui.Invoke(new Del2(_gui.buttonStop_Click), new object[] { null,null});
 
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
+            DateTime dt = DateTime.Now;
             _timer.Stop();
             try
             {
@@ -407,6 +408,8 @@ namespace Traffic_Simulator
                     _gui.Invoke(new Del(_gui.refreshScreen), new object[] { tempCopy });//and sends that copy as a parameter to the GUI
             }
             catch { }
+            TimeSpan t = DateTime.Now - dt;
+            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 10 : _refreshRate - t.TotalMilliseconds;
             _timer.Start();
         }
     }

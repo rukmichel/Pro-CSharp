@@ -114,7 +114,6 @@
     <None Include="bin\Debug\car.png" />
     <None Include="bin\Debug\Color [Green].png" />
     <None Include="bin\Debug\Color [Red].png" />
-    <Content Include="Bitmap1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -458,7 +458,7 @@ namespace Traffic_Simulator
                 {
                     buttonStartPause.Text = "ll";
                     buttonStartPause.TextAlign = ContentAlignment.MiddleCenter;
-                    button2.Enabled = true;
+                    buttonStop.Enabled = true;
                 }                
                 return;     //leave method
             }
@@ -471,18 +471,18 @@ namespace Traffic_Simulator
                 {
                     buttonStartPause.Text = "►";
                     buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
-                    button2.Enabled = true;
+                    buttonStop.Enabled = true;
                 }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)// stop button click method
+        private void buttonStop_Click(object sender, EventArgs e)// stop button click method
         {
             label1.Text = _controller.stopSimulation();
-            if (label1.Text == "") {
+            if (_controller.State == State.Stopped) {
                 buttonStartPause.Text = "►";
                 buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
-                button2.Enabled = false;
+                buttonStop.Enabled = false;
             }
         }
 

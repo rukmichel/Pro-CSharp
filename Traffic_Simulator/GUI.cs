@@ -18,6 +18,7 @@ namespace Traffic_Simulator
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
         private List<PictureBox> _mergings = new List<PictureBox>();
         private PictureBox _p;
+        private Crossing copiedCrossing = null;
         private string selectedSlot = "";
         public bool _isReady = true;
 
@@ -459,7 +460,7 @@ namespace Traffic_Simulator
                 {
                     buttonStartPause.Text = "ll";
                     buttonStartPause.TextAlign = ContentAlignment.MiddleCenter;
-                    button2.Enabled = true;
+                    buttonStop.Enabled = true;
                 }                
                 return;     //leave method
             }
@@ -472,24 +473,19 @@ namespace Traffic_Simulator
                 {
                     buttonStartPause.Text = "►";
                     buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
-                    button2.Enabled = true;
+                    buttonStop.Enabled = true;
                 }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)// stop button click method
+        private void buttonStop_Click(object sender, EventArgs e)// stop button click method
         {
             label1.Text = _controller.stopSimulation();
-            if (label1.Text == "") {
+            if (_controller.State == State.Stopped) {
                 buttonStartPause.Text = "►";
                 buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
-                button2.Enabled = false;
+                buttonStop.Enabled = false;
             }
-        }
-
-        private void button3_Click(object sender, EventArgs e) // make change button method
-        {
-            _controller.setCrossingProperty(null, null); //just a simulation of having changed data
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -698,6 +694,34 @@ namespace Traffic_Simulator
                 }
                 selectedSlot = "";
             }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (selectedSlot == "")
+            {
+                label1.Text = "Please select a crossing first.";
+            }
+            else
+            {
+                copiedCrossing = ObjectCopier.Clone<Crossing> (Grid.getCrossing(selectedSlot));
+                label1.Text = "Selected crossing has been copied.";
+            }
+
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (copiedCrossing != null)
+            {
+                label1.Text = "Please select an available slot to paste.";
+            }
+            else
+            {
+                label1.Text = "Please selecnt and copy a crossing first.";
+            }
+
         } 
     }
 }

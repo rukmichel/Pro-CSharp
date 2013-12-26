@@ -105,7 +105,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Gives the flow of the car in each entry of the crossing.
         /// </summary>
-       protected int _flowN, _flowE, _flowS, _flowW;
+       protected int _flowN = 1, _flowE = 1, _flowS = 1, _flowW = 1;
 
        public int FlowN 
        {

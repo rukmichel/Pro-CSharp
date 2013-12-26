@@ -37,8 +37,14 @@ namespace Traffic_Simulator
         /// <summary>
         /// Number of cars currently visible on the grid.
         /// </summary>
-        private int _currentNumberOfCarsInGrid=0;
+        private int _currentNumberOfCarsInGrid = 0;
 
+        public int CurrentNumberOfCarsInGrid
+        {
+            get { return _currentNumberOfCarsInGrid; }
+            set { _currentNumberOfCarsInGrid = value; }
+        }
+        
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -55,6 +61,8 @@ namespace Traffic_Simulator
         /// </summary>
         public void timeTick() 
         {
+            CurrentNumberOfCarsInGrid = 0;
+
             foreach (Crossing c in _slots) //'ticks' all crossings and add new cars to crossings
             {
                 if (c != null)
@@ -62,14 +70,19 @@ namespace Traffic_Simulator
                     c.timeTick(); //ticks the crossings clock
                     addCars(c);  //adds cars (if necessary) to the crossings
                 }
-
             }//finish ticking crossings and adding new cars
-            
-            foreach (Car c in _listOfCars) //moves every existing car by 1 position
-                if(c!=null && !c.HasExitedGrid)
-                        c.move();
-            
 
+            foreach (Car c in _listOfCars) //moves every existing car by 1 position
+            {
+                if (c != null && !c.HasExitedGrid)
+                {
+                    c.move();
+                    CurrentNumberOfCarsInGrid++;
+                }
+            }
+
+            if (CurrentNumberOfCarsInGrid > _peakNumberOfCars)
+                _peakNumberOfCars = CurrentNumberOfCarsInGrid;
         }
 
         /// <summary>

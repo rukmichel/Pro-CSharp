@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Timers;
+using System.Windows.Forms.ComponentModel;
 
 namespace Traffic_Simulator
 {
     delegate void Del(Grid g);
+    delegate void Del2(object sender, EventArgs e);
 
     /// <summary>
     /// It's the main controller in the MVC model.
@@ -60,7 +63,10 @@ namespace Traffic_Simulator
         /// </summary>
         /// <param name="id">indicates a position on the grid, for instance "A3".</param>
         /// <returns>true if available, false if not.</returns>
-        public bool gridIsAvailable(string id) { return true; }
+        public bool slotIsAvailable(string id) 
+        { 
+            return (Grid.getCrossing(id)==null)&&(State==State.Stopped); 
+        }
 
         /// <summary>
         /// Removes a crossing on the position "id".
@@ -85,7 +91,7 @@ namespace Traffic_Simulator
         public void selectCrossing(string id)
         {
             Crossing cr = Grid.getCrossing(id);
-            _gui.displayCrossingSettings(cr);
+            _gui.displayCrossingSettings(ObjectCopier.Clone<Crossing>(cr));
         }
 
         /// <summary>
@@ -98,12 +104,20 @@ namespace Traffic_Simulator
         {
             if (_grid == null)
                 _grid = new Grid();
-            if (_grid.addCrossing(id, crossing))
+            if (State == State.Stopped)
             {
-                _fileHandler.setUnsavedData();
-                return "OK";
+                if (_grid.addCrossing(id, crossing))
+                {
+                    _fileHandler.setUnsavedData();
+                    return "";
+                }
+                return "Slot " + id + " is not available.";
             }
-            return "NOT OKAY";
+            else
+            {
+                return "Stop simulation before adding a crossing.";
+            }
+
         }
 
         /// <summary>
@@ -112,9 +126,51 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="sender">GUI object that holds the value.</param>
         /// <returns>Error message, or null if successfull.</returns>
-        public string setCrossingProperty(string id, object sender)
+        public string setCrossingProperty(string id, int[] values)
         {
-            //For now this is just a simulation of making changes in the traffic simulator
+            Crossing c = Grid.getCrossing(id);
+            if (c != null)
+            {
+                if (c.GetType() == typeof(Crossing_1))
+                {
+                    Crossing_1 c1 = (Crossing_1)c;
+
+                    c1.LightNtoWS._greenLightTime = values[0];
+                    c1.LightStoEN._greenLightTime = values[0];
+                    c1.LightNtoE._greenLightTime = values[1];
+                    c1.LightStoW._greenLightTime = values[1];
+                }
+
+                if (c.GetType() == typeof(Crossing_2))
+                {
+                    Crossing_2 c2 = (Crossing_2)c;
+
+                    c2.LightPedestrian._greenLightTime = values[0];
+                    c2.LightNtoS._greenLightTime = values[1];
+                    c2.LightStoN._greenLightTime = values[1];
+                }
+
+                c.LightWtoN._greenLightTime = values[2];
+                c.LightWtoSE._greenLightTime = values[3];
+                c.FlowN = values[4];
+                c.FlowE = values[5];
+                c.FlowS = values[6];
+                c.FlowW = values[7];
+                c.ProbNtoE = values[8];
+                c.ProbNtoS = values[9];
+                c.ProbNtoW = values[10];
+                c.ProbEtoN = values[11];
+                c.ProbEtoS = values[12];
+                c.ProbEtoW = values[13];
+                c.ProbStoN = values[14];
+                c.ProbStoE = values[15];
+                c.ProbStoW = values[16];
+                c.ProbWtoN = values[17];
+                c.ProbWtoE = values[18];
+                c.ProbWtoS = values[19];
+
+            }
+
             _fileHandler.setUnsavedData();
             return "";
         }
@@ -152,21 +208,6 @@ namespace Traffic_Simulator
 
                     if (thereAreCrossings)
                     {
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            for (int j = 0; j < 3; j++)
-                            {
-                                if (_grid.Slots[i, j] != null)
-                                {
-                                    _grid.Slots[i, j].FlowE = 5;
-                                    _grid.Slots[i, j].FlowN = 5;
-                                    _grid.Slots[i, j].FlowS = 5;
-                                    _grid.Slots[i, j].FlowW = 5;
-                                }
-                            }
-                        }
-
                         _timer.Interval = _refreshRate;//sets and starts the timer
                         _timer.Elapsed += timerHasTriggered;
                         _timer.Start();
@@ -181,6 +222,7 @@ namespace Traffic_Simulator
                     _timer.Start();
                 }
                 _state = State.Running;
+                timerHasTriggered(null, null);
                 return "";
             }
             catch
@@ -350,17 +392,21 @@ namespace Traffic_Simulator
         /// <param name="e"></param>
         public void timerHasTriggered(object sender, ElapsedEventArgs e)
         {
-            Del caller = new Del(_gui.refreshScreen);
-            _grid.timeTick();
+
+            if (this.State == State.Running)
+                _grid.timeTick();
+
+            if (this.State == State.Running && _grid.CurrentNumberOfCarsInGrid == 0)
+                _gui.Invoke(new Del2(_gui.buttonStop_Click), new object[] { null,null});
+
             Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
             _timer.Stop();
             try
             {
-                if (_gui._isReady)
-                    _gui.Invoke(caller, new object[] { tempCopy });             //and sends that copy as a parameter to the GUI
+                if (_gui.IsReady)
+                    _gui.Invoke(new Del(_gui.refreshScreen), new object[] { tempCopy });//and sends that copy as a parameter to the GUI
             }
             catch { }
-
             _timer.Start();
         }
     }

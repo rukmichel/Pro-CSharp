@@ -11,7 +11,7 @@ namespace Traffic_Simulator
     /// Represents a traffic light.
     /// </summary>
     [Serializable]
-    public struct TrafficLight
+    public class TrafficLight
     {
         /// <summary>
         /// Represents the current color of a traffic light.

@@ -27,6 +27,7 @@ namespace Traffic_Simulator
         public Crossing[,] Slots
         {
             get { return _slots; }
+            set { _slots = value; }
         }
 
         /// <summary>

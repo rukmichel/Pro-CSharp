@@ -216,7 +216,7 @@ namespace Traffic_Simulator
                 }
             }
 
-            Invalidate();
+            //Invalidate();
             _isReady = true;
 
         }
@@ -294,9 +294,7 @@ namespace Traffic_Simulator
                     }
                 }
             }
-
-            //foreach (PictureBox pb in _mergings)
-            //    _elements.Remove(pb);
+            Invalidate();
         }
 
         private void drawLights(Crossing[,] slots)
@@ -409,6 +407,7 @@ namespace Traffic_Simulator
                     }
                 }
             }
+            Invalidate();
         }
 
         private PictureBox addElement(int x, int y, string image, List<PictureBox> pbList)
@@ -522,6 +521,7 @@ namespace Traffic_Simulator
             {
                 _cars[n].Visible = false;
             }
+            Invalidate();
         }
 
         public GUI() 
@@ -1016,6 +1016,20 @@ namespace Traffic_Simulator
         {
             label1.Text = "Please select an available slot.";
             _copiedCrossing = new Crossing_2("XX");
+        }
+
+        private void textBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (textBoxGLT1.Text != "10")
+            {
+                textBoxGLT1.BackColor = Color.DarkSalmon;
+                textBoxGLT1.Focus();
+            }
+            else
+            {
+                textBoxGLT1.BackColor = Color.White;
+            }
+
         }
     }
 }

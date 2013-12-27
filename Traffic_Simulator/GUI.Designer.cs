@@ -186,28 +186,28 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -225,28 +225,28 @@
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // clearGridToolStripMenuItem
             // 
             this.clearGridToolStripMenuItem.Name = "clearGridToolStripMenuItem";
-            this.clearGridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearGridToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.clearGridToolStripMenuItem.Text = "Clear Grid";
             this.clearGridToolStripMenuItem.Click += new System.EventHandler(this.buttonClear_Click);
             // 
@@ -694,7 +694,7 @@
             this.textBoxCTNE.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTNE.Name = "textBoxCTNE";
             this.textBoxCTNE.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNE.TabIndex = 7;
+            this.textBoxCTNE.TabIndex = 8;
             this.textBoxCTNE.Tag = "CT1";
             // 
             // textBoxCTNS
@@ -704,7 +704,7 @@
             this.textBoxCTNS.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTNS.Name = "textBoxCTNS";
             this.textBoxCTNS.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNS.TabIndex = 6;
+            this.textBoxCTNS.TabIndex = 9;
             this.textBoxCTNS.Tag = "CT2";
             // 
             // textBoxCTNW
@@ -714,7 +714,7 @@
             this.textBoxCTNW.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTNW.Name = "textBoxCTNW";
             this.textBoxCTNW.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNW.TabIndex = 5;
+            this.textBoxCTNW.TabIndex = 10;
             this.textBoxCTNW.Tag = "CT3";
             // 
             // textBoxCTEN
@@ -748,7 +748,7 @@
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(151, 103);
-            this.panel4.TabIndex = 29;
+            this.panel4.TabIndex = 24;
             // 
             // pictureBox5
             // 
@@ -837,7 +837,7 @@
             this.textBoxTF1.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF1.Name = "textBoxTF1";
             this.textBoxTF1.Size = new System.Drawing.Size(26, 20);
-            this.textBoxTF1.TabIndex = 3;
+            this.textBoxTF1.TabIndex = 0;
             this.textBoxTF1.Tag = "TF1";
             // 
             // textBoxTF3
@@ -857,7 +857,7 @@
             this.textBoxTF4.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF4.Name = "textBoxTF4";
             this.textBoxTF4.Size = new System.Drawing.Size(26, 20);
-            this.textBoxTF4.TabIndex = 1;
+            this.textBoxTF4.TabIndex = 3;
             this.textBoxTF4.Tag = "TF4";
             // 
             // textBoxTF2
@@ -867,7 +867,7 @@
             this.textBoxTF2.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF2.Name = "textBoxTF2";
             this.textBoxTF2.Size = new System.Drawing.Size(26, 20);
-            this.textBoxTF2.TabIndex = 0;
+            this.textBoxTF2.TabIndex = 1;
             this.textBoxTF2.Tag = "TF2";
             // 
             // buttonShowHideCT
@@ -1007,6 +1007,7 @@
             this.textBoxGLT1.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT1.TabIndex = 0;
             this.textBoxGLT1.Tag = "GLT1";
+            this.textBoxGLT1.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label2
             // 

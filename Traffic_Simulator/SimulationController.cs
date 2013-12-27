@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Timers;
 using System.Windows.Forms.ComponentModel;
 
@@ -17,12 +18,12 @@ namespace Traffic_Simulator
         /// <summary>
         /// Amount of time beetween time ticks in milliseconds.
         /// </summary>
-        private int _refreshRate = 600;
+        private int _refreshRate = 500;
 
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
         /// </summary>
-        private Timer _timer = new Timer();
+        private System.Timers.Timer _timer = new System.Timers.Timer();
 
         /// <summary>
         /// Current state of the simulation.
@@ -56,7 +57,6 @@ namespace Traffic_Simulator
         /// Object that handles all disk operations.
         /// </summary>
         private FileHandler _fileHandler = new FileHandler();
-
 
         /// <summary>
         /// Checks if a position on the grid is available for adding a crossing.
@@ -404,12 +404,16 @@ namespace Traffic_Simulator
             _timer.Stop();
             try
             {
-                if (_gui.IsReady)
-                    _gui.Invoke(new Del(_gui.refreshScreen), new object[] { tempCopy });//and sends that copy as a parameter to the GUI
+                while (!_gui.IsReady)
+                    Thread.Sleep(15);
+                _gui.Invoke(new Del(_gui.refreshScreen), new object[] { tempCopy });//and sends that copy as a parameter to the GUI
+                
             }
-            catch { }
+            catch 
+            { 
+            }
             TimeSpan t = DateTime.Now - dt;
-            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 10 : _refreshRate - t.TotalMilliseconds;
+            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 50 : _refreshRate - t.TotalMilliseconds;
             _timer.Start();
         }
     }

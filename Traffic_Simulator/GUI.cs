@@ -309,8 +309,8 @@ namespace Traffic_Simulator
                     {
                         Crossing c = slots[i, j];
                         int x, y;
-                        x = pictureBoxSlotA0.Location.X + (3 * 66 * i);
-                        y = pictureBoxSlotA0.Location.Y + (3 * 66 * j); //base values
+                        x = pictureBoxSlotA0.Location.X + (3 * 66 * i - i);
+                        y = pictureBoxSlotA0.Location.Y + (3 * 66 * j - j); //base values
                         string str = "";
 
                         if (c != null)
@@ -342,12 +342,12 @@ namespace Traffic_Simulator
                                     if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
                                     {
                                         str = "ped" + c2.LightPedestrian._color.ToString();
-                                        addElement(x + 66 - 14, y + 2 * 22, str, _lights);
-                                        addElement(x + 2 * 66 + 4, y + 2 * 22, str, _lights);
-                                        addElement(x + 66 - 14, y + 2 * 66 + 15, str, _lights);
-                                        addElement(x + 2 * 66 + 4, y + 2 * 66 + 15, str, _lights);
-                                        addElement(x + 2 * 66 - 14, y + 2 * 66, c2.LightStoN._color.ToString(), _lights);//LightStoN
-                                        addElement(x + 66 + 22 - 14, y + 66 - 6, c2.LightNtoS._color.ToString(), _lights);//LightNtoS
+                                        addElement(x + 66 - 15, y + 2 * 22, str, _lights);
+                                        addElement(x + 2 * 66 + 5, y + 2 * 22, str, _lights);
+                                        addElement(x + 66 - 15, y + 2 * 66 + 15, str, _lights);
+                                        addElement(x + 2 * 66 + 5, y + 2 * 66 + 15, str, _lights);
+                                        addElement(x + 2 * 66 - 15, y + 2 * 66, c2.LightStoN._color.ToString(), _lights);//LightStoN
+                                        addElement(x + 66 + 22 - 15, y + 66 - 5, c2.LightNtoS._color.ToString(), _lights);//LightNtoS
                                     }
                                 }
 
@@ -370,7 +370,7 @@ namespace Traffic_Simulator
                         {
                             if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
                             {
-                                _lights[n++].Image= getImageFromString( c.LightEtoNW._color.ToString()); //add LightEtoNW
+                                _lights[n++].Image = getImageFromString(c.LightEtoNW._color.ToString()); //add LightEtoNW
                                 _lights[n++].Image = getImageFromString(c.LightEtoS._color.ToString()); //add LightEtoS
                                 _lights[n++].Image = getImageFromString(c.LightWtoN._color.ToString()); //add LightWtoN
                                 _lights[n++].Image = getImageFromString(c.LightWtoSE._color.ToString()); //add LightWtoSE
@@ -415,7 +415,6 @@ namespace Traffic_Simulator
         {
             PictureBox pb = new PictureBox();
             pb.Image = getImageFromString(image);
-
             pb.Location = new Point(x, y);
             pb.SizeMode = PictureBoxSizeMode.AutoSize;
             pb.Show();
@@ -508,9 +507,12 @@ namespace Traffic_Simulator
                 }
                 if(_cars.Count>n)
                 {
+
+                    _cars[n].Visible = false;
+                    _cars[n].Invalidate();
                     _cars[n].Location = new Point(x, y);
                     _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
-                    Invalidate();
+                    _cars[n].Visible = true;
                 }
                 else
                     addElement(x, y, "car " + c.Direction.ToString(),_cars);
@@ -931,7 +933,6 @@ namespace Traffic_Simulator
                 _gui_slots[a, b].BorderStyle = BorderStyle.FixedSingle;
                 SelectedSlot = "";
                 _controller.timerHasTriggered(null, null);
-                Invalidate();
                 }
             }
             

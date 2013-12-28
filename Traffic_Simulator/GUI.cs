@@ -26,7 +26,7 @@ namespace Traffic_Simulator
         private TextBox[] _crossingProperties = new TextBox[20];
         private bool _isReady = true, _checkTextBoxes, _threadInterrupt=false;
         private Type _draggedCrossingType;
-        Thread thread;
+        Thread _thread;
         private SimulationController Controller
         {
             get
@@ -98,7 +98,7 @@ namespace Traffic_Simulator
 
             if (n == 0)//shows open file dialog
             {
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                if (openFileDialog1.ShowDialog()== DialogResult.OK)
                 {//if user clicks "ok" in the file dialog
                     return openFileDialog1.FileName;
                 }
@@ -260,9 +260,10 @@ namespace Traffic_Simulator
                         drawCar(c, i);//draws cars
                     }
                 }
-                thread = new Thread(new ThreadStart(moveCars));
-                thread.IsBackground = true;
-                thread.Start();
+                _thread = new Thread(new ThreadStart(moveCars));
+                _thread.Name = "Cars moving";
+                _thread.IsBackground = true;
+                _thread.Start();
             }
         }
 
@@ -418,9 +419,13 @@ namespace Traffic_Simulator
                         {
                             if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
                             {
-                                _lights[n++].Image = getImageFromString(c.LightEtoNW._color.ToString()); //add LightEtoNW
+                                if(_lights[n].Image != getImageFromString(c.LightEtoNW._color.ToString()))
+                                    _lights[n++].Image = getImageFromString(c.LightEtoNW._color.ToString()); //add LightEtoNW
+                                 if(_lights[n].Image != getImageFromString(c.LightEtoS._color.ToString()))
                                 _lights[n++].Image = getImageFromString(c.LightEtoS._color.ToString()); //add LightEtoS
+                                 if(_lights[n].Image != getImageFromString(c.LightWtoN._color.ToString()))
                                 _lights[n++].Image = getImageFromString(c.LightWtoN._color.ToString()); //add LightWtoN
+                                 if(_lights[n].Image != getImageFromString(c.LightWtoSE._color.ToString()))
                                 _lights[n++].Image = getImageFromString(c.LightWtoSE._color.ToString()); //add LightWtoSE
 
                                 if (c.GetType() == typeof(Crossing_1))
@@ -430,9 +435,13 @@ namespace Traffic_Simulator
                                     {
                                         //draw the following lights:
                                         //LightStoEN, LightStoW, LightNtoE, LightNtoWS
+                                         if(_lights[n].Image != getImageFromString(c1.LightStoEN._color.ToString()))
                                         _lights[n++].Image = getImageFromString(c1.LightStoEN._color.ToString());//LightStoEN
+                                         if(_lights[n].Image != getImageFromString(c1.LightStoW._color.ToString()))
                                         _lights[n++].Image = getImageFromString(c1.LightStoW._color.ToString());//LightStoW
+                                         if(_lights[n].Image != getImageFromString(c1.LightNtoWS._color.ToString()))
                                         _lights[n++].Image = getImageFromString(c1.LightNtoWS._color.ToString());//LightNtoWS
+                                         if(_lights[n].Image != getImageFromString(c1.LightNtoE._color.ToString()))
                                         _lights[n++].Image = getImageFromString(c1.LightNtoE._color.ToString());//LightNtoE
                                     }
                                 }
@@ -443,11 +452,17 @@ namespace Traffic_Simulator
                                     if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
                                     {
                                         string str = "ped" + c2.LightPedestrian._color.ToString();
+                                         if(_lights[n].Image != getImageFromString(str))
                                         _lights[n++].Image = getImageFromString(str);
+                                         if(_lights[n].Image != getImageFromString(str))
                                         _lights[n++].Image = getImageFromString(str);
+                                         if(_lights[n].Image != getImageFromString(str))
                                         _lights[n++].Image = getImageFromString(str);
+                                         if(_lights[n].Image != getImageFromString(str))
                                         _lights[n++].Image = getImageFromString(str);
+                                         if(_lights[n].Image != getImageFromString(c2.LightStoN._color.ToString()))
                                         _lights[n++].Image = getImageFromString(c2.LightStoN._color.ToString());//LightStoN
+                                         if(_lights[n].Image != getImageFromString(c2.LightNtoS._color.ToString()))
                                         _lights[n++].Image = getImageFromString(c2.LightNtoS._color.ToString());//LightNtoS
                                     }
                                 }
@@ -585,9 +600,10 @@ namespace Traffic_Simulator
 
             try
             {
-                int aditionalStep = 0;
+                
                 for (int stepsLeft = 22; stepsLeft > 0; )
                 {
+                    int aditionalStep = 0;
                     DateTime startTime = DateTime.Now;
                     int step = 1;
                     startTime = DateTime.Now;
@@ -785,11 +801,21 @@ namespace Traffic_Simulator
                 this.Close();
             }
             else 
-            { 
+            {
+                bool simHasBeenPaused = false;
+                if (_controller.State == State.Running)
+                {
+                    buttonStartPause_Click(null, null);
+                    simHasBeenPaused=true;
+                }
+
+                
                 label1.Text = _controller.close();
                 if (label1.Text == "" || label1.Text == "Error: Make sure the value is a positive whole number.")
                 {
                     ((CancelEventArgs)e).Cancel = true;
+                    if (simHasBeenPaused)
+                        buttonStartPause_Click(null, null);
                 }
             }
         }
@@ -831,14 +857,18 @@ namespace Traffic_Simulator
                 if (_controller.State == State.Running) //if simulation is running
                 {
 
-                    if (thread != null)
+                    if (_thread != null)
+                    {
                         _threadInterrupt = true;
+                        _thread = null;
+                    }
                     foreach (PictureBox pb in _movingCars)
                         if (pb.Tag != null)
                         {
                             pb.Location = (Point)pb.Tag;
                             pb.Tag = null;
                         }
+                    _movingCars.Clear();
 
                     label1.Text = _controller.pauseSimulation();
                     if (label1.Text == "")
@@ -861,6 +891,8 @@ namespace Traffic_Simulator
                         fileToolStripMenuItem.Enabled = false;
                         editToolStripMenuItem.Enabled = false;
                         insertToolStripMenuItem.Enabled = false;
+
+                        Refresh();
                     }
 
                     //locks crossings properties

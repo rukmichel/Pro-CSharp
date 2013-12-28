@@ -13,10 +13,12 @@ namespace Traffic_Simulator
     /// </summary>
     public class SimulationController
     {
+        public bool _syncFix = false;
+
         /// <summary>
         /// Amount of time beetween time ticks in milliseconds.
         /// </summary>
-        private int _refreshRate =  50;
+        private int _refreshRate =  30;
 
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
@@ -322,26 +324,27 @@ namespace Traffic_Simulator
                     foreach (Crossing c in _grid.Slots)
                     {
                         if (c != null)
+                        {
                             thereAreCrossings = true;
+                            break;
+                        }
                     }
 
                     if (thereAreCrossings)
                     {
                         _timer.Interval = _refreshRate;//sets and starts the timer
                         _timer.Elapsed += timerHasTriggered;
-                        _timer.Start();
                     }
                     else
                     {
                         return "No crossings added";
                     }
                 }
-                if (_state == Traffic_Simulator.State.Paused)
-                {
-                    _timer.Start();
-                }
+
                 _state = State.Running;
-                //timerHasTriggered(null, null);
+                _syncFix = false;
+                _timer.Start();
+
                 return "";
             }
             catch
@@ -515,16 +518,17 @@ namespace Traffic_Simulator
         /// <param name="e"></param>
         public void timerHasTriggered(object sender, System.Timers.ElapsedEventArgs e)
         {
-
             
             DateTime dt = DateTime.Now;
-            _timer.Stop();
+            
             try
             {
-                if (State == State.Running)
+                _timer.Stop();
+                if (State == State.Running && _syncFix)
                 {
                     _grid.FinishedTicking = false;
-                    System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(_grid.timeTick));
+                    System.Threading.Thread thread = new System.Threading.Thread(_grid.timeTick);
+                    thread.Name = "Grid ticking";
                     thread.IsBackground = true;
                     thread.Start();
                 }
@@ -535,7 +539,7 @@ namespace Traffic_Simulator
                 while (!_grid.FinishedTicking)
                     System.Threading.Thread.Sleep(1);
 
-                if (this.State == State.Running && _grid.CurrentNumberOfCarsInGrid == 0)
+                if (this.State == State.Running && _grid.CurrentNumberOfCarsInGrid == 0 && _syncFix)
                     _gui.Invoke(new Del2(_gui.buttonStop_Click), new object[] { null, null });
 
                 Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
@@ -543,8 +547,12 @@ namespace Traffic_Simulator
             }
             catch { }
             TimeSpan t = DateTime.Now - dt;
-            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 1 : _refreshRate - t.TotalMilliseconds;
-	        _timer.Start();
+            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 5 : _refreshRate - t.TotalMilliseconds;
+            if (State == State.Running)
+            {
+                _syncFix = true;
+                _timer.Start();
+            }
         }
     }
     

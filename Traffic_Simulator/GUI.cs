@@ -302,30 +302,138 @@ namespace Traffic_Simulator
                             PictureBox pb = addElement(x + 2 * 66, y + 66, "mergingE",_mergings);
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
-                            _mergings.Add(pb);
                         }
                         if ((i - 1) >= 0 && slots[i - 1, j] != null)//check merging West
                         {
                             PictureBox pb = addElement(x, y + 66, "mergingW", _mergings);
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
-                            _mergings.Add(pb);
                         }
                         if ((j + 1) < 3 && slots[i, j + 1] != null && c.GetType() == typeof(Crossing_1))//check merging South
                         {
                             PictureBox pb = addElement(x + 66, y + 2 * 66, "mergingS", _mergings);
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
-                            _mergings.Add(pb);
                         }
                         if ((j - 1) >= 0 && slots[i, j - 1] != null && c.GetType() == typeof(Crossing_1))//check merging North
                         {
                             PictureBox pb = addElement(x + 66, y, "mergingN", _mergings);
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
-                            _mergings.Add(pb);
                         }
 
+                    }
+                }
+            }
+        }
+
+        private void drawLights(Crossing[,] slots)
+        {
+            if (_lights.Count == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Crossing c = slots[i, j];
+                        int x, y;
+                        x = pictureBoxSlotA0.Location.X + (3 * 66 * i);
+                        y = pictureBoxSlotA0.Location.Y + (3 * 66 * j); //base values
+                        string str = "";
+
+                        if (c != null)
+                        {
+                            if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
+                            {
+                                addElement(x + 2 * 66, y + 66 + 6, c.LightEtoNW._color.ToString(), _lights); //add LightEtoNW
+                                addElement(x + 2 * 66, y + 66 + 6 + 22, c.LightEtoS._color.ToString(), _lights); //add LightEtoS
+                                addElement(x + 66 - 6, y + 2 * 66 - 14 - 22, c.LightWtoN._color.ToString(), _lights); //add LightWtoN
+                                addElement(x + 66 - 6, y + 2 * 66 - 14, c.LightWtoSE._color.ToString(), _lights); //add LightWtoSE
+
+                                if (c.GetType() == typeof(Crossing_1))
+                                {
+                                    Crossing_1 c1 = (Crossing_1)c;
+                                    if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
+                                    {
+                                        //draw the following lights:
+                                        //LightStoEN, LightStoW, LightNtoE, LightNtoWS
+                                        addElement(x + 2 * 66 - 14, y + 2 * 66, c1.LightStoEN._color.ToString(), _lights);//LightStoEN
+                                        addElement(x + 2 * 66 - 14 - 22, y + 2 * 66, c1.LightStoW._color.ToString(), _lights);//LightStoW
+                                        addElement(x + 66 + 22 - 14, y + 66 - 6, c1.LightNtoWS._color.ToString(), _lights);//LightNtoWS
+                                        addElement(x + 2 * 66 - 14 - 22, y + 66 - 6, c1.LightNtoE._color.ToString(), _lights);//LightNtoE
+                                    }
+                                }
+
+                                if (c.GetType() == typeof(Crossing_2))
+                                {
+                                    Crossing_2 c2 = (Crossing_2)c;
+                                    if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
+                                    {
+                                        str = "ped" + c2.LightPedestrian._color.ToString();
+                                        addElement(x + 66 - 14, y + 2 * 22, str, _lights);
+                                        addElement(x + 2 * 66 + 4, y + 2 * 22, str, _lights);
+                                        addElement(x + 66 - 14, y + 2 * 66 + 15, str, _lights);
+                                        addElement(x + 2 * 66 + 4, y + 2 * 66 + 15, str, _lights);
+                                        addElement(x + 2 * 66 - 14, y + 2 * 66, c2.LightStoN._color.ToString(), _lights);//LightStoN
+                                        addElement(x + 66 + 22 - 14, y + 66 - 6, c2.LightNtoS._color.ToString(), _lights);//LightNtoS
+                                    }
+                                }
+
+                            }//end if(lights are not disabled)
+                        }
+                    }
+                }
+            }
+            else //just adjust lights colors
+            {
+                int n = 0; //lights iterator
+
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Crossing c = slots[i, j];
+
+                        if (c != null)
+                        {
+                            if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
+                            {
+                                _lights[n++].Image = getImageFromString(c.LightEtoNW._color.ToString()); //add LightEtoNW
+                                _lights[n++].Image = getImageFromString(c.LightEtoS._color.ToString()); //add LightEtoS
+                                _lights[n++].Image = getImageFromString(c.LightWtoN._color.ToString()); //add LightWtoN
+                                _lights[n++].Image = getImageFromString(c.LightWtoSE._color.ToString()); //add LightWtoSE
+
+                                if (c.GetType() == typeof(Crossing_1))
+                                {
+                                    Crossing_1 c1 = (Crossing_1)c;
+                                    if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
+                                    {
+                                        //draw the following lights:
+                                        //LightStoEN, LightStoW, LightNtoE, LightNtoWS
+                                        _lights[n++].Image = getImageFromString(c1.LightStoEN._color.ToString());//LightStoEN
+                                        _lights[n++].Image = getImageFromString(c1.LightStoW._color.ToString());//LightStoW
+                                        _lights[n++].Image = getImageFromString(c1.LightNtoWS._color.ToString());//LightNtoWS
+                                        _lights[n++].Image = getImageFromString(c1.LightNtoE._color.ToString());//LightNtoE
+                                    }
+                                }
+
+                                if (c.GetType() == typeof(Crossing_2))
+                                {
+                                    Crossing_2 c2 = (Crossing_2)c;
+                                    if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
+                                    {
+                                        string str = "ped" + c2.LightPedestrian._color.ToString();
+                                        _lights[n++].Image = getImageFromString(str);
+                                        _lights[n++].Image = getImageFromString(str);
+                                        _lights[n++].Image = getImageFromString(str);
+                                        _lights[n++].Image = getImageFromString(str);
+                                        _lights[n++].Image = getImageFromString(c2.LightStoN._color.ToString());//LightStoN
+                                        _lights[n++].Image = getImageFromString(c2.LightNtoS._color.ToString());//LightNtoS
+                                    }
+                                }
+
+                            }//end if(lights are not disabled)
+                        }
                     }
                 }
             }
@@ -429,9 +537,11 @@ namespace Traffic_Simulator
 
                 if (_cars.Count > n)
                 {
+                    _cars[n].Visible = false;
                     _cars[n].Location = new Point(x, y);
                     _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
-                    Invalidate();
+                    _cars[n].Visible = true;
+                    _cars[n].Invalidate();
                 }
                 else
                     addElement(x, y, "car " + c.Direction.ToString(), _cars);

@@ -529,6 +529,7 @@ namespace Traffic_Simulator
             {
                 while (!_gui.IsReady)
                     System.Threading.Thread.Sleep(15);
+                _gui.Invoke(new Del(_gui.refreshScreen), new object[] { tempCopy });//and sends that copy as a parameter to the GUI
             }
             catch { }
             TimeSpan t = DateTime.Now - dt;

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 
 
 namespace Traffic_Simulator
 {
+    delegate void Del4(PictureBox pb, Point p);
+
     public partial class GUI : Form
     {
 
@@ -15,12 +19,14 @@ namespace Traffic_Simulator
         /// </summary>
         private SimulationController _controller = new SimulationController();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
-        private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), _lights = new List<PictureBox>();//, _elements = new List<PictureBox>();
+        private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), 
+            _movingCars = new List<PictureBox>(), _lights = new List<PictureBox>();//, _elements = new List<PictureBox>();
         private Crossing _copiedCrossing = null;
         private string _selectedSlot = "";
         private TextBox[] _crossingProperties = new TextBox[20];
-        private bool _isReady = true, _checkTextBoxes;
+        private bool _isReady = true, _checkTextBoxes, _threadInterrupt=false;
         private Type _draggedCrossingType;
+        Thread thread;
         private SimulationController Controller
         {
             get
@@ -234,30 +240,31 @@ namespace Traffic_Simulator
 
             _isReady = false;
 
-            if(_controller.State==State.Stopped)
+            if (_controller.State == State.Stopped)
+            {
                 drawCrossings(copyOfGrid.Slots);
+                IsReady = true;
+            }
 
-            if (Controller.State != State.Stopped)
+            else
             {
                 drawLights(copyOfGrid.Slots);//draws lights
 
-                for (int i = 0; i < copyOfGrid.ListOfCars.Count;i++ ) //moves every existing car by 1 position
+                _movingCars.Clear();
+
+                for (int i = 0; i < copyOfGrid.ListOfCars.Count; i++) //moves every existing car by 1 position
                 {
                     Car c = copyOfGrid.ListOfCars[i];
                     if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
                     {
-                        drawCar(c, i);//draws lights
+                        drawCar(c, i);//draws cars
                     }
                 }
-            }
 
-            foreach (PictureBox pb in _gui_slots)
-            {
-                if(pb.Image!=null)
-                    pb.Update();
+                thread = new Thread(new ThreadStart(moveCars));
+                thread.IsBackground = true;
+                thread.Start();
             }
-            _isReady = true;
-
         }
 
         /// <summary>
@@ -308,26 +315,26 @@ namespace Traffic_Simulator
 
                         if ((i + 1) < 4 && slots[i + 1, j] != null)//check merging East
                         {
-                            PictureBox pb = addElement(x + 2 * 66, y + 66, "mergingE",_mergings);
+                            PictureBox pb = addElement(x + 2 * 66, y + 66 - j, "mergingE", _mergings);
 
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                         }
                         if ((i - 1) >= 0 && slots[i - 1, j] != null)//check merging West
                         {
-                            PictureBox pb = addElement(x, y + 66, "mergingW", _mergings);
+                            PictureBox pb = addElement(x, y + 66-j, "mergingW", _mergings);
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                         }
                         if ((j + 1) < 3 && slots[i, j + 1] != null && c.GetType() == typeof(Crossing_1))//check merging South
                         {
-                            PictureBox pb = addElement(x + 66, y + 2 * 66, "mergingS", _mergings);
+                            PictureBox pb = addElement(x + 66-i, y + 2 * 66, "mergingS", _mergings);
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                         }
                         if ((j - 1) >= 0 && slots[i, j - 1] != null && c.GetType() == typeof(Crossing_1))//check merging North
                         {
-                            PictureBox pb = addElement(x + 66, y, "mergingN", _mergings);
+                            PictureBox pb = addElement(x + 66-i, y, "mergingN", _mergings);
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                         }
@@ -552,14 +559,19 @@ namespace Traffic_Simulator
                 }
                 if(_cars.Count>n)
                 {
-
-                    _cars[n].Visible = false;
-                    _cars[n].Refresh();
-                    _cars[n].Location = new Point(x, y);
-                    _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
-                    _cars[n].Visible = true;
+                    Point newPos = new Point(x, y);
+                    if (_cars[n].Location.X != x || _cars[n].Location.Y != y)//if new position is different
+                    {
+                        _cars[n].Tag = newPos;
+                        _cars[n].Image = getImageFromString("car "+c.Direction.ToString());
+                        _movingCars.Add(_cars[n]);
+                    }
+                    else//if car did not actually move
+                    {
+                        _cars[n].Tag = null;
+                    }
                 }
-                else
+                else//if there has to be created a new picturebox
                     addElement(x, y, "car " + c.Direction.ToString(),_cars);
             }
 
@@ -567,13 +579,115 @@ namespace Traffic_Simulator
             {
                 _cars[n].Visible = false;
             }
-            _cars[n].Invalidate();
+        }
+
+        public void moveCars()
+        {
+
+            try
+            {
+                int aditionalStep = 0;
+                for (int stepsLeft = 22; stepsLeft > 0; )
+                {
+                    DateTime startTime = DateTime.Now;
+                    int step = 1;
+                    startTime = DateTime.Now;
+
+                    foreach (PictureBox carPB in _movingCars)
+                    {
+
+                        Point newPos = (Point)carPB.Tag;
+                        int distanceX = carPB.Location.X - newPos.X;
+                        int distanceY = carPB.Location.Y - newPos.Y;
+                        int x, y;
+
+                        if (distanceX != 0 || distanceY != 0)
+                        {
+
+                            step = (stepsLeft / (Math.Abs(distanceX) > Math.Abs(distanceY) ? Math.Abs(distanceX) : Math.Abs(distanceY)) + 1);
+
+                            step += aditionalStep * (step / Math.Abs(step));
+
+                            if (distanceX != 0 && step <= Math.Abs(distanceX))
+                            {
+                                x = carPB.Location.X - 1 * (distanceX / Math.Abs(distanceX)) * step;
+                            }
+                            else
+                                x = newPos.X;
+
+                            if (distanceY != 0 && step <= Math.Abs(distanceY))
+                                y = carPB.Location.Y - 1 * (distanceY / Math.Abs(distanceY)) * step;
+                            else
+                                y = newPos.Y;
+
+                            if (_threadInterrupt)
+                            {
+                                _isReady = true;
+                                return;
+                            }
+                            else
+                            {
+                                Invoke(new Del4(changeTextBoxLocation), new object[] { carPB, new Point(x, y) });
+                                Invoke(new Del3(carPB.Show));
+                            }
+                        }
+                    }
+
+                    stepsLeft -= aditionalStep + 1;
+
+                    if (_threadInterrupt)
+                    {
+                        _isReady = true;
+                        return;
+                    }
+                    else
+                    {
+                        Invoke(new Del3(Update));
+                    }
+
+                    aditionalStep = 0;
+                    double totalTime = (DateTime.Now - startTime).TotalMilliseconds;
+
+                    if (totalTime > 40 + 8*(5-(int)numericUpDown1.Value))
+                        aditionalStep++;
+                    if (totalTime > 60 + 12 * (5 - (int)numericUpDown1.Value))
+                        aditionalStep++;
+                    if (totalTime > 80 + 16 * (5 - (int)numericUpDown1.Value))
+                        aditionalStep++;
+                    if (totalTime > 100 + 20 * (5 - (int)numericUpDown1.Value))
+                        aditionalStep++;
+                    if (totalTime > 120 + 24 * (5 - (int)numericUpDown1.Value))
+                        aditionalStep++;
+
+                    Thread.Sleep(15);
+                    if ((totalTime < (100-20*(double)numericUpDown1.Value)) && stepsLeft != 0 && totalTime != 0)
+                        Thread.Sleep((int)(100 - 20 * (double)numericUpDown1.Value) - (int)totalTime);
+                }
+                Invalidate();
+                if (_threadInterrupt)
+                {
+                    _isReady = true;
+                    return;
+                }
+                else
+                {
+                    Invoke(new Del3(Update));
+                }
+                _isReady = true;
+            }
+            catch { _isReady = true; }
+        }
+
+        public void changeTextBoxLocation(PictureBox pb, Point p)
+        {
+            pb.Location = p;
         }
 
         public GUI() 
         { 
             InitializeComponent();
             _controller.Gui = this;
+
 
             System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
             ToolTip1.SetToolTip(this.label2, "Time in seconds for which the traffic light will stay green");
@@ -686,6 +800,7 @@ namespace Traffic_Simulator
             {
                 if (_controller.State != State.Running) //if simulation is not running
                 {
+                    _threadInterrupt = false;
                     label1.Text = _controller.startSimulation();
 
                     if (label1.Text == "")//if started sucsessfully
@@ -709,13 +824,22 @@ namespace Traffic_Simulator
                     //locks crossings properties
                     if (SelectedSlot != "")
                         _controller.selectCrossing(SelectedSlot);
-
                     return;     //leave method
                 }
 
 
                 if (_controller.State == State.Running) //if simulation is running
                 {
+
+                    if (thread != null)
+                        _threadInterrupt = true;
+                    foreach (PictureBox pb in _movingCars)
+                        if (pb.Tag != null)
+                        {
+                            pb.Location = (Point)pb.Tag;
+                            pb.Tag = null;
+                        }
+
                     label1.Text = _controller.pauseSimulation();
                     if (label1.Text == "")
                     {
@@ -742,7 +866,6 @@ namespace Traffic_Simulator
                     //locks crossings properties
                     if (SelectedSlot != "")
                         _controller.selectCrossing(SelectedSlot);
-
                     return;
                 }
             }

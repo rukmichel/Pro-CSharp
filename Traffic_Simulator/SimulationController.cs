@@ -5,6 +5,7 @@ namespace Traffic_Simulator
 {
     delegate void Del(Grid g);
     delegate void Del2(object sender, EventArgs e);
+    delegate void Del3();
 
     /// <summary>
     /// It's the main controller in the MVC model.
@@ -15,7 +16,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Amount of time beetween time ticks in milliseconds.
         /// </summary>
-        private int _refreshRate = 500;
+        private int _refreshRate =  50;
 
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
@@ -340,7 +341,7 @@ namespace Traffic_Simulator
                     _timer.Start();
                 }
                 _state = State.Running;
-                timerHasTriggered(null, null);
+                //timerHasTriggered(null, null);
                 return "";
             }
             catch
@@ -515,25 +516,26 @@ namespace Traffic_Simulator
         public void timerHasTriggered(object sender, System.Timers.ElapsedEventArgs e)
         {
 
-            if (this.State == State.Running)
-                _grid.timeTick();
-
-            if (this.State == State.Running && _grid.CurrentNumberOfCarsInGrid == 0)
-                _gui.Invoke(new Del2(_gui.buttonStop_Click), new object[] { null,null});
-
-            Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
+            
             DateTime dt = DateTime.Now;
             _timer.Stop();
             try
             {
                 while (!_gui.IsReady)
-                    System.Threading.Thread.Sleep(25);
+                    System.Threading.Thread.Sleep(1);
 
+                if (this.State == State.Running)
+                    _grid.timeTick();
+
+                if (this.State == State.Running && _grid.CurrentNumberOfCarsInGrid == 0)
+                    _gui.Invoke(new Del2(_gui.buttonStop_Click), new object[] { null, null });
+
+                Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
                 _gui.Invoke(new Del(_gui.refreshScreen), new object[] { tempCopy });//and sends that copy as a parameter to the GUI
             }
             catch { }
             TimeSpan t = DateTime.Now - dt;
-            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 40 : _refreshRate - t.TotalMilliseconds;
+            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 10 : _refreshRate - t.TotalMilliseconds;
 	        _timer.Start();
         }
     }

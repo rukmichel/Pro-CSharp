@@ -115,6 +115,8 @@
             this.textBoxGLT1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.Crossing_2 = new System.Windows.Forms.PictureBox();
             this.Crossing_1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotD2 = new System.Windows.Forms.PictureBox();
@@ -128,7 +130,7 @@
             this.pictureBoxSlotD0 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotC0 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotB0 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();           
+            this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();
             this.deleteCrossingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearGridToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.crossingType1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,6 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Crossing_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Crossing_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotD2)).BeginInit();
@@ -177,7 +180,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(250, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(252, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -387,7 +390,7 @@
             // buttonClear
             // 
             this.buttonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClear.Location = new System.Drawing.Point(7, 107);
+            this.buttonClear.Location = new System.Drawing.Point(7, 147);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(54, 44);
             this.buttonClear.TabIndex = 18;
@@ -398,7 +401,7 @@
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(3, 155);
+            this.buttonDelete.Location = new System.Drawing.Point(3, 195);
             this.buttonDelete.Margin = new System.Windows.Forms.Padding(1);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(64, 44);
@@ -1100,6 +1103,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.Controls.Add(this.label29);
+            this.panel2.Controls.Add(this.numericUpDown1);
             this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.Crossing_2);
             this.panel2.Controls.Add(this.buttonClear);
@@ -1111,6 +1116,40 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(70, 593);
             this.panel2.TabIndex = 23;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(13, 102);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(41, 13);
+            this.label29.TabIndex = 23;
+            this.label29.Text = "Speed:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.BackColor = System.Drawing.Color.White;
+            this.numericUpDown1.Location = new System.Drawing.Point(13, 121);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.ReadOnly = true;
+            this.numericUpDown1.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown1.TabIndex = 22;
+            this.numericUpDown1.TabStop = false;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Crossing_2
             // 
@@ -1303,11 +1342,55 @@
             this.pictureBoxSlotA0.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotA0.TabIndex = 3;
             this.pictureBoxSlotA0.TabStop = false;
-
             this.pictureBoxSlotA0.Tag = "A0";
             this.pictureBoxSlotA0.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotA0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.pictureBoxSlotA0.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
+            // 
+            // deleteCrossingToolStripMenuItem
+            // 
+            this.deleteCrossingToolStripMenuItem.Name = "deleteCrossingToolStripMenuItem";
+            this.deleteCrossingToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // clearGridToolStripMenuItem1
+            // 
+            this.clearGridToolStripMenuItem1.Name = "clearGridToolStripMenuItem1";
+            this.clearGridToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // crossingType1ToolStripMenuItem
+            // 
+            this.crossingType1ToolStripMenuItem.Name = "crossingType1ToolStripMenuItem";
+            this.crossingType1ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // crossingType2ToolStripMenuItem
+            // 
+            this.crossingType2ToolStripMenuItem.Name = "crossingType2ToolStripMenuItem";
+            this.crossingType2ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // startToolStripMenuItem1
+            // 
+            this.startToolStripMenuItem1.Name = "startToolStripMenuItem1";
+            this.startToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // pauseToolStripMenuItem1
+            // 
+            this.pauseToolStripMenuItem1.Name = "pauseToolStripMenuItem1";
+            this.pauseToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // stopToolStripMenuItem1
+            // 
+            this.stopToolStripMenuItem1.Name = "stopToolStripMenuItem1";
+            this.stopToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // userManualToolStripMenuItem1
+            // 
+            this.userManualToolStripMenuItem1.Name = "userManualToolStripMenuItem1";
+            this.userManualToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // aboutToolStripMenuItem2
+            // 
+            this.aboutToolStripMenuItem2.Name = "aboutToolStripMenuItem2";
+            this.aboutToolStripMenuItem2.Size = new System.Drawing.Size(32, 19);
             // 
             // GUI
             // 
@@ -1353,6 +1436,7 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Crossing_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Crossing_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlotD2)).EndInit();
@@ -1495,6 +1579,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem2;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 

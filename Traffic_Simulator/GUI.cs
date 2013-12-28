@@ -15,7 +15,7 @@ namespace Traffic_Simulator
         /// </summary>
         private SimulationController _controller = new SimulationController();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
-        private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), _lights = new List<PictureBox>();
+        private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), _lights = new List<PictureBox>();//, _elements = new List<PictureBox>();
         private Crossing _copiedCrossing = null;
         private string _selectedSlot = "";
         private TextBox[] _crossingProperties = new TextBox[20];
@@ -233,7 +233,6 @@ namespace Traffic_Simulator
                 return;
 
             _isReady = false;
-            
 
             if(_controller.State==State.Stopped)
                 drawCrossings(copyOfGrid.Slots);
@@ -242,7 +241,7 @@ namespace Traffic_Simulator
             {
                 drawLights(copyOfGrid.Slots);//draws lights
 
-                for (int i = 0; i < copyOfGrid.ListOfCars.Count; i++) //moves every existing car by 1 position
+                for (int i = 0; i < copyOfGrid.ListOfCars.Count;i++ ) //moves every existing car by 1 position
                 {
                     Car c = copyOfGrid.ListOfCars[i];
                     if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
@@ -268,6 +267,12 @@ namespace Traffic_Simulator
                 Controls.Remove(pb);
             }
             _mergings.Clear();
+            foreach (PictureBox pb in _lights)
+            {
+                Controls.Remove(pb);
+            }
+            _lights.Clear();
+
             foreach (PictureBox pb in _lights)
             {
                 Controls.Remove(pb);
@@ -300,6 +305,7 @@ namespace Traffic_Simulator
                         if ((i + 1) < 4 && slots[i + 1, j] != null)//check merging East
                         {
                             PictureBox pb = addElement(x + 2 * 66, y + 66, "mergingE",_mergings);
+
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                         }
@@ -337,8 +343,9 @@ namespace Traffic_Simulator
                     {
                         Crossing c = slots[i, j];
                         int x, y;
-                        x = pictureBoxSlotA0.Location.X + (3 * 66 * i);
-                        y = pictureBoxSlotA0.Location.Y + (3 * 66 * j); //base values
+                        x = pictureBoxSlotA0.Location.X + (3 * 66 * i - i);
+                        y = pictureBoxSlotA0.Location.Y + (3 * 66 * j - j); //base values
+
                         string str = "";
 
                         if (c != null)
@@ -370,12 +377,13 @@ namespace Traffic_Simulator
                                     if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
                                     {
                                         str = "ped" + c2.LightPedestrian._color.ToString();
-                                        addElement(x + 66 - 14, y + 2 * 22, str, _lights);
-                                        addElement(x + 2 * 66 + 4, y + 2 * 22, str, _lights);
-                                        addElement(x + 66 - 14, y + 2 * 66 + 15, str, _lights);
-                                        addElement(x + 2 * 66 + 4, y + 2 * 66 + 15, str, _lights);
-                                        addElement(x + 2 * 66 - 14, y + 2 * 66, c2.LightStoN._color.ToString(), _lights);//LightStoN
-                                        addElement(x + 66 + 22 - 14, y + 66 - 6, c2.LightNtoS._color.ToString(), _lights);//LightNtoS
+
+                                        addElement(x + 66 - 15, y + 2 * 22, str, _lights);
+                                        addElement(x + 2 * 66 + 5, y + 2 * 22, str, _lights);
+                                        addElement(x + 66 - 15, y + 2 * 66 + 15, str, _lights);
+                                        addElement(x + 2 * 66 + 5, y + 2 * 66 + 15, str, _lights);
+                                        addElement(x + 2 * 66 - 15, y + 2 * 66, c2.LightStoN._color.ToString(), _lights);//LightStoN
+                                        addElement(x + 66 + 22 - 15, y + 66 - 5, c2.LightNtoS._color.ToString(), _lights);//LightNtoS
                                     }
                                 }
 
@@ -458,46 +466,46 @@ namespace Traffic_Simulator
             switch (image)
             {
                 case "car North":
-                    return Properties.Resources.carN;
+                    return Properties.Resources.carN;                    
 
                 case "car East":
-                    return Properties.Resources.carE;
+                    return Properties.Resources.carE;                    
 
                 case "car West":
-                    return Properties.Resources.carW;
+                    return Properties.Resources.carW;                    
 
                 case "car South":
-                    return Properties.Resources.carS;
+                    return Properties.Resources.carS;                    
 
                 case "Color [Red]":
-                    return Properties.Resources.redLight;
+                    return Properties.Resources.redLight;                    
 
                 case "Color [Green]":
-                    return Properties.Resources.greenLight;
+                    return Properties.Resources.greenLight;                    
 
                 case "mergingN":
-                    return Properties.Resources.mergingN;
+                    return Properties.Resources.mergingN;                    
 
                 case "mergingE":
-                    return Properties.Resources.mergingE;
+                    return Properties.Resources.mergingE;                    
 
                 case "mergingS":
-                    return Properties.Resources.mergingS;
+                    return Properties.Resources.mergingS;                    
 
                 case "mergingW":
-                    return Properties.Resources.mergingW;
+                    return Properties.Resources.mergingW;                    
 
                 case "Traffic_Simulator.Crossing_1":
-                    return Properties.Resources.Traffic_Simulator_Crossing_1;
+                    return Properties.Resources.Traffic_Simulator_Crossing_1;                    
 
                 case "Traffic_Simulator.Crossing_2":
-                    return Properties.Resources.Traffic_Simulator_Crossing_2;
+                    return Properties.Resources.Traffic_Simulator_Crossing_2;                    
 
                 case "pedColor [Green]":
-                    return Properties.Resources.pedColor__Green_;
+                    return Properties.Resources.pedColor__Green_;                    
 
                 case "pedColor [Red]":
-                    return Properties.Resources.pedColor__Red_;
+                    return Properties.Resources.pedColor__Red_;  
 
                 default:
                     throw new ArgumentException();
@@ -534,17 +542,17 @@ namespace Traffic_Simulator
                         y += 66 + 6 + 22 * c.StreetIndex[1];
                         break;
                 }
-
-                if (_cars.Count > n)
+                if(_cars.Count>n)
                 {
+
                     _cars[n].Visible = false;
+                    _cars[n].Invalidate();
                     _cars[n].Location = new Point(x, y);
                     _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
                     _cars[n].Visible = true;
-                    _cars[n].Invalidate();
                 }
                 else
-                    addElement(x, y, "car " + c.Direction.ToString(), _cars);
+                    addElement(x, y, "car " + c.Direction.ToString(),_cars);
             }
 
             if (c != null && c.HasExitedGrid)
@@ -744,7 +752,6 @@ namespace Traffic_Simulator
                 startToolStripMenuItem.Enabled = true;
 
                 buttonStop.Enabled = false;
-
                 buttonClear.Enabled = true;
                 buttonDelete.Enabled = true;
 
@@ -754,6 +761,17 @@ namespace Traffic_Simulator
 
                 if (sender == null)
                     label1.Text = "End of simulation.";
+
+                foreach (PictureBox pb in _lights)
+                {
+                    Controls.Remove(pb);
+                }
+                foreach (PictureBox pb in _cars)
+                {
+                    Controls.Remove(pb);
+                }
+                _lights.Clear();
+                _cars.Clear();
             }
 
             if(SelectedSlot!="")
@@ -1042,7 +1060,6 @@ namespace Traffic_Simulator
                 _gui_slots[a, b].BorderStyle = BorderStyle.FixedSingle;
                 SelectedSlot = "";
                 _controller.timerHasTriggered(null, null);
-                Invalidate();
                 }
             }
             

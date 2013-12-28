@@ -55,7 +55,6 @@ namespace Traffic_Simulator
         /// </summary>
         private FileHandler _fileHandler = new FileHandler();
 
-
         /// <summary>
         /// Checks if a position on the grid is available for adding a crossing.
         /// </summary>

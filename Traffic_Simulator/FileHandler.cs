@@ -45,7 +45,7 @@ namespace Traffic_Simulator
                 BinaryFormatter binaryFormater = new BinaryFormatter();
                 _hasUnsavedData = false;
 
-                binaryFormater.Serialize(fileStream, grid.Slots);
+                binaryFormater.Serialize(fileStream, grid);
 
                 fileStream.Close();
                 //Grid objectToLoad = (Grid)binaryFormater.Deserialize(fileStream);
@@ -70,22 +70,20 @@ namespace Traffic_Simulator
             
             if (string.IsNullOrEmpty(_path)) { return default(Grid); }
 
-            Crossing[,] objectToLoad;// = default(Grid);
+            Grid objectToLoad;// = default(Grid);
 
             try
             {
                 Stream stream = File.Open(_path, FileMode.Open);
                 BinaryFormatter binaryFormater = new BinaryFormatter();
-                objectToLoad = (Crossing[,])binaryFormater.Deserialize(stream);
+                objectToLoad = (Grid)binaryFormater.Deserialize(stream);
                 stream.Close();
             }
             catch
             {
                 throw new FileLoadException();
             }
-            Grid g = new Grid();
-            g.Slots = objectToLoad;
-            return g;
+            return objectToLoad;
             
         }
         

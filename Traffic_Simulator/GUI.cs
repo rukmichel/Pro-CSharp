@@ -14,8 +14,10 @@ namespace Traffic_Simulator
         /// Controller element of the application.
         /// </summary>
         private SimulationController _controller = new SimulationController();
+        private List<PictureBox> _elements = new List<PictureBox>();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
-        private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), _lights = new List<PictureBox>();//, _elements = new List<PictureBox>();
+        private List<PictureBox> _mergings = new List<PictureBox>();
+        private PictureBox _p;
         private Crossing _copiedCrossing = null;
         private string _selectedSlot = "";
         private TextBox[] _crossingProperties = new TextBox[20];
@@ -233,6 +235,13 @@ namespace Traffic_Simulator
                 return;
 
             _isReady = false;
+            foreach (PictureBox pb in _elements)
+            {
+
+                Controls.Remove(pb);
+            }
+
+            _elements.Clear();
 
             if(_controller.State==State.Stopped)
                 drawCrossings(copyOfGrid.Slots);
@@ -241,17 +250,16 @@ namespace Traffic_Simulator
             {
                 drawLights(copyOfGrid.Slots);//draws lights
 
-                for (int i = 0; i < copyOfGrid.ListOfCars.Count;i++ ) //moves every existing car by 1 position
+                foreach (Car c in copyOfGrid.ListOfCars) //moves every existing car by 1 position
                 {
-                    Car c = copyOfGrid.ListOfCars[i];
                     if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
                     {
-                        drawCar(c, i);//draws lights
+                        drawCar(c);//draws lights
                     }
                 }
             }
 
-            //Invalidate();
+            Invalidate();
             _isReady = true;
 
         }
@@ -267,12 +275,6 @@ namespace Traffic_Simulator
                 Controls.Remove(pb);
             }
             _mergings.Clear();
-
-            foreach (PictureBox pb in _lights)
-            {
-                Controls.Remove(pb);
-            }
-            _lights.Clear();
 
             foreach (PictureBox pb in _gui_slots)
             {
@@ -299,28 +301,28 @@ namespace Traffic_Simulator
 
                         if ((i + 1) < 4 && slots[i + 1, j] != null)//check merging East
                         {
-                            PictureBox pb = addElement(x + 2 * 66, y + 66, "mergingE", _mergings);
+                            PictureBox pb = addElement(x + 2 * 66, y + 66, "mergingE");
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                             _mergings.Add(pb);
                         }
                         if ((i - 1) >= 0 && slots[i - 1, j] != null)//check merging West
                         {
-                            PictureBox pb = addElement(x, y + 66, "mergingW", _mergings);
+                            PictureBox pb = addElement(x, y + 66, "mergingW");
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                             _mergings.Add(pb);
                         }
                         if ((j + 1) < 3 && slots[i, j + 1] != null && c.GetType() == typeof(Crossing_1))//check merging South
                         {
-                            PictureBox pb = addElement(x + 66, y + 2 * 66, "mergingS", _mergings);
+                            PictureBox pb = addElement(x + 66, y + 2 * 66, "mergingS");
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                             _mergings.Add(pb);
                         }
                         if ((j - 1) >= 0 && slots[i, j - 1] != null && c.GetType() == typeof(Crossing_1))//check merging North
                         {
-                            PictureBox pb = addElement(x + 66, y, "mergingN", _mergings);
+                            PictureBox pb = addElement(x + 66, y, "mergingN");
                             pb.Tag = _gui_slots[i, j].Tag;
                             pb.Click += slot_click;
                             _mergings.Add(pb);
@@ -329,187 +331,143 @@ namespace Traffic_Simulator
                     }
                 }
             }
-            Invalidate();
+            foreach (PictureBox pb in _mergings)
+                _elements.Remove(pb);
         }
 
         private void drawLights(Crossing[,] slots)
         {
-            if (_lights.Count == 0)
+            for (int i = 0; i < 4; i++)
             {
-                for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 3; j++)
                 {
-                    for (int j = 0; j < 3; j++)
+                    Crossing c = slots[i, j];
+                    int x, y;
+                    x = pictureBoxSlotA0.Location.X + (3 * 66 * i);
+                    y = pictureBoxSlotA0.Location.Y + (3 * 66 * j); //base values
+                    string str = "";
+
+
+                    if (c != null)
                     {
-                        Crossing c = slots[i, j];
-                        int x, y;
-                        x = pictureBoxSlotA0.Location.X + (3 * 66 * i - i);
-                        y = pictureBoxSlotA0.Location.Y + (3 * 66 * j - j); //base values
-                        string str = "";
 
-                        if (c != null)
+                        if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
                         {
-                            if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
-                            {
-                                addElement(x + 2 * 66, y + 66 + 6, c.LightEtoNW._color.ToString(), _lights); //add LightEtoNW
-                                addElement(x + 2 * 66, y + 66 + 6 + 22, c.LightEtoS._color.ToString(), _lights); //add LightEtoS
-                                addElement(x + 66 - 6, y + 2 * 66 - 14 - 22, c.LightWtoN._color.ToString(), _lights); //add LightWtoN
-                                addElement(x + 66 - 6, y + 2 * 66 - 14, c.LightWtoSE._color.ToString(), _lights); //add LightWtoSE
+                            addElement(x + 2 * 66, y + 66 + 6, c.LightEtoNW._color.ToString()); //add LightEtoNW
+                            addElement(x + 2 * 66, y + 66 + 6 + 22, c.LightEtoS._color.ToString()); //add LightEtoS
+                            addElement(x + 66 - 6, y + 2 * 66 - 14 - 22, c.LightWtoN._color.ToString()); //add LightWtoN
+                            addElement(x + 66 - 6, y + 2 * 66 - 14, c.LightWtoSE._color.ToString()); //add LightWtoSE
+                        }
 
-                                if (c.GetType() == typeof(Crossing_1))
-                                {
-                                    Crossing_1 c1 = (Crossing_1)c;
-                                    if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
-                                    {
-                                        //draw the following lights:
-                                        //LightStoEN, LightStoW, LightNtoE, LightNtoWS
-                                        addElement(x + 2 * 66 - 14, y + 2 * 66, c1.LightStoEN._color.ToString(), _lights);//LightStoEN
-                                        addElement(x + 2 * 66 - 14 - 22, y + 2 * 66, c1.LightStoW._color.ToString(), _lights);//LightStoW
-                                        addElement(x + 66 + 22 - 14, y + 66 - 6, c1.LightNtoWS._color.ToString(), _lights);//LightNtoWS
-                                        addElement(x + 2 * 66 - 14 - 22, y + 66 - 6, c1.LightNtoE._color.ToString(), _lights);//LightNtoE
-                                    }
-                                }
+                    }
 
-                                if (c.GetType() == typeof(Crossing_2))
-                                {
-                                    Crossing_2 c2 = (Crossing_2)c;
-                                    if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
-                                    {
-                                        str = "ped" + c2.LightPedestrian._color.ToString();
-                                        addElement(x + 66 - 15, y + 2 * 22, str, _lights);
-                                        addElement(x + 2 * 66 + 5, y + 2 * 22, str, _lights);
-                                        addElement(x + 66 - 15, y + 2 * 66 + 15, str, _lights);
-                                        addElement(x + 2 * 66 + 5, y + 2 * 66 + 15, str, _lights);
-                                        addElement(x + 2 * 66 - 15, y + 2 * 66, c2.LightStoN._color.ToString(), _lights);//LightStoN
-                                        addElement(x + 66 + 22 - 15, y + 66 - 5, c2.LightNtoS._color.ToString(), _lights);//LightNtoS
-                                    }
-                                }
 
-                            }//end if(lights are not disabled)
+
+                    if (c != null && c.GetType() == typeof(Crossing_1))
+                    {
+                        Crossing_1 c1 = (Crossing_1)c;
+                        if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
+                        {
+                            //draw the following lights:
+                            //LightStoEN, LightStoW, LightNtoE, LightNtoWS
+                            addElement(x + 2 * 66 - 14, y + 2 * 66, c1.LightStoEN._color.ToString());//LightStoEN
+                            addElement(x + 2 * 66 - 14 - 22, y + 2 * 66, c1.LightStoW._color.ToString());//LightStoW
+                            addElement(x + 66 + 22 - 14, y + 66 - 6, c1.LightNtoWS._color.ToString());//LightNtoWS
+                            addElement(x + 2 * 66 - 14 - 22, y + 66 - 6, c1.LightNtoE._color.ToString());//LightNtoE
+                        }
+
+                    }
+                    if (c != null && c.GetType() == typeof(Crossing_2))
+                    {
+                        Crossing_2 c2 = (Crossing_2)c;
+                        if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
+                        {
+                            str = "ped" + c2.LightPedestrian._color.ToString();
+                            addElement(x + 66 - 14, y + 2 * 22, str);
+                            addElement(x + 2 * 66 + 4, y + 2 * 22, str);
+                            addElement(x + 66 - 14, y + 2 * 66 + 15, str);
+                            addElement(x + 2 * 66 + 4, y + 2 * 66 + 15, str);
+                            addElement(x + 2 * 66 - 14, y + 2 * 66, c2.LightStoN._color.ToString());//LightStoN
+                            addElement(x + 66 + 22 - 14, y + 66 - 6, c2.LightNtoS._color.ToString());//LightNtoS
                         }
                     }
                 }
             }
-            else //just adjust lights colors
-            {
-                int n = 0; //lights iterator
-
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        Crossing c = slots[i, j];
-
-                        if (c != null)
-                        {
-                            if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
-                            {
-                                _lights[n++].Image = getImageFromString(c.LightEtoNW._color.ToString()); //add LightEtoNW
-                                _lights[n++].Image = getImageFromString(c.LightEtoS._color.ToString()); //add LightEtoS
-                                _lights[n++].Image = getImageFromString(c.LightWtoN._color.ToString()); //add LightWtoN
-                                _lights[n++].Image = getImageFromString(c.LightWtoSE._color.ToString()); //add LightWtoSE
-
-                                if (c.GetType() == typeof(Crossing_1))
-                                {
-                                    Crossing_1 c1 = (Crossing_1)c;
-                                    if (c.LightEtoNW._color != Color.Gray)//if lights are NOT disabled
-                                    {
-                                        //draw the following lights:
-                                        //LightStoEN, LightStoW, LightNtoE, LightNtoWS
-                                        _lights[n++].Image = getImageFromString(c1.LightStoEN._color.ToString());//LightStoEN
-                                        _lights[n++].Image = getImageFromString(c1.LightStoW._color.ToString());//LightStoW
-                                        _lights[n++].Image = getImageFromString(c1.LightNtoWS._color.ToString());//LightNtoWS
-                                        _lights[n++].Image = getImageFromString(c1.LightNtoE._color.ToString());//LightNtoE
-                                    }
-                                }
-
-                                if (c.GetType() == typeof(Crossing_2))
-                                {
-                                    Crossing_2 c2 = (Crossing_2)c;
-                                    if (c2.LightEtoS._color != Color.Gray)//if lights are not disabled
-                                    {
-                                        string str = "ped" + c2.LightPedestrian._color.ToString();
-                                        _lights[n++].Image = getImageFromString(str);
-                                        _lights[n++].Image = getImageFromString(str);
-                                        _lights[n++].Image = getImageFromString(str);
-                                        _lights[n++].Image = getImageFromString(str);
-                                        _lights[n++].Image = getImageFromString(c2.LightStoN._color.ToString());//LightStoN
-                                        _lights[n++].Image = getImageFromString(c2.LightNtoS._color.ToString());//LightNtoS
-                                    }
-                                }
-
-                            }//end if(lights are not disabled)
-                        }
-                    }
-                }
-            }
-            Invalidate();
         }
 
-        private PictureBox addElement(int x, int y, string image, List<PictureBox> pbList)
+        private PictureBox addElement(int x, int y, string image)
         {
-            PictureBox pb = new PictureBox();
-            pb.Image = getImageFromString(image);
-            pb.Location = new Point(x, y);
-            pb.SizeMode = PictureBoxSizeMode.AutoSize;
-            pb.Show();
-            this.Controls.Add(pb);
-            pb.BringToFront();
-            pbList.Add(pb);
-            return pb;
-        }
-
-        private Image getImageFromString(string image)
-        {
+            _p = new PictureBox();
             switch (image)
             {
                 case "car North":
-                    return Properties.Resources.carN;                    
+                    _p.Image = Properties.Resources.carN;
+                    break;
 
                 case "car East":
-                    return Properties.Resources.carE;                    
+                    _p.Image = Properties.Resources.carE;
+                    break;
 
                 case "car West":
-                    return Properties.Resources.carW;                    
+                    _p.Image = Properties.Resources.carW;
+                    break;
 
                 case "car South":
-                    return Properties.Resources.carS;                    
+                    _p.Image = Properties.Resources.carS;
+                    break;
 
                 case "Color [Red]":
-                    return Properties.Resources.redLight;                    
+                    _p.Image = Properties.Resources.redLight;
+                    break;
 
                 case "Color [Green]":
-                    return Properties.Resources.greenLight;                    
+                    _p.Image = Properties.Resources.greenLight;
+                    break;
 
                 case "mergingN":
-                    return Properties.Resources.mergingN;                    
+                    _p.Image = Properties.Resources.mergingN;
+                    break;
 
                 case "mergingE":
-                    return Properties.Resources.mergingE;                    
+                    _p.Image = Properties.Resources.mergingE;
+                    break;
 
                 case "mergingS":
-                    return Properties.Resources.mergingS;                    
+                    _p.Image = Properties.Resources.mergingS;
+                    break;
 
                 case "mergingW":
-                    return Properties.Resources.mergingW;                    
+                    _p.Image = Properties.Resources.mergingW;
+                    break;
 
                 case "Traffic_Simulator.Crossing_1":
-                    return Properties.Resources.Traffic_Simulator_Crossing_1;                    
+                    _p.Image = Properties.Resources.Traffic_Simulator_Crossing_1;
+                    break;
 
                 case "Traffic_Simulator.Crossing_2":
-                    return Properties.Resources.Traffic_Simulator_Crossing_2;                    
+                    _p.Image = Properties.Resources.Traffic_Simulator_Crossing_2;
+                    break;
 
                 case "pedColor [Green]":
-                    return Properties.Resources.pedColor__Green_;                    
+                    _p.Image = Properties.Resources.pedColor__Green_;
+                    break;
 
                 case "pedColor [Red]":
-                    return Properties.Resources.pedColor__Red_;  
+                    _p.Image = Properties.Resources.pedColor__Red_;
+                    break;
 
-                default:
-                    throw new ArgumentException();
             }
+            //_p.Image = new Bitmap(image + ".png");
+            _p.Location = new Point(x, y);
+            _p.SizeMode = PictureBoxSizeMode.AutoSize;
+            _p.Show();
+            this.Controls.Add(_p);
+            _p.BringToFront();
+            _elements.Add(_p);
+            return _p;
         }
 
-        private void drawCar(Car c, int n)
+        private void drawCar(Car c)
         {
             if (c != null && c.HasEnteredGrid && !c.HasExitedGrid) //initial check
             {
@@ -539,24 +497,8 @@ namespace Traffic_Simulator
                         y += 66 + 6 + 22 * c.StreetIndex[1];
                         break;
                 }
-                if(_cars.Count>n)
-                {
-
-                    _cars[n].Visible = false;
-                    _cars[n].Invalidate();
-                    _cars[n].Location = new Point(x, y);
-                    _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
-                    _cars[n].Visible = true;
-                }
-                else
-                    addElement(x, y, "car " + c.Direction.ToString(),_cars);
+                addElement(x, y, "car " + c.Direction.ToString());
             }
-
-            if (c != null && c.HasExitedGrid)
-            {
-                _cars[n].Visible = false;
-            }
-            Invalidate();
         }
 
         public GUI() 
@@ -751,28 +693,15 @@ namespace Traffic_Simulator
 
                 buttonStop.Enabled = false;
 
+                buttonClear.Enabled = true;
+                buttonDelete.Enabled = true;
+
                 fileToolStripMenuItem.Enabled = true;
                 editToolStripMenuItem.Enabled = true;
                 insertToolStripMenuItem.Enabled = true;
 
-                buttonClear.Enabled = true;
-                buttonDelete.Enabled = true;
-
-                foreach (PictureBox pb in _lights)
-                {
-                    Controls.Remove(pb);
-                }
-                foreach (PictureBox pb in _cars)
-                {
-                    Controls.Remove(pb);
-                }
-                _lights.Clear();
-                _cars.Clear();
-
-
                 if (sender == null)
                     label1.Text = "End of simulation.";
-
             }
 
             if(SelectedSlot!="")
@@ -1019,14 +948,6 @@ namespace Traffic_Simulator
                                 if (pb.Tag.ToString() == picbox.Tag.ToString())
                                     pb.BringToFront();
                             }
-                            foreach (PictureBox pb in _lights)
-                            {
-                                pb.BringToFront();
-                            }
-                            foreach (PictureBox pb in _cars)
-                            {
-                                pb.BringToFront();
-                            }
 
                             SelectedSlot = clickedElement;//selects and displays crossing info
                         }
@@ -1069,6 +990,7 @@ namespace Traffic_Simulator
                 _gui_slots[a, b].BorderStyle = BorderStyle.FixedSingle;
                 SelectedSlot = "";
                 _controller.timerHasTriggered(null, null);
+                Invalidate();
                 }
             }
             
@@ -1169,20 +1091,6 @@ namespace Traffic_Simulator
                 tb.Modified = true;
                 _checkTextBoxes = false;
             }
-        }
-
-        private void textBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (textBoxGLT1.Text != "10")
-            {
-                textBoxGLT1.BackColor = Color.DarkSalmon;
-                textBoxGLT1.Focus();
-            }
-            else
-            {
-                textBoxGLT1.BackColor = Color.White;
-            }
-
         }
     }
 }

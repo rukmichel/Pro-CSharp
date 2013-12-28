@@ -527,12 +527,13 @@ namespace Traffic_Simulator
             try
             {
                 while (!_gui.IsReady)
-                    System.Threading.Thread.Sleep(15);
+                    System.Threading.Thread.Sleep(25);
+
                 _gui.Invoke(new Del(_gui.refreshScreen), new object[] { tempCopy });//and sends that copy as a parameter to the GUI
             }
             catch { }
             TimeSpan t = DateTime.Now - dt;
-            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 10 : _refreshRate - t.TotalMilliseconds;
+            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 40 : _refreshRate - t.TotalMilliseconds;
 	        _timer.Start();
         }
     }

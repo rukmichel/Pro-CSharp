@@ -256,6 +256,10 @@ namespace Traffic_Simulator
 
         }
 
+        /// <summary>
+        /// Draws crossings on the screen
+        /// </summary>
+        /// <param name="slots">grid that contains all crossings</param>
         private void drawCrossings(Crossing[,] slots)
         {
             SelectedSlot = "";//clears selected slot
@@ -267,12 +271,8 @@ namespace Traffic_Simulator
                 Controls.Remove(pb);
             }
             _mergings.Clear();
-            foreach (PictureBox pb in _lights)
-            {
-                Controls.Remove(pb);
-            }
-            _lights.Clear();
 
+            //clears all lights
             foreach (PictureBox pb in _lights)
             {
                 Controls.Remove(pb);
@@ -331,6 +331,7 @@ namespace Traffic_Simulator
                     }
                 }
             }
+            Invalidate();
         }
 
         private void drawLights(Crossing[,] slots)
@@ -445,6 +446,7 @@ namespace Traffic_Simulator
                     }
                 }
             }
+            Invalidate();
         }
 
         private PictureBox addElement(int x, int y, string image, List<PictureBox> pbList)

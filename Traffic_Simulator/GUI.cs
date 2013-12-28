@@ -251,7 +251,11 @@ namespace Traffic_Simulator
                 }
             }
 
-            Invalidate();
+            foreach (PictureBox pb in _gui_slots)
+            {
+                if(pb.Image!=null)
+                    pb.Update();
+            }
             _isReady = true;
 
         }
@@ -331,7 +335,8 @@ namespace Traffic_Simulator
                     }
                 }
             }
-            Invalidate();
+            foreach (PictureBox pb in _gui_slots)
+                pb.Invalidate();
         }
 
         private void drawLights(Crossing[,] slots)
@@ -446,7 +451,8 @@ namespace Traffic_Simulator
                     }
                 }
             }
-            Invalidate();
+            foreach (PictureBox pb in _lights)
+                pb.Invalidate();
         }
 
         private PictureBox addElement(int x, int y, string image, List<PictureBox> pbList)
@@ -548,7 +554,7 @@ namespace Traffic_Simulator
                 {
 
                     _cars[n].Visible = false;
-                    _cars[n].Invalidate();
+                    _cars[n].Refresh();
                     _cars[n].Location = new Point(x, y);
                     _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
                     _cars[n].Visible = true;
@@ -561,6 +567,7 @@ namespace Traffic_Simulator
             {
                 _cars[n].Visible = false;
             }
+            _cars[n].Invalidate();
         }
 
         public GUI() 
@@ -1018,8 +1025,19 @@ namespace Traffic_Simulator
                             foreach (PictureBox pb in _mergings)
                             {
                                 if (pb.Tag.ToString() == picbox.Tag.ToString())
+                                {
                                     pb.BringToFront();
+                                }
                             }
+                            foreach (PictureBox pb in _lights)
+                            {
+                                pb.BringToFront();
+                            }
+                            foreach (PictureBox pb in _cars)
+                            {
+                                pb.BringToFront();
+                            }
+                            _gui_slots[((int)picbox.Tag.ToString()[0]) - (int)'A', Convert.ToInt32(picbox.Tag.ToString()[1].ToString())].Refresh();
 
                             SelectedSlot = clickedElement;//selects and displays crossing info
                         }
@@ -1032,7 +1050,6 @@ namespace Traffic_Simulator
                         }
                     }
                 }
-                label1.Text = "";
             }
         }
 
@@ -1138,6 +1155,7 @@ namespace Traffic_Simulator
                 catch
                 {
                     label1.Text = "Error: Make sure the value is a positive whole number.";
+                    System.Media.SystemSounds.Exclamation.Play();
                     tb.BackColor = Color.DarkSalmon;
                     tb.Modified = true;
                     _checkTextBoxes = false;

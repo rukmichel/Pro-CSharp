@@ -478,7 +478,7 @@ namespace Traffic_Simulator
 
             pauseSimulation();
 
-            if (_fileHandler.hasUnsavedData())
+            if (_fileHandler.HasUnsavedData)
             {
                 string messageResult = _gui.saveMessage("Traffic Simulator", "Save modifications?"); //opens save message dialog
 

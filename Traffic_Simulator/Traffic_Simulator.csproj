@@ -94,9 +94,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="gridlayoutprototype.JPG" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\carS.png" />
     <None Include="Resources\carN.png" />
     <None Include="Resources\carE.png" />

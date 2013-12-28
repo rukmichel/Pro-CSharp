@@ -115,7 +115,6 @@
             this.textBoxGLT1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonApply = new System.Windows.Forms.Button();
             this.Crossing_2 = new System.Windows.Forms.PictureBox();
             this.Crossing_1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotD2 = new System.Windows.Forms.PictureBox();
@@ -158,16 +157,18 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.insertToolStripMenuItem,
             this.simulationToolStripMenuItem,
             this.helpToolStripMenuItem});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1051, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(252, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -292,12 +293,15 @@
             // 
             // pauseToolStripMenuItem
             // 
+            this.pauseToolStripMenuItem.Enabled = false;
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
             this.pauseToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.pauseToolStripMenuItem.Text = "Pause";
+            this.pauseToolStripMenuItem.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
             // stopToolStripMenuItem
             // 
+            this.stopToolStripMenuItem.Enabled = false;
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
             this.stopToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.stopToolStripMenuItem.Text = "Stop";
@@ -327,7 +331,7 @@
             // buttonStartPause
             // 
             this.buttonStartPause.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStartPause.Location = new System.Drawing.Point(7, 8);
+            this.buttonStartPause.Location = new System.Drawing.Point(11, 8);
             this.buttonStartPause.Margin = new System.Windows.Forms.Padding(2);
             this.buttonStartPause.Name = "buttonStartPause";
             this.buttonStartPause.Size = new System.Drawing.Size(40, 40);
@@ -342,7 +346,7 @@
             this.buttonStop.AutoSize = true;
             this.buttonStop.Enabled = false;
             this.buttonStop.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStop.Location = new System.Drawing.Point(58, 8);
+            this.buttonStop.Location = new System.Drawing.Point(11, 52);
             this.buttonStop.Margin = new System.Windows.Forms.Padding(2);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(40, 40);
@@ -362,36 +366,42 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(4, 60);
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(267, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 67);
+            this.label1.Size = new System.Drawing.Size(592, 27);
             this.label1.TabIndex = 4;
+            this.label1.Text = "To add a crossing, drag one of the icons from the left pane into the grid.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonClear
             // 
             this.buttonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClear.Location = new System.Drawing.Point(7, 138);
+            this.buttonClear.Location = new System.Drawing.Point(7, 107);
             this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(54, 24);
+            this.buttonClear.Size = new System.Drawing.Size(54, 44);
             this.buttonClear.TabIndex = 18;
-            this.buttonClear.Text = "Clear All";
+            this.buttonClear.Text = "Clear Grid";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(7, 168);
+            this.buttonDelete.Location = new System.Drawing.Point(3, 155);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(1);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(54, 24);
+            this.buttonDelete.Size = new System.Drawing.Size(64, 44);
             this.buttonDelete.TabIndex = 19;
-            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.Text = "Delete Crossing";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.buttonShowHideGLT);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
@@ -402,15 +412,15 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(901, 25);
+            this.panel1.Location = new System.Drawing.Point(858, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(150, 592);
+            this.panel1.Size = new System.Drawing.Size(150, 618);
             this.panel1.TabIndex = 22;
             // 
             // buttonShowHideGLT
             // 
-            this.buttonShowHideGLT.Location = new System.Drawing.Point(101, 4);
+            this.buttonShowHideGLT.Location = new System.Drawing.Point(101, 3);
             this.buttonShowHideGLT.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShowHideGLT.Name = "buttonShowHideGLT";
             this.buttonShowHideGLT.Size = new System.Drawing.Size(43, 23);
@@ -459,8 +469,8 @@
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.MinimumSize = new System.Drawing.Size(151, 279);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(151, 310);
-            this.panel5.TabIndex = 30;
+            this.panel5.Size = new System.Drawing.Size(151, 333);
+            this.panel5.TabIndex = 25;
             this.panel5.Visible = false;
             // 
             // label28
@@ -558,30 +568,39 @@
             this.textBoxCTSN.Enabled = false;
             this.textBoxCTSN.Location = new System.Drawing.Point(101, 231);
             this.textBoxCTSN.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTSN.MaxLength = 3;
             this.textBoxCTSN.Name = "textBoxCTSN";
             this.textBoxCTSN.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTSN.TabIndex = 24;
+            this.textBoxCTSN.TabIndex = 6;
             this.textBoxCTSN.Tag = "CT7";
+            this.textBoxCTSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTSN.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTSE
             // 
             this.textBoxCTSE.Enabled = false;
             this.textBoxCTSE.Location = new System.Drawing.Point(101, 255);
             this.textBoxCTSE.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTSE.MaxLength = 3;
             this.textBoxCTSE.Name = "textBoxCTSE";
             this.textBoxCTSE.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTSE.TabIndex = 23;
+            this.textBoxCTSE.TabIndex = 7;
             this.textBoxCTSE.Tag = "CT8";
+            this.textBoxCTSE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTSE.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTSW
             // 
             this.textBoxCTSW.Enabled = false;
             this.textBoxCTSW.Location = new System.Drawing.Point(101, 279);
             this.textBoxCTSW.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTSW.MaxLength = 3;
             this.textBoxCTSW.Name = "textBoxCTSW";
             this.textBoxCTSW.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTSW.TabIndex = 22;
+            this.textBoxCTSW.TabIndex = 8;
             this.textBoxCTSW.Tag = "CT9";
+            this.textBoxCTSW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTSW.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // label17
             // 
@@ -642,90 +661,117 @@
             this.textBoxCTWS.Enabled = false;
             this.textBoxCTWS.Location = new System.Drawing.Point(101, 389);
             this.textBoxCTWS.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTWS.MaxLength = 3;
             this.textBoxCTWS.Name = "textBoxCTWS";
             this.textBoxCTWS.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTWS.TabIndex = 12;
+            this.textBoxCTWS.TabIndex = 11;
             this.textBoxCTWS.Tag = "CT12";
+            this.textBoxCTWS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTWS.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTES
             // 
             this.textBoxCTES.Enabled = false;
             this.textBoxCTES.Location = new System.Drawing.Point(101, 152);
             this.textBoxCTES.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTES.MaxLength = 3;
             this.textBoxCTES.Name = "textBoxCTES";
             this.textBoxCTES.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTES.TabIndex = 11;
+            this.textBoxCTES.TabIndex = 4;
             this.textBoxCTES.Tag = "CT5";
+            this.textBoxCTES.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTES.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTEW
             // 
             this.textBoxCTEW.Enabled = false;
             this.textBoxCTEW.Location = new System.Drawing.Point(101, 176);
             this.textBoxCTEW.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTEW.MaxLength = 3;
             this.textBoxCTEW.Name = "textBoxCTEW";
             this.textBoxCTEW.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTEW.TabIndex = 10;
+            this.textBoxCTEW.TabIndex = 5;
             this.textBoxCTEW.Tag = "CT6";
+            this.textBoxCTEW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTEW.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTWN
             // 
             this.textBoxCTWN.Enabled = false;
             this.textBoxCTWN.Location = new System.Drawing.Point(101, 341);
             this.textBoxCTWN.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTWN.MaxLength = 3;
             this.textBoxCTWN.Name = "textBoxCTWN";
             this.textBoxCTWN.Size = new System.Drawing.Size(26, 20);
             this.textBoxCTWN.TabIndex = 9;
             this.textBoxCTWN.Tag = "CT10";
+            this.textBoxCTWN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTWN.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTWE
             // 
             this.textBoxCTWE.Enabled = false;
             this.textBoxCTWE.Location = new System.Drawing.Point(101, 365);
             this.textBoxCTWE.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTWE.MaxLength = 3;
             this.textBoxCTWE.Name = "textBoxCTWE";
             this.textBoxCTWE.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTWE.TabIndex = 8;
+            this.textBoxCTWE.TabIndex = 10;
             this.textBoxCTWE.Tag = "CT11";
+            this.textBoxCTWE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTWE.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTNE
             // 
             this.textBoxCTNE.Enabled = false;
             this.textBoxCTNE.Location = new System.Drawing.Point(101, 23);
             this.textBoxCTNE.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTNE.MaxLength = 3;
             this.textBoxCTNE.Name = "textBoxCTNE";
             this.textBoxCTNE.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNE.TabIndex = 8;
+            this.textBoxCTNE.TabIndex = 0;
             this.textBoxCTNE.Tag = "CT1";
+            this.textBoxCTNE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTNE.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTNS
             // 
             this.textBoxCTNS.Enabled = false;
             this.textBoxCTNS.Location = new System.Drawing.Point(101, 47);
             this.textBoxCTNS.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTNS.MaxLength = 3;
             this.textBoxCTNS.Name = "textBoxCTNS";
             this.textBoxCTNS.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNS.TabIndex = 9;
+            this.textBoxCTNS.TabIndex = 1;
             this.textBoxCTNS.Tag = "CT2";
+            this.textBoxCTNS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTNS.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTNW
             // 
             this.textBoxCTNW.Enabled = false;
             this.textBoxCTNW.Location = new System.Drawing.Point(101, 71);
             this.textBoxCTNW.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTNW.MaxLength = 3;
             this.textBoxCTNW.Name = "textBoxCTNW";
             this.textBoxCTNW.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNW.TabIndex = 10;
+            this.textBoxCTNW.TabIndex = 2;
             this.textBoxCTNW.Tag = "CT3";
+            this.textBoxCTNW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTNW.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxCTEN
             // 
             this.textBoxCTEN.Enabled = false;
             this.textBoxCTEN.Location = new System.Drawing.Point(101, 128);
             this.textBoxCTEN.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTEN.MaxLength = 3;
             this.textBoxCTEN.Name = "textBoxCTEN";
             this.textBoxCTEN.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTEN.TabIndex = 4;
+            this.textBoxCTEN.TabIndex = 31;
             this.textBoxCTEN.Tag = "CT4";
+            this.textBoxCTEN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTEN.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // panel4
             // 
@@ -835,40 +881,52 @@
             this.textBoxTF1.Enabled = false;
             this.textBoxTF1.Location = new System.Drawing.Point(116, 2);
             this.textBoxTF1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTF1.MaxLength = 3;
             this.textBoxTF1.Name = "textBoxTF1";
             this.textBoxTF1.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF1.TabIndex = 0;
             this.textBoxTF1.Tag = "TF1";
+            this.textBoxTF1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxTF1.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxTF3
             // 
             this.textBoxTF3.Enabled = false;
             this.textBoxTF3.Location = new System.Drawing.Point(116, 50);
             this.textBoxTF3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTF3.MaxLength = 3;
             this.textBoxTF3.Name = "textBoxTF3";
             this.textBoxTF3.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF3.TabIndex = 2;
             this.textBoxTF3.Tag = "TF3";
+            this.textBoxTF3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxTF3.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxTF4
             // 
             this.textBoxTF4.Enabled = false;
             this.textBoxTF4.Location = new System.Drawing.Point(116, 74);
             this.textBoxTF4.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTF4.MaxLength = 3;
             this.textBoxTF4.Name = "textBoxTF4";
             this.textBoxTF4.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF4.TabIndex = 3;
             this.textBoxTF4.Tag = "TF4";
+            this.textBoxTF4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxTF4.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Leaving);
             // 
             // textBoxTF2
             // 
             this.textBoxTF2.Enabled = false;
             this.textBoxTF2.Location = new System.Drawing.Point(116, 26);
             this.textBoxTF2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTF2.MaxLength = 3;
             this.textBoxTF2.Name = "textBoxTF2";
             this.textBoxTF2.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF2.TabIndex = 1;
             this.textBoxTF2.Tag = "TF2";
+            this.textBoxTF2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxTF2.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // buttonShowHideCT
             // 
@@ -926,10 +984,10 @@
             this.panel3.Controls.Add(this.textBoxGLT3);
             this.panel3.Controls.Add(this.textBoxGLT2);
             this.panel3.Controls.Add(this.textBoxGLT1);
-            this.panel3.Location = new System.Drawing.Point(0, 27);
+            this.panel3.Location = new System.Drawing.Point(0, 26);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(151, 103);
+            this.panel3.Size = new System.Drawing.Size(151, 104);
             this.panel3.TabIndex = 23;
             // 
             // label8
@@ -973,41 +1031,52 @@
             this.textBoxGLT4.Enabled = false;
             this.textBoxGLT4.Location = new System.Drawing.Point(116, 74);
             this.textBoxGLT4.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxGLT4.MaxLength = 3;
             this.textBoxGLT4.Name = "textBoxGLT4";
             this.textBoxGLT4.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT4.TabIndex = 3;
             this.textBoxGLT4.Tag = "GLT4";
+            this.textBoxGLT4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxGLT4.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxGLT3
             // 
             this.textBoxGLT3.Enabled = false;
             this.textBoxGLT3.Location = new System.Drawing.Point(116, 50);
             this.textBoxGLT3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxGLT3.MaxLength = 3;
             this.textBoxGLT3.Name = "textBoxGLT3";
             this.textBoxGLT3.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT3.TabIndex = 2;
             this.textBoxGLT3.Tag = "GLT3";
+            this.textBoxGLT3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxGLT3.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxGLT2
             // 
             this.textBoxGLT2.Enabled = false;
             this.textBoxGLT2.Location = new System.Drawing.Point(116, 26);
             this.textBoxGLT2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxGLT2.MaxLength = 3;
             this.textBoxGLT2.Name = "textBoxGLT2";
             this.textBoxGLT2.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT2.TabIndex = 1;
             this.textBoxGLT2.Tag = "GLT2";
+            this.textBoxGLT2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxGLT2.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // textBoxGLT1
             // 
             this.textBoxGLT1.Enabled = false;
             this.textBoxGLT1.Location = new System.Drawing.Point(116, 2);
             this.textBoxGLT1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxGLT1.MaxLength = 3;
             this.textBoxGLT1.Name = "textBoxGLT1";
             this.textBoxGLT1.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT1.TabIndex = 0;
             this.textBoxGLT1.Tag = "GLT1";
-            this.textBoxGLT1.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            this.textBoxGLT1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxGLT1.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
             // label2
             // 
@@ -1022,42 +1091,27 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.buttonApply);
             this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.Crossing_2);
             this.panel2.Controls.Add(this.buttonClear);
             this.panel2.Controls.Add(this.Crossing_1);
             this.panel2.Controls.Add(this.buttonStartPause);
             this.panel2.Controls.Add(this.buttonStop);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 25);
+            this.panel2.Location = new System.Drawing.Point(0, 26);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(112, 592);
+            this.panel2.Size = new System.Drawing.Size(70, 593);
             this.panel2.TabIndex = 23;
-            // 
-            // buttonApply
-            // 
-            this.buttonApply.Enabled = false;
-            this.buttonApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonApply.Location = new System.Drawing.Point(7, 199);
-            this.buttonApply.Name = "buttonApply";
-            this.buttonApply.Size = new System.Drawing.Size(98, 24);
-            this.buttonApply.TabIndex = 22;
-            this.buttonApply.Text = "Apply Changes";
-            this.buttonApply.UseVisualStyleBackColor = true;
-            this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
             // 
             // Crossing_2
             // 
-            this.Crossing_2.BackgroundImage = global::Traffic_Simulator.Properties.Resources.Traffic_Simulator_Crossing_2;
+            this.Crossing_2.BackgroundImage = global::Traffic_Simulator.Properties.Resources.c2_Icon;
             this.Crossing_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Crossing_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Crossing_2.Location = new System.Drawing.Point(7, 378);
+            this.Crossing_2.Location = new System.Drawing.Point(7, 301);
             this.Crossing_2.Margin = new System.Windows.Forms.Padding(2);
             this.Crossing_2.Name = "Crossing_2";
-            this.Crossing_2.Size = new System.Drawing.Size(99, 99);
+            this.Crossing_2.Size = new System.Drawing.Size(50, 50);
             this.Crossing_2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Crossing_2.TabIndex = 21;
             this.Crossing_2.TabStop = false;
@@ -1065,13 +1119,13 @@
             // 
             // Crossing_1
             // 
-            this.Crossing_1.BackgroundImage = global::Traffic_Simulator.Properties.Resources.Traffic_Simulator_Crossing_1;
+            this.Crossing_1.BackgroundImage = global::Traffic_Simulator.Properties.Resources.c1_Icon;
             this.Crossing_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Crossing_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Crossing_1.Location = new System.Drawing.Point(7, 254);
+            this.Crossing_1.Location = new System.Drawing.Point(7, 243);
             this.Crossing_1.Margin = new System.Windows.Forms.Padding(2);
             this.Crossing_1.Name = "Crossing_1";
-            this.Crossing_1.Size = new System.Drawing.Size(99, 99);
+            this.Crossing_1.Size = new System.Drawing.Size(50, 50);
             this.Crossing_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Crossing_1.TabIndex = 20;
             this.Crossing_1.TabStop = false;
@@ -1080,7 +1134,7 @@
             // pictureBoxSlotD2
             // 
             this.pictureBoxSlotD2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD2.Location = new System.Drawing.Point(703, 419);
+            this.pictureBoxSlotD2.Location = new System.Drawing.Point(661, 420);
             this.pictureBoxSlotD2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD2.Name = "pictureBoxSlotD2";
             this.pictureBoxSlotD2.Size = new System.Drawing.Size(198, 198);
@@ -1094,7 +1148,7 @@
             // pictureBoxSlotC2
             // 
             this.pictureBoxSlotC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC2.Location = new System.Drawing.Point(506, 419);
+            this.pictureBoxSlotC2.Location = new System.Drawing.Point(464, 420);
             this.pictureBoxSlotC2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC2.Name = "pictureBoxSlotC2";
             this.pictureBoxSlotC2.Size = new System.Drawing.Size(198, 198);
@@ -1108,7 +1162,7 @@
             // pictureBoxSlotB2
             // 
             this.pictureBoxSlotB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotB2.Location = new System.Drawing.Point(309, 419);
+            this.pictureBoxSlotB2.Location = new System.Drawing.Point(267, 420);
             this.pictureBoxSlotB2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotB2.Name = "pictureBoxSlotB2";
             this.pictureBoxSlotB2.Size = new System.Drawing.Size(198, 198);
@@ -1122,7 +1176,7 @@
             // pictureBoxSlotA2
             // 
             this.pictureBoxSlotA2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotA2.Location = new System.Drawing.Point(112, 419);
+            this.pictureBoxSlotA2.Location = new System.Drawing.Point(70, 420);
             this.pictureBoxSlotA2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotA2.Name = "pictureBoxSlotA2";
             this.pictureBoxSlotA2.Size = new System.Drawing.Size(198, 198);
@@ -1136,7 +1190,7 @@
             // pictureBoxSlotD1
             // 
             this.pictureBoxSlotD1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD1.Location = new System.Drawing.Point(703, 222);
+            this.pictureBoxSlotD1.Location = new System.Drawing.Point(661, 223);
             this.pictureBoxSlotD1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD1.Name = "pictureBoxSlotD1";
             this.pictureBoxSlotD1.Size = new System.Drawing.Size(198, 198);
@@ -1150,7 +1204,7 @@
             // pictureBoxSlotC1
             // 
             this.pictureBoxSlotC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC1.Location = new System.Drawing.Point(506, 222);
+            this.pictureBoxSlotC1.Location = new System.Drawing.Point(464, 223);
             this.pictureBoxSlotC1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC1.Name = "pictureBoxSlotC1";
             this.pictureBoxSlotC1.Size = new System.Drawing.Size(198, 198);
@@ -1164,7 +1218,7 @@
             // pictureBoxSlotB1
             // 
             this.pictureBoxSlotB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotB1.Location = new System.Drawing.Point(309, 222);
+            this.pictureBoxSlotB1.Location = new System.Drawing.Point(267, 223);
             this.pictureBoxSlotB1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotB1.Name = "pictureBoxSlotB1";
             this.pictureBoxSlotB1.Size = new System.Drawing.Size(198, 198);
@@ -1178,7 +1232,7 @@
             // pictureBoxSlotA1
             // 
             this.pictureBoxSlotA1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotA1.Location = new System.Drawing.Point(112, 222);
+            this.pictureBoxSlotA1.Location = new System.Drawing.Point(70, 223);
             this.pictureBoxSlotA1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotA1.Name = "pictureBoxSlotA1";
             this.pictureBoxSlotA1.Size = new System.Drawing.Size(198, 198);
@@ -1192,7 +1246,7 @@
             // pictureBoxSlotD0
             // 
             this.pictureBoxSlotD0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotD0.Location = new System.Drawing.Point(703, 25);
+            this.pictureBoxSlotD0.Location = new System.Drawing.Point(661, 26);
             this.pictureBoxSlotD0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotD0.Name = "pictureBoxSlotD0";
             this.pictureBoxSlotD0.Size = new System.Drawing.Size(198, 198);
@@ -1206,7 +1260,7 @@
             // pictureBoxSlotC0
             // 
             this.pictureBoxSlotC0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotC0.Location = new System.Drawing.Point(506, 25);
+            this.pictureBoxSlotC0.Location = new System.Drawing.Point(464, 26);
             this.pictureBoxSlotC0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotC0.Name = "pictureBoxSlotC0";
             this.pictureBoxSlotC0.Size = new System.Drawing.Size(198, 198);
@@ -1220,7 +1274,7 @@
             // pictureBoxSlotB0
             // 
             this.pictureBoxSlotB0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotB0.Location = new System.Drawing.Point(309, 25);
+            this.pictureBoxSlotB0.Location = new System.Drawing.Point(267, 26);
             this.pictureBoxSlotB0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotB0.Name = "pictureBoxSlotB0";
             this.pictureBoxSlotB0.Size = new System.Drawing.Size(198, 198);
@@ -1234,7 +1288,7 @@
             // pictureBoxSlotA0
             // 
             this.pictureBoxSlotA0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlotA0.Location = new System.Drawing.Point(112, 25);
+            this.pictureBoxSlotA0.Location = new System.Drawing.Point(70, 26);
             this.pictureBoxSlotA0.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxSlotA0.Name = "pictureBoxSlotA0";
             this.pictureBoxSlotA0.Size = new System.Drawing.Size(198, 198);
@@ -1250,7 +1304,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1051, 617);
+            this.ClientSize = new System.Drawing.Size(1008, 618);
+            this.Controls.Add(this.pictureBoxSlotD0);
+            this.Controls.Add(this.pictureBoxSlotC0);
+            this.Controls.Add(this.pictureBoxSlotB0);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pictureBoxSlotD2);
             this.Controls.Add(this.pictureBoxSlotC2);
@@ -1260,11 +1319,7 @@
             this.Controls.Add(this.pictureBoxSlotC1);
             this.Controls.Add(this.pictureBoxSlotB1);
             this.Controls.Add(this.pictureBoxSlotA1);
-            this.Controls.Add(this.pictureBoxSlotD0);
-            this.Controls.Add(this.pictureBoxSlotC0);
-            this.Controls.Add(this.pictureBoxSlotB0);
             this.Controls.Add(this.pictureBoxSlotA0);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -1410,7 +1465,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button buttonApply;
     }
 }
 

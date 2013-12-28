@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Timers;
-using System.Windows.Forms.ComponentModel;
 
 namespace Traffic_Simulator
 {
@@ -126,7 +125,128 @@ namespace Traffic_Simulator
         /// <param name="id">Indicates a position on the grid, for instance "A3".</param>
         /// <param name="sender">GUI object that holds the value.</param>
         /// <returns>Error message, or null if successfull.</returns>
-        public string setCrossingProperty(string id, int[] values)
+        public string setCrossingProperty(string id, object sender)
+        {
+            Crossing c = Grid.getCrossing(id);
+            System.Windows.Forms.TextBox tb = (System.Windows.Forms.TextBox)sender;
+            if (c != null)
+            {
+                try
+                {
+                    switch (tb.Tag.ToString())
+                    {
+                        case "GLT1":
+                            if (c.GetType() == typeof(Crossing_1))
+                            {
+                                Crossing_1 c1 = (Crossing_1)c;
+                                c1.LightNtoWS._greenLightTime = Convert.ToInt32(tb.Text);
+                                c1.LightStoEN._greenLightTime = Convert.ToInt32(tb.Text);
+                            }
+
+                            if (c.GetType() == typeof(Crossing_2))
+                            {
+                                Crossing_2 c2 = (Crossing_2)c;
+
+                                c2.LightPedestrian._greenLightTime = Convert.ToInt32(tb.Text);
+                            }
+                            break;
+
+                        case "GLT2":
+                            if (c.GetType() == typeof(Crossing_1))
+                            {
+                                Crossing_1 c1 = (Crossing_1)c;
+
+                                c1.LightNtoE._greenLightTime = Convert.ToInt32(tb.Text);
+                                c1.LightStoW._greenLightTime = Convert.ToInt32(tb.Text);
+                            }
+
+                            if (c.GetType() == typeof(Crossing_2))
+                            {
+                                Crossing_2 c2 = (Crossing_2)c;
+
+                                c2.LightNtoS._greenLightTime = Convert.ToInt32(tb.Text);
+                                c2.LightStoN._greenLightTime = Convert.ToInt32(tb.Text);
+                            }
+                            break;
+
+                        case "GLT3":
+                            c.LightWtoN._greenLightTime = Convert.ToInt32(tb.Text);
+                            break;
+                        case "GLT4":
+                            c.LightWtoSE._greenLightTime = Convert.ToInt32(tb.Text);
+                            break;
+                        case "TF1":
+                            c.FlowN = Convert.ToInt32(tb.Text);
+                            break;
+                        case "TF2":
+                            c.FlowE = Convert.ToInt32(tb.Text);
+                            break;
+                        case "TF3":
+                            c.FlowS = Convert.ToInt32(tb.Text);
+                            break;
+                        case "TF4":
+                            c.FlowW = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT1":
+                            c.ProbNtoE = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT2":
+                            c.ProbNtoS = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT3":
+                            c.ProbNtoW = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT4":
+                            c.ProbEtoN = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT5":
+                            c.ProbEtoS = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT6":
+                            c.ProbEtoW = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT7":
+                            c.ProbStoN = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT8":
+                            c.ProbStoE = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT9":
+                            c.ProbStoW = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT10":
+                            c.ProbWtoN = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT11":
+                            c.ProbWtoE = Convert.ToInt32(tb.Text);
+                            break;
+                        case "CT12":
+                            c.ProbWtoS = Convert.ToInt32(tb.Text);
+                            break;
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    if (e.GetType() == typeof(System.FormatException))
+                        return "Error: Make sure the value is a positive whole number.";
+                    if(e.GetType() == typeof(System.OverflowException))
+                        return "Error: Value is too high.";
+                }
+            }
+
+            _fileHandler.setUnsavedData();
+            return "";
+        }
+        
+        /// <summary>
+        /// Sets a value of a crossing's atribute.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public string setCrossingProperties(string id, int[] values)
         {
             Crossing c = Grid.getCrossing(id);
             if (c != null)
@@ -375,6 +495,10 @@ namespace Traffic_Simulator
                 if (messageResult == "Cancel") //user cancels closing program
                 {
                     return "";
+                }
+                if (messageResult == "Error: Make sure the value is a positive whole number.")
+                {
+                    return messageResult;
                 }
             }
             return "Program is closing...";

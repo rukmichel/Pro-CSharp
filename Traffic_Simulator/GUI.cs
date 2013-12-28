@@ -19,7 +19,7 @@ namespace Traffic_Simulator
         private Crossing _copiedCrossing = null;
         private string _selectedSlot = "";
         private TextBox[] _crossingProperties = new TextBox[20];
-        private bool _isReady = true;
+        private bool _isReady = true, _checkTextBoxes;
         private Type _draggedCrossingType;
         private SimulationController Controller
         {
@@ -45,8 +45,6 @@ namespace Traffic_Simulator
                 }
 
                 _selectedSlot = value;
-
-                buttonApply.Enabled = (Controller.State == State.Stopped) && (_selectedSlot != "");
             } 
         }
 
@@ -57,6 +55,30 @@ namespace Traffic_Simulator
         {
             get { return _isReady; }
             set { _isReady = value; }
+        }
+
+        /// <summary>
+        /// Checks if each textbox has been modified and saves modifications
+        /// </summary>
+        /// <returns>
+        /// Weather all textboxes have valid values
+        /// </returns>
+        private bool CheckTextBoxes()
+        {
+            _checkTextBoxes = true;
+
+            foreach (TextBox tb in _crossingProperties)
+            {
+                if (tb.Modified)
+                {
+                    textBox_Leaving(tb, null);
+                }
+
+                if (_checkTextBoxes == false)
+                    return false;
+            }
+
+            return _checkTextBoxes;
         }
 
         /// <summary>
@@ -95,8 +117,18 @@ namespace Traffic_Simulator
         /// <returns>True if user clics OK; False if user clicks CANCEL</returns>
         public string saveMessage(string title, string message)
         {
-            return MessageBox.Show(message, title, MessageBoxButtons.YesNoCancel).ToString();//if users clicks "ok"
-           
+            DialogResult d = MessageBox.Show(message, title, MessageBoxButtons.YesNoCancel);
+            if (d == DialogResult.Yes)
+            {
+                if (CheckTextBoxes())
+                    return d.ToString();//if users clicks "ok"
+                else
+                    return label1.Text;
+            }
+            else
+            {
+                return d.ToString();//if users clicks "ok"
+            }
         }
 
         /// <summary>
@@ -105,11 +137,8 @@ namespace Traffic_Simulator
         /// <param name="c">crossing whose properties will be displayed</param>
         public void displayCrossingSettings(Crossing c)
         {
-            //buttonApplyChanges.Focus();
             if (c != null)
-            {
-                //buttonApplyChanges.Text = "Apply changes: " + selectedSlot + "   ✓";
-                
+            {                
                 //if its stopped, enables textboxes, otherwise disables them
                 foreach (TextBox tb in _crossingProperties)
                 {
@@ -181,10 +210,16 @@ namespace Traffic_Simulator
             {
                 foreach (TextBox tb in _crossingProperties)
                 {
+                    if (tb.Focused)
+                        buttonShowHideGLT.Focus();
                     tb.Text = "";
                     tb.Enabled = false;
                     tb.BackColor = TextBoxBase.DefaultBackColor;
                 }
+            }
+            foreach (TextBox tb in _crossingProperties)
+            {
+                tb.Modified = false;
             }
         }
 
@@ -529,6 +564,17 @@ namespace Traffic_Simulator
             InitializeComponent();
             _controller.Gui = this;
 
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(this.label2, "Time in seconds for which the traffic light will stay green");
+
+            System.Windows.Forms.ToolTip ToolTip2 = new System.Windows.Forms.ToolTip();
+            ToolTip2.SetToolTip(this.label3, "Number of cars that will enter the crossing");
+
+            System.Windows.Forms.ToolTip ToolTip3 = new System.Windows.Forms.ToolTip();
+            ToolTip3.SetToolTip(this.label4, "Chance of a car to make a turn");
+
+
+
             //add pictureboxes to array
             _gui_slots[0, 0] = pictureBoxSlotA0;
             _gui_slots[0, 1] = pictureBoxSlotA1;
@@ -585,19 +631,26 @@ namespace Traffic_Simulator
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label1.Text = _controller.save();
+            if (CheckTextBoxes())
+                label1.Text = _controller.save();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label1.Text = _controller.saveAs();
+            if (CheckTextBoxes())
+                label1.Text = _controller.saveAs();
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             label1.Text = _controller.load();
             if (label1.Text == "Simulation has been loaded")
+            {
+                foreach (TextBox tb in _crossingProperties)
+                    tb.Modified = false;
+
                 _controller.timerHasTriggered(null, null);
+            }
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -609,59 +662,78 @@ namespace Traffic_Simulator
             else 
             { 
                 label1.Text = _controller.close();
-                if (label1.Text == "") 
+                if (label1.Text == "" || label1.Text == "Error: Make sure the value is a positive whole number.")
                 {
-                    ((CancelEventArgs)e).Cancel = true;   
+                    ((CancelEventArgs)e).Cancel = true;
                 }
             }
         }
              
         private void buttonStartPause_Click(object sender, EventArgs e)// start/pause button click method
         {
-
-            if (_controller.State != State.Running) //if simulation is not running
+            if (CheckTextBoxes())
             {
-                label1.Text = _controller.startSimulation();
-
-                if (label1.Text == "")
+                if (_controller.State != State.Running) //if simulation is not running
                 {
-                    buttonStartPause.Text = "ll";
-                    buttonStartPause.TextAlign = ContentAlignment.MiddleCenter;
-                    buttonStop.Enabled = true;
+                    label1.Text = _controller.startSimulation();
 
-                    buttonClear.Enabled = false;
-                    buttonDelete.Enabled = false;
+                    if (label1.Text == "")//if started sucsessfully
+                    {
+                        label1.Text = "Simulation is running...";
+                        buttonStartPause.Text = "ll";
+                        buttonStartPause.TextAlign = ContentAlignment.MiddleCenter;
+                        buttonStop.Enabled = true;
+                        stopToolStripMenuItem.Enabled = true;
+                        startToolStripMenuItem.Enabled = false;
+                        pauseToolStripMenuItem.Enabled = true;
+
+                        buttonClear.Enabled = false;
+                        buttonDelete.Enabled = false;
+
+                        fileToolStripMenuItem.Enabled = false;
+                        editToolStripMenuItem.Enabled = false;
+                        insertToolStripMenuItem.Enabled = false;
+                    }
+
+                    //locks crossings properties
+                    if (SelectedSlot != "")
+                        _controller.selectCrossing(SelectedSlot);
+
+                    return;     //leave method
                 }
 
-                buttonApply.Enabled = (Controller.State == State.Stopped) && (_selectedSlot != "");
-                
-                //locks crossings properties
-                if (SelectedSlot != "")
-                    _controller.selectCrossing(SelectedSlot);
 
-                return;     //leave method
-            }
-            
-
-            if(_controller.State == State.Running) //if simulation is running
-            {
-                label1.Text = _controller.pauseSimulation();
-                if (label1.Text == "")
+                if (_controller.State == State.Running) //if simulation is running
                 {
-                    buttonStartPause.Text = "►";
-                    buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
-                    buttonStop.Enabled = true;
-                    buttonClear.Enabled = false;
-                    buttonDelete.Enabled = false;
+                    label1.Text = _controller.pauseSimulation();
+                    if (label1.Text == "")
+                    {
+
+                        label1.Text = "Simulation is paused.";
+                        buttonStartPause.Text = "►";
+                        buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
+
+                        buttonStop.Enabled = true;
+
+                        stopToolStripMenuItem.Enabled = true;
+                        startToolStripMenuItem.Enabled = true;
+                        pauseToolStripMenuItem.Enabled = false;
+
+
+                        buttonClear.Enabled = false;
+                        buttonDelete.Enabled = false;
+
+                        fileToolStripMenuItem.Enabled = false;
+                        editToolStripMenuItem.Enabled = false;
+                        insertToolStripMenuItem.Enabled = false;
+                    }
+
+                    //locks crossings properties
+                    if (SelectedSlot != "")
+                        _controller.selectCrossing(SelectedSlot);
+
+                    return;
                 }
-
-                buttonApply.Enabled = (Controller.State == State.Stopped) && (_selectedSlot != "");
-
-                //locks crossings properties
-                if (SelectedSlot != "")
-                    _controller.selectCrossing(SelectedSlot);
-
-                return;
             }
 
         }
@@ -669,10 +741,23 @@ namespace Traffic_Simulator
         public void buttonStop_Click(object sender, EventArgs e)// stop button click method
         {
             label1.Text = _controller.stopSimulation();
-            if (_controller.State == State.Stopped) {
+            if (_controller.State == State.Stopped && label1.Text=="") {
                 buttonStartPause.Text = "►";
                 buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
+                
+                stopToolStripMenuItem.Enabled = false;
+                pauseToolStripMenuItem.Enabled = false;
+                startToolStripMenuItem.Enabled = true;
+
                 buttonStop.Enabled = false;
+
+                fileToolStripMenuItem.Enabled = true;
+                editToolStripMenuItem.Enabled = true;
+                insertToolStripMenuItem.Enabled = true;
+
+                buttonClear.Enabled = true;
+                buttonDelete.Enabled = true;
+
                 foreach (PictureBox pb in _lights)
                 {
                     Controls.Remove(pb);
@@ -683,14 +768,15 @@ namespace Traffic_Simulator
                 }
                 _lights.Clear();
                 _cars.Clear();
+
+
+                if (sender == null)
+                    label1.Text = "End of simulation.";
+
             }
 
             if(SelectedSlot!="")
                 _controller.selectCrossing(SelectedSlot);
-
-            buttonClear.Enabled = true;
-            buttonDelete.Enabled = true;
-            buttonApply.Enabled = (Controller.State == State.Stopped) && (_selectedSlot != "");
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -712,72 +798,102 @@ namespace Traffic_Simulator
                     pb.BringToFront();
                 }
                 SelectedSlot = "";
+                label1.Text = "";
             }          
         }
 
         private void buttonShowHideGLT_Click(object sender, EventArgs e)
         {
-
-            int height = panel3.Size.Height;
-            if (buttonShowHideGLT.Text == "Hide")
-            {                    
-                buttonShowHideGLT.Text = "Show";
-                panel3.Visible = false;
-                label3.Location = new Point(label3.Location.X, label3.Location.Y - height);
-                buttonShowHideTF.Location = new Point(buttonShowHideTF.Location.X, buttonShowHideTF.Location.Y - height);
-                panel4.Location = new Point(panel4.Location.X, panel4.Location.Y - height);
-                label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
-                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
-                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
-             
-            }
-            else 
+            if (CheckTextBoxes())
             {
-                buttonShowHideGLT.Text = "Hide";
-                panel3.Visible = true;
-                label3.Location = new Point(label3.Location.X, label3.Location.Y + height);
-                buttonShowHideTF.Location = new Point(buttonShowHideTF.Location.X, buttonShowHideTF.Location.Y + height);
-                panel4.Location = new Point(panel4.Location.X, panel4.Location.Y + height);
+                int height = panel3.Size.Height;
+                if (buttonShowHideGLT.Text == "Hide")
+                {
+                    buttonShowHideGLT.Text = "Show";
+                    panel3.Visible = false;
+                    label3.Location = new Point(label3.Location.X, label3.Location.Y - height);
+                    buttonShowHideTF.Location = new Point(buttonShowHideTF.Location.X, buttonShowHideTF.Location.Y - height);
+                    panel4.Location = new Point(panel4.Location.X, panel4.Location.Y - height);
+                    label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
+                    buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
+                    panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
+
+                    panel5.Size = new Size(151, 437);
+
+                }
+                else
+                {
+
+                    if (buttonShowHideTF.Text == "Show")
+                        panel5.Size = new Size(151, 437);
+                    else
+                        panel5.Size = new Size(151, 333);
+
+                    buttonShowHideGLT.Text = "Hide";
+                    panel3.Visible = true;
+                    label3.Location = new Point(label3.Location.X, label3.Location.Y + height);
+                    buttonShowHideTF.Location = new Point(buttonShowHideTF.Location.X, buttonShowHideTF.Location.Y + height);
+                    panel4.Location = new Point(panel4.Location.X, panel4.Location.Y + height);
                     label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
-                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
-                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+                    buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
+                    panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+                }
             }
         }
 
         private void buttonShowHideTF_Click(object sender, EventArgs e)
         {
-            int height = panel4.Size.Height;
+            if (CheckTextBoxes())
+            {
+                int height = panel4.Size.Height;
 
-            if (buttonShowHideTF.Text == "Hide")
-            {
-                buttonShowHideTF.Text = "Show";
-                panel4.Visible = false;
-                label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
-                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
-                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
-            }
-            else
-            {
-                buttonShowHideTF.Text = "Hide";
-                panel4.Visible = true;
-                label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
-                buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
-                panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+                if (buttonShowHideTF.Text == "Hide")
+                {
+
+                    buttonShowHideTF.Text = "Show";
+                    panel4.Visible = false;
+                    label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
+                    buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
+                    panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
+                    panel5.Size = new Size(151, 437);
+                }
+                else
+                {
+                    if (buttonShowHideGLT.Text == "Show")
+                        panel5.Size = new Size(151, 437);
+                    else
+                        panel5.Size = new Size(151, 333);
+
+                    buttonShowHideTF.Text = "Hide";
+                    panel4.Visible = true;
+                    label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
+                    buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
+                    panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+                }
             }
         }
 
         private void buttonShowHideCT_Click(object sender, EventArgs e)
         {
-            if (buttonShowHideCT.Text == "Hide")
+
+            if (CheckTextBoxes())
             {
-                buttonShowHideCT.Text = "Show";
-                panel5.Visible = false;
-                
-            }
-            else
-            {
-                buttonShowHideCT.Text = "Hide";
-                panel5.Visible = true;
+                if (buttonShowHideCT.Text == "Hide")
+                {
+                    buttonShowHideCT.Text = "Show";
+                    panel5.Visible = false;
+
+                    if (buttonShowHideGLT.Text == "Show" || buttonShowHideTF.Text == "Show")
+                        panel5.Size = new Size(151, 437);
+                    else
+                        panel5.Size = new Size(151, 333);
+
+                }
+                else
+                {
+                    buttonShowHideCT.Text = "Hide";
+                    panel5.Visible = true;
+                }
             }
         }
 
@@ -820,90 +936,110 @@ namespace Traffic_Simulator
 
         private void slot_click(object sender, EventArgs e)
         {
-            string clickedElement = ((Control)sender).Tag.ToString();
-            PictureBox picbox = _gui_slots[((int)clickedElement[0]) - (int)'A', Convert.ToInt32(clickedElement[1].ToString())];
-
-            if (_copiedCrossing != null)//if there is an object to be pasted
+            if (CheckTextBoxes())
             {
-                if (Controller.slotIsAvailable(picbox.Tag.ToString()))
+                string clickedElement = ((Control)sender).Tag.ToString();
+                PictureBox picbox = _gui_slots[((int)clickedElement[0]) - (int)'A', Convert.ToInt32(clickedElement[1].ToString())];
+
+                if (_copiedCrossing != null)//if there is an object to be pasted
                 {
-                    label1.Text = Controller.addCrossing(picbox.Tag.ToString(), _copiedCrossing.GetType());
-                    if (label1.Text == "")
+                    if (Controller.slotIsAvailable(picbox.Tag.ToString()))
                     {
-                        int[] values = new int[20];
-
-                        if (_copiedCrossing.GetType() == typeof(Crossing_1))
+                        label1.Text = Controller.addCrossing(picbox.Tag.ToString(), _copiedCrossing.GetType());
+                        if (label1.Text == "")
                         {
-                            Crossing_1 c1 = (Crossing_1)_copiedCrossing;
+                            int[] values = new int[20];
 
-                            values[0] = c1.LightNtoWS._greenLightTime;
-                            values[1] = c1.LightStoW._greenLightTime;
+                            if (_copiedCrossing.GetType() == typeof(Crossing_1))
+                            {
+                                Crossing_1 c1 = (Crossing_1)_copiedCrossing;
+
+                                values[0] = c1.LightNtoWS._greenLightTime;
+                                values[1] = c1.LightStoW._greenLightTime;
+                            }
+
+                            if (_copiedCrossing.GetType() == typeof(Crossing_2))
+                            {
+                                Crossing_2 c2 = (Crossing_2)_copiedCrossing;
+
+                                values[0] = c2.LightPedestrian._greenLightTime;
+                                values[1] = c2.LightStoN._greenLightTime;
+                            }
+
+                            values[2] = _copiedCrossing.LightWtoN._greenLightTime;
+                            values[3] = _copiedCrossing.LightWtoSE._greenLightTime;
+                            values[4] = _copiedCrossing.FlowN;
+                            values[5] = _copiedCrossing.FlowE;
+                            values[6] = _copiedCrossing.FlowS;
+                            values[7] = _copiedCrossing.FlowW;
+                            values[8] = (int)_copiedCrossing.ProbNtoE;
+                            values[9] = (int)_copiedCrossing.ProbNtoS;
+                            values[10] = (int)_copiedCrossing.ProbNtoW;
+                            values[11] = (int)_copiedCrossing.ProbEtoN;
+                            values[12] = (int)_copiedCrossing.ProbEtoS;
+                            values[13] = (int)_copiedCrossing.ProbEtoW;
+                            values[14] = (int)_copiedCrossing.ProbStoN;
+                            values[15] = (int)_copiedCrossing.ProbStoE;
+                            values[16] = (int)_copiedCrossing.ProbStoW;
+                            values[17] = (int)_copiedCrossing.ProbWtoN;
+                            values[18] = (int)_copiedCrossing.ProbWtoE;
+                            values[19] = (int)_copiedCrossing.ProbWtoS;
+
+                            Controller.setCrossingProperties(picbox.Tag.ToString(), values);
+                            _copiedCrossing = null;
+                            Controller.timerHasTriggered(null, null);
                         }
-
-                        if (_copiedCrossing.GetType() == typeof(Crossing_2))
-                        {
-                            Crossing_2 c2 = (Crossing_2)_copiedCrossing;
-
-                            values[0] = c2.LightPedestrian._greenLightTime;
-                            values[1] = c2.LightStoN._greenLightTime;
-                        }
-
-                        values[2] = _copiedCrossing.LightWtoN._greenLightTime;
-                        values[3] = _copiedCrossing.LightWtoSE._greenLightTime;
-                        values[4] = _copiedCrossing.FlowN;
-                        values[5] = _copiedCrossing.FlowE;
-                        values[6] = _copiedCrossing.FlowS;
-                        values[7] = _copiedCrossing.FlowW;
-                        values[8] = (int)_copiedCrossing.ProbNtoE;
-                        values[9] = (int)_copiedCrossing.ProbNtoS;
-                        values[10] = (int)_copiedCrossing.ProbNtoW;
-                        values[11] = (int)_copiedCrossing.ProbEtoN;
-                        values[12] = (int)_copiedCrossing.ProbEtoS;
-                        values[13] = (int)_copiedCrossing.ProbEtoW;
-                        values[14] = (int)_copiedCrossing.ProbStoN;
-                        values[15] = (int)_copiedCrossing.ProbStoE;
-                        values[16] = (int)_copiedCrossing.ProbStoW;
-                        values[17] = (int)_copiedCrossing.ProbWtoN;
-                        values[18] = (int)_copiedCrossing.ProbWtoE;
-                        values[19] = (int)_copiedCrossing.ProbWtoS;
-
-                        Controller.setCrossingProperty(picbox.Tag.ToString(), values);
-                        _copiedCrossing = null;
-                        Controller.timerHasTriggered(null, null);
+                    }
+                    else
+                    {
+                        label1.Text = "Please select an available slot.";
                     }
                 }
-                else
+                else//if there is no object to be pasted
                 {
-                    label1.Text = "Please select an available slot.";
-                }
-            }
-            else//if there is no object to be pasted
-            {
-                //if clicked on a (not null) crossing
-                if (picbox.Image != null)
-                {
-                    //if clicked on an unselected slot
-                    if (clickedElement != SelectedSlot)
+                    //if clicked on a (not null) crossing
+                    if (picbox.Image != null)
                     {
-                        //unselect pevious slot
-                        if (SelectedSlot != "")
+                        //if clicked on an unselected slot
+                        if (clickedElement != SelectedSlot)
                         {
-                            _gui_slots[((int)SelectedSlot[0]) - (int)'A', Convert.ToInt32(SelectedSlot[1].ToString())].BorderStyle = BorderStyle.None;
+                            //unselect pevious slot
+                            if (SelectedSlot != "")
+                            {
+                                _gui_slots[((int)SelectedSlot[0]) - (int)'A', Convert.ToInt32(SelectedSlot[1].ToString())].BorderStyle = BorderStyle.None;
+                                _gui_slots[((int)SelectedSlot[0]) - (int)'A', Convert.ToInt32(SelectedSlot[1].ToString())].SendToBack();
+                            }
+
+                            //selects clicked slot
+                            _gui_slots[((int)picbox.Tag.ToString()[0]) - (int)'A', Convert.ToInt32(picbox.Tag.ToString()[1].ToString())].BorderStyle = BorderStyle.Fixed3D;
+                            _gui_slots[((int)picbox.Tag.ToString()[0]) - (int)'A', Convert.ToInt32(picbox.Tag.ToString()[1].ToString())].BringToFront();
+
+                            foreach (PictureBox pb in _mergings)
+                            {
+                                if (pb.Tag.ToString() == picbox.Tag.ToString())
+                                    pb.BringToFront();
+                            }
+                            foreach (PictureBox pb in _lights)
+                            {
+                                pb.BringToFront();
+                            }
+                            foreach (PictureBox pb in _cars)
+                            {
+                                pb.BringToFront();
+                            }
+
+                            SelectedSlot = clickedElement;//selects and displays crossing info
+                        }
+                        else //clicked on an already selected crossing
+                        {
+                            _gui_slots[((int)picbox.Tag.ToString()[0]) - (int)'A', Convert.ToInt32(picbox.Tag.ToString()[1].ToString())].BorderStyle = BorderStyle.None;
                             _gui_slots[((int)SelectedSlot[0]) - (int)'A', Convert.ToInt32(SelectedSlot[1].ToString())].SendToBack();
+
+                            SelectedSlot = "";
                         }
-
-                        //selects clicked slot
-                        _gui_slots[((int)picbox.Tag.ToString()[0]) - (int)'A', Convert.ToInt32(picbox.Tag.ToString()[1].ToString())].BorderStyle = BorderStyle.Fixed3D;
-
-                        SelectedSlot = clickedElement;//selects and displays crossing info
-                    }
-                    else //clicked on an already selected crossing
-                    {
-                        _gui_slots[((int)picbox.Tag.ToString()[0]) - (int)'A', Convert.ToInt32(picbox.Tag.ToString()[1].ToString())].BorderStyle = BorderStyle.None;
-
-                        SelectedSlot = "";
                     }
                 }
+                label1.Text = "";
             }
         }
 
@@ -940,69 +1076,40 @@ namespace Traffic_Simulator
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            if (SelectedSlot == "")
+            if (CheckTextBoxes())
             {
-                label1.Text = "Please select a crossing first.";
-            }
-            else
-            {
-                _copiedCrossing = ObjectCopier.Clone<Crossing> (Grid.getCrossing(SelectedSlot));
-                label1.Text = "Selected crossing has been copied.\nPlease select an available slot to paste.";
-            }
-
-        }
-
-        private void buttonApply_Click(object sender, EventArgs e)
-        {
-            List<int> listOfProperties = new List<int>();
-            bool done = true;
-            foreach (TextBox tb in _crossingProperties)
-            {               
-                try
+                if (SelectedSlot == "")
                 {
-                    int value = 0;
-                    if (tb.Text != "")//empty strings are not allowed to be values
-                        value = Convert.ToInt32(tb.Text);
-                    if(value<0)
-                        throw(new FormatException());
-
-                    listOfProperties.Add(value);
-                    done = done && true;
+                    label1.Text = "Please select a crossing first.";
                 }
-
-                catch (FormatException)
+                else
                 {
-                    label1.Text = "Make sure all values are positive whole numbers";
-                    tb.BackColor = Color.Red;
-                    //MessageBox.Show(SelectedSlot);
-                    tb.Focus();
-                    done = false;
+                    _copiedCrossing = ObjectCopier.Clone<Crossing>(Grid.getCrossing(SelectedSlot));
+                    label1.Text = "Selected crossing has been copied.\nPlease select an available slot to paste.";
                 }
             }
-            if (done)
-            {
-                Controller.setCrossingProperty(SelectedSlot, listOfProperties.ToArray());
-                label1.Text = "Changes successully applied.";
-            }
+
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedSlot == "")
+            if (CheckTextBoxes())
             {
-                label1.Text = "Please select a crossing first.";
-            }
-            else
-            {
-                _copiedCrossing = ObjectCopier.Clone<Crossing>(Grid.getCrossing(SelectedSlot));
-                Controller.removeCrossing(SelectedSlot);
-                _gui_slots[((int)SelectedSlot[0]) - (int)'A', Convert.ToInt32(SelectedSlot[1].ToString())].BorderStyle = BorderStyle.FixedSingle;
-                _selectedSlot = "";
-                Controller.timerHasTriggered(null, null);
+                if (SelectedSlot == "")
+                {
+                    label1.Text = "Please select a crossing first.";
+                }
+                else
+                {
+                    _copiedCrossing = ObjectCopier.Clone<Crossing>(Grid.getCrossing(SelectedSlot));
+                    Controller.removeCrossing(SelectedSlot);
+                    _gui_slots[((int)SelectedSlot[0]) - (int)'A', Convert.ToInt32(SelectedSlot[1].ToString())].BorderStyle = BorderStyle.FixedSingle;
+                    _selectedSlot = "";
+                    Controller.timerHasTriggered(null, null);
 
 
-                label1.Text = "Selected crossing has been cut.\nPlease select an available slot to paste.";
+                    label1.Text = "Selected crossing has been cut.\nPlease select an available slot to paste.";
+                }
             }
         }
 
@@ -1016,6 +1123,52 @@ namespace Traffic_Simulator
         {
             label1.Text = "Please select an available slot.";
             _copiedCrossing = new Crossing_2("XX");
+        }
+
+        private void textBox_Leaving(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Modified)
+            {
+                try
+                {
+                    int value = 0;
+                    if (tb.Text != "")//empty strings are not allowed to be values
+                        value = Convert.ToInt32(tb.Text);
+                    if (value < 0)
+                        throw (new FormatException());
+
+                    label1.Text = Controller.setCrossingProperty(SelectedSlot, sender);
+                    tb.BackColor = Color.White;
+                    tb.Modified = false;
+                }
+                catch
+                {
+                    label1.Text = "Error: Make sure the value is a positive whole number.";
+                    tb.BackColor = Color.DarkSalmon;
+                    tb.Modified = true;
+                    _checkTextBoxes = false;
+                    tb.Focus();
+                }
+            }
+        }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBox_Leaving(sender, e);
+                tb.Modified = true;
+                _checkTextBoxes = false;
+                if (label1.Text != "Error: Make sure the value is a positive whole number.")
+                    SendKeys.Send("{TAB}");
+            }
+            else
+            {
+                tb.Modified = true;
+                _checkTextBoxes = false;
+            }
         }
 
         private void textBox_Validating(object sender, CancelEventArgs e)

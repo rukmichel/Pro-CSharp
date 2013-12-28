@@ -14,6 +14,17 @@ namespace Traffic_Simulator
         /// </summary>
         List<Car> _listOfCars = new List<Car>();
 
+        /// <summary>
+        /// weather the grid is done ticking every element
+        /// </summary>
+        private bool _finishedTicking=true;
+        public bool FinishedTicking
+        {
+            get { return _finishedTicking; }
+            set { _finishedTicking = value; }
+        }
+        
+
         public List<Car> ListOfCars
         {
             get { return _listOfCars; }
@@ -62,6 +73,7 @@ namespace Traffic_Simulator
         /// </summary>
         public void timeTick() 
         {
+            _finishedTicking = false;
             CurrentNumberOfCarsInGrid = 0;
 
             foreach (Crossing c in _slots) //'ticks' all crossings and add new cars to crossings
@@ -84,6 +96,7 @@ namespace Traffic_Simulator
 
             if (CurrentNumberOfCarsInGrid > _peakNumberOfCars)
                 _peakNumberOfCars = CurrentNumberOfCarsInGrid;
+            _finishedTicking = true;
         }
 
         /// <summary>

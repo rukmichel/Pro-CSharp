@@ -521,11 +521,19 @@ namespace Traffic_Simulator
             _timer.Stop();
             try
             {
+                if (State == State.Running)
+                {
+                    _grid.FinishedTicking = false;
+                    System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(_grid.timeTick));
+                    thread.IsBackground = true;
+                    thread.Start();
+                }
+
                 while (!_gui.IsReady)
                     System.Threading.Thread.Sleep(1);
 
-                if (this.State == State.Running)
-                    _grid.timeTick();
+                while (!_grid.FinishedTicking)
+                    System.Threading.Thread.Sleep(1);
 
                 if (this.State == State.Running && _grid.CurrentNumberOfCarsInGrid == 0)
                     _gui.Invoke(new Del2(_gui.buttonStop_Click), new object[] { null, null });
@@ -535,7 +543,7 @@ namespace Traffic_Simulator
             }
             catch { }
             TimeSpan t = DateTime.Now - dt;
-            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 10 : _refreshRate - t.TotalMilliseconds;
+            _timer.Interval = (t.TotalMilliseconds > _refreshRate) ? 1 : _refreshRate - t.TotalMilliseconds;
 	        _timer.Start();
         }
     }

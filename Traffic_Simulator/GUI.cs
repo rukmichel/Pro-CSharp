@@ -260,7 +260,6 @@ namespace Traffic_Simulator
                         drawCar(c, i);//draws cars
                     }
                 }
-
                 thread = new Thread(new ThreadStart(moveCars));
                 thread.IsBackground = true;
                 thread.Start();
@@ -648,20 +647,21 @@ namespace Traffic_Simulator
                     aditionalStep = 0;
                     double totalTime = (DateTime.Now - startTime).TotalMilliseconds;
 
-                    if (totalTime > 40 + 8*(5-(int)numericUpDown1.Value))
+                    if (totalTime > 20 + 6*(5-(int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 60 + 12 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 30 + 9 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 80 + 16 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 40 + 12 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 100 + 20 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 50 + 15 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 120 + 24 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 60 + 18 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
 
-                    Thread.Sleep(15);
-                    if ((totalTime < (100-20*(double)numericUpDown1.Value)) && stepsLeft != 0 && totalTime != 0)
-                        Thread.Sleep((int)(100 - 20 * (double)numericUpDown1.Value) - (int)totalTime);
+                    
+                    if ((totalTime < (120 - 20 * (double)numericUpDown1.Value)) && stepsLeft != 0 && totalTime != 0)
+                        Thread.Sleep((int)(120 - 20 * (double)numericUpDown1.Value) - (int)totalTime);
+                    
                 }
                 Invalidate();
                 if (_threadInterrupt)

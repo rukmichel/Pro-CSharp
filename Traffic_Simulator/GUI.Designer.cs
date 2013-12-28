@@ -128,7 +128,16 @@
             this.pictureBoxSlotD0 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotC0 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotB0 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();           
+            this.deleteCrossingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearGridToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.crossingType1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crossingType2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pauseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.userManualToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -168,7 +177,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(252, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(250, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1105,13 +1114,13 @@
             // 
             // Crossing_2
             // 
-            this.Crossing_2.BackgroundImage = global::Traffic_Simulator.Properties.Resources.c2_Icon;
             this.Crossing_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Crossing_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Crossing_2.Image = global::Traffic_Simulator.Properties.Resources.c2_Icon;
             this.Crossing_2.Location = new System.Drawing.Point(7, 301);
             this.Crossing_2.Margin = new System.Windows.Forms.Padding(2);
             this.Crossing_2.Name = "Crossing_2";
-            this.Crossing_2.Size = new System.Drawing.Size(50, 50);
+            this.Crossing_2.Size = new System.Drawing.Size(53, 53);
             this.Crossing_2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Crossing_2.TabIndex = 21;
             this.Crossing_2.TabStop = false;
@@ -1119,13 +1128,13 @@
             // 
             // Crossing_1
             // 
-            this.Crossing_1.BackgroundImage = global::Traffic_Simulator.Properties.Resources.c1_Icon;
             this.Crossing_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Crossing_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Crossing_1.Image = global::Traffic_Simulator.Properties.Resources.c1_Icon;
             this.Crossing_1.Location = new System.Drawing.Point(7, 243);
             this.Crossing_1.Margin = new System.Windows.Forms.Padding(2);
             this.Crossing_1.Name = "Crossing_1";
-            this.Crossing_1.Size = new System.Drawing.Size(50, 50);
+            this.Crossing_1.Size = new System.Drawing.Size(53, 53);
             this.Crossing_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Crossing_1.TabIndex = 20;
             this.Crossing_1.TabStop = false;
@@ -1294,6 +1303,7 @@
             this.pictureBoxSlotA0.Size = new System.Drawing.Size(198, 198);
             this.pictureBoxSlotA0.TabIndex = 3;
             this.pictureBoxSlotA0.TabStop = false;
+
             this.pictureBoxSlotA0.Tag = "A0";
             this.pictureBoxSlotA0.Click += new System.EventHandler(this.slot_click);
             this.pictureBoxSlotA0.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
@@ -1465,6 +1475,26 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deleteCrossingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearGridToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem crossingType1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem crossingType2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simulationToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem2;
     }
 }
 

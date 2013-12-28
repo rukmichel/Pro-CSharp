@@ -486,10 +486,10 @@ namespace Traffic_Simulator
                     return Properties.Resources.carS;                    
 
                 case "Color [Red]":
-                    return Properties.Resources.redLight;                    
+                    return Properties.Resources.Color__Red_;                 
 
                 case "Color [Green]":
-                    return Properties.Resources.greenLight;                    
+                    return Properties.Resources.Color__Green_;                    
 
                 case "mergingN":
                     return Properties.Resources.mergingN;                    
@@ -1086,8 +1086,15 @@ namespace Traffic_Simulator
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (CheckTextBoxes())
-            {
+            bool b = false;
+
+            foreach (PictureBox pb in _gui_slots)
+                if (pb.Image == null)
+                    b = true;
+            if (!b)
+                label1.Text = "Problem: please delete one crossing first.";
+            if (CheckTextBoxes()&&b)
+            {                
                 if (SelectedSlot == "")
                 {
                     label1.Text = "Please select a crossing first.";
@@ -1125,14 +1132,38 @@ namespace Traffic_Simulator
 
         private void addCrossing1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label1.Text = "Please select an available slot.";
-            _copiedCrossing = new Crossing_1("XX");
+            bool b = false;
+
+            foreach (PictureBox pb in _gui_slots)
+                if (pb.Image == null)
+                    b = true;
+            if (!b)
+            {
+                label1.Text = "Problem: please delete one crossing first.";
+            }
+            if (CheckTextBoxes() && b)
+            {
+                label1.Text = "Please select an available slot.";
+                _copiedCrossing = new Crossing_1("XX");
+            }
         }
 
         private void addCrossing2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label1.Text = "Please select an available slot.";
-            _copiedCrossing = new Crossing_2("XX");
+            bool b = false;
+
+            foreach (PictureBox pb in _gui_slots)
+                if (pb.Image == null)
+                    b = true;
+            if (!b)
+            {
+                label1.Text = "Problem: please delete one crossing first.";
+            }
+            if (CheckTextBoxes()&&b)
+            {
+                label1.Text = "Please select an available slot.";
+                _copiedCrossing = new Crossing_2("XX");
+            }
         }
 
         private void textBox_Leaving(object sender, EventArgs e)

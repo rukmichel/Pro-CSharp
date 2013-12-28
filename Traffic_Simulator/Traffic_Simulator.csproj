@@ -60,6 +60,11 @@
       <DependentUpon>GUI.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectCopier.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="State.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,14 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,6 +117,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\c2_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mergingE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mergingN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mergingS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mergingW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Traffic_Simulator.Crossing_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Traffic_Simulator.Crossing_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PedestrianGreenLight_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PedestrianRedLight_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pedColor _Green_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pedColor _Red_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Color _Green_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Color _Red_.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

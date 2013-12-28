@@ -83,16 +83,6 @@ namespace Traffic_Simulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap car {
-            get {
-                object obj = ResourceManager.GetObject("car", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap carE {
             get {
                 object obj = ResourceManager.GetObject("carE", resourceCulture);
@@ -133,6 +123,26 @@ namespace Traffic_Simulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Color__Green_ {
+            get {
+                object obj = ResourceManager.GetObject("Color__Green_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Color__Red_ {
+            get {
+                object obj = ResourceManager.GetObject("Color__Red_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap East {
             get {
                 object obj = ResourceManager.GetObject("East", resourceCulture);
@@ -146,26 +156,6 @@ namespace Traffic_Simulator.Properties {
         internal static System.Drawing.Bitmap EastNorth {
             get {
                 object obj = ResourceManager.GetObject("EastNorth", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap greenLight {
-            get {
-                object obj = ResourceManager.GetObject("greenLight", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap GreenLight_2 {
-            get {
-                object obj = ResourceManager.GetObject("GreenLight_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,46 +236,6 @@ namespace Traffic_Simulator.Properties {
         internal static System.Drawing.Bitmap pedColor__Red_ {
             get {
                 object obj = ResourceManager.GetObject("pedColor__Red_", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PedestrianGreenLight_2 {
-            get {
-                object obj = ResourceManager.GetObject("PedestrianGreenLight_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PedestrianRedLight_2 {
-            get {
-                object obj = ResourceManager.GetObject("PedestrianRedLight_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap redLight {
-            get {
-                object obj = ResourceManager.GetObject("redLight", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RedLight_2 {
-            get {
-                object obj = ResourceManager.GetObject("RedLight_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

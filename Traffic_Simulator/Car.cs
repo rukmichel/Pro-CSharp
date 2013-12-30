@@ -70,7 +70,79 @@ namespace Traffic_Simulator
         public int[] StreetIndex
         {
             get { return _streetIndex; }
-            set { _streetIndex = value; } // !TODO: validate
+            set { _streetIndex = value; }
+        }
+
+        /// <summary>
+        /// The crossing in which this car is located
+        /// </summary>
+        private Crossing _previousCrossing;
+        public Crossing PreviousCrossing
+        {
+            get { return _previousCrossing; }
+            set 
+            {
+                if (value == null)
+                    _previousCrossing = null;
+                else
+                {
+                    if(value.GetType() == typeof(Crossing_1))
+                    {
+                        _previousCrossing=new Crossing_1(value.ID);
+                    }
+                    else
+                    {
+                        _previousCrossing=new Crossing_2(value.ID);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// The street this car is currently occupying
+        /// </summary>
+        private Street _previousStreet;
+        public Street PreviousStreet
+        {
+            get { return _previousStreet; }
+            set 
+            {
+                if (value == null)
+                    _previousStreet = value;
+                else
+                {
+                    if (value.LaneEnter2 != null)//if it was a crossing 1
+                    {
+                        _previousStreet = new Street(typeof(Crossing_1), value.Position);
+                    }
+                    else
+                    {
+                        _previousStreet = new Street(typeof(Crossing_2), value.Position);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///  Represents the position of the car on a street lane.
+        /// </summary>
+        private int[] _previousStreetIndex = new int[2];
+        public int[] PreviousStreetIndex
+        {
+            get { return _previousStreetIndex; }
+            set
+            {
+                if (value == null)
+                {
+                    _previousStreetIndex[0] = -1;
+                    _previousStreetIndex[1] = -1;
+                }
+                else
+                {
+                    _previousStreetIndex[0] = value[0];
+                    _previousStreetIndex[1] = value[1];
+                }
+            }
         }
 
         /// <summary>
@@ -196,14 +268,16 @@ namespace Traffic_Simulator
 
             if (streets[str2].Lanes[lane2][pos2] == null  && (nextSlot != 3 || checkLights()))//if next position is available and light is green
             {
-                
+
                 if (HasEnteredGrid == false)
                     this.HasEnteredGrid = true;
                 else
+                {
                     Street.Lanes[StreetIndex[0]][StreetIndex[1]] = null;//leaves previous position
+                }
                 
-                streets[str2].Lanes[lane2][pos2] = this;//enters new position                
-
+                streets[str2].Lanes[lane2][pos2] = this;//enters new position 
+                
                 StreetIndex[0] = lane2;
                 StreetIndex[1] = pos2;
 
@@ -217,8 +291,6 @@ namespace Traffic_Simulator
                     this.Street = streets[(int)this.Turn];
                     this.Direction = this.Turn;
                 }
-
-
             }
             else//if car didnt move
             {
@@ -226,7 +298,7 @@ namespace Traffic_Simulator
                 return false;
             }          
             
-            return false;  
+            return true;  
         }
 
         private bool checkLights()

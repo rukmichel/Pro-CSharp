@@ -89,7 +89,16 @@ namespace Traffic_Simulator
             {
                 if (c != null && !c.HasExitedGrid)
                 {
-                    c.move();
+                    c.PreviousStreet = c.Street;
+                    c.PreviousCrossing = c.Crossing;
+                    c.PreviousStreetIndex = c.StreetIndex;
+
+                    if (!c.move())                    
+                    {
+                        c.PreviousCrossing = null;
+                        c.PreviousStreet = null;
+                        c.PreviousStreetIndex = null;
+                    }
                     CurrentNumberOfCarsInGrid++;
                 }
             }

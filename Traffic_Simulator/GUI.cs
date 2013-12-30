@@ -20,7 +20,7 @@ namespace Traffic_Simulator
         private SimulationController _controller = new SimulationController();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
         private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), 
-            _movingCars = new List<PictureBox>(), _lights = new List<PictureBox>();//, _elements = new List<PictureBox>();
+            _movingCars = new List<PictureBox>(), _lights = new List<PictureBox>();//, _newCars = new List<PictureBox>();
         private Crossing _copiedCrossing = null;
         private string _selectedSlot = "";
         private TextBox[] _crossingProperties = new TextBox[20];
@@ -346,6 +346,51 @@ namespace Traffic_Simulator
                 pb.Invalidate();
         }
 
+        /// <summary>
+        /// Calculates the position (x,y) of a car
+        /// </summary>
+        /// <param name="crossing">Crossing in which car is located</param>
+        /// <param name="street">Street in which car is located</param>
+        /// <param name="streetIndex">Position in the street where car is located</param>
+        /// <returns>Point with location</returns>
+        private Point calculatePosition(Crossing crossing, Street street, int[] streetIndex)
+        {
+            if (crossing != null && street != null && streetIndex[0] != -1 && streetIndex[1] != -1)
+            {
+                int x = pictureBoxSlotA0.Location.X + (int)(crossing.ID[0] - 'A') * 3 * 66;
+                int y = pictureBoxSlotA0.Location.Y + (int)(crossing.ID[1] - '0') * 3 * 66;
+
+                switch (street.Position)
+                {
+                    case Direction.North:
+                        x += 6 + 66 + 22 * streetIndex[0];
+                        y += 6 + 22 * streetIndex[1];
+                        break;
+                    case Direction.West:
+                        x += 6 + 22 * streetIndex[1];
+                        y += 66 * 2 - 6 - 22 * streetIndex[0] - 10;
+                        break;
+                    case Direction.South:
+                        x += 66 * 2 - 6 - 22 * streetIndex[0] - 10;
+                        y += 66 * 3 - 6 - 22 * streetIndex[1] - 10;
+                        break;
+                    case Direction.East:
+                        x += 66 * 3 - 6 - 22 * streetIndex[1] - 10;
+                        y += 66 + 6 + 22 * streetIndex[0];
+                        break;
+                    case Direction.Center:
+                        x += 66 + 6 + 22 * streetIndex[0];
+                        y += 66 + 6 + 22 * streetIndex[1];
+                        break;
+                }
+                return new Point(x, y);
+            }
+            else
+            {
+                return new Point(0, 0);
+            }
+        }
+
         private void drawLights(Crossing[,] slots)
         {
             if (_lights.Count == 0)
@@ -571,13 +616,13 @@ namespace Traffic_Simulator
                         y += 66 + 6 + 22 * c.StreetIndex[1];
                         break;
                 }
-                if(_cars.Count>n)
+                if (_cars.Count > n)
                 {
                     Point newPos = new Point(x, y);
                     if (_cars[n].Location.X != x || _cars[n].Location.Y != y)//if new position is different
                     {
                         _cars[n].Tag = newPos;
-                        _cars[n].Image = getImageFromString("car "+c.Direction.ToString());
+                        _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
                         _movingCars.Add(_cars[n]);
                     }
                     else//if car did not actually move
@@ -586,12 +631,15 @@ namespace Traffic_Simulator
                     }
                 }
                 else//if there has to be created a new picturebox
-                    addElement(x, y, "car " + c.Direction.ToString(),_cars);
-            }
+                {
+                    addElement(x, y, "car " + c.Direction.ToString(), _cars).Visible=false;
 
-            if (c != null && c.HasExitedGrid)
+                }
+            }
+            else
             {
-                _cars[n].Visible = false;
+                if(n<_cars.Count)
+                    _cars[n].Visible = false;
             }
         }
 
@@ -679,7 +727,10 @@ namespace Traffic_Simulator
                         Thread.Sleep((int)(120 - 20 * (double)numericUpDown1.Value) - (int)totalTime);
                     
                 }
+
+
                 Invalidate();
+
                 if (_threadInterrupt)
                 {
                     _isReady = true;

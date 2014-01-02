@@ -59,34 +59,38 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonShowHideGLT = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label28 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBoxCTWE = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBoxCTWN = new System.Windows.Forms.TextBox();
+            this.textBoxCTWS = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBoxCTSW = new System.Windows.Forms.TextBox();
+            this.textBoxCTSE = new System.Windows.Forms.TextBox();
+            this.textBoxCTSN = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.textBoxCTSN = new System.Windows.Forms.TextBox();
-            this.textBoxCTSE = new System.Windows.Forms.TextBox();
-            this.textBoxCTSW = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBoxCTWS = new System.Windows.Forms.TextBox();
-            this.textBoxCTES = new System.Windows.Forms.TextBox();
-            this.textBoxCTEW = new System.Windows.Forms.TextBox();
-            this.textBoxCTWN = new System.Windows.Forms.TextBox();
-            this.textBoxCTWE = new System.Windows.Forms.TextBox();
-            this.textBoxCTNE = new System.Windows.Forms.TextBox();
-            this.textBoxCTNS = new System.Windows.Forms.TextBox();
             this.textBoxCTNW = new System.Windows.Forms.TextBox();
+            this.textBoxCTNS = new System.Windows.Forms.TextBox();
+            this.textBoxCTNE = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.textBoxCTEN = new System.Windows.Forms.TextBox();
+            this.textBoxCTEW = new System.Windows.Forms.TextBox();
+            this.textBoxCTES = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -132,17 +136,20 @@
             this.pictureBoxSlotB0 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSlotA0 = new System.Windows.Forms.PictureBox();
             this.deleteCrossingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearGridToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.crossingType1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crossingType2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pauseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.userManualToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+           // this.startToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+           // this.pauseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+           // this.stopToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+           // this.userManualToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+           // this.aboutToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -393,6 +400,7 @@
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(54, 44);
             this.buttonClear.TabIndex = 18;
+            this.buttonClear.TabStop = false;
             this.buttonClear.Text = "Clear Grid";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
@@ -405,6 +413,7 @@
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(64, 44);
             this.buttonDelete.TabIndex = 19;
+            this.buttonDelete.TabStop = false;
             this.buttonDelete.Text = "Delete Crossing";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -435,7 +444,7 @@
             this.buttonShowHideGLT.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShowHideGLT.Name = "buttonShowHideGLT";
             this.buttonShowHideGLT.Size = new System.Drawing.Size(43, 23);
-            this.buttonShowHideGLT.TabIndex = 24;
+            this.buttonShowHideGLT.TabIndex = 3;
             this.buttonShowHideGLT.Text = "Hide";
             this.buttonShowHideGLT.UseVisualStyleBackColor = true;
             this.buttonShowHideGLT.Click += new System.EventHandler(this.buttonShowHideGLT_Click);
@@ -448,34 +457,10 @@
             this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel5.BackColor = System.Drawing.Color.Silver;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Controls.Add(this.label28);
-            this.panel5.Controls.Add(this.label27);
-            this.panel5.Controls.Add(this.label22);
-            this.panel5.Controls.Add(this.label23);
-            this.panel5.Controls.Add(this.label24);
-            this.panel5.Controls.Add(this.label19);
-            this.panel5.Controls.Add(this.label20);
-            this.panel5.Controls.Add(this.label21);
-            this.panel5.Controls.Add(this.label26);
-            this.panel5.Controls.Add(this.label25);
-            this.panel5.Controls.Add(this.textBoxCTSN);
-            this.panel5.Controls.Add(this.textBoxCTSE);
-            this.panel5.Controls.Add(this.textBoxCTSW);
-            this.panel5.Controls.Add(this.label17);
-            this.panel5.Controls.Add(this.label18);
-            this.panel5.Controls.Add(this.label13);
-            this.panel5.Controls.Add(this.label14);
-            this.panel5.Controls.Add(this.label15);
-            this.panel5.Controls.Add(this.label16);
-            this.panel5.Controls.Add(this.textBoxCTWS);
-            this.panel5.Controls.Add(this.textBoxCTES);
-            this.panel5.Controls.Add(this.textBoxCTEW);
-            this.panel5.Controls.Add(this.textBoxCTWN);
-            this.panel5.Controls.Add(this.textBoxCTWE);
-            this.panel5.Controls.Add(this.textBoxCTNE);
-            this.panel5.Controls.Add(this.textBoxCTNS);
-            this.panel5.Controls.Add(this.textBoxCTNW);
-            this.panel5.Controls.Add(this.textBoxCTEN);
+            this.panel5.Controls.Add(this.groupBox4);
+            this.panel5.Controls.Add(this.groupBox3);
+            this.panel5.Controls.Add(this.groupBox1);
+            this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Location = new System.Drawing.Point(0, 282);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.MinimumSize = new System.Drawing.Size(151, 279);
@@ -484,55 +469,174 @@
             this.panel5.TabIndex = 25;
             this.panel5.Visible = false;
             // 
-            // label28
+            // groupBox4
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 322);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(68, 13);
-            this.label28.TabIndex = 37;
-            this.label28.Text = "From WEST:";
+            this.groupBox4.Controls.Add(this.label27);
+            this.groupBox4.Controls.Add(this.label24);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.textBoxCTWE);
+            this.groupBox4.Controls.Add(this.label23);
+            this.groupBox4.Controls.Add(this.textBoxCTWN);
+            this.groupBox4.Controls.Add(this.textBoxCTWS);
+            this.groupBox4.Location = new System.Drawing.Point(3, 288);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(124, 89);
+            this.groupBox4.TabIndex = 28;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "From WEST";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(3, 215);
+            this.label27.Location = new System.Drawing.Point(-7, 312);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(74, 13);
-            this.label27.TabIndex = 36;
-            this.label27.Text = "From SOUTH:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(16, 368);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(50, 13);
-            this.label22.TabIndex = 35;
-            this.label22.Text = "- To East";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(16, 392);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(57, 13);
-            this.label23.TabIndex = 34;
-            this.label23.Text = "- To South";
+            this.label27.Size = new System.Drawing.Size(68, 13);
+            this.label27.TabIndex = 37;
+            this.label27.Text = "From WEST:";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(16, 344);
+            this.label24.Location = new System.Drawing.Point(6, 16);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(55, 13);
             this.label24.TabIndex = 33;
             this.label24.Text = "- To North";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 40);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(50, 13);
+            this.label22.TabIndex = 35;
+            this.label22.Text = "- To East";
+            // 
+            // textBoxCTWE
+            // 
+            this.textBoxCTWE.Enabled = false;
+            this.textBoxCTWE.Location = new System.Drawing.Point(91, 37);
+            this.textBoxCTWE.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTWE.MaxLength = 2;
+            this.textBoxCTWE.Name = "textBoxCTWE";
+            this.textBoxCTWE.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTWE.TabIndex = 1;
+            this.textBoxCTWE.Tag = "CT11";
+            this.textBoxCTWE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTWE.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 64);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(57, 13);
+            this.label23.TabIndex = 34;
+            this.label23.Text = "- To South";
+            // 
+            // textBoxCTWN
+            // 
+            this.textBoxCTWN.Enabled = false;
+            this.textBoxCTWN.Location = new System.Drawing.Point(91, 13);
+            this.textBoxCTWN.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTWN.MaxLength = 2;
+            this.textBoxCTWN.Name = "textBoxCTWN";
+            this.textBoxCTWN.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTWN.TabIndex = 0;
+            this.textBoxCTWN.Tag = "CT10";
+            this.textBoxCTWN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTWN.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // textBoxCTWS
+            // 
+            this.textBoxCTWS.Enabled = false;
+            this.textBoxCTWS.Location = new System.Drawing.Point(91, 61);
+            this.textBoxCTWS.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTWS.MaxLength = 2;
+            this.textBoxCTWS.Name = "textBoxCTWS";
+            this.textBoxCTWS.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTWS.TabIndex = 2;
+            this.textBoxCTWS.Tag = "CT12";
+            this.textBoxCTWS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTWS.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label26);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.textBoxCTSW);
+            this.groupBox3.Controls.Add(this.textBoxCTSE);
+            this.groupBox3.Controls.Add(this.textBoxCTSN);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Location = new System.Drawing.Point(3, 193);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(124, 89);
+            this.groupBox3.TabIndex = 27;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "From SOUTH";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(-7, 312);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(68, 13);
+            this.label26.TabIndex = 37;
+            this.label26.Text = "From WEST:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 16);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(55, 13);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "- To North";
+            // 
+            // textBoxCTSW
+            // 
+            this.textBoxCTSW.Enabled = false;
+            this.textBoxCTSW.Location = new System.Drawing.Point(91, 61);
+            this.textBoxCTSW.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTSW.MaxLength = 2;
+            this.textBoxCTSW.Name = "textBoxCTSW";
+            this.textBoxCTSW.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTSW.TabIndex = 2;
+            this.textBoxCTSW.Tag = "CT9";
+            this.textBoxCTSW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTSW.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // textBoxCTSE
+            // 
+            this.textBoxCTSE.Enabled = false;
+            this.textBoxCTSE.Location = new System.Drawing.Point(91, 37);
+            this.textBoxCTSE.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTSE.MaxLength = 2;
+            this.textBoxCTSE.Name = "textBoxCTSE";
+            this.textBoxCTSE.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTSE.TabIndex = 1;
+            this.textBoxCTSE.Tag = "CT8";
+            this.textBoxCTSE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTSE.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // textBoxCTSN
+            // 
+            this.textBoxCTSN.Enabled = false;
+            this.textBoxCTSN.Location = new System.Drawing.Point(91, 13);
+            this.textBoxCTSN.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTSN.MaxLength = 2;
+            this.textBoxCTSN.Name = "textBoxCTSN";
+            this.textBoxCTSN.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTSN.TabIndex = 0;
+            this.textBoxCTSN.Tag = "CT7";
+            this.textBoxCTSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTSN.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(16, 258);
+            this.label19.Location = new System.Drawing.Point(6, 40);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(50, 13);
             this.label19.TabIndex = 32;
@@ -541,229 +645,52 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(16, 282);
+            this.label20.Location = new System.Drawing.Point(6, 64);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(54, 13);
             this.label20.TabIndex = 31;
             this.label20.Text = "- To West";
             // 
-            // label21
+            // groupBox1
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(16, 234);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(55, 13);
-            this.label21.TabIndex = 30;
-            this.label21.Text = "- To North";
+            this.groupBox1.Controls.Add(this.label28);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.textBoxCTNW);
+            this.groupBox1.Controls.Add(this.textBoxCTNS);
+            this.groupBox1.Controls.Add(this.textBoxCTNE);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(124, 89);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "From NORTH";
             // 
-            // label26
+            // label28
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(2, 108);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(64, 13);
-            this.label26.TabIndex = 29;
-            this.label26.Text = "From EAST:";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(1, 5);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(75, 13);
-            this.label25.TabIndex = 28;
-            this.label25.Text = "From NORTH:";
-            // 
-            // textBoxCTSN
-            // 
-            this.textBoxCTSN.Enabled = false;
-            this.textBoxCTSN.Location = new System.Drawing.Point(101, 231);
-            this.textBoxCTSN.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTSN.MaxLength = 3;
-            this.textBoxCTSN.Name = "textBoxCTSN";
-            this.textBoxCTSN.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTSN.TabIndex = 6;
-            this.textBoxCTSN.Tag = "CT7";
-            this.textBoxCTSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTSN.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTSE
-            // 
-            this.textBoxCTSE.Enabled = false;
-            this.textBoxCTSE.Location = new System.Drawing.Point(101, 255);
-            this.textBoxCTSE.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTSE.MaxLength = 3;
-            this.textBoxCTSE.Name = "textBoxCTSE";
-            this.textBoxCTSE.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTSE.TabIndex = 7;
-            this.textBoxCTSE.Tag = "CT8";
-            this.textBoxCTSE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTSE.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTSW
-            // 
-            this.textBoxCTSW.Enabled = false;
-            this.textBoxCTSW.Location = new System.Drawing.Point(101, 279);
-            this.textBoxCTSW.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTSW.MaxLength = 3;
-            this.textBoxCTSW.Name = "textBoxCTSW";
-            this.textBoxCTSW.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTSW.TabIndex = 8;
-            this.textBoxCTSW.Tag = "CT9";
-            this.textBoxCTSW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTSW.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(16, 155);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(57, 13);
-            this.label17.TabIndex = 20;
-            this.label17.Text = "- To South";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(16, 179);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(54, 13);
-            this.label18.TabIndex = 19;
-            this.label18.Text = "- To West";
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(-7, 312);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(68, 13);
+            this.label28.TabIndex = 37;
+            this.label28.Text = "From WEST:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 26);
+            this.label13.Location = new System.Drawing.Point(6, 16);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(50, 13);
             this.label13.TabIndex = 16;
             this.label13.Text = "- To East";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(16, 50);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 13);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "- To South";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(16, 74);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 13);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "- To West";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(16, 131);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 13);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "- To North";
-            // 
-            // textBoxCTWS
-            // 
-            this.textBoxCTWS.Enabled = false;
-            this.textBoxCTWS.Location = new System.Drawing.Point(101, 389);
-            this.textBoxCTWS.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTWS.MaxLength = 3;
-            this.textBoxCTWS.Name = "textBoxCTWS";
-            this.textBoxCTWS.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTWS.TabIndex = 11;
-            this.textBoxCTWS.Tag = "CT12";
-            this.textBoxCTWS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTWS.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTES
-            // 
-            this.textBoxCTES.Enabled = false;
-            this.textBoxCTES.Location = new System.Drawing.Point(101, 152);
-            this.textBoxCTES.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTES.MaxLength = 3;
-            this.textBoxCTES.Name = "textBoxCTES";
-            this.textBoxCTES.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTES.TabIndex = 4;
-            this.textBoxCTES.Tag = "CT5";
-            this.textBoxCTES.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTES.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTEW
-            // 
-            this.textBoxCTEW.Enabled = false;
-            this.textBoxCTEW.Location = new System.Drawing.Point(101, 176);
-            this.textBoxCTEW.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTEW.MaxLength = 3;
-            this.textBoxCTEW.Name = "textBoxCTEW";
-            this.textBoxCTEW.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTEW.TabIndex = 5;
-            this.textBoxCTEW.Tag = "CT6";
-            this.textBoxCTEW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTEW.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTWN
-            // 
-            this.textBoxCTWN.Enabled = false;
-            this.textBoxCTWN.Location = new System.Drawing.Point(101, 341);
-            this.textBoxCTWN.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTWN.MaxLength = 3;
-            this.textBoxCTWN.Name = "textBoxCTWN";
-            this.textBoxCTWN.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTWN.TabIndex = 9;
-            this.textBoxCTWN.Tag = "CT10";
-            this.textBoxCTWN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTWN.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTWE
-            // 
-            this.textBoxCTWE.Enabled = false;
-            this.textBoxCTWE.Location = new System.Drawing.Point(101, 365);
-            this.textBoxCTWE.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTWE.MaxLength = 3;
-            this.textBoxCTWE.Name = "textBoxCTWE";
-            this.textBoxCTWE.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTWE.TabIndex = 10;
-            this.textBoxCTWE.Tag = "CT11";
-            this.textBoxCTWE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTWE.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTNE
-            // 
-            this.textBoxCTNE.Enabled = false;
-            this.textBoxCTNE.Location = new System.Drawing.Point(101, 23);
-            this.textBoxCTNE.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTNE.MaxLength = 3;
-            this.textBoxCTNE.Name = "textBoxCTNE";
-            this.textBoxCTNE.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNE.TabIndex = 0;
-            this.textBoxCTNE.Tag = "CT1";
-            this.textBoxCTNE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTNE.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
-            // textBoxCTNS
-            // 
-            this.textBoxCTNS.Enabled = false;
-            this.textBoxCTNS.Location = new System.Drawing.Point(101, 47);
-            this.textBoxCTNS.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTNS.MaxLength = 3;
-            this.textBoxCTNS.Name = "textBoxCTNS";
-            this.textBoxCTNS.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTNS.TabIndex = 1;
-            this.textBoxCTNS.Tag = "CT2";
-            this.textBoxCTNS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            this.textBoxCTNS.Leave += new System.EventHandler(this.textBox_Leaving);
-            // 
             // textBoxCTNW
             // 
             this.textBoxCTNW.Enabled = false;
-            this.textBoxCTNW.Location = new System.Drawing.Point(101, 71);
+            this.textBoxCTNW.Location = new System.Drawing.Point(91, 61);
             this.textBoxCTNW.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTNW.MaxLength = 3;
+            this.textBoxCTNW.MaxLength = 2;
             this.textBoxCTNW.Name = "textBoxCTNW";
             this.textBoxCTNW.Size = new System.Drawing.Size(26, 20);
             this.textBoxCTNW.TabIndex = 2;
@@ -771,18 +698,140 @@
             this.textBoxCTNW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             this.textBoxCTNW.Leave += new System.EventHandler(this.textBox_Leaving);
             // 
+            // textBoxCTNS
+            // 
+            this.textBoxCTNS.Enabled = false;
+            this.textBoxCTNS.Location = new System.Drawing.Point(91, 37);
+            this.textBoxCTNS.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTNS.MaxLength = 2;
+            this.textBoxCTNS.Name = "textBoxCTNS";
+            this.textBoxCTNS.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTNS.TabIndex = 1;
+            this.textBoxCTNS.Tag = "CT2";
+            this.textBoxCTNS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTNS.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // textBoxCTNE
+            // 
+            this.textBoxCTNE.Enabled = false;
+            this.textBoxCTNE.Location = new System.Drawing.Point(91, 13);
+            this.textBoxCTNE.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTNE.MaxLength = 2;
+            this.textBoxCTNE.Name = "textBoxCTNE";
+            this.textBoxCTNE.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTNE.TabIndex = 0;
+            this.textBoxCTNE.Tag = "CT1";
+            this.textBoxCTNE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTNE.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 64);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "- To West";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 40);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 13);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "- To South";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label25);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.textBoxCTEN);
+            this.groupBox2.Controls.Add(this.textBoxCTEW);
+            this.groupBox2.Controls.Add(this.textBoxCTES);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Location = new System.Drawing.Point(3, 98);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(124, 89);
+            this.groupBox2.TabIndex = 26;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "From EAST";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(-7, 312);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(68, 13);
+            this.label25.TabIndex = 37;
+            this.label25.Text = "From WEST:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 13);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "- To North";
+            // 
             // textBoxCTEN
             // 
             this.textBoxCTEN.Enabled = false;
-            this.textBoxCTEN.Location = new System.Drawing.Point(101, 128);
+            this.textBoxCTEN.Location = new System.Drawing.Point(91, 13);
             this.textBoxCTEN.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCTEN.MaxLength = 3;
+            this.textBoxCTEN.MaxLength = 2;
             this.textBoxCTEN.Name = "textBoxCTEN";
             this.textBoxCTEN.Size = new System.Drawing.Size(26, 20);
-            this.textBoxCTEN.TabIndex = 31;
+            this.textBoxCTEN.TabIndex = 0;
             this.textBoxCTEN.Tag = "CT4";
             this.textBoxCTEN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             this.textBoxCTEN.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // textBoxCTEW
+            // 
+            this.textBoxCTEW.Enabled = false;
+            this.textBoxCTEW.Location = new System.Drawing.Point(91, 61);
+            this.textBoxCTEW.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTEW.MaxLength = 2;
+            this.textBoxCTEW.Name = "textBoxCTEW";
+            this.textBoxCTEW.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTEW.TabIndex = 2;
+            this.textBoxCTEW.Tag = "CT6";
+            this.textBoxCTEW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTEW.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // textBoxCTES
+            // 
+            this.textBoxCTES.Enabled = false;
+            this.textBoxCTES.Location = new System.Drawing.Point(91, 37);
+            this.textBoxCTES.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCTES.MaxLength = 2;
+            this.textBoxCTES.Name = "textBoxCTES";
+            this.textBoxCTES.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTES.TabIndex = 1;
+            this.textBoxCTES.Tag = "CT5";
+            this.textBoxCTES.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBoxCTES.Leave += new System.EventHandler(this.textBox_Leaving);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 64);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(54, 13);
+            this.label18.TabIndex = 19;
+            this.label18.Text = "- To West";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 40);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(57, 13);
+            this.label17.TabIndex = 20;
+            this.label17.Text = "- To South";
             // 
             // panel4
             // 
@@ -892,7 +941,7 @@
             this.textBoxTF1.Enabled = false;
             this.textBoxTF1.Location = new System.Drawing.Point(116, 2);
             this.textBoxTF1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxTF1.MaxLength = 3;
+            this.textBoxTF1.MaxLength = 2;
             this.textBoxTF1.Name = "textBoxTF1";
             this.textBoxTF1.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF1.TabIndex = 0;
@@ -905,7 +954,7 @@
             this.textBoxTF3.Enabled = false;
             this.textBoxTF3.Location = new System.Drawing.Point(116, 50);
             this.textBoxTF3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxTF3.MaxLength = 3;
+            this.textBoxTF3.MaxLength = 2;
             this.textBoxTF3.Name = "textBoxTF3";
             this.textBoxTF3.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF3.TabIndex = 2;
@@ -918,7 +967,7 @@
             this.textBoxTF4.Enabled = false;
             this.textBoxTF4.Location = new System.Drawing.Point(116, 74);
             this.textBoxTF4.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxTF4.MaxLength = 3;
+            this.textBoxTF4.MaxLength = 2;
             this.textBoxTF4.Name = "textBoxTF4";
             this.textBoxTF4.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF4.TabIndex = 3;
@@ -931,7 +980,7 @@
             this.textBoxTF2.Enabled = false;
             this.textBoxTF2.Location = new System.Drawing.Point(116, 26);
             this.textBoxTF2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxTF2.MaxLength = 3;
+            this.textBoxTF2.MaxLength = 2;
             this.textBoxTF2.Name = "textBoxTF2";
             this.textBoxTF2.Size = new System.Drawing.Size(26, 20);
             this.textBoxTF2.TabIndex = 1;
@@ -946,7 +995,7 @@
             this.buttonShowHideCT.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShowHideCT.Name = "buttonShowHideCT";
             this.buttonShowHideCT.Size = new System.Drawing.Size(44, 23);
-            this.buttonShowHideCT.TabIndex = 28;
+            this.buttonShowHideCT.TabIndex = 5;
             this.buttonShowHideCT.Text = "Show";
             this.buttonShowHideCT.UseVisualStyleBackColor = true;
             this.buttonShowHideCT.Click += new System.EventHandler(this.buttonShowHideCT_Click);
@@ -967,7 +1016,7 @@
             this.buttonShowHideTF.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShowHideTF.Name = "buttonShowHideTF";
             this.buttonShowHideTF.Size = new System.Drawing.Size(43, 23);
-            this.buttonShowHideTF.TabIndex = 26;
+            this.buttonShowHideTF.TabIndex = 4;
             this.buttonShowHideTF.Text = "Hide";
             this.buttonShowHideTF.UseVisualStyleBackColor = true;
             this.buttonShowHideTF.Click += new System.EventHandler(this.buttonShowHideTF_Click);
@@ -1042,7 +1091,7 @@
             this.textBoxGLT4.Enabled = false;
             this.textBoxGLT4.Location = new System.Drawing.Point(116, 74);
             this.textBoxGLT4.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxGLT4.MaxLength = 3;
+            this.textBoxGLT4.MaxLength = 2;
             this.textBoxGLT4.Name = "textBoxGLT4";
             this.textBoxGLT4.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT4.TabIndex = 3;
@@ -1055,7 +1104,7 @@
             this.textBoxGLT3.Enabled = false;
             this.textBoxGLT3.Location = new System.Drawing.Point(116, 50);
             this.textBoxGLT3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxGLT3.MaxLength = 3;
+            this.textBoxGLT3.MaxLength = 2;
             this.textBoxGLT3.Name = "textBoxGLT3";
             this.textBoxGLT3.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT3.TabIndex = 2;
@@ -1068,7 +1117,7 @@
             this.textBoxGLT2.Enabled = false;
             this.textBoxGLT2.Location = new System.Drawing.Point(116, 26);
             this.textBoxGLT2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxGLT2.MaxLength = 3;
+            this.textBoxGLT2.MaxLength = 2;
             this.textBoxGLT2.Name = "textBoxGLT2";
             this.textBoxGLT2.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT2.TabIndex = 1;
@@ -1081,7 +1130,7 @@
             this.textBoxGLT1.Enabled = false;
             this.textBoxGLT1.Location = new System.Drawing.Point(116, 2);
             this.textBoxGLT1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxGLT1.MaxLength = 3;
+            this.textBoxGLT1.MaxLength = 2;
             this.textBoxGLT1.Name = "textBoxGLT1";
             this.textBoxGLT1.Size = new System.Drawing.Size(26, 20);
             this.textBoxGLT1.TabIndex = 0;
@@ -1351,11 +1400,6 @@
             this.deleteCrossingToolStripMenuItem.Name = "deleteCrossingToolStripMenuItem";
             this.deleteCrossingToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
-            // clearGridToolStripMenuItem1
-            // 
-            this.clearGridToolStripMenuItem1.Name = "clearGridToolStripMenuItem1";
-            this.clearGridToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
             // crossingType1ToolStripMenuItem
             // 
             this.crossingType1ToolStripMenuItem.Name = "crossingType1ToolStripMenuItem";
@@ -1365,31 +1409,6 @@
             // 
             this.crossingType2ToolStripMenuItem.Name = "crossingType2ToolStripMenuItem";
             this.crossingType2ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // startToolStripMenuItem1
-            // 
-            this.startToolStripMenuItem1.Name = "startToolStripMenuItem1";
-            this.startToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
-            // pauseToolStripMenuItem1
-            // 
-            this.pauseToolStripMenuItem1.Name = "pauseToolStripMenuItem1";
-            this.pauseToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
-            // stopToolStripMenuItem1
-            // 
-            this.stopToolStripMenuItem1.Name = "stopToolStripMenuItem1";
-            this.stopToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
-            // userManualToolStripMenuItem1
-            // 
-            this.userManualToolStripMenuItem1.Name = "userManualToolStripMenuItem1";
-            this.userManualToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
-            // aboutToolStripMenuItem2
-            // 
-            this.aboutToolStripMenuItem2.Name = "aboutToolStripMenuItem2";
-            this.aboutToolStripMenuItem2.Size = new System.Drawing.Size(32, 19);
             // 
             // GUI
             // 
@@ -1424,7 +1443,14 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -1527,15 +1553,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox textBoxCTSN;
         private System.Windows.Forms.TextBox textBoxCTSE;
         private System.Windows.Forms.TextBox textBoxCTSW;
@@ -1558,28 +1581,18 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteCrossingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearGridToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem crossingType1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem crossingType2ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem simulationToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem2;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label25;
     }
 }
 

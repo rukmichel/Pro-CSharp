@@ -23,7 +23,7 @@ namespace Traffic_Simulator
         /// <summary>
         /// Object used to trigger an event every x miliseconds.
         /// </summary>
-        private System.Timers.Timer _timer = new System.Timers.Timer();
+        public static System.Timers.Timer _timer = new System.Timers.Timer();
 
         /// <summary>
         /// Current state of the simulation.

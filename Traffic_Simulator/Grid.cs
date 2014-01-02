@@ -93,12 +93,12 @@ namespace Traffic_Simulator
                     c.PreviousCrossing = c.Crossing;
                     c.PreviousStreetIndex = c.StreetIndex;
 
-                    if (!c.move())                    
-                    {
-                        c.PreviousCrossing = null;
-                        c.PreviousStreet = null;
-                        c.PreviousStreetIndex = null;
-                    }
+                    //if (!c.move()&&c.Direction==Direction.East && c.Crossing.ID=="A1")
+                    //{
+                    //    SimulationController._timer.Stop();
+                    //}
+                    c.move();
+
                     CurrentNumberOfCarsInGrid++;
                 }
             }

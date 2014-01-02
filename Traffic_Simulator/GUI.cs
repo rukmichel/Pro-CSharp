@@ -20,7 +20,7 @@ namespace Traffic_Simulator
         private SimulationController _controller = new SimulationController();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
         private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), 
-            _movingCars = new List<PictureBox>(), _lights = new List<PictureBox>();//, _newCars = new List<PictureBox>();
+            _movingCars = new List<PictureBox>(), _lights = new List<PictureBox>(), _newCars = new List<PictureBox>();
         private Crossing _copiedCrossing = null;
         private string _selectedSlot = "";
         private TextBox[] _crossingProperties = new TextBox[20];
@@ -60,7 +60,25 @@ namespace Traffic_Simulator
         public bool IsReady
         {
             get { return _isReady; }
-            set { _isReady = value; }
+            set 
+            {
+                if (value && _newCars.Count > 0)
+                {
+                    try
+                    {
+                        foreach (PictureBox pb in _newCars)
+                        {
+                            Invoke(new Del3(pb.BringToFront));
+                            Invoke(new Del3(pb.Show));
+                            Invoke(new Del3(pb.Update));
+                        }
+
+                        _newCars.Clear();
+                    }
+                    catch { }
+                }
+                _isReady = value; 
+            }
         }
 
         /// <summary>
@@ -238,7 +256,7 @@ namespace Traffic_Simulator
             if (copyOfGrid == null)
                 return;
 
-            _isReady = false;
+            IsReady = false;
 
             if (_controller.State == State.Stopped)
             {
@@ -260,6 +278,27 @@ namespace Traffic_Simulator
                         drawCar(c, i);//draws cars
                     }
                 }
+
+                if (_cars.Count > copyOfGrid.ListOfCars.Count)
+                {
+                    for (int i = copyOfGrid.ListOfCars.Count; i < _cars.Count; i++)
+                    {
+                        _cars[i].Hide();
+                        _cars[i].Update();
+                    }
+                }
+
+                if (_newCars.Count > 0)
+                {
+                    foreach (PictureBox pb in _newCars)
+                    {
+                        _cars.Add(pb);
+                        pb.Hide();
+                        pb.BringToFront();
+                        pb.Update();
+                    }
+                }
+
                 _thread = new Thread(new ThreadStart(moveCars));
                 _thread.Name = "Cars moving";
                 _thread.IsBackground = true;
@@ -343,7 +382,7 @@ namespace Traffic_Simulator
                 }
             }
             foreach (PictureBox pb in _gui_slots)
-                pb.Invalidate();
+                pb.Update();
         }
 
         /// <summary>
@@ -518,7 +557,7 @@ namespace Traffic_Simulator
                 }
             }
             foreach (PictureBox pb in _lights)
-                pb.Invalidate();
+                pb.Update();
         }
 
         private PictureBox addElement(int x, int y, string image, List<PictureBox> pbList)
@@ -528,8 +567,7 @@ namespace Traffic_Simulator
 
             pb.Location = new Point(x, y);
             pb.SizeMode = PictureBoxSizeMode.AutoSize;
-            pb.Show();
-            this.Controls.Add(pb);
+            this.Controls.Add(pb);            
             pb.BringToFront();
             pbList.Add(pb);
             return pb;
@@ -590,68 +628,77 @@ namespace Traffic_Simulator
         {
             if (c != null && c.HasEnteredGrid && !c.HasExitedGrid) //initial check
             {
-                int x = pictureBoxSlotA0.Location.X + (int)(c.Crossing.ID[0] - 'A') * 3 * 66;
-                int y = pictureBoxSlotA0.Location.Y + (int)(c.Crossing.ID[1] - '0') * 3 * 66;
+                Point newPos = calculatePosition(c.Crossing, c.Street, c.StreetIndex);
+                Point oldPos = calculatePosition(c.PreviousCrossing, c.PreviousStreet, c.PreviousStreetIndex);
+                PictureBox carPB;
 
-                switch (c.Street.Position)
+                if (n < _cars.Count) //if there are more pictureboxes than cars
                 {
-                    case Direction.North:
-                        x += 6 + 66 + 22 * c.StreetIndex[0];
-                        y += 6 + 22 * c.StreetIndex[1];
-                        break;
-                    case Direction.West:
-                        x += 6 + 22 * c.StreetIndex[1];
-                        y += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 10;
-                        break;
-                    case Direction.South:
-                        x += 66 * 2 - 6 - 22 * c.StreetIndex[0] - 10;
-                        y += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 10;
-                        break;
-                    case Direction.East:
-                        x += 66 * 3 - 6 - 22 * c.StreetIndex[1] - 10;
-                        y += 66 + 6 + 22 * c.StreetIndex[0];
-                        break;
-                    case Direction.Center:
-                        x += 66 + 6 + 22 * c.StreetIndex[0];
-                        y += 66 + 6 + 22 * c.StreetIndex[1];
-                        break;
-                }
-                if (_cars.Count > n)
-                {
-                    Point newPos = new Point(x, y);
-                    if (_cars[n].Location.X != x || _cars[n].Location.Y != y)//if new position is different
+                    carPB = _cars[n];
+
+                    if (carPB.Location.X != newPos.X || carPB.Location.Y != newPos.Y)//if new position is different
                     {
-                        _cars[n].Tag = newPos;
-                        _cars[n].Image = getImageFromString("car " + c.Direction.ToString());
-                        _movingCars.Add(_cars[n]);
+                        if (oldPos.X != 0 || oldPos.Y != 0) //if car was already on the screen
+                        {
+                            carPB.Location = oldPos;
+                            carPB.Tag = newPos;
+                            carPB.Image = getImageFromString("car " + c.Direction.ToString());
+                            carPB.Show();
+                            carPB.Update();
+                            _movingCars.Add(carPB);
+                        }
+                        else// if its the first time this car is on the screen
+                        {
+                            carPB.Hide(); //hides current picturebox
+                            carPB.Update();
+
+                            carPB = addElement(newPos.X, newPos.Y, "car " + c.Direction.ToString(), _newCars); //creates new picturebox for new car
+                        }
+                        
                     }
                     else//if car did not actually move
                     {
-                        _cars[n].Tag = null;
+                        carPB.Show();
+                        carPB.Update();
                     }
                 }
-                else//if there has to be created a new picturebox
-                {
-                    addElement(x, y, "car " + c.Direction.ToString(), _cars).Visible=false;
+                else//if there are more cars than pictureboxes
+                {                  
 
+                    if (oldPos.X == 0 && oldPos.Y == 0) // if its the first time this car is on the screen
+                    {
+                        carPB = addElement(newPos.X, newPos.Y, "car " + c.Direction.ToString(), _newCars);
+                    }
+                    else
+                    {
+                        carPB = addElement(newPos.X, newPos.Y, "car " + c.Direction.ToString(), _cars);
+                        carPB.Location = oldPos;
+                        carPB.Tag = newPos;
+                        carPB.Show();
+                        carPB.Image = getImageFromString("car " + c.Direction.ToString());
+                        carPB.Update();
+                        _movingCars.Add(carPB);
+                    }
                 }
             }
             else
             {
-                if(n<_cars.Count)
-                    _cars[n].Visible = false;
+                if (n < _cars.Count)
+                {
+                    _cars[n].Hide();
+                    //_cars[n].Update();
+                }
             }
         }
 
         public void moveCars()
         {
-
             try
             {
-                
+                int aditionalStep = 0;
+
                 for (int stepsLeft = 22; stepsLeft > 0; )
                 {
-                    int aditionalStep = 0;
                     DateTime startTime = DateTime.Now;
                     int step = 1;
                     startTime = DateTime.Now;
@@ -685,64 +732,44 @@ namespace Traffic_Simulator
 
                             if (_threadInterrupt)
                             {
-                                _isReady = true;
+                                IsReady = true;
                                 return;
                             }
                             else
                             {
                                 Invoke(new Del4(changeTextBoxLocation), new object[] { carPB, new Point(x, y) });
                                 Invoke(new Del3(carPB.Show));
+                                Invoke(new Del3(carPB.Update));
                             }
                         }
                     }
 
                     stepsLeft -= aditionalStep + 1;
 
-                    if (_threadInterrupt)
-                    {
-                        _isReady = true;
-                        return;
-                    }
-                    else
-                    {
-                        Invoke(new Del3(Update));
-                    }
-
                     aditionalStep = 0;
                     double totalTime = (DateTime.Now - startTime).TotalMilliseconds;
 
-                    if (totalTime > 20 + 6*(5-(int)numericUpDown1.Value))
+                    if (totalTime > 10 + 8*(5-(int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 30 + 9 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 15 + 11 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 40 + 12 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 20 + 13 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 50 + 15 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 30 + 16 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
-                    if (totalTime > 60 + 18 * (5 - (int)numericUpDown1.Value))
+                    if (totalTime > 40 + 20 * (5 - (int)numericUpDown1.Value))
+                        aditionalStep++;
+                    if (totalTime > 50 + 25 * (5 - (int)numericUpDown1.Value))
                         aditionalStep++;
 
-                    
+
                     if ((totalTime < (120 - 20 * (double)numericUpDown1.Value)) && stepsLeft != 0 && totalTime != 0)
                         Thread.Sleep((int)(120 - 20 * (double)numericUpDown1.Value) - (int)totalTime);
                     
                 }
-
-
-                Invalidate();
-
-                if (_threadInterrupt)
-                {
-                    _isReady = true;
-                    return;
-                }
-                else
-                {
-                    Invoke(new Del3(Update));
-                }
-                _isReady = true;
+                IsReady = true;
             }
-            catch { _isReady = true; }
+            catch { IsReady = true; }
         }
 
         public void changeTextBoxLocation(PictureBox pb, Point p)
@@ -1380,8 +1407,11 @@ namespace Traffic_Simulator
                 try
                 {
                     int value = 0;
-                    if (tb.Text != "")//empty strings are not allowed to be values
-                        value = Convert.ToInt32(tb.Text);
+                    if (tb.Text == "")//empty strings are not allowed to be values
+                        tb.Text = "0";
+
+                    value = Convert.ToInt32(tb.Text);
+
                     if (value < 0)
                         throw (new FormatException());
 

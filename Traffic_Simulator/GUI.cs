@@ -686,7 +686,7 @@ namespace Traffic_Simulator
                 if (n < _cars.Count)
                 {
                     _cars[n].Hide();
-                    //_cars[n].Update();
+                    _cars[n].Update();
                 }
             }
         }

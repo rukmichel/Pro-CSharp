@@ -22,8 +22,7 @@ namespace Traffic_Simulator
         {
             get { return _finishedTicking; }
             set { _finishedTicking = value; }
-        }
-        
+        }        
 
         public List<Car> ListOfCars
         {
@@ -45,17 +44,28 @@ namespace Traffic_Simulator
         /// The peak number of cars present on the grid at one time.
         /// </summary>
         private int _peakNumberOfCars=0;
+        public int PeakNumberOfCars 
+        {
+            get { return _peakNumberOfCars; }
+            set { _peakNumberOfCars = value; }
+        }
 
         /// <summary>
         /// Number of cars currently visible on the grid.
         /// </summary>
         private int _currentNumberOfCarsInGrid = 0;
-
         public int CurrentNumberOfCarsInGrid
         {
             get { return _currentNumberOfCarsInGrid; }
             set { _currentNumberOfCarsInGrid = value; }
         }
+
+        private int _totalSteps = 0;
+        public int TotalSteps
+        {
+            get { return _totalSteps; }
+        }
+        
         
         /// <summary>
         /// Default constructor
@@ -93,11 +103,11 @@ namespace Traffic_Simulator
                     c.PreviousCrossing = c.Crossing;
                     c.PreviousStreetIndex = c.StreetIndex;
 
-                    //if (!c.move()&&c.Direction==Direction.East && c.Crossing.ID=="A1")
-                    //{
-                    //    SimulationController._timer.Stop();
-                    //}
-                    c.move();
+                    if (!c.move())
+                    {
+                        c.RedLightWaitingTime++;
+                    }
+                    c.TimeInsideGrid++;
 
                     CurrentNumberOfCarsInGrid++;
                 }
@@ -105,34 +115,11 @@ namespace Traffic_Simulator
 
             if (CurrentNumberOfCarsInGrid > _peakNumberOfCars)
                 _peakNumberOfCars = CurrentNumberOfCarsInGrid;
+
+            _totalSteps++;
+
             _finishedTicking = true;
-        }
-
-        /// <summary>
-        /// Calculate the average speed of cars inside the grid
-        /// </summary>
-        /// <returns></returns>
-        public double calculateAverageSpeed() 
-        {
-            double average = 0;
-            foreach (Car c in _listOfCars)//calculates total
-                average += c.TimeInsideGrid.TotalMilliseconds;
-            average /= (_listOfCars.Count * 1000);
-            return calculateAverageWaitTime()/average; 
-        }
-
-        /// <summary>
-        /// Calculate average wait time at crossings
-        /// </summary>
-        /// <returns></returns>
-        public double calculateAverageWaitTime() 
-        { 
-            double average=0;
-            foreach (Car c in _listOfCars)
-                average += c.RedLightWaitingTime.TotalMilliseconds;
-            average /= (_listOfCars.Count*1000);
-            return 0; 
-        }
+        }        
 
         /// <summary>
         /// Add a new cars the given crossing
@@ -279,6 +266,7 @@ namespace Traffic_Simulator
         {
             try
             {
+                _totalSteps = 0;
                 _listOfCars.Clear();//deletes all cars
                 foreach (Crossing c in _slots)//resets all crossings
                 {

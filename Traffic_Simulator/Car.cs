@@ -41,13 +41,13 @@ namespace Traffic_Simulator
         /// _redLightWaitingTime gives the total time the car stopped at traffic light.
         /// _timeInsideGrid gives the total time the car spent in the grid.
         /// </summary>
-        private TimeSpan _redLightWaitingTime, _timeInsideGrid;
-        public TimeSpan RedLightWaitingTime
+        private int _redLightWaitingTime = 0, _timeInsideGrid = 0;
+        public int RedLightWaitingTime
         {
             get { return _redLightWaitingTime; }
             set { _redLightWaitingTime = value; }
         }
-        public TimeSpan TimeInsideGrid
+        public int TimeInsideGrid
         {
             get { return _timeInsideGrid; }
             set { _timeInsideGrid = value; }
@@ -213,6 +213,7 @@ namespace Traffic_Simulator
                     _path = null;
                     nextSlot = 0;
                     Street = null;
+
                     return true;
                 }
                 else//if car is entering a new crossing
@@ -294,10 +295,10 @@ namespace Traffic_Simulator
             }
             else//if car didnt move
             {
-                nextSlot--;           
+                nextSlot--;
+
                 return false;
-            }          
-            
+            }
             return true;  
         }
 

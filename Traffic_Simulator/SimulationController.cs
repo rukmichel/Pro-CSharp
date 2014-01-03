@@ -21,15 +21,29 @@ namespace Traffic_Simulator
         private int _refreshRate =  30;
 
         /// <summary>
+        /// _statistics[0] = average speed
+        /// _statistics[1] = average total time inside grid
+        /// _statistics[2] = average waiting time
+        /// _statistics[3] = peak number of cars inside grid
+        /// _statistics[4] = total cars
+        /// _statistics[5] = total steps
+        /// </summary>
+        public double[] Statistics 
+        {
+            get { return _statistics; }
+        }
+        private double[] _statistics;
+
+
+        /// <summary>
         /// Object used to trigger an event every x miliseconds.
         /// </summary>
-        public static System.Timers.Timer _timer = new System.Timers.Timer();
+        private System.Timers.Timer _timer = new System.Timers.Timer();
 
         /// <summary>
         /// Current state of the simulation.
         /// </summary>
         private State _state = State.Stopped;
-
         public State State
         {
             get
@@ -363,11 +377,13 @@ namespace Traffic_Simulator
             try
             {
                 _timer.Stop();
+                calculateStatistics();
                 _timer.Elapsed -= timerHasTriggered;
                 _grid.reset();
                 Grid tempCopy = ObjectCopier.Clone<Grid>(_grid); //creates a temporary copy of the object _grid
                 _gui.refreshScreen(tempCopy);                   //and sends that copy as a parameter to the GUI
                 _state = State.Stopped;
+
                 return "";
             }
             catch
@@ -385,6 +401,7 @@ namespace Traffic_Simulator
             try
             {
                 _timer.Stop();
+                calculateStatistics();
                 _state = State.Paused;
                 return "";
             }
@@ -507,9 +524,26 @@ namespace Traffic_Simulator
         }
 
         /// <summary>
-        /// Shows statistics such as average car speed, wait time, etc.
+        /// calculates statistics such as average car speed, wait time, etc.
         /// </summary>
-        public void showStatistics() { }
+        private void calculateStatistics() 
+        {
+            double averageTotal = 0;
+            double averageWait = 0;
+            double averageSpeed = 0;
+
+            foreach (Car c in _grid.ListOfCars)//calculates total
+                averageTotal += c.TimeInsideGrid;
+            averageTotal /= _grid.ListOfCars.Count;
+
+            foreach (Car c in _grid.ListOfCars)
+                averageWait += c.RedLightWaitingTime;
+            averageWait /= _grid.ListOfCars.Count;
+
+            averageSpeed = (averageTotal - averageWait) / averageTotal;
+
+            _statistics = new double[] { averageSpeed, averageTotal, averageWait, _grid.PeakNumberOfCars, _grid.ListOfCars.Count, _grid.TotalSteps };
+        }
 
         /// <summary>
         /// This method is called whenever the timer's event is fired

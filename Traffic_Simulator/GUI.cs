@@ -20,7 +20,8 @@ namespace Traffic_Simulator
         private SimulationController _controller = new SimulationController();
         private PictureBox[,] _gui_slots = new PictureBox[4, 3];
         private List<PictureBox> _mergings = new List<PictureBox>(), _cars = new List<PictureBox>(), 
-            _movingCars = new List<PictureBox>(), _lights = new List<PictureBox>(), _newCars = new List<PictureBox>();
+            _movingCars = new List<PictureBox>(), _lights = new List<PictureBox>(), 
+            _newCars = new List<PictureBox>(), _oldCars = new List<PictureBox>();
         private Crossing _copiedCrossing = null;
         private string _selectedSlot = "";
         private TextBox[] _crossingProperties = new TextBox[20];
@@ -269,15 +270,18 @@ namespace Traffic_Simulator
                 drawLights(copyOfGrid.Slots);//draws lights
 
                 _movingCars.Clear();
-
+                int n=0;
                 for (int i = 0; i < copyOfGrid.ListOfCars.Count; i++) //moves every existing car by 1 position
                 {
                     Car c = copyOfGrid.ListOfCars[i];
                     if (c != null)//&& c.HasExitedGrid==false && c.HasEnteredGrid==true)
                     {
                         drawCar(c, i);//draws cars
+                        if (c.HasEnteredGrid && !c.HasExitedGrid)
+                            n++;
                     }
                 }
+                labelCurrentCars.Text = n.ToString();
 
                 if (_cars.Count > copyOfGrid.ListOfCars.Count)
                 {
@@ -640,6 +644,15 @@ namespace Traffic_Simulator
                     {
                         if (oldPos.X != 0 || oldPos.Y != 0) //if car was already on the screen
                         {
+
+                            try
+                            {
+                                PictureBox oldPB = _cars.Find(p => p.Location.X == oldPos.X && p.Location.Y == oldPos.Y);
+                                oldPB.Hide();
+                                oldPB.Update();
+                            }
+                            catch { }
+
                             carPB.Location = oldPos;
                             carPB.Tag = newPos;
                             carPB.Image = getImageFromString("car " + c.Direction.ToString());
@@ -923,6 +936,7 @@ namespace Traffic_Simulator
                         fileToolStripMenuItem.Enabled = false;
                         editToolStripMenuItem.Enabled = false;
                         insertToolStripMenuItem.Enabled = false;
+                        showStatisticsToolStripMenuItem.Enabled = false;
                     }
 
                     //locks crossings properties
@@ -970,6 +984,9 @@ namespace Traffic_Simulator
                         editToolStripMenuItem.Enabled = false;
                         insertToolStripMenuItem.Enabled = false;
 
+
+                        showStatisticsToolStripMenuItem.Enabled = true;
+
                         Refresh();
                     }
 
@@ -985,7 +1002,8 @@ namespace Traffic_Simulator
         public void buttonStop_Click(object sender, EventArgs e)// stop button click method
         {
             label1.Text = _controller.stopSimulation();
-            if (_controller.State == State.Stopped && label1.Text=="") {
+            if (_controller.State == State.Stopped && label1.Text=="") 
+            {
                 buttonStartPause.Text = "►";
                 buttonStartPause.TextAlign = ContentAlignment.MiddleLeft;
                 
@@ -1000,6 +1018,8 @@ namespace Traffic_Simulator
                 fileToolStripMenuItem.Enabled = true;
                 editToolStripMenuItem.Enabled = true;
                 insertToolStripMenuItem.Enabled = true;
+
+                showStatisticsToolStripMenuItem.Enabled = true;
 
                 if (sender == null)
                     label1.Text = "End of simulation.";
@@ -1447,6 +1467,31 @@ namespace Traffic_Simulator
                 tb.Modified = true;
                 _checkTextBoxes = false;
             }
+        }
+
+        private void showStatisticsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            double[] statistics = new double[]
+            {
+                Math.Round(_controller.Statistics[0], 2, MidpointRounding.AwayFromZero),
+                Math.Round(_controller.Statistics[1], 2, MidpointRounding.AwayFromZero),
+                Math.Round(_controller.Statistics[2], 2, MidpointRounding.AwayFromZero),
+                Math.Round(_controller.Statistics[3], 2, MidpointRounding.AwayFromZero),
+                Math.Round(_controller.Statistics[4], 2, MidpointRounding.AwayFromZero),
+                Math.Round(_controller.Statistics[5], 2, MidpointRounding.AwayFromZero)
+            };
+
+            MessageBox.Show(
+                "\nAverage car speed: " + statistics[0] * 100 + "%" +
+                "\nAverage car waiting time: " + statistics[2] + " steps"+
+                "\nAverage car in grid time: " + statistics[1] + " steps" +
+                "\nSimulation total time: " + statistics[5] + " steps" +
+                "\n\nPeak number of cars inside grid: " + statistics[3] +
+                "\nCars inside grid: " + Convert.ToDouble(labelCurrentCars.Text) +
+                "\nCars that left grid: " +(statistics[4] - Convert.ToDouble(labelCurrentCars.Text)) +
+                "\nTotal cars: " + statistics[4],
+                "STATISTICS"
+                );
         }
     }
 }

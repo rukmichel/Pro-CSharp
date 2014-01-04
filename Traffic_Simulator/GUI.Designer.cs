@@ -33,11 +33,13 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.clearGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.corToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +48,7 @@
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.showStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +61,8 @@
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonShowHideGLT = new System.Windows.Forms.Button();
+            this.labelSeparator3 = new System.Windows.Forms.Label();
+            this.labelSeparator2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -92,7 +96,9 @@
             this.textBoxCTES = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.labelSeparator1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.labelSeparatorTF = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -110,6 +116,7 @@
             this.buttonShowHideTF = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.labelSeparatorGLT = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -119,6 +126,7 @@
             this.textBoxGLT2 = new System.Windows.Forms.TextBox();
             this.textBoxGLT1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonShowHideGLT = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelCurrentCars = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -141,9 +149,6 @@
             this.deleteCrossingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crossingType1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crossingType2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -188,7 +193,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(344, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(252, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -208,28 +213,33 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(118, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -248,28 +258,33 @@
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(123, 6);
             // 
             // clearGridToolStripMenuItem
             // 
             this.clearGridToolStripMenuItem.Name = "clearGridToolStripMenuItem";
-            this.clearGridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearGridToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.clearGridToolStripMenuItem.Text = "Clear Grid";
             this.clearGridToolStripMenuItem.Click += new System.EventHandler(this.buttonClear_Click);
             // 
@@ -331,6 +346,11 @@
             this.stopToolStripMenuItem.Text = "■ Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.buttonStop_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
             // showStatisticsToolStripMenuItem
             // 
             this.showStatisticsToolStripMenuItem.Enabled = false;
@@ -351,13 +371,13 @@
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.userManualToolStripMenuItem.Text = "User Manual";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // buttonStartPause
@@ -397,7 +417,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Location = new System.Drawing.Point(267, 0);
             this.label1.Name = "label1";
@@ -433,10 +453,12 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.buttonShowHideGLT);
+            this.panel1.Controls.Add(this.labelSeparator3);
+            this.panel1.Controls.Add(this.labelSeparator2);
             this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.labelSeparator1);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.buttonShowHideCT);
             this.panel1.Controls.Add(this.label4);
@@ -444,6 +466,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.buttonShowHideGLT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(858, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -451,16 +474,22 @@
             this.panel1.Size = new System.Drawing.Size(150, 618);
             this.panel1.TabIndex = 22;
             // 
-            // buttonShowHideGLT
+            // labelSeparator3
             // 
-            this.buttonShowHideGLT.Location = new System.Drawing.Point(101, 3);
-            this.buttonShowHideGLT.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonShowHideGLT.Name = "buttonShowHideGLT";
-            this.buttonShowHideGLT.Size = new System.Drawing.Size(43, 23);
-            this.buttonShowHideGLT.TabIndex = 3;
-            this.buttonShowHideGLT.Text = "Hide";
-            this.buttonShowHideGLT.UseVisualStyleBackColor = true;
-            this.buttonShowHideGLT.Click += new System.EventHandler(this.buttonShowHideGLT_Click);
+            this.labelSeparator3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelSeparator3.Location = new System.Drawing.Point(1, 283);
+            this.labelSeparator3.Name = "labelSeparator3";
+            this.labelSeparator3.Size = new System.Drawing.Size(147, 2);
+            this.labelSeparator3.TabIndex = 31;
+            // 
+            // labelSeparator2
+            // 
+            this.labelSeparator2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelSeparator2.Location = new System.Drawing.Point(1, 155);
+            this.labelSeparator2.Name = "labelSeparator2";
+            this.labelSeparator2.Size = new System.Drawing.Size(147, 2);
+            this.labelSeparator2.TabIndex = 30;
+            this.labelSeparator2.Visible = false;
             // 
             // panel5
             // 
@@ -468,13 +497,12 @@
             this.panel5.AutoScrollMargin = new System.Drawing.Size(0, 5);
             this.panel5.AutoScrollMinSize = new System.Drawing.Size(0, 10);
             this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel5.BackColor = System.Drawing.Color.Silver;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.BackColor = System.Drawing.SystemColors.Control;
             this.panel5.Controls.Add(this.groupBox4);
             this.panel5.Controls.Add(this.groupBox3);
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.groupBox2);
-            this.panel5.Location = new System.Drawing.Point(0, 282);
+            this.panel5.Location = new System.Drawing.Point(0, 283);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.MinimumSize = new System.Drawing.Size(151, 279);
             this.panel5.Name = "panel5";
@@ -846,11 +874,20 @@
             this.label17.TabIndex = 20;
             this.label17.Text = "- To South";
             // 
+            // labelSeparator1
+            // 
+            this.labelSeparator1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelSeparator1.Location = new System.Drawing.Point(1, 26);
+            this.labelSeparator1.Name = "labelSeparator1";
+            this.labelSeparator1.Size = new System.Drawing.Size(147, 2);
+            this.labelSeparator1.TabIndex = 29;
+            this.labelSeparator1.Visible = false;
+            // 
             // panel4
             // 
             this.panel4.AutoScroll = true;
-            this.panel4.BackColor = System.Drawing.Color.Silver;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.labelSeparatorTF);
             this.panel4.Controls.Add(this.pictureBox5);
             this.panel4.Controls.Add(this.pictureBox4);
             this.panel4.Controls.Add(this.pictureBox3);
@@ -869,11 +906,19 @@
             this.panel4.Size = new System.Drawing.Size(151, 103);
             this.panel4.TabIndex = 24;
             // 
+            // labelSeparatorTF
+            // 
+            this.labelSeparatorTF.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelSeparatorTF.Location = new System.Drawing.Point(1, 99);
+            this.labelSeparatorTF.Name = "labelSeparatorTF";
+            this.labelSeparatorTF.Size = new System.Drawing.Size(147, 2);
+            this.labelSeparatorTF.TabIndex = 28;
+            // 
             // pictureBox5
             // 
             this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox5.Image = global::Traffic_Simulator.Properties.Resources.East;
-            this.pictureBox5.Location = new System.Drawing.Point(93, 76);
+            this.pictureBox5.Location = new System.Drawing.Point(93, 77);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(18, 18);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -884,7 +929,7 @@
             // 
             this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox4.Image = global::Traffic_Simulator.Properties.Resources.West;
-            this.pictureBox4.Location = new System.Drawing.Point(93, 28);
+            this.pictureBox4.Location = new System.Drawing.Point(93, 29);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(18, 18);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -895,7 +940,7 @@
             // 
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Image = global::Traffic_Simulator.Properties.Resources.South;
-            this.pictureBox3.Location = new System.Drawing.Point(93, 4);
+            this.pictureBox3.Location = new System.Drawing.Point(93, 5);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(18, 18);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -906,7 +951,7 @@
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = global::Traffic_Simulator.Properties.Resources.North;
-            this.pictureBox2.Location = new System.Drawing.Point(93, 52);
+            this.pictureBox2.Location = new System.Drawing.Point(93, 53);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(18, 18);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -916,7 +961,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 77);
+            this.label11.Location = new System.Drawing.Point(3, 78);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(58, 13);
             this.label11.TabIndex = 8;
@@ -925,7 +970,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 53);
+            this.label12.Location = new System.Drawing.Point(3, 54);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 13);
             this.label12.TabIndex = 7;
@@ -934,7 +979,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 29);
+            this.label10.Location = new System.Drawing.Point(3, 30);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 13);
             this.label10.TabIndex = 6;
@@ -943,7 +988,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 5);
+            this.label9.Location = new System.Drawing.Point(3, 6);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 13);
             this.label9.TabIndex = 5;
@@ -952,7 +997,7 @@
             // textBoxTF1
             // 
             this.textBoxTF1.Enabled = false;
-            this.textBoxTF1.Location = new System.Drawing.Point(116, 2);
+            this.textBoxTF1.Location = new System.Drawing.Point(116, 3);
             this.textBoxTF1.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF1.MaxLength = 2;
             this.textBoxTF1.Name = "textBoxTF1";
@@ -965,7 +1010,7 @@
             // textBoxTF3
             // 
             this.textBoxTF3.Enabled = false;
-            this.textBoxTF3.Location = new System.Drawing.Point(116, 50);
+            this.textBoxTF3.Location = new System.Drawing.Point(116, 51);
             this.textBoxTF3.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF3.MaxLength = 2;
             this.textBoxTF3.Name = "textBoxTF3";
@@ -978,7 +1023,7 @@
             // textBoxTF4
             // 
             this.textBoxTF4.Enabled = false;
-            this.textBoxTF4.Location = new System.Drawing.Point(116, 74);
+            this.textBoxTF4.Location = new System.Drawing.Point(116, 75);
             this.textBoxTF4.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF4.MaxLength = 2;
             this.textBoxTF4.Name = "textBoxTF4";
@@ -991,7 +1036,7 @@
             // textBoxTF2
             // 
             this.textBoxTF2.Enabled = false;
-            this.textBoxTF2.Location = new System.Drawing.Point(116, 26);
+            this.textBoxTF2.Location = new System.Drawing.Point(116, 27);
             this.textBoxTF2.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF2.MaxLength = 2;
             this.textBoxTF2.Name = "textBoxTF2";
@@ -1004,7 +1049,7 @@
             // buttonShowHideCT
             // 
             this.buttonShowHideCT.AutoSize = true;
-            this.buttonShowHideCT.Location = new System.Drawing.Point(100, 259);
+            this.buttonShowHideCT.Location = new System.Drawing.Point(99, 259);
             this.buttonShowHideCT.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShowHideCT.Name = "buttonShowHideCT";
             this.buttonShowHideCT.Size = new System.Drawing.Size(44, 23);
@@ -1016,19 +1061,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(4, 264);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Car Turns";
+            this.label4.Text = "Car Turns:";
             // 
             // buttonShowHideTF
             // 
-            this.buttonShowHideTF.Location = new System.Drawing.Point(101, 132);
+            this.buttonShowHideTF.Location = new System.Drawing.Point(99, 131);
             this.buttonShowHideTF.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShowHideTF.Name = "buttonShowHideTF";
-            this.buttonShowHideTF.Size = new System.Drawing.Size(43, 23);
+            this.buttonShowHideTF.Size = new System.Drawing.Size(44, 23);
             this.buttonShowHideTF.TabIndex = 4;
             this.buttonShowHideTF.Text = "Hide";
             this.buttonShowHideTF.UseVisualStyleBackColor = true;
@@ -1037,18 +1083,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 137);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(4, 136);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 25;
-            this.label3.Text = "Traffic Flow";
+            this.label3.Text = "Traffic Flow:";
             // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
-            this.panel3.BackColor = System.Drawing.Color.Silver;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.BackColor = System.Drawing.SystemColors.Control;
+            this.panel3.Controls.Add(this.labelSeparatorGLT);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label6);
@@ -1063,10 +1110,18 @@
             this.panel3.Size = new System.Drawing.Size(151, 104);
             this.panel3.TabIndex = 23;
             // 
+            // labelSeparatorGLT
+            // 
+            this.labelSeparatorGLT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelSeparatorGLT.Location = new System.Drawing.Point(1, 100);
+            this.labelSeparatorGLT.Name = "labelSeparatorGLT";
+            this.labelSeparatorGLT.Size = new System.Drawing.Size(147, 2);
+            this.labelSeparatorGLT.TabIndex = 25;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 53);
+            this.label8.Location = new System.Drawing.Point(3, 55);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 13);
             this.label8.TabIndex = 7;
@@ -1075,7 +1130,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 77);
+            this.label7.Location = new System.Drawing.Point(3, 79);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(112, 13);
             this.label7.TabIndex = 6;
@@ -1084,7 +1139,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 29);
+            this.label6.Location = new System.Drawing.Point(3, 31);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 13);
             this.label6.TabIndex = 5;
@@ -1093,7 +1148,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 5);
+            this.label5.Location = new System.Drawing.Point(3, 7);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 13);
             this.label5.TabIndex = 4;
@@ -1102,7 +1157,7 @@
             // textBoxGLT4
             // 
             this.textBoxGLT4.Enabled = false;
-            this.textBoxGLT4.Location = new System.Drawing.Point(116, 74);
+            this.textBoxGLT4.Location = new System.Drawing.Point(116, 76);
             this.textBoxGLT4.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT4.MaxLength = 2;
             this.textBoxGLT4.Name = "textBoxGLT4";
@@ -1115,7 +1170,7 @@
             // textBoxGLT3
             // 
             this.textBoxGLT3.Enabled = false;
-            this.textBoxGLT3.Location = new System.Drawing.Point(116, 50);
+            this.textBoxGLT3.Location = new System.Drawing.Point(116, 52);
             this.textBoxGLT3.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT3.MaxLength = 2;
             this.textBoxGLT3.Name = "textBoxGLT3";
@@ -1128,7 +1183,7 @@
             // textBoxGLT2
             // 
             this.textBoxGLT2.Enabled = false;
-            this.textBoxGLT2.Location = new System.Drawing.Point(116, 26);
+            this.textBoxGLT2.Location = new System.Drawing.Point(116, 28);
             this.textBoxGLT2.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT2.MaxLength = 2;
             this.textBoxGLT2.Name = "textBoxGLT2";
@@ -1141,7 +1196,7 @@
             // textBoxGLT1
             // 
             this.textBoxGLT1.Enabled = false;
-            this.textBoxGLT1.Location = new System.Drawing.Point(116, 2);
+            this.textBoxGLT1.Location = new System.Drawing.Point(116, 4);
             this.textBoxGLT1.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT1.MaxLength = 2;
             this.textBoxGLT1.Name = "textBoxGLT1";
@@ -1154,16 +1209,28 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 8);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 7);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Green Light Time";
+            this.label2.Text = "Green Light Time:";
+            // 
+            // buttonShowHideGLT
+            // 
+            this.buttonShowHideGLT.Location = new System.Drawing.Point(99, 2);
+            this.buttonShowHideGLT.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonShowHideGLT.Name = "buttonShowHideGLT";
+            this.buttonShowHideGLT.Size = new System.Drawing.Size(44, 23);
+            this.buttonShowHideGLT.TabIndex = 3;
+            this.buttonShowHideGLT.Text = "Hide";
+            this.buttonShowHideGLT.UseVisualStyleBackColor = true;
+            this.buttonShowHideGLT.Click += new System.EventHandler(this.buttonShowHideGLT_Click);
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.labelCurrentCars);
             this.panel2.Controls.Add(this.label30);
             this.panel2.Controls.Add(this.label29);
@@ -1447,21 +1514,6 @@
             this.crossingType2ToolStripMenuItem.Name = "crossingType2ToolStripMenuItem";
             this.crossingType2ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
-            // 
             // GUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1651,6 +1703,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Label labelSeparatorTF;
+        private System.Windows.Forms.Label labelSeparatorGLT;
+        private System.Windows.Forms.Label labelSeparator3;
+        private System.Windows.Forms.Label labelSeparator2;
+        private System.Windows.Forms.Label labelSeparator1;
     }
 }
 

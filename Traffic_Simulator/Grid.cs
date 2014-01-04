@@ -109,7 +109,8 @@ namespace Traffic_Simulator
                     }
                     c.TimeInsideGrid++;
 
-                    CurrentNumberOfCarsInGrid++;
+                    if(c.HasEnteredGrid)
+                        CurrentNumberOfCarsInGrid++;
                 }
             }
 
@@ -267,6 +268,7 @@ namespace Traffic_Simulator
             try
             {
                 _totalSteps = 0;
+                _peakNumberOfCars = 0;
                 _listOfCars.Clear();//deletes all cars
                 foreach (Crossing c in _slots)//resets all crossings
                 {

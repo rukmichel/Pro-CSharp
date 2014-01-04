@@ -878,6 +878,12 @@ namespace Traffic_Simulator
             label1.Text = _controller.load();
             if (label1.Text == "Simulation has been loaded")
             {
+                foreach (PictureBox pb in _gui_slots)
+                {
+                    pb.BorderStyle = BorderStyle.FixedSingle;
+                    pb.BringToFront();
+                }
+
                 foreach (TextBox tb in _crossingProperties)
                     tb.Modified = false;
 
@@ -1072,12 +1078,16 @@ namespace Traffic_Simulator
                 {
                     buttonShowHideGLT.Text = "Show";
                     panel3.Visible = false;
+                    labelSeparator1.Visible = true;
+
                     label3.Location = new Point(label3.Location.X, label3.Location.Y - height);
                     buttonShowHideTF.Location = new Point(buttonShowHideTF.Location.X, buttonShowHideTF.Location.Y - height);
                     panel4.Location = new Point(panel4.Location.X, panel4.Location.Y - height);
                     label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
                     buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
                     panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
+                    labelSeparator2.Location = new Point(1, buttonShowHideTF.Location.Y + 24);
+                    labelSeparator3.Location = new Point(1, buttonShowHideCT.Location.Y + 24);
 
                     panel5.Size = new Size(151, 437);
 
@@ -1090,6 +1100,7 @@ namespace Traffic_Simulator
                     else
                         panel5.Size = new Size(151, 333);
 
+
                     buttonShowHideGLT.Text = "Hide";
                     panel3.Visible = true;
                     label3.Location = new Point(label3.Location.X, label3.Location.Y + height);
@@ -1098,6 +1109,11 @@ namespace Traffic_Simulator
                     label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
                     buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
                     panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+
+                    labelSeparator2.Location = new Point(1, buttonShowHideTF.Location.Y + 24);
+                    labelSeparator3.Location = new Point(1, buttonShowHideCT.Location.Y + 24);
+
+                    labelSeparator1.Hide();
                 }
             }
         }
@@ -1113,10 +1129,15 @@ namespace Traffic_Simulator
 
                     buttonShowHideTF.Text = "Show";
                     panel4.Visible = false;
+                    labelSeparator2.Visible = true;
                     label4.Location = new Point(label4.Location.X, label4.Location.Y - height);
                     buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y - height);
                     panel5.Location = new Point(panel5.Location.X, panel5.Location.Y - height);
                     panel5.Size = new Size(151, 437);
+
+
+                    labelSeparator2.Location = new Point(1, buttonShowHideTF.Location.Y + 24);
+                    labelSeparator3.Location = new Point(1, buttonShowHideCT.Location.Y + 24);
                 }
                 else
                 {
@@ -1130,6 +1151,9 @@ namespace Traffic_Simulator
                     label4.Location = new Point(label4.Location.X, label4.Location.Y + height);
                     buttonShowHideCT.Location = new Point(buttonShowHideCT.Location.X, buttonShowHideCT.Location.Y + height);
                     panel5.Location = new Point(panel5.Location.X, panel5.Location.Y + height);
+
+                    labelSeparator3.Location = new Point(1, buttonShowHideCT.Location.Y + 24);
+                    labelSeparator2.Hide();
                 }
             }
         }
@@ -1143,17 +1167,23 @@ namespace Traffic_Simulator
                 {
                     buttonShowHideCT.Text = "Show";
                     panel5.Visible = false;
+                    labelSeparator3.Visible = true;
 
                     if (buttonShowHideGLT.Text == "Show" || buttonShowHideTF.Text == "Show")
                         panel5.Size = new Size(151, 437);
                     else
                         panel5.Size = new Size(151, 333);
 
+
+                    labelSeparator2.Location = new Point(1, buttonShowHideTF.Location.Y + 24);
+                    labelSeparator3.Location = new Point(1, buttonShowHideCT.Location.Y + 24);
+
                 }
                 else
                 {
                     buttonShowHideCT.Text = "Hide";
                     panel5.Visible = true;
+                    labelSeparator3.Hide();
                 }
             }
         }

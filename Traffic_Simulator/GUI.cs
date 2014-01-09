@@ -1527,9 +1527,7 @@ namespace Traffic_Simulator
         private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                    "\nHelp section" +
-
-                    "\nGetting started:" +
+                     "\nGetting started:" +
                      "\n- Drag one of the crossings of the left panel, and drop it on a free position on the grid. You can also add," +
                      "\nby clicking on the top menu Insert, choose Crossing type 1 or 2, and after click on a available grid position" +
                      "\n- Drag as many crossing as you want, considering the grid limit" +
@@ -1564,7 +1562,8 @@ namespace Traffic_Simulator
                     "\n\nSave and Load:" +
                      "\n- You are able to save a configured simulation scenario (placed crossings and crossings` settings)," +
                     "\nand on the same way, you can load a file with all of that configurations. To do that you have to click on" + 
-                    "\nFile on the top menu, and after click on save or load." 
+                    "\nFile on the top menu, and after click on save or load.",
+                    "Help Section"
 
                     );
         }

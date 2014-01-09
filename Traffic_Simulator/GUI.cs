@@ -1523,5 +1523,50 @@ namespace Traffic_Simulator
                 "STATISTICS"
                 );
         }
+
+        private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                    "\nHelp section" +
+
+                    "\nGetting started:" +
+                     "\n- Drag one of the crossings of the left panel, and drop it on a free position on the grid. You can also add," +
+                     "\nby clicking on the top menu Insert, choose Crossing type 1 or 2, and after click on a available grid position" +
+                     "\n- Drag as many crossing as you want, considering the grid limit" +
+                     "\n- Press the Play button to start the simulation" +
+
+                    "\n\nSimulator Settings:" +
+                     "\n- At the right panel, there are three possible configurations: Green Light Time, Traffic Flow, Car Turns." +
+                    "\nTo see these settings you have to select one f the crossings" +
+                     "\n- Green Light Time: for every traffic light you can set for how many steps the green light will be on. Each" +
+                    "\ntraffic light has a label describing the direction that its means. For the crossing type 2, we also have the" +
+                    "\ntime setting for pedestrian light." +
+                     "\n- Traffic Flow: for every crossing entrance is possible to configure how many cars will be getting inside." +
+                    "\nThe maximum number is 99." +
+                     "\n- Car Turns: for every street of each crossing is possible to configure the percentage of the cars that will" +
+                    "\nturn or go straight on each crossing." +
+
+                    "\n\nFeatures:" +
+                     "\n- When the simulation is running you are able to pause or stop it, pause means, that every car and lights" +
+                    "\nwill stop, on the other hand stop means clear everything from the grid, execept from the crossings." +
+                     "\n- When the simulation is stopped or paused you are able to see some statistics, just click on Simulation" +
+                    "\non the top menu, and after Show Statistics" +
+                     "\n- While the simulation is running there is a label showing the current number of cars that are inside of the" +
+                    "\ngrid" +
+                     "\n- You can increase or decrease the speed of the cars inside of the grid, just have to put a value between 0" +
+                    "\nand 5" +
+                     "\n- You are able to copy and paste a crossing with all of the setting that it has. To do that select a crossing" +
+                    "\nby clicking on it, and after on the top menu click on Edit, Copy, by clicking on a available position on" +
+                    "\nthe grid you will copy the crossing." +
+                     "\n- Clear Grid button will delete all the crossings placed on the grid" +
+                     "\n- Delete Crossing button will delete a selected crossing" +
+
+                    "\n\nSave and Load:" +
+                     "\n- You are able to save a configured simulation scenario (placed crossings and crossings` settings)," +
+                    "\nand on the same way, you can load a file with all of that configurations. To do that you have to click on" + 
+                    "\nFile on the top menu, and after click on save or load." 
+
+                    );
+        }
     }
 }

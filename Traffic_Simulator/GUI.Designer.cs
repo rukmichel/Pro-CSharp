@@ -193,7 +193,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(252, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(394, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -207,39 +207,39 @@
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(47, 27);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(138, 28);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(138, 28);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(138, 28);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(118, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(135, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(138, 28);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -252,39 +252,39 @@
             this.toolStripSeparator2,
             this.clearGridToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 27);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(123, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(141, 6);
             // 
             // clearGridToolStripMenuItem
             // 
             this.clearGridToolStripMenuItem.Name = "clearGridToolStripMenuItem";
-            this.clearGridToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.clearGridToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.clearGridToolStripMenuItem.Text = "Clear Grid";
             this.clearGridToolStripMenuItem.Click += new System.EventHandler(this.buttonClear_Click);
             // 
@@ -294,20 +294,20 @@
             this.corToolStripMenuItem,
             this.crossToolStripMenuItem});
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(48, 21);
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(57, 27);
             this.insertToolStripMenuItem.Text = "Insert";
             // 
             // corToolStripMenuItem
             // 
             this.corToolStripMenuItem.Name = "corToolStripMenuItem";
-            this.corToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.corToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
             this.corToolStripMenuItem.Text = "Crossing Type 1";
             this.corToolStripMenuItem.Click += new System.EventHandler(this.addCrossing1ToolStripMenuItem_Click);
             // 
             // crossToolStripMenuItem
             // 
             this.crossToolStripMenuItem.Name = "crossToolStripMenuItem";
-            this.crossToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.crossToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
             this.crossToolStripMenuItem.Text = "Crossing Type 2";
             this.crossToolStripMenuItem.Click += new System.EventHandler(this.addCrossing2ToolStripMenuItem_Click);
             // 
@@ -320,13 +320,13 @@
             this.toolStripSeparator1,
             this.showStatisticsToolStripMenuItem});
             this.simulationToolStripMenuItem.Name = "simulationToolStripMenuItem";
-            this.simulationToolStripMenuItem.Size = new System.Drawing.Size(76, 21);
+            this.simulationToolStripMenuItem.Size = new System.Drawing.Size(92, 27);
             this.simulationToolStripMenuItem.Text = "Simulation";
             // 
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.startToolStripMenuItem.Text = "► Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
@@ -334,7 +334,7 @@
             // 
             this.pauseToolStripMenuItem.Enabled = false;
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.pauseToolStripMenuItem.Text = "| | Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
@@ -342,20 +342,20 @@
             // 
             this.stopToolStripMenuItem.Enabled = false;
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.stopToolStripMenuItem.Text = "■ Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.buttonStop_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // showStatisticsToolStripMenuItem
             // 
             this.showStatisticsToolStripMenuItem.Enabled = false;
             this.showStatisticsToolStripMenuItem.Name = "showStatisticsToolStripMenuItem";
-            this.showStatisticsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showStatisticsToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.showStatisticsToolStripMenuItem.Text = "Show Statistics";
             this.showStatisticsToolStripMenuItem.Click += new System.EventHandler(this.showStatisticsToolStripMenuItem_Click);
             // 
@@ -365,19 +365,20 @@
             this.userManualToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 27);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.userManualToolStripMenuItem.Text = "User Manual";
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.userManualToolStripMenuItem.Text = "Help";
+            this.userManualToolStripMenuItem.Click += new System.EventHandler(this.userManualToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // buttonStartPause
@@ -389,7 +390,6 @@
             this.buttonStartPause.Size = new System.Drawing.Size(40, 40);
             this.buttonStartPause.TabIndex = 1;
             this.buttonStartPause.Text = "►";
-            this.buttonStartPause.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonStartPause.UseVisualStyleBackColor = true;
             this.buttonStartPause.Click += new System.EventHandler(this.buttonStartPause_Click);
             // 
@@ -401,7 +401,7 @@
             this.buttonStop.Location = new System.Drawing.Point(11, 52);
             this.buttonStop.Margin = new System.Windows.Forms.Padding(2);
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(40, 40);
+            this.buttonStop.Size = new System.Drawing.Size(43, 45);
             this.buttonStop.TabIndex = 2;
             this.buttonStop.Text = "■";
             this.buttonStop.UseVisualStyleBackColor = true;
@@ -468,7 +468,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.buttonShowHideGLT);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(858, 0);
+            this.panel1.Location = new System.Drawing.Point(860, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(150, 618);
@@ -531,7 +531,7 @@
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(-7, 312);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(68, 13);
+            this.label27.Size = new System.Drawing.Size(88, 17);
             this.label27.TabIndex = 37;
             this.label27.Text = "From WEST:";
             // 
@@ -540,7 +540,7 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(6, 16);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(55, 13);
+            this.label24.Size = new System.Drawing.Size(73, 17);
             this.label24.TabIndex = 33;
             this.label24.Text = "- To North";
             // 
@@ -549,7 +549,7 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(6, 40);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(50, 13);
+            this.label22.Size = new System.Drawing.Size(66, 17);
             this.label22.TabIndex = 35;
             this.label22.Text = "- To East";
             // 
@@ -560,7 +560,7 @@
             this.textBoxCTWE.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTWE.MaxLength = 2;
             this.textBoxCTWE.Name = "textBoxCTWE";
-            this.textBoxCTWE.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTWE.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTWE.TabIndex = 1;
             this.textBoxCTWE.Tag = "CT11";
             this.textBoxCTWE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -571,7 +571,7 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(6, 64);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(57, 13);
+            this.label23.Size = new System.Drawing.Size(75, 17);
             this.label23.TabIndex = 34;
             this.label23.Text = "- To South";
             // 
@@ -582,7 +582,7 @@
             this.textBoxCTWN.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTWN.MaxLength = 2;
             this.textBoxCTWN.Name = "textBoxCTWN";
-            this.textBoxCTWN.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTWN.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTWN.TabIndex = 0;
             this.textBoxCTWN.Tag = "CT10";
             this.textBoxCTWN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -595,7 +595,7 @@
             this.textBoxCTWS.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTWS.MaxLength = 2;
             this.textBoxCTWS.Name = "textBoxCTWS";
-            this.textBoxCTWS.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTWS.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTWS.TabIndex = 2;
             this.textBoxCTWS.Tag = "CT12";
             this.textBoxCTWS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -622,7 +622,7 @@
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(-7, 312);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(68, 13);
+            this.label26.Size = new System.Drawing.Size(88, 17);
             this.label26.TabIndex = 37;
             this.label26.Text = "From WEST:";
             // 
@@ -631,7 +631,7 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(6, 16);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(55, 13);
+            this.label21.Size = new System.Drawing.Size(73, 17);
             this.label21.TabIndex = 30;
             this.label21.Text = "- To North";
             // 
@@ -642,7 +642,7 @@
             this.textBoxCTSW.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTSW.MaxLength = 2;
             this.textBoxCTSW.Name = "textBoxCTSW";
-            this.textBoxCTSW.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTSW.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTSW.TabIndex = 2;
             this.textBoxCTSW.Tag = "CT9";
             this.textBoxCTSW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -655,7 +655,7 @@
             this.textBoxCTSE.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTSE.MaxLength = 2;
             this.textBoxCTSE.Name = "textBoxCTSE";
-            this.textBoxCTSE.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTSE.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTSE.TabIndex = 1;
             this.textBoxCTSE.Tag = "CT8";
             this.textBoxCTSE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -668,7 +668,7 @@
             this.textBoxCTSN.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTSN.MaxLength = 2;
             this.textBoxCTSN.Name = "textBoxCTSN";
-            this.textBoxCTSN.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTSN.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTSN.TabIndex = 0;
             this.textBoxCTSN.Tag = "CT7";
             this.textBoxCTSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -679,7 +679,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(6, 40);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(50, 13);
+            this.label19.Size = new System.Drawing.Size(66, 17);
             this.label19.TabIndex = 32;
             this.label19.Text = "- To East";
             // 
@@ -688,7 +688,7 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(6, 64);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(54, 13);
+            this.label20.Size = new System.Drawing.Size(70, 17);
             this.label20.TabIndex = 31;
             this.label20.Text = "- To West";
             // 
@@ -713,7 +713,7 @@
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(-7, 312);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(68, 13);
+            this.label28.Size = new System.Drawing.Size(88, 17);
             this.label28.TabIndex = 37;
             this.label28.Text = "From WEST:";
             // 
@@ -722,7 +722,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 16);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 13);
+            this.label13.Size = new System.Drawing.Size(66, 17);
             this.label13.TabIndex = 16;
             this.label13.Text = "- To East";
             // 
@@ -733,7 +733,7 @@
             this.textBoxCTNW.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTNW.MaxLength = 2;
             this.textBoxCTNW.Name = "textBoxCTNW";
-            this.textBoxCTNW.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTNW.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTNW.TabIndex = 2;
             this.textBoxCTNW.Tag = "CT3";
             this.textBoxCTNW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -746,7 +746,7 @@
             this.textBoxCTNS.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTNS.MaxLength = 2;
             this.textBoxCTNS.Name = "textBoxCTNS";
-            this.textBoxCTNS.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTNS.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTNS.TabIndex = 1;
             this.textBoxCTNS.Tag = "CT2";
             this.textBoxCTNS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -759,7 +759,7 @@
             this.textBoxCTNE.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTNE.MaxLength = 2;
             this.textBoxCTNE.Name = "textBoxCTNE";
-            this.textBoxCTNE.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTNE.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTNE.TabIndex = 0;
             this.textBoxCTNE.Tag = "CT1";
             this.textBoxCTNE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -770,7 +770,7 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(6, 64);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 13);
+            this.label15.Size = new System.Drawing.Size(70, 17);
             this.label15.TabIndex = 14;
             this.label15.Text = "- To West";
             // 
@@ -779,7 +779,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(6, 40);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 13);
+            this.label14.Size = new System.Drawing.Size(75, 17);
             this.label14.TabIndex = 15;
             this.label14.Text = "- To South";
             // 
@@ -804,7 +804,7 @@
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(-7, 312);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(68, 13);
+            this.label25.Size = new System.Drawing.Size(88, 17);
             this.label25.TabIndex = 37;
             this.label25.Text = "From WEST:";
             // 
@@ -813,7 +813,7 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(6, 16);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 13);
+            this.label16.Size = new System.Drawing.Size(73, 17);
             this.label16.TabIndex = 13;
             this.label16.Text = "- To North";
             // 
@@ -824,7 +824,7 @@
             this.textBoxCTEN.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTEN.MaxLength = 2;
             this.textBoxCTEN.Name = "textBoxCTEN";
-            this.textBoxCTEN.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTEN.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTEN.TabIndex = 0;
             this.textBoxCTEN.Tag = "CT4";
             this.textBoxCTEN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -837,7 +837,7 @@
             this.textBoxCTEW.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTEW.MaxLength = 2;
             this.textBoxCTEW.Name = "textBoxCTEW";
-            this.textBoxCTEW.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTEW.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTEW.TabIndex = 2;
             this.textBoxCTEW.Tag = "CT6";
             this.textBoxCTEW.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -850,7 +850,7 @@
             this.textBoxCTES.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCTES.MaxLength = 2;
             this.textBoxCTES.Name = "textBoxCTES";
-            this.textBoxCTES.Size = new System.Drawing.Size(26, 20);
+            this.textBoxCTES.Size = new System.Drawing.Size(26, 22);
             this.textBoxCTES.TabIndex = 1;
             this.textBoxCTES.Tag = "CT5";
             this.textBoxCTES.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -861,7 +861,7 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(6, 64);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(54, 13);
+            this.label18.Size = new System.Drawing.Size(70, 17);
             this.label18.TabIndex = 19;
             this.label18.Text = "- To West";
             // 
@@ -870,7 +870,7 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(6, 40);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(57, 13);
+            this.label17.Size = new System.Drawing.Size(75, 17);
             this.label17.TabIndex = 20;
             this.label17.Text = "- To South";
             // 
@@ -963,7 +963,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(3, 78);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.Size = new System.Drawing.Size(76, 17);
             this.label11.TabIndex = 8;
             this.label11.Text = "From West";
             // 
@@ -972,7 +972,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(3, 54);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(61, 13);
+            this.label12.Size = new System.Drawing.Size(81, 17);
             this.label12.TabIndex = 7;
             this.label12.Text = "From South";
             // 
@@ -981,7 +981,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(3, 30);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.Size = new System.Drawing.Size(72, 17);
             this.label10.TabIndex = 6;
             this.label10.Text = "From East";
             // 
@@ -990,7 +990,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(3, 6);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 13);
+            this.label9.Size = new System.Drawing.Size(79, 17);
             this.label9.TabIndex = 5;
             this.label9.Text = "From North";
             // 
@@ -1001,7 +1001,7 @@
             this.textBoxTF1.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF1.MaxLength = 2;
             this.textBoxTF1.Name = "textBoxTF1";
-            this.textBoxTF1.Size = new System.Drawing.Size(26, 20);
+            this.textBoxTF1.Size = new System.Drawing.Size(26, 22);
             this.textBoxTF1.TabIndex = 0;
             this.textBoxTF1.Tag = "TF1";
             this.textBoxTF1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1014,7 +1014,7 @@
             this.textBoxTF3.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF3.MaxLength = 2;
             this.textBoxTF3.Name = "textBoxTF3";
-            this.textBoxTF3.Size = new System.Drawing.Size(26, 20);
+            this.textBoxTF3.Size = new System.Drawing.Size(26, 22);
             this.textBoxTF3.TabIndex = 2;
             this.textBoxTF3.Tag = "TF3";
             this.textBoxTF3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1027,7 +1027,7 @@
             this.textBoxTF4.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF4.MaxLength = 2;
             this.textBoxTF4.Name = "textBoxTF4";
-            this.textBoxTF4.Size = new System.Drawing.Size(26, 20);
+            this.textBoxTF4.Size = new System.Drawing.Size(26, 22);
             this.textBoxTF4.TabIndex = 3;
             this.textBoxTF4.Tag = "TF4";
             this.textBoxTF4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1040,7 +1040,7 @@
             this.textBoxTF2.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTF2.MaxLength = 2;
             this.textBoxTF2.Name = "textBoxTF2";
-            this.textBoxTF2.Size = new System.Drawing.Size(26, 20);
+            this.textBoxTF2.Size = new System.Drawing.Size(26, 22);
             this.textBoxTF2.TabIndex = 1;
             this.textBoxTF2.Tag = "TF2";
             this.textBoxTF2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1052,7 +1052,7 @@
             this.buttonShowHideCT.Location = new System.Drawing.Point(99, 259);
             this.buttonShowHideCT.Margin = new System.Windows.Forms.Padding(2);
             this.buttonShowHideCT.Name = "buttonShowHideCT";
-            this.buttonShowHideCT.Size = new System.Drawing.Size(44, 23);
+            this.buttonShowHideCT.Size = new System.Drawing.Size(52, 27);
             this.buttonShowHideCT.TabIndex = 5;
             this.buttonShowHideCT.Text = "Show";
             this.buttonShowHideCT.UseVisualStyleBackColor = true;
@@ -1065,7 +1065,7 @@
             this.label4.Location = new System.Drawing.Point(4, 264);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.Size = new System.Drawing.Size(75, 17);
             this.label4.TabIndex = 27;
             this.label4.Text = "Car Turns:";
             // 
@@ -1087,7 +1087,7 @@
             this.label3.Location = new System.Drawing.Point(4, 136);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.Size = new System.Drawing.Size(84, 17);
             this.label3.TabIndex = 25;
             this.label3.Text = "Traffic Flow:";
             // 
@@ -1123,7 +1123,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(3, 55);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 13);
+            this.label8.Size = new System.Drawing.Size(137, 17);
             this.label8.TabIndex = 7;
             this.label8.Text = "W-->N     and  E-->S";
             // 
@@ -1132,7 +1132,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(3, 79);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 13);
+            this.label7.Size = new System.Drawing.Size(147, 17);
             this.label7.TabIndex = 6;
             this.label7.Text = "W-->SE  and  E-->NW";
             // 
@@ -1141,7 +1141,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(3, 31);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 13);
+            this.label6.Size = new System.Drawing.Size(141, 17);
             this.label6.TabIndex = 5;
             this.label6.Text = "N-->E      and  S-->W";
             // 
@@ -1150,7 +1150,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 7);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 13);
+            this.label5.Size = new System.Drawing.Size(144, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "N-->SW  and  S-->NE";
             // 
@@ -1161,7 +1161,7 @@
             this.textBoxGLT4.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT4.MaxLength = 2;
             this.textBoxGLT4.Name = "textBoxGLT4";
-            this.textBoxGLT4.Size = new System.Drawing.Size(26, 20);
+            this.textBoxGLT4.Size = new System.Drawing.Size(26, 22);
             this.textBoxGLT4.TabIndex = 3;
             this.textBoxGLT4.Tag = "GLT4";
             this.textBoxGLT4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1174,7 +1174,7 @@
             this.textBoxGLT3.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT3.MaxLength = 2;
             this.textBoxGLT3.Name = "textBoxGLT3";
-            this.textBoxGLT3.Size = new System.Drawing.Size(26, 20);
+            this.textBoxGLT3.Size = new System.Drawing.Size(26, 22);
             this.textBoxGLT3.TabIndex = 2;
             this.textBoxGLT3.Tag = "GLT3";
             this.textBoxGLT3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1187,7 +1187,7 @@
             this.textBoxGLT2.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT2.MaxLength = 2;
             this.textBoxGLT2.Name = "textBoxGLT2";
-            this.textBoxGLT2.Size = new System.Drawing.Size(26, 20);
+            this.textBoxGLT2.Size = new System.Drawing.Size(26, 22);
             this.textBoxGLT2.TabIndex = 1;
             this.textBoxGLT2.Tag = "GLT2";
             this.textBoxGLT2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1200,7 +1200,7 @@
             this.textBoxGLT1.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxGLT1.MaxLength = 2;
             this.textBoxGLT1.Name = "textBoxGLT1";
-            this.textBoxGLT1.Size = new System.Drawing.Size(26, 20);
+            this.textBoxGLT1.Size = new System.Drawing.Size(26, 22);
             this.textBoxGLT1.TabIndex = 0;
             this.textBoxGLT1.Tag = "GLT1";
             this.textBoxGLT1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -1213,7 +1213,7 @@
             this.label2.Location = new System.Drawing.Point(4, 7);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.Size = new System.Drawing.Size(122, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Green Light Time:";
             // 
@@ -1253,7 +1253,7 @@
             this.labelCurrentCars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCurrentCars.Location = new System.Drawing.Point(22, 445);
             this.labelCurrentCars.Name = "labelCurrentCars";
-            this.labelCurrentCars.Size = new System.Drawing.Size(15, 16);
+            this.labelCurrentCars.Size = new System.Drawing.Size(18, 20);
             this.labelCurrentCars.TabIndex = 25;
             this.labelCurrentCars.Text = "0";
             this.labelCurrentCars.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1264,7 +1264,7 @@
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.Location = new System.Drawing.Point(9, 425);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(39, 16);
+            this.label30.Size = new System.Drawing.Size(50, 20);
             this.label30.TabIndex = 24;
             this.label30.Text = "Cars:";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1274,7 +1274,7 @@
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(13, 102);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(41, 13);
+            this.label29.Size = new System.Drawing.Size(53, 17);
             this.label29.TabIndex = 23;
             this.label29.Text = "Speed:";
             // 
@@ -1294,7 +1294,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.ReadOnly = true;
-            this.numericUpDown1.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(38, 22);
             this.numericUpDown1.TabIndex = 22;
             this.numericUpDown1.TabStop = false;
             this.numericUpDown1.Value = new decimal(new int[] {
@@ -1516,10 +1516,10 @@
             // 
             // GUI
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1008, 618);
+            this.ClientSize = new System.Drawing.Size(1010, 618);
             this.Controls.Add(this.pictureBoxSlotD0);
             this.Controls.Add(this.pictureBoxSlotC0);
             this.Controls.Add(this.pictureBoxSlotB0);
